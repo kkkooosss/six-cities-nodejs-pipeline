@@ -131,5 +131,5 @@ export default Main;
 
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  offersTitles: PropTypes.arrayOf(PropTypes.string)
+  offersTitles: PropTypes.arrayOf(PropTypes.string).isRequired
 };
