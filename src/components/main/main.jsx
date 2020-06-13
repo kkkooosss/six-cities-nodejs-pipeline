@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import OffersList from '../offers-list/offers-list.jsx';
 
-const Main = ({offersCount, offersTitles}) => (
+const Main = ({offersCount, offersTitles, handeleClick}) => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -115,7 +115,7 @@ const Main = ({offersCount, offersTitles}) => (
             */}
             </form>
 
-            <OffersList offersTitles={offersTitles}/>
+            <OffersList offersTitles={offersTitles} handeleClick={handeleClick}/>
 
           </section>
           <div className="cities__right-section">
@@ -131,5 +131,6 @@ export default Main;
 
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  offersTitles: PropTypes.arrayOf(PropTypes.string).isRequired
+  offersTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handeleClick: PropTypes.func
 };
