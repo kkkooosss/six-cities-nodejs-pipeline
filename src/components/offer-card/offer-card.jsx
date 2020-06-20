@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const OfferCard = ({offer, handleClick}) => (
+const OfferCard = ({offer, onTitleClick, onCardHover}) => (
 
-  <article className="cities__place-card place-card">
+  <article className="cities__place-card place-card" onMouseOver={() => onCardHover(offer)}>
     {offer.isPremium ? <div className="place-card__mark">
       <span>Premium</span>
     </div> : null }
@@ -40,7 +40,7 @@ const OfferCard = ({offer, handleClick}) => (
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
-      <h2 className="place-card__name" onClick={handleClick}>
+      <h2 className="place-card__name" onClick={onTitleClick}>
         <a href="#">
           {offer.title}
         </a>
@@ -54,5 +54,6 @@ export default OfferCard;
 
 OfferCard.propTypes = {
   offer: PropTypes.object.isRequired,
-  handleClick: PropTypes.func
+  onTitleClick: PropTypes.func,
+  onCardHover: PropTypes.func
 };

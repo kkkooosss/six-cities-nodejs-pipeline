@@ -21,12 +21,25 @@ describe(`e2e in OfferCard`, () => {
 
     const tree = shallow(<OfferCard
       offer={offer}
-      handleClick={clickHandler}
+      onTitleClick={clickHandler}
     />);
 
     const title = tree.find(`.place-card__name`);
     title.simulate(`click`);
 
     expect(clickHandler).toHaveBeenCalledTimes(1);
+  });
+
+  it(`hover on the card works correctly`, () => {
+    const hoverHandler = jest.fn();
+
+    const tree = shallow(<OfferCard
+      offer={offer}
+      onCardHover={hoverHandler}
+    />);
+
+    tree.simulate(`mouseover`);
+
+    expect(hoverHandler).toHaveBeenCalledTimes(1);
   });
 });
