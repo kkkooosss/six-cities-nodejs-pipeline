@@ -34,6 +34,13 @@ class OffersList extends React.PureComponent {
 export default OffersList;
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.exact({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired,
+    img: PropTypes.string.isRequired
+  })).isRequired,
   handleClick: PropTypes.func
 };

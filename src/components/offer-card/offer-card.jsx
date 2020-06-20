@@ -53,7 +53,14 @@ const OfferCard = ({offer, onTitleClick, onCardHover}) => (
 export default OfferCard;
 
 OfferCard.propTypes = {
-  offer: PropTypes.object.isRequired,
+  offer: PropTypes.exact({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    price: PropTypes.number.isRequired,
+    img: PropTypes.string.isRequired
+  }).isRequired,
   onTitleClick: PropTypes.func,
   onCardHover: PropTypes.func
 };
