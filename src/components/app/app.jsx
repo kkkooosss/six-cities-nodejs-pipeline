@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 
 import Main from "../main/main.jsx";
 
-const App = ({offersCount, offersTitles}) => (
-  <Main offersCount={offersCount} offersTitles={offersTitles} />
+const App = ({offers, offersCount}) => (
+  <Main offers={offers} offersCount={offersCount} />
 );
 
 App.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  offersTitles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  offers: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default App;

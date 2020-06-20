@@ -1,17 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const OfferCard = ({offerTitle, handleClick}) => (
+const OfferCard = ({offer, handleClick}) => (
 
   <article className="cities__place-card place-card">
-    <div className="place-card__mark">
+    {offer.isPremium ? <div className="place-card__mark">
       <span>Premium</span>
-    </div>
+    </div> : null }
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
         <img
           className="place-card__image"
-          src="img/apartment-01.jpg"
+          src={offer.img}
           width={260}
           height={200}
           alt="Place image"
@@ -21,7 +21,7 @@ const OfferCard = ({offerTitle, handleClick}) => (
     <div className="place-card__info">
       <div className="place-card__price-wrapper">
         <div className="place-card__price">
-          <b className="place-card__price-value">€120</b>
+          <b className="place-card__price-value">{`€${offer.price}`}</b>
           <span className="place-card__price-text">/&nbsp;night</span>
         </div>
         <button className="place-card__bookmark-button button" type="button">
@@ -42,10 +42,10 @@ const OfferCard = ({offerTitle, handleClick}) => (
       </div>
       <h2 className="place-card__name" onClick={handleClick}>
         <a href="#">
-          {offerTitle}
+          {offer.title}
         </a>
       </h2>
-      <p className="place-card__type">Apartment</p>
+      <p className="place-card__type">{offer.type}</p>
     </div>
   </article>
 );
@@ -53,6 +53,6 @@ const OfferCard = ({offerTitle, handleClick}) => (
 export default OfferCard;
 
 OfferCard.propTypes = {
-  offerTitle: PropTypes.string.isRequired,
+  offer: PropTypes.object.isRequired,
   handleClick: PropTypes.func
 };

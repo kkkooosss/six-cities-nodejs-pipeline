@@ -1,8 +1,4 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import OffersList from './offers-list.jsx';
-
-const offers = [
+export default [
   {
     id: 1,
     title: `Beautiful &amp; luxurious apartment at great location`,
@@ -36,12 +32,3 @@ const offers = [
     img: `img/apartment-03.jpg`,
   }
 ];
-
-it(`OffersList renders correctly`, () => {
-  const tree = renderer
-    .create(<OffersList
-      offers={offers}
-    />)
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});
