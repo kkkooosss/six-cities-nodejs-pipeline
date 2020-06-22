@@ -25,34 +25,22 @@ const OfferDetails = ({offer}) => (
         </div>
       </div>
     </header>
+    
     <main className="page__main page__main--property">
       <section className="property">
         <div className="property__gallery-container container">
           <div className="property__gallery">
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/room.jpg" alt="Photo studio" />
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-02.jpg" alt="Photo studio" />
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-03.jpg" alt="Photo studio" />
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/studio-01.jpg" alt="Photo studio" />
-            </div>
-            <div className="property__image-wrapper">
-              <img className="property__image" src="img/apartment-01.jpg" alt="Photo studio" />
-            </div>
+            {offer.photos.map((photo, i) => (
+              <div className="property__image-wrapper" key={`key-${i}`}>
+                <img className="property__image" src={photo} alt={`${offer.type} photo`}/>
+              </div>)
+            )}
           </div>
         </div>
         <div className="property__container container">
           <div className="property__wrapper">
             <div className="property__mark">
-              <span>Premium</span>
+              {offer.isPremium ? <span>Premium</span> : null}
             </div>
             <div className="property__name-wrapper">
               <h1 className="property__name">
@@ -74,13 +62,13 @@ const OfferDetails = ({offer}) => (
             </div>
             <ul className="property__features">
               <li className="property__feature property__feature--entire">
-                Apartment
+                {offer.type}
               </li>
               <li className="property__feature property__feature--bedrooms">
-                3 Bedrooms
+                {offer.bedrooms} Bedrooms
               </li>
               <li className="property__feature property__feature--adults">
-                Max 4 adults
+                Max {offer.capacity} adults
               </li>
             </ul>
             <div className="property__price">
@@ -90,36 +78,7 @@ const OfferDetails = ({offer}) => (
             <div className="property__inside">
               <h2 className="property__inside-title">What&apos;s inside</h2>
               <ul className="property__inside-list">
-                <li className="property__inside-item">
-                  Wi-Fi
-                </li>
-                <li className="property__inside-item">
-                  Washing machine
-                </li>
-                <li className="property__inside-item">
-                  Towels
-                </li>
-                <li className="property__inside-item">
-                  Heating
-                </li>
-                <li className="property__inside-item">
-                  Coffee machine
-                </li>
-                <li className="property__inside-item">
-                  Baby seat
-                </li>
-                <li className="property__inside-item">
-                  Kitchen
-                </li>
-                <li className="property__inside-item">
-                  Dishwasher
-                </li>
-                <li className="property__inside-item">
-                  Cabel TV
-                </li>
-                <li className="property__inside-item">
-                  Fridge
-                </li>
+                {offer.amenities.map((amenity, i) => <li className="property__inside-item" key={`key-${i}`}>{amenity}</li>)}
               </ul>
             </div>
             <div className="property__host">
