@@ -4,6 +4,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
+import {OfferTypes} from '../../types/types.js';
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -30,19 +31,7 @@ class App extends React.PureComponent {
 
 App.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.exact({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    img: PropTypes.string.isRequired,
-    photos: PropTypes.arrayOf(PropTypes.string).isRequired,
-    rating: PropTypes.number.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    capacity: PropTypes.number.isRequired,
-    amenities: PropTypes.arrayOf(PropTypes.string).isRequired
-  })).isRequired
+  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired
 };
 
 export default App;

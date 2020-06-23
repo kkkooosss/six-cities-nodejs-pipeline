@@ -3,7 +3,7 @@ import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import OfferCard from './offer-card.jsx';
 
-const offer = {
+const OFFER = {
   id: 1,
   title: `Beautiful &amp; luxurious apartment at great location`,
   type: `Apartment`,
@@ -39,7 +39,7 @@ describe(`e2e in OfferCard`, () => {
     const clickHandler = jest.fn();
 
     const tree = shallow(<OfferCard
-      offer={offer}
+      offer={OFFER}
       onTitleClick={clickHandler}
     />);
 
@@ -53,7 +53,7 @@ describe(`e2e in OfferCard`, () => {
     const hoverHandler = jest.fn();
 
     const tree = shallow(<OfferCard
-      offer={offer}
+      offer={OFFER}
       onCardHover={hoverHandler}
     />);
 

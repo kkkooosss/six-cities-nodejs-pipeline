@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import OfferCard from '../offer-card/offer-card.jsx';
+import {OfferTypes} from '../../types/types.js';
 
 class OffersList extends React.PureComponent {
   constructor(props) {
@@ -34,18 +35,6 @@ class OffersList extends React.PureComponent {
 export default OffersList;
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.exact({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    img: PropTypes.string.isRequired,
-    photos: PropTypes.arrayOf(PropTypes.string).isRequired,
-    rating: PropTypes.number.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    capacity: PropTypes.number.isRequired,
-    amenities: PropTypes.arrayOf(PropTypes.string).isRequired
-  })).isRequired,
+  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   handleClick: PropTypes.func
 };

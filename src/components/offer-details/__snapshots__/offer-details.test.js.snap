@@ -73,7 +73,7 @@ exports[`OfferDetails renders correctly 1`] = `
             className="property__image-wrapper"
           >
             <img
-              alt="Photo studio"
+              alt="Apartment photo"
               className="property__image"
               src="img/room.jpg"
             />
@@ -82,7 +82,7 @@ exports[`OfferDetails renders correctly 1`] = `
             className="property__image-wrapper"
           >
             <img
-              alt="Photo studio"
+              alt="Apartment photo"
               className="property__image"
               src="img/apartment-01.jpg"
             />
@@ -91,7 +91,7 @@ exports[`OfferDetails renders correctly 1`] = `
             className="property__image-wrapper"
           >
             <img
-              alt="Photo studio"
+              alt="Apartment photo"
               className="property__image"
               src="img/apartment-02.jpg"
             />
@@ -100,7 +100,7 @@ exports[`OfferDetails renders correctly 1`] = `
             className="property__image-wrapper"
           >
             <img
-              alt="Photo studio"
+              alt="Apartment photo"
               className="property__image"
               src="img/apartment-03.jpg"
             />
@@ -109,7 +109,7 @@ exports[`OfferDetails renders correctly 1`] = `
             className="property__image-wrapper"
           >
             <img
-              alt="Photo studio"
+              alt="Apartment photo"
               className="property__image"
               src="img/studio-01.jpg"
             />
@@ -118,7 +118,7 @@ exports[`OfferDetails renders correctly 1`] = `
             className="property__image-wrapper"
           >
             <img
-              alt="Photo studio"
+              alt="Apartment photo"
               className="property__image"
               src="img/apartment-01.jpg"
             />
@@ -144,7 +144,7 @@ exports[`OfferDetails renders correctly 1`] = `
             <h1
               className="property__name"
             >
-              Beautiful &amp; luxurious apartment at great location
+              Nice, cozy, warm big bed apartment
             </h1>
             <button
               className="property__bookmark-button button"
@@ -175,7 +175,7 @@ exports[`OfferDetails renders correctly 1`] = `
               <span
                 style={
                   Object {
-                    "width": "80%",
+                    "width": "60%",
                   }
                 }
               />
@@ -202,12 +202,15 @@ exports[`OfferDetails renders correctly 1`] = `
             <li
               className="property__feature property__feature--bedrooms"
             >
-              3 Bedrooms
+              2
+               Bedrooms
             </li>
             <li
               className="property__feature property__feature--adults"
             >
-              Max 4 adults
+              Max 
+              4
+               adults
             </li>
           </ul>
           <div
@@ -216,7 +219,8 @@ exports[`OfferDetails renders correctly 1`] = `
             <b
               className="property__price-value"
             >
-              €120
+              €
+              180
             </b>
             <span
               className="property__price-text"
@@ -248,22 +252,12 @@ exports[`OfferDetails renders correctly 1`] = `
               <li
                 className="property__inside-item"
               >
-                Towels
-              </li>
-              <li
-                className="property__inside-item"
-              >
                 Heating
               </li>
               <li
                 className="property__inside-item"
               >
                 Coffee machine
-              </li>
-              <li
-                className="property__inside-item"
-              >
-                Baby seat
               </li>
               <li
                 className="property__inside-item"

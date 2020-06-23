@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import OfferCard from './offer-card.jsx';
 
-const offer = {
+const OFFER = {
   id: 1,
   title: `Beautiful &amp; luxurious apartment at great location`,
   type: `Apartment`,
@@ -33,7 +33,7 @@ const offer = {
 it(`OfferCard renders correctly`, () => {
   const tree = renderer
     .create(<OfferCard
-      offer={offer}
+      offer={OFFER}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

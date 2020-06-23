@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {OfferTypes} from '../../types/types';
+
 const OfferCard = ({offer, onTitleClick, onCardHover}) => (
 
   <article className="cities__place-card place-card" onMouseOver={() => onCardHover(offer)}>
@@ -53,19 +55,7 @@ const OfferCard = ({offer, onTitleClick, onCardHover}) => (
 export default OfferCard;
 
 OfferCard.propTypes = {
-  offer: PropTypes.exact(PropTypes.exact({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    img: PropTypes.string.isRequired,
-    photos: PropTypes.arrayOf(PropTypes.string).isRequired,
-    rating: PropTypes.number.isRequired,
-    bedrooms: PropTypes.number.isRequired,
-    capacity: PropTypes.number.isRequired,
-    amenities: PropTypes.arrayOf(PropTypes.string).isRequired
-  })).isRequired,
+  offer: OfferTypes.isRequired,
   onTitleClick: PropTypes.func,
   onCardHover: PropTypes.func
 };

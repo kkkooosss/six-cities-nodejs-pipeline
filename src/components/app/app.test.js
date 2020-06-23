@@ -4,7 +4,7 @@ import App from './app.jsx';
 
 const offersCount = 4;
 
-const offers = [
+const OFFERS = [
   {
     id: 1,
     title: `Beautiful &amp; luxurious apartment at great location`,
@@ -43,7 +43,7 @@ it(`App renders correctly`, () => {
   const tree = renderer
     .create(<App
       offersCount={offersCount}
-      offers={offers}
+      offers={OFFERS}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
