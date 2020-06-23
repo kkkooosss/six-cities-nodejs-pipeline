@@ -22,11 +22,11 @@ class OffersList extends React.PureComponent {
   }
 
   render() {
-    const {offers, handleClick} = this.props;
+    const {offers, onTitleClick} = this.props;
 
     return (
       <div className="cities__places-list places__list tabs__content">
-        {offers.map((offer) => <OfferCard offer={offer} onCardHover={this.handleCardHover} onTitleClick={handleClick} key={offer.id}/>)}
+        {offers.map((offer) => <OfferCard offer={offer} onCardHover={this.handleCardHover} onTitleClick={onTitleClick} key={offer.id}/>)}
       </div>
     );
   }
@@ -36,5 +36,5 @@ export default OffersList;
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
-  handleClick: PropTypes.func
+  onTitleClick: PropTypes.func
 };

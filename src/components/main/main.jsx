@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import OffersList from '../offers-list/offers-list.jsx';
 import {OfferTypes} from '../../types/types.js';
 
-const Main = ({offersCount, offers, handeleClick}) => (
+const Main = ({offersCount, offers, onTitleClick}) => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -116,7 +116,7 @@ const Main = ({offersCount, offers, handeleClick}) => (
             */}
             </form>
 
-            <OffersList offers={offers} handeleClick={handeleClick}/>
+            <OffersList offers={offers} onTitleClick={onTitleClick}/>
 
           </section>
           <div className="cities__right-section">
@@ -133,5 +133,5 @@ export default Main;
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
-  handeleClick: PropTypes.func
+  onTitleClick: PropTypes.func
 };

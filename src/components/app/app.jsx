@@ -9,16 +9,39 @@ import {OfferTypes} from '../../types/types.js';
 class App extends React.PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      selectedOffer: null
+    };
+
+    this.handleTitleClick = this.handleTitleClick.bind(this);
+  }
+
+  handleTitleClick(offer) {
+    this.setState({
+      selectedOffer: offer,
+    });
+  }
+
+  _renderApp() {
+    const {offers, offersCount} = this.props;
+    const {selectedOffer} = this.state;
+
+    return (
+      !selectedOffer
+        ? <Main offers={offers} offersCount={offersCount} onTitleClick={this.handleTitleClick} />
+        : <OfferDetails offer={selectedOffer} />
+    );
   }
 
   render() {
-    const {offers, offersCount} = this.props;
+    const {offers} = this.props;
 
     return (
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Main offers={offers} offersCount={offersCount} />
+            {this._renderApp()}
           </Route>
           <Route exact path="/dev-details">
             <OfferDetails offer={offers[0]} />

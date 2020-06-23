@@ -42,7 +42,7 @@ const OfferCard = ({offer, onTitleClick, onCardHover}) => (
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
-      <h2 className="place-card__name" onClick={onTitleClick}>
+      <h2 className="place-card__name" onClick={() => onTitleClick(offer)}>
         <a href="#">
           {offer.title}
         </a>
