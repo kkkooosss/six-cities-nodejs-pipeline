@@ -137,7 +137,12 @@ Main.propTypes = {
     type: PropTypes.string.isRequired,
     isPremium: PropTypes.bool.isRequired,
     price: PropTypes.number.isRequired,
-    img: PropTypes.string.isRequired
+    img: PropTypes.string.isRequired,
+    photos: PropTypes.arrayOf(PropTypes.string).isRequired,
+    rating: PropTypes.number.isRequired,
+    bedrooms: PropTypes.number.isRequired,
+    capacity: PropTypes.number.isRequired,
+    amenities: PropTypes.arrayOf(PropTypes.string).isRequired
   })).isRequired,
   handeleClick: PropTypes.func
 };
