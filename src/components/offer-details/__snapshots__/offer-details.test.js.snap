@@ -144,7 +144,7 @@ exports[`OfferDetails renders correctly 1`] = `
             <h1
               className="property__name"
             >
-              Nice, cozy, warm big bed apartment
+              Beautiful &amp; luxurious apartment at great location
             </h1>
             <button
               className="property__bookmark-button button"
@@ -175,7 +175,7 @@ exports[`OfferDetails renders correctly 1`] = `
               <span
                 style={
                   Object {
-                    "width": "60%",
+                    "width": "100%",
                   }
                 }
               />
@@ -202,7 +202,7 @@ exports[`OfferDetails renders correctly 1`] = `
             <li
               className="property__feature property__feature--bedrooms"
             >
-              2
+              3
                Bedrooms
             </li>
             <li
@@ -220,7 +220,7 @@ exports[`OfferDetails renders correctly 1`] = `
               className="property__price-value"
             >
               €
-              180
+              120
             </b>
             <span
               className="property__price-text"
@@ -252,12 +252,22 @@ exports[`OfferDetails renders correctly 1`] = `
               <li
                 className="property__inside-item"
               >
+                Towels
+              </li>
+              <li
+                className="property__inside-item"
+              >
                 Heating
               </li>
               <li
                 className="property__inside-item"
               >
                 Coffee machine
+              </li>
+              <li
+                className="property__inside-item"
+              >
+                Baby seat
               </li>
               <li
                 className="property__inside-item"
