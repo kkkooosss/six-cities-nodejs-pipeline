@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
-import {OfferTypes} from '../../types/types.js';
+import {OfferTypes} from '../../types/offers.js';
 
 class App extends React.PureComponent {
   constructor(props) {

@@ -6,6 +6,7 @@ export const OfferTypes = PropTypes.exact({
   type: PropTypes.string.isRequired,
   isPremium: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
+  coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
   img: PropTypes.string.isRequired,
   photos: PropTypes.arrayOf(PropTypes.string).isRequired,
   rating: PropTypes.number.isRequired,
