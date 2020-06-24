@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import {OfferTypes} from '../../types/types';
+
 const OfferCard = ({offer, onTitleClick, onCardHover}) => (
 
   <article className="cities__place-card place-card" onMouseOver={() => onCardHover(offer)}>
@@ -40,7 +42,7 @@ const OfferCard = ({offer, onTitleClick, onCardHover}) => (
           <span className="visually-hidden">Rating</span>
         </div>
       </div>
-      <h2 className="place-card__name" onClick={onTitleClick}>
+      <h2 className="place-card__name" onClick={() => onTitleClick(offer)}>
         <a href="#">
           {offer.title}
         </a>
@@ -53,14 +55,7 @@ const OfferCard = ({offer, onTitleClick, onCardHover}) => (
 export default OfferCard;
 
 OfferCard.propTypes = {
-  offer: PropTypes.exact({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    img: PropTypes.string.isRequired
-  }).isRequired,
+  offer: OfferTypes.isRequired,
   onTitleClick: PropTypes.func,
   onCardHover: PropTypes.func
 };

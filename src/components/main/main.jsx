@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import OffersList from '../offers-list/offers-list.jsx';
+import {OfferTypes} from '../../types/types.js';
 
-const Main = ({offersCount, offers, handeleClick}) => (
+const Main = ({offersCount, offers, onTitleClick}) => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -115,7 +116,7 @@ const Main = ({offersCount, offers, handeleClick}) => (
             */}
             </form>
 
-            <OffersList offers={offers} handeleClick={handeleClick}/>
+            <OffersList offers={offers} onTitleClick={onTitleClick}/>
 
           </section>
           <div className="cities__right-section">
@@ -131,13 +132,6 @@ export default Main;
 
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(PropTypes.exact({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.string.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    price: PropTypes.number.isRequired,
-    img: PropTypes.string.isRequired
-  })).isRequired,
-  handeleClick: PropTypes.func
+  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
+  onTitleClick: PropTypes.func
 };
