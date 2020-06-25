@@ -9,6 +9,7 @@ const OFFER = {
   type: `Apartment`,
   isPremium: true,
   price: 120,
+  coordinates: [52.3909553943508, 4.85309666406198],
   img: `img/apartment-01.jpg`,
   photos: [`img/room.jpg`,
     `img/apartment-01.jpg`,

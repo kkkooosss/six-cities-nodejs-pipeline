@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {OfferTypes} from '../../types/types';
+import {OfferTypes} from '../../types/offers';
 
 const OfferCard = ({offer, onTitleClick, onCardHover}) => (
 
   <article className="cities__place-card place-card" onMouseOver={() => onCardHover(offer)}>
     {offer.isPremium ? <div className="place-card__mark">
       <span>Premium</span>
-    </div> : null }
+    </div> : null}
     <div className="cities__image-wrapper place-card__image-wrapper">
       <a href="#">
         <img
