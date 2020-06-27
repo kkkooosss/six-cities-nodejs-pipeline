@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import OffersList from '../offers-list/offers-list.jsx';
-import {OfferTypes} from '../../types/offers.js';
+import OfferTypes from '../../types/offer.js';
 import Map from '../../components/map/map.jsx';
 
 const Main = ({offersCount, offers, onTitleClick}) => (

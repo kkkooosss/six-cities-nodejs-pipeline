@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export const OfferTypes = PropTypes.exact({
+export default PropTypes.exact({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,

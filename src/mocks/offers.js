@@ -1,7 +1,7 @@
 export default [
   {
     id: 1,
-    title: `Beautiful &amp; luxurious apartment at great location`,
+    title: `Beautiful & luxurious apartment at great location`,
     type: `Apartment`,
     isPremium: true,
     price: 120,

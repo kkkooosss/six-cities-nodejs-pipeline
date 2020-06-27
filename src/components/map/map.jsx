@@ -1,7 +1,7 @@
 import React from 'react';
 import leaflet from 'leaflet';
 import PropTypes from 'prop-types';
-import {OfferTypes} from '../../types/offers.js';
+import OfferTypes from '../../types/offer.js';
 
 class Map extends React.PureComponent {
   constructor(props) {

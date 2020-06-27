@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import OfferCard from '../offer-card/offer-card.jsx';
-import {OfferTypes} from '../../types/offers.js';
+import OfferTypes from '../../types/offer.js';
 
 class OffersList extends React.PureComponent {
   constructor(props) {

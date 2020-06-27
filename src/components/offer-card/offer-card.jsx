@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {OfferTypes} from '../../types/offers';
+import OfferTypes from '../../types/offer.js';
 
 const OfferCard = ({offer, onTitleClick, onCardHover}) => (
 
