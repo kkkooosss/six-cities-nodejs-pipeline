@@ -11,12 +11,16 @@ class Map extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {offers} = this.props;
+    const {offers, currentOffer} = this.props;
 
     const city = [52.38333, 4.9];
     const zoom = 12;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
+      iconSize: [30, 30]
+    });
+    const currentOfferIcon = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
       iconSize: [30, 30]
     });
 
@@ -34,6 +38,10 @@ class Map extends React.PureComponent {
         .addTo(map);
 
     offers.map((offer) => leaflet.marker(offer.coordinates, {icon}).addTo(map));
+
+    if (currentOffer) {
+      leaflet.marker(currentOffer.coordinates, {currentOfferIcon}).addTo(map);
+    }
   }
 
   componentWillUnmount() {
@@ -52,5 +60,6 @@ export default Map;
 
 Map.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
-  isPropertyMap: PropTypes.bool.isRequired
+  isPropertyMap: PropTypes.bool.isRequired,
+  currentOffer: PropTypes.arrayOf(OfferTypes.isRequired)
 };

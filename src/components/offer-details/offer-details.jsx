@@ -135,7 +135,7 @@ const OfferDetails = ({offer, offers, reviews}) => {
             </div>
           </div>
         </section>
-        <Map offers={nearbyOffers} isPropertyMap={true} />
+        <Map offers={nearbyOffers} isPropertyMap={true} currentOffer={offer} />
 
         <div className="container">
           <section className="near-places places">
