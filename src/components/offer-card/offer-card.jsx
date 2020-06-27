@@ -3,13 +3,13 @@ import PropTypes from 'prop-types';
 
 import OfferTypes from '../../types/offer.js';
 
-const OfferCard = ({offer, onTitleClick, onCardHover}) => (
+const OfferCard = ({offer, onTitleClick, onCardHover, isNearPlacesCard}) => (
 
-  <article className="cities__place-card place-card" onMouseOver={() => onCardHover(offer)}>
+  <article className={`place-card ${isNearPlacesCard ? `near-places__card` : `cities__place-card`}`} onMouseOver={() => onCardHover(offer)}>
     {offer.isPremium ? <div className="place-card__mark">
       <span>Premium</span>
     </div> : null}
-    <div className="cities__image-wrapper place-card__image-wrapper">
+    <div className={`place-card__image-wrapperd ${isNearPlacesCard ? `near-places__image-wrapper` : `cities__image-wrapper`}`}>
       <a href="#">
         <img
           className="place-card__image"
@@ -57,5 +57,6 @@ export default OfferCard;
 OfferCard.propTypes = {
   offer: OfferTypes.isRequired,
   onTitleClick: PropTypes.func,
-  onCardHover: PropTypes.func
+  onCardHover: PropTypes.func,
+  isNearPlacesCard: PropTypes.bool.isRequired
 };

@@ -225,7 +225,7 @@ exports[`App renders correctly 1`] = `
             className="cities__places-list places__list tabs__content"
           >
             <article
-              className="cities__place-card place-card"
+              className="place-card cities__place-card"
               onMouseOver={[Function]}
             >
               <div
@@ -236,7 +236,7 @@ exports[`App renders correctly 1`] = `
                 </span>
               </div>
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="place-card__image-wrapperd cities__image-wrapper"
               >
                 <a
                   href="#"
@@ -328,11 +328,11 @@ exports[`App renders correctly 1`] = `
               </div>
             </article>
             <article
-              className="cities__place-card place-card"
+              className="place-card cities__place-card"
               onMouseOver={[Function]}
             >
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="place-card__image-wrapperd cities__image-wrapper"
               >
                 <a
                   href="#"
@@ -424,11 +424,11 @@ exports[`App renders correctly 1`] = `
               </div>
             </article>
             <article
-              className="cities__place-card place-card"
+              className="place-card cities__place-card"
               onMouseOver={[Function]}
             >
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="place-card__image-wrapperd cities__image-wrapper"
               >
                 <a
                   href="#"
@@ -520,7 +520,7 @@ exports[`App renders correctly 1`] = `
               </div>
             </article>
             <article
-              className="cities__place-card place-card"
+              className="place-card cities__place-card"
               onMouseOver={[Function]}
             >
               <div
@@ -531,7 +531,7 @@ exports[`App renders correctly 1`] = `
                 </span>
               </div>
               <div
-                className="cities__image-wrapper place-card__image-wrapper"
+                className="place-card__image-wrapperd cities__image-wrapper"
               >
                 <a
                   href="#"
@@ -628,7 +628,7 @@ exports[`App renders correctly 1`] = `
           className="cities__right-section"
         >
           <section
-            className="cities__map map"
+            className="map cities__map"
             id="map"
           />
         </div>
