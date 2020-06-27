@@ -1,1 +1,1 @@
-export const renderStars = (rating) => `${(Math.round(rating)) * 20}%`;
+export const getRatingPercents = (rating) => `${(Math.round(rating)) * 20}%`;

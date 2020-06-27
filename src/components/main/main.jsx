@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import OffersList from '../offers-list/offers-list.jsx';
-import {OfferTypes} from '../../types/types.js';
+import {OfferTypes} from '../../types/offers.js';
+import Map from '../../components/map/map.jsx';
 
 const Main = ({offersCount, offers, onTitleClick}) => (
   <div className="page page--gray page--main">
@@ -116,11 +117,11 @@ const Main = ({offersCount, offers, onTitleClick}) => (
             */}
             </form>
 
-            <OffersList offers={offers} onTitleClick={onTitleClick}/>
+            <OffersList offers={offers} onTitleClick={onTitleClick} />
 
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map" />
+            <Map offers={offers} />
           </div>
         </div>
       </div>

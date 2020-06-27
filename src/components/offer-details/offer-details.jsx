@@ -1,7 +1,7 @@
 import React from 'react';
 
-import {renderStars} from '../../helpers/helpers.js';
-import {OfferTypes} from '../../types/types.js';
+import {getRatingPercents} from '../../helpers/helpers.js';
+import {OfferTypes} from '../../types/offers.js';
 
 const OfferDetails = ({offer}) => {
   const {
@@ -16,7 +16,7 @@ const OfferDetails = ({offer}) => {
     amenities
   } = offer;
 
-  const stars = renderStars(rating);
+  const stars = getRatingPercents(rating);
 
   return (
     <div className="page">
