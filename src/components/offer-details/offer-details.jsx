@@ -8,6 +8,7 @@ import {getRatingPercents} from '../../helpers/helpers.js';
 
 import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
+import {getNearOffers, getReviews} from '../../selectors/selectors.js';
 
 const OfferDetails = ({offer, offers, reviews}) => {
   const {
@@ -24,7 +25,8 @@ const OfferDetails = ({offer, offers, reviews}) => {
     amenities
   } = offer;
 
-  const nearbyOffers = offers.filter((item) => item.id !== id);
+  const nearbyOffers = getNearOffers(offers, id);
+  const sortedReviews = getReviews(reviews);
 
   const stars = getRatingPercents(rating);
 
@@ -128,7 +130,7 @@ const OfferDetails = ({offer, offers, reviews}) => {
                 </div>
               </div>
 
-              <ReviewsList reviews={reviews} />
+              <ReviewsList reviews={sortedReviews} />
 
             </div>
           </div>

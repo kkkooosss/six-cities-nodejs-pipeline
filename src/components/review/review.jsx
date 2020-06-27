@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getRatingPercents} from '../../helpers/helpers.js';
+import {getRatingPercents, convertDate} from '../../helpers/helpers.js';
 import ReviewTypes from '../../types/review.js';
 
 const Review = ({review}) => {
@@ -34,7 +34,7 @@ const Review = ({review}) => {
         <p className="reviews__text">
           {text}
         </p>
-        <time className="reviews__time" dateTime={date}>{date}</time>
+        <time className="reviews__time" dateTime={date}>{convertDate(date)}</time>
       </div>
     </li>
   );
