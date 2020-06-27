@@ -14,6 +14,7 @@ const OfferDetails = ({offer, reviews}) => {
     isPremium,
     price,
     photos,
+    host,
     rating,
     bedrooms,
     capacity,
@@ -105,11 +106,11 @@ const OfferDetails = ({offer, reviews}) => {
               <div className="property__host">
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
-                  <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar" src="img/avatar-angelina.jpg" width={74} height={74} alt="Host avatar" />
+                  <div className={`property__avatar-wrapper user__avatar-wrapper ${host.isPro ? `property__avatar-wrapper--pro` : null}`}>
+                    <img className="property__avatar user__avatar" src={host.userPic} width={74} height={74} alt="Host avatar" />
                   </div>
                   <span className="property__user-name">
-                    Angelina
+                    {host.name}
                   </span>
                 </div>
                 <div className="property__description">

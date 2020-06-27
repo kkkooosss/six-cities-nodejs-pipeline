@@ -4,7 +4,7 @@ import OfferDetails from './offer-details.jsx';
 
 const OFFER = {
   id: 1,
-  title: `Beautiful &amp; luxurious apartment at great location`,
+  title: `Beautiful & luxurious apartment at great location`,
   type: `Apartment`,
   isPremium: true,
   price: 120,
@@ -19,6 +19,12 @@ const OFFER = {
   rating: 4.8,
   bedrooms: 3,
   capacity: 4,
+  host: {
+    id: 1,
+    isPro: true,
+    name: `Angelina`,
+    userPic: `img/avatar-angelina.jpg`
+  },
   amenities: [`Wi-Fi`,
     `Washing machine`,
     `Towels`,
@@ -45,7 +51,7 @@ const REVIEWS = [
     name: `Angelina`,
     userPic: `img/avatar-angelina.jpg`,
     rating: 5,
-    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
+    text: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
     date: `2019-05-14`
   }
 ];
