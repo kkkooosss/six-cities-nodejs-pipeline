@@ -41,8 +41,9 @@ class Map extends React.PureComponent {
   }
 
   render() {
+    const {isPropertyMap} = this.props;
     return (
-      <section className="cities__map map" id="map" ref={this.map}></section>
+      <section className={`map ${isPropertyMap ? `property__map` : `cities__map` }`} id="map" ref={this.map}></section>
     );
   }
 }
@@ -50,5 +51,6 @@ class Map extends React.PureComponent {
 export default Map;
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired
+  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
+  isPropertyMap: PropTypes.bool.isRequired
 };

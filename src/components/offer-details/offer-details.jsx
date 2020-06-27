@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ReviewsList from '../reviews-list/reviews-list.jsx';
+import Map from '../map/map.jsx';
 import {getRatingPercents} from '../../helpers/helpers.js';
 
 import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
 
-const OfferDetails = ({offer, reviews}) => {
+const OfferDetails = ({offer, offers, reviews}) => {
   const {
+    id,
     title,
     type,
     isPremium,
@@ -20,6 +22,8 @@ const OfferDetails = ({offer, reviews}) => {
     capacity,
     amenities
   } = offer;
+
+  const nearbyOffers = offers.filter((item) => item.id !== id);
 
   const stars = getRatingPercents(rating);
 
@@ -127,8 +131,9 @@ const OfferDetails = ({offer, reviews}) => {
 
             </div>
           </div>
-          <section className="property__map map" />
         </section>
+        <Map offers={nearbyOffers} isPropertyMap={true} />
+
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
@@ -238,5 +243,6 @@ export default OfferDetails;
 
 OfferDetails.propTypes = {
   offer: OfferTypes.isRequired,
+  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired
 };

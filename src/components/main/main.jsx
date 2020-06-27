@@ -121,7 +121,7 @@ const Main = ({offersCount, offers, onTitleClick}) => (
 
           </section>
           <div className="cities__right-section">
-            <Map offers={offers} />
+            <Map offers={offers} isPropertyMap={false} />
           </div>
         </div>
       </div>

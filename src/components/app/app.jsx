@@ -31,7 +31,7 @@ class App extends React.PureComponent {
     return (
       !selectedOffer
         ? <Main offers={offers} offersCount={offersCount} onTitleClick={this.handleTitleClick} />
-        : <OfferDetails offer={selectedOffer} reviews={reviews}/>
+        : <OfferDetails offer={selectedOffer} offers={offers} reviews={reviews}/>
     );
   }
 
@@ -45,7 +45,7 @@ class App extends React.PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-details">
-            <OfferDetails offer={offers[0]} reviews={reviews}/>
+            <OfferDetails offer={offers[0]} reviews={reviews} offers={offers}/>
           </Route>
         </Switch>
       </BrowserRouter>
