@@ -1,11 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`OffersList renders correctly 1`] = `
-<div
-  className="cities__places-list places__list tabs__content"
->
+Array [
   <article
-    className="cities__place-card place-card"
+    className="place-card cities__place-card"
     onMouseOver={[Function]}
   >
     <div
@@ -16,7 +14,7 @@ exports[`OffersList renders correctly 1`] = `
       </span>
     </div>
     <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="place-card__image-wrapperd cities__image-wrapper"
     >
       <a
         href="#"
@@ -106,13 +104,13 @@ exports[`OffersList renders correctly 1`] = `
         Apartment
       </p>
     </div>
-  </article>
+  </article>,
   <article
-    className="cities__place-card place-card"
+    className="place-card cities__place-card"
     onMouseOver={[Function]}
   >
     <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="place-card__image-wrapperd cities__image-wrapper"
     >
       <a
         href="#"
@@ -202,13 +200,13 @@ exports[`OffersList renders correctly 1`] = `
         Apartment
       </p>
     </div>
-  </article>
+  </article>,
   <article
-    className="cities__place-card place-card"
+    className="place-card cities__place-card"
     onMouseOver={[Function]}
   >
     <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="place-card__image-wrapperd cities__image-wrapper"
     >
       <a
         href="#"
@@ -298,9 +296,9 @@ exports[`OffersList renders correctly 1`] = `
         Room
       </p>
     </div>
-  </article>
+  </article>,
   <article
-    className="cities__place-card place-card"
+    className="place-card cities__place-card"
     onMouseOver={[Function]}
   >
     <div
@@ -311,7 +309,7 @@ exports[`OffersList renders correctly 1`] = `
       </span>
     </div>
     <div
-      className="cities__image-wrapper place-card__image-wrapper"
+      className="place-card__image-wrapperd cities__image-wrapper"
     >
       <a
         href="#"
@@ -401,6 +399,6 @@ exports[`OffersList renders correctly 1`] = `
         Apartment
       </p>
     </div>
-  </article>
-</div>
+  </article>,
+]
 `;

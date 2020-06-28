@@ -35,7 +35,10 @@ it(`OfferCard renders correctly`, () => {
   const tree = renderer
     .create(<OfferCard
       offer={OFFER}
-    />)
+      isNearPlacesCard={false}
+    />, {
+      createNodeMock: () => document.createElement(`div`)
+    })
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

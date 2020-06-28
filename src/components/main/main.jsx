@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import OffersList from '../offers-list/offers-list.jsx';
-import {OfferTypes} from '../../types/offers.js';
+import OfferTypes from '../../types/offer.js';
 import Map from '../../components/map/map.jsx';
 
 const Main = ({offersCount, offers, onTitleClick}) => (
@@ -116,12 +116,13 @@ const Main = ({offersCount, offers, onTitleClick}) => (
             </select>
             */}
             </form>
-
-            <OffersList offers={offers} onTitleClick={onTitleClick} />
+            <div className="cities__places-list places__list tabs__content">
+              <OffersList offers={offers} onTitleClick={onTitleClick} isNearPlacesList={false} />
+            </div>
 
           </section>
           <div className="cities__right-section">
-            <Map offers={offers} />
+            <Map offers={offers} isPropertyMap={false} />
           </div>
         </div>
       </div>

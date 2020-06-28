@@ -4,7 +4,8 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
-import {OfferTypes} from '../../types/offers.js';
+import OfferTypes from '../../types/offer.js';
+import ReviewTypes from '../../types/review.js';
 
 class App extends React.PureComponent {
   constructor(props) {
@@ -24,18 +25,18 @@ class App extends React.PureComponent {
   }
 
   _renderApp() {
-    const {offers, offersCount} = this.props;
+    const {offers, offersCount, reviews} = this.props;
     const {selectedOffer} = this.state;
 
     return (
       !selectedOffer
         ? <Main offers={offers} offersCount={offersCount} onTitleClick={this.handleTitleClick} />
-        : <OfferDetails offer={selectedOffer} />
+        : <OfferDetails offer={selectedOffer} offers={offers} reviews={reviews}/>
     );
   }
 
   render() {
-    const {offers} = this.props;
+    const {offers, reviews} = this.props;
 
     return (
       <BrowserRouter>
@@ -44,7 +45,7 @@ class App extends React.PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-details">
-            <OfferDetails offer={offers[0]} />
+            <OfferDetails offer={offers[0]} reviews={reviews} offers={offers}/>
           </Route>
         </Switch>
       </BrowserRouter>
@@ -54,7 +55,8 @@ class App extends React.PureComponent {
 
 App.propTypes = {
   offersCount: PropTypes.number.isRequired,
-  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired
+  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
+  reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
 };
 
 export default App;

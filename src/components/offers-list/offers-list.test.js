@@ -113,6 +113,7 @@ it(`OffersList renders correctly`, () => {
   const tree = renderer
     .create(<OffersList
       offers={OFFERS}
+      isNearPlacesList={false}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
