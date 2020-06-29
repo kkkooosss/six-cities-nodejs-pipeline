@@ -42,6 +42,7 @@ describe(`e2e in OfferCard`, () => {
     const tree = shallow(<OfferCard
       offer={OFFER}
       onTitleClick={clickHandler}
+      isNearPlacesCard={false}
     />);
 
     const title = tree.find(`.place-card__name`);
@@ -56,6 +57,7 @@ describe(`e2e in OfferCard`, () => {
     const tree = shallow(<OfferCard
       offer={OFFER}
       onCardHover={hoverHandler}
+      isNearPlacesCard={false}
     />);
 
     tree.simulate(`mouseover`);

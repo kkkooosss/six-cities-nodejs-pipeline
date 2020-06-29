@@ -7,7 +7,7 @@ const offersCount = 4;
 const OFFERS = [
   {
     id: 1,
-    title: `Beautiful &amp; luxurious apartment at great location`,
+    title: `Beautiful & luxurious apartment at great location`,
     type: `Apartment`,
     isPremium: true,
     price: 120,
@@ -22,6 +22,12 @@ const OFFERS = [
     rating: 4.8,
     bedrooms: 3,
     capacity: 4,
+    host: {
+      id: 1,
+      isPro: true,
+      name: `Angelina`,
+      userPic: `img/avatar-angelina.jpg`
+    },
     amenities: [`Wi-Fi`,
       `Washing machine`,
       `Towels`,
@@ -50,6 +56,12 @@ const OFFERS = [
     rating: 3.8,
     bedrooms: 3,
     capacity: 4,
+    host: {
+      id: 2,
+      isPro: false,
+      name: `Max`,
+      userPic: `img/avatar-max.jpg`
+    },
     amenities: [`Wi-Fi`,
       `Washing machine`,
       `Towels`,
@@ -76,6 +88,12 @@ const OFFERS = [
     rating: 2.3,
     bedrooms: 1,
     capacity: 2,
+    host: {
+      id: 3,
+      isPro: false,
+      name: `Jane`,
+      userPic: `img/avatar-angelina.jpg`
+    },
     amenities: [`Wi-Fi`,
       `Washing machine`,
       `Baby seat`,
@@ -100,6 +118,12 @@ const OFFERS = [
     rating: 3.1,
     bedrooms: 2,
     capacity: 4,
+    host: {
+      id: 4,
+      isPro: true,
+      name: `John`,
+      userPic: `img/avatar-max.jpg`
+    },
     amenities: [`Wi-Fi`,
       `Washing machine`,
       `Heating`,

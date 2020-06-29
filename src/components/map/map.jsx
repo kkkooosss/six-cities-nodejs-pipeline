@@ -1,7 +1,7 @@
 import React from 'react';
 import leaflet from 'leaflet';
 import PropTypes from 'prop-types';
-import {OfferTypes} from '../../types/offers.js';
+import OfferTypes from '../../types/offer.js';
 
 class Map extends React.PureComponent {
   constructor(props) {
@@ -11,12 +11,16 @@ class Map extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {offers} = this.props;
+    const {offers, currentOffer} = this.props;
 
     const city = [52.38333, 4.9];
     const zoom = 12;
     const icon = leaflet.icon({
       iconUrl: `img/pin.svg`,
+      iconSize: [30, 30]
+    });
+    const currentOfferIcon = leaflet.icon({
+      iconUrl: `img/pin-active.svg`,
       iconSize: [30, 30]
     });
 
@@ -34,6 +38,10 @@ class Map extends React.PureComponent {
         .addTo(map);
 
     offers.map((offer) => leaflet.marker(offer.coordinates, {icon}).addTo(map));
+
+    if (currentOffer) {
+      leaflet.marker(currentOffer.coordinates, {currentOfferIcon}).addTo(map);
+    }
   }
 
   componentWillUnmount() {
@@ -41,8 +49,9 @@ class Map extends React.PureComponent {
   }
 
   render() {
+    const {isPropertyMap} = this.props;
     return (
-      <section className="cities__map map" id="map" ref={this.map}></section>
+      <section className={`map ${isPropertyMap ? `property__map` : `cities__map` }`} id="map" ref={this.map}></section>
     );
   }
 }
@@ -50,5 +59,7 @@ class Map extends React.PureComponent {
 export default Map;
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired
+  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
+  isPropertyMap: PropTypes.bool.isRequired,
+  currentOffer: PropTypes.arrayOf(OfferTypes.isRequired)
 };

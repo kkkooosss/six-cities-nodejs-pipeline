@@ -114,6 +114,7 @@ it(`Map renders correctly`, () => {
     .create(
         <Map
           offers={OFFERS}
+          isPropertyMap={false}
         />, {
           createNodeMock: () => document.createElement(`div`)
         }
