@@ -9,3 +9,5 @@ const sortReveiwsByDate = (reviews) => (reviews.sort((a, b) => (new Date(b.date)
 const reduceReviews = (reviews) => reviews.length <= 10 ? reviews : reviews.slice(0, 9);
 
 export const getReviews = (reviews) => reduceReviews(sortReveiwsByDate(reviews));
+
+export const filterOffers = (offers, city) => offers.filter((offer) => offer.city === city);
