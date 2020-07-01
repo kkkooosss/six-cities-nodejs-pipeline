@@ -6,11 +6,13 @@ import OffersList from '../offers-list/offers-list.jsx';
 import OfferTypes from '../../types/offer.js';
 import Map from '../../components/map/map.jsx';
 import {getCitiesTitles} from '../../helpers/helpers.js';
+import {filterOffers} from '../../selectors/selectors.js';
 import CitiesList from '../cities-list/cities-list.jsx';
 import {ActionCreator} from '../../store/reducer.js';
 
-const Main = ({offersCount, offers, selectedCity, onCitySelect, onTitleClick}) => {
+const Main = ({offersCount, offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}) => {
   const cities = getCitiesTitles(offers);
+  const offersToRender = selectedOffers.length > 0 ? selectedOffers : filterOffers(offers, selectedCity);
 
   return (
     <div className="page page--gray page--main">
@@ -89,12 +91,12 @@ const Main = ({offersCount, offers, selectedCity, onCitySelect, onTitleClick}) =
                 </select> */}
               </form>
               <div className="cities__places-list places__list tabs__content">
-                <OffersList offers={offers} onTitleClick={onTitleClick} isNearPlacesList={false} />
+                <OffersList offers={offersToRender} onTitleClick={onTitleClick} isNearPlacesList={false} />
               </div>
 
             </section>
             <div className="cities__right-section">
-              <Map offers={offers} isPropertyMap={false} />
+              <Map offers={selectedOffers ? selectedOffers : offers} isPropertyMap={false} />
             </div>
           </div>
         </div>
@@ -121,6 +123,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Main);
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
+  selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   selectedCity: PropTypes.string.isRequired,
   onCitySelect: PropTypes.func,
   onTitleClick: PropTypes.func
