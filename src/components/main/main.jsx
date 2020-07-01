@@ -49,7 +49,7 @@ const Main = ({offersCount, offers, selectedCity, onCitySelect, onTitleClick}) =
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <CitiesList cities={cities} selectedCity={selectedCity} onCitySelect={onCitySelect}/>
+          <CitiesList cities={cities} selectedCity={selectedCity} onCitySelect={(city) => onCitySelect(offers, city)} />
         </div>
         <div className="cities">
           <div className="cities__places-container container">
@@ -111,7 +111,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onCitySelect: (offers, city) => {
     dispatch(ActionCreator.selectCity(city));
-    // dispatch(ActionCreator.selectOffers(offers, city));
+    dispatch(ActionCreator.selectOffers(offers, city));
   }
 });
 

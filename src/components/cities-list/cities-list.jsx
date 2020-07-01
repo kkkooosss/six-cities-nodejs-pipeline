@@ -13,7 +13,6 @@ const CitiesList = ({cities, selectedCity, onCitySelect}) => {
               className={`locations__item-link tabs__item ${city === selectedCity ? `tabs__item--active` : null}`}
               onClick={(evt) => {
                 evt.preventDefault();
-                console.log(city);
                 onCitySelect(city);
               }}>
               <span>{city}</span>
