@@ -10,9 +10,10 @@ import {filterOffers} from '../../selectors/selectors.js';
 import CitiesList from '../cities-list/cities-list.jsx';
 import {ActionCreator} from '../../store/reducer.js';
 
-const Main = ({offersCount, offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}) => {
+const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}) => {
   const cities = getCitiesTitles(offers);
   const offersToRender = selectedOffers.length > 0 ? selectedOffers : filterOffers(offers, selectedCity);
+  const offersCount = offersToRender.length;
 
   return (
     <div className="page page--gray page--main">
@@ -57,7 +58,7 @@ const Main = ({offersCount, offers, selectedOffers, selectedCity, onCitySelect, 
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offersCount} places to stay in Amsterdam</b>
+              <b className="places__found">{offersCount} places to stay in {selectedCity}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -121,7 +122,6 @@ export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
-  offersCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   selectedCity: PropTypes.string.isRequired,

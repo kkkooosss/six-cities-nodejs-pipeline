@@ -8,8 +8,6 @@ import offers from './mocks/offers.js';
 import reviews from './mocks/reviews.js';
 import {reducer} from './store/reducer.js';
 
-const offersCount = offers.length;
-
 const store = createStore(
     reducer,
     window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
@@ -20,7 +18,6 @@ ReactDOM.render(
       <App
         offers={offers}
         reviews={reviews}
-        offersCount={offersCount}
       />
     </Provider>,
     document.getElementById(`root`)
