@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 export default PropTypes.exact({
   id: PropTypes.number.isRequired,
+  city: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   isPremium: PropTypes.bool.isRequired,

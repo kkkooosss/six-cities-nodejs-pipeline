@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const CitiesList = ({cities, selectedCity}) => {
+const CitiesList = ({cities, selectedCity, onCitySelect}) => {
   return (
     <section className="locations container">
 
@@ -9,7 +9,13 @@ const CitiesList = ({cities, selectedCity}) => {
 
         {cities.map((city, i) => (
           <li className="locations__item" key={`city-${i}`}>
-            <a className={`locations__item-link tabs__item ${city === selectedCity ? `tabs__item--active` : null}`} href="#">
+            <a href="#"
+              className={`locations__item-link tabs__item ${city === selectedCity ? `tabs__item--active` : null}`}
+              onClick={(evt) => {
+                evt.preventDefault();
+                console.log(city);
+                onCitySelect(city);
+              }}>
               <span>{city}</span>
             </a>
           </li>

@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import OffersList from '../offers-list/offers-list.jsx';
 import OfferTypes from '../../types/offer.js';
 import Map from '../../components/map/map.jsx';
 import {getCitiesTitles} from '../../helpers/helpers.js';
 import CitiesList from '../cities-list/cities-list.jsx';
+import {ActionCreator} from '../../store/reducer.js';
 
-const Main = ({offersCount, offers, onTitleClick}) => {
+const Main = ({offersCount, offers, selectedCity, onCitySelect, onTitleClick}) => {
   const cities = getCitiesTitles(offers);
 
   return (
@@ -47,7 +49,7 @@ const Main = ({offersCount, offers, onTitleClick}) => {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <CitiesList cities={cities} selectedCity={`Dusseldorf`} />
+          <CitiesList cities={cities} selectedCity={selectedCity} onCitySelect={onCitySelect}/>
         </div>
         <div className="cities">
           <div className="cities__places-container container">
@@ -79,14 +81,12 @@ const Main = ({offersCount, offers, onTitleClick}) => {
                   Top rated first
                   </li>
                 </ul>
-                {/*
-            <select class="places__sorting-type" id="places-sorting">
-              <option class="places__option" value="popular" selected="">Popular</option>
-              <option class="places__option" value="to-high">Price: low to high</option>
-              <option class="places__option" value="to-low">Price: high to low</option>
-              <option class="places__option" value="top-rated">Top rated first</option>
-            </select>
-            */}
+                {/* <select className="places__sorting-type" id="places-sorting">
+                  <option className="places__option" value="popular" selected="">Popular</option>
+                  <option className="places__option" value="to-high">Price: low to high</option>
+                  <option className="places__option" value="to-low">Price: high to low</option>
+                  <option className="places__option" value="top-rated">Top rated first</option>
+                </select> */}
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <OffersList offers={offers} onTitleClick={onTitleClick} isNearPlacesList={false} />
@@ -103,10 +103,25 @@ const Main = ({offersCount, offers, onTitleClick}) => {
   );
 };
 
-export default Main;
+const mapStateToProps = (state) => ({
+  selectedCity: state.selectedCity,
+  selectedOffers: state.selectedOffers
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onCitySelect: (offers, city) => {
+    dispatch(ActionCreator.selectCity(city));
+    // dispatch(ActionCreator.selectOffers(offers, city));
+  }
+});
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
   offersCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
+  selectedCity: PropTypes.string.isRequired,
+  onCitySelect: PropTypes.func,
   onTitleClick: PropTypes.func
 };
