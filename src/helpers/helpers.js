@@ -25,3 +25,5 @@ export const convertDate = (date) => {
 
   return `${month} ${day}, ${year}`;
 };
+
+export const getCitiesTitles = (offers) => ([...new Set(offers.map((offer) => offer.city))]);
