@@ -1,3 +1,5 @@
+export const extend = (a, b) => Object.assign({}, a, b);
+
 export const getRatingPercents = (rating) => `${(Math.round(rating)) * 20}%`;
 
 const MONTH_MAP = {
