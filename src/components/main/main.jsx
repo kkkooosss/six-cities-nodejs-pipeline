@@ -97,7 +97,7 @@ const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}
 
             </section>
             <div className="cities__right-section">
-              <Map offers={selectedOffers ? selectedOffers : offers} isPropertyMap={false} />
+              <Map offers={offersToRender} isPropertyMap={false} />
             </div>
           </div>
         </div>
