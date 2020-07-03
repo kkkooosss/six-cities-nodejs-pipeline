@@ -112,7 +112,3 @@ Map.propTypes = {
   isPropertyMap: PropTypes.bool.isRequired,
   currentOffer: OfferTypes
 };
-
-Map.defaultProps = {
-  cityTitle: `Amsterdam`
-};
