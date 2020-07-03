@@ -3,12 +3,14 @@ import {filterOffers} from '../selectors/selectors.js';
 
 const initialState = {
   selectedCity: `Amsterdam`,
-  selectedOffers: []
+  selectedOffers: [],
+  selectedFilter: `Popular`
 };
 
 const Actions = {
   selectCity: `SELECT_CITY`,
-  selectOffers: `SELECT_OFFERS`
+  selectOffers: `SELECT_OFFERS`,
+  selectFilter: `SELECT_FILTER`
 };
 
 const ActionCreator = {
@@ -21,6 +23,11 @@ const ActionCreator = {
   selectOffers: (offers, city) => ({
     type: Actions.selectOffers,
     payload: filterOffers(offers, city)
+  }),
+
+  selectFilter: (filter) => ({
+    type: Actions.selectFilter,
+    payload: filter
   })
 
 };
@@ -36,6 +43,11 @@ const reducer = (state = initialState, action = {}) => {
     case Actions.selectOffers:
       return extend(state, {
         selectedOffers: action.payload
+      });
+
+    case Actions.selectFilter:
+      return extend(state, {
+        selectedFilter: action.payload
       });
 
   }
