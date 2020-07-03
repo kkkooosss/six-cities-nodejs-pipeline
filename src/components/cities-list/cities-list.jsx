@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const CitiesList = ({cities, selectedCity, onCitySelect}) => {
+
   return (
     <section className="locations container">
 

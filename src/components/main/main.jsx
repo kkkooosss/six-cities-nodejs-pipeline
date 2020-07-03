@@ -6,12 +6,12 @@ import OffersList from '../offers-list/offers-list.jsx';
 import OfferTypes from '../../types/offer.js';
 import Map from '../../components/map/map.jsx';
 import {getCitiesTitles} from '../../helpers/helpers.js';
-import {filterOffers} from '../../selectors/selectors.js';
+import {filterOffers, reduceCities} from '../../selectors/selectors.js';
 import CitiesList from '../cities-list/cities-list.jsx';
 import {ActionCreator} from '../../store/reducer.js';
 
 const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}) => {
-  const cities = getCitiesTitles(offers);
+  const cities = reduceCities(getCitiesTitles(offers));
   const offersToRender = selectedOffers.length > 0 ? selectedOffers : filterOffers(offers, selectedCity);
   const offersCount = offersToRender.length;
 
@@ -118,7 +118,6 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export {Main};
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {

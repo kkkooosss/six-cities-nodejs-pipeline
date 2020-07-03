@@ -13,6 +13,7 @@ class Map extends React.PureComponent {
     this._markers = [];
     this._zoom = MAP_SETTINGS.zoom;
     this._mapRef = React.createRef();
+
   }
 
   _setMap(city) {
@@ -39,27 +40,24 @@ class Map extends React.PureComponent {
   _setMarkers(offers) {
     const {icon} = MAP_SETTINGS;
 
-    offers.map((offer) => {
-      leaflet
-        .marker(offer.coordinates, {icon})
-        .addTo(this._map);
+    offers.forEach(({id, coordinates}) => {
+      const marker = leaflet.marker(coordinates, {icon});
+      marker.addTo(this._map);
+      this._markers.push({id, marker});
     });
   }
 
   _setCurrentOfferMarker(currentOffer) {
-    const {currentOfferIcon} = MAP_SETTINGS;
+    const icon = MAP_SETTINGS.currentOfferIcon;
 
     leaflet
-      .marker(currentOffer.coordinates, {currentOfferIcon})
+      .marker(currentOffer.coordinates, {icon})
       .addTo(this._map);
   }
 
   _removeMarkers() {
-    if (this._map !== null) {
-      this._markers.forEach((marker) => {
-        this._map.removeLayer(marker);
-      });
-    }
+    this._markers.forEach(({marker}) => marker.remove());
+    this._markers = [];
   }
 
   componentDidMount() {
@@ -106,14 +104,13 @@ const mapStateToProps = (state) => ({
   selectedCity: state.selectedCity
 });
 
-export {Map};
 export default connect(mapStateToProps, null)(Map);
 
 Map.propTypes = {
   selectedCity: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   isPropertyMap: PropTypes.bool.isRequired,
-  currentOffer: PropTypes.arrayOf(OfferTypes.isRequired)
+  currentOffer: OfferTypes
 };
 
 Map.defaultProps = {
