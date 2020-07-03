@@ -13,3 +13,9 @@ export const getReviews = (reviews) => reduceReviews(sortReveiwsByDate(reviews))
 export const filterOffers = (offers, city) => offers.filter((offer) => offer.city === city);
 
 export const reduceCities = (cities) => cities.length >= 6 ? cities : cities.slice(0, 6);
+
+export const sortByPrice = (offers) => (offers.sort((a, b) => b.price - a.price));
+
+export const sortByPriceReverse = (offers) => (offers.sort((a, b) => b.price - a.price)).reverse();
+
+export const sortByRating = (offers) => (offers.sort((a, b) => b.rating - a.rating));
