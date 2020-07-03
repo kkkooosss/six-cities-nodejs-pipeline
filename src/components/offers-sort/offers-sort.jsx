@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import {ActionCreator} from '../../store/reducer.js';
+import {FILTERS} from '../../helpers/constants.js';
 
 class OffersSort extends React.PureComponent {
   constructor(props) {
@@ -18,8 +20,22 @@ class OffersSort extends React.PureComponent {
     });
   }
 
+  _getFilterOptions(selectedFilter, handleClick) {
+    return (FILTERS.map((filter, i) => (
+      <li
+        className={`places__option ${filter === selectedFilter ? `places__option--active` : null}`}
+        tabIndex={i}
+        key={`${filter}-${i}`}
+        onClick={() => handleClick(filter)}
+      >
+        {filter}
+      </li>
+    )));
+  }
+
   render() {
     const {isOpen} = this.state;
+    const {selectedFilter, onFilterSelect} = this.props;
 
     return (
       <form className="places__sorting" action="#" method="get">
@@ -32,21 +48,7 @@ class OffersSort extends React.PureComponent {
         </span>
 
         {isOpen ? <ul className="places__options places__options--custom places__options--opened">
-          <li
-            className="places__option places__option--active"
-            tabIndex={0}
-          >
-        Popular
-          </li>
-          <li className="places__option" tabIndex={0}>
-        Price: low to high
-          </li>
-          <li className="places__option" tabIndex={0}>
-        Price: high to low
-          </li>
-          <li className="places__option" tabIndex={0}>
-        Top rated first
-          </li>
+          {this._getFilterOptions(selectedFilter, onFilterSelect)}
         </ul> : null}
 
         {/* <select className="places__sorting-type" id="places-sorting">
@@ -71,3 +73,8 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(OffersSort);
+
+OffersSort.propTypes = {
+  selectedFilter: PropTypes.string.isRequired,
+  onFilterSelect: PropTypes.func
+};
