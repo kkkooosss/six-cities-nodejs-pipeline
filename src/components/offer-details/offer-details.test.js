@@ -1,6 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 import OfferDetails from './offer-details.jsx';
+
+const store = createStore(() => ({
+  selectedCity: `Amsterdam`,
+  selectedOffers: []
+}));
 
 const OFFER = {
   id: 1,
@@ -189,11 +196,13 @@ const REVIEWS = [
 
 it(`OfferDetails renders correctly`, () => {
   const tree = renderer
-    .create(<OfferDetails
-      offer={OFFER}
-      offers={OFFERS}
-      reviews={REVIEWS}
-    />, {
+    .create(<Provider store={store}>
+      <OfferDetails
+        offer={OFFER}
+        offers={OFFERS}
+        reviews={REVIEWS}
+      />
+    </Provider>, {
       createNodeMock: () => document.createElement(`div`)
     })
     .toJSON();

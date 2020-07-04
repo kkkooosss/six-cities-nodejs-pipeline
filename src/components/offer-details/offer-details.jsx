@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
@@ -8,9 +9,9 @@ import {getRatingPercents} from '../../helpers/helpers.js';
 
 import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
-import {getNearOffers, getReviews} from '../../selectors/selectors.js';
+import {getNearOffers, getReviews, filterOffers} from '../../selectors/selectors.js';
 
-const OfferDetails = ({offer, offers, reviews}) => {
+const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) => {
   const {
     id,
     title,
@@ -25,7 +26,8 @@ const OfferDetails = ({offer, offers, reviews}) => {
     amenities
   } = offer;
 
-  const nearbyOffers = getNearOffers(offers, id);
+  const filteredOffers = filterOffers(offers, selectedCity);
+  const nearbyOffers = selectedOffers.length > 0 ? getNearOffers(selectedOffers, id) : filteredOffers;
   const sortedReviews = getReviews(reviews);
 
   const stars = getRatingPercents(rating);
@@ -153,10 +155,17 @@ const OfferDetails = ({offer, offers, reviews}) => {
   );
 };
 
-export default OfferDetails;
+const mapStateToProps = (state) => ({
+  selectedCity: state.selectedCity,
+  selectedOffers: state.selectedOffers
+});
+
+export default connect(mapStateToProps, null)(OfferDetails);
 
 OfferDetails.propTypes = {
   offer: OfferTypes.isRequired,
-  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
+  offers: PropTypes.arrayOf(OfferTypes.isRequired),
+  selectedCity: PropTypes.string,
+  selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired),
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired
 };

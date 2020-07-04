@@ -1,6 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 import Map from './map.jsx';
+
+const store = createStore(() => ({
+  selectedCity: `Amsterdam`,
+  selectedOffers: []
+}));
 
 const OFFERS = [
   {
@@ -112,10 +119,12 @@ const OFFERS = [
 it(`Map renders correctly`, () => {
   const tree = renderer
     .create(
-        <Map
-          offers={OFFERS}
-          isPropertyMap={false}
-        />, {
+        <Provider store={store}>
+          <Map
+            offers={OFFERS}
+            isPropertyMap={false}
+          />
+        </Provider>, {
           createNodeMock: () => document.createElement(`div`)
         }
     ).toJSON();

@@ -1,3 +1,5 @@
+export const extend = (a, b) => Object.assign({}, a, b);
+
 export const getRatingPercents = (rating) => `${(Math.round(rating)) * 20}%`;
 
 const MONTH_MAP = {
@@ -23,3 +25,5 @@ export const convertDate = (date) => {
 
   return `${month} ${day}, ${year}`;
 };
+
+export const getCitiesTitles = (offers) => ([...new Set(offers.map((offer) => offer.city))]);

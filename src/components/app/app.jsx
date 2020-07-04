@@ -25,12 +25,12 @@ class App extends React.PureComponent {
   }
 
   _renderApp() {
-    const {offers, offersCount, reviews} = this.props;
+    const {offers, reviews} = this.props;
     const {selectedOffer} = this.state;
 
     return (
       !selectedOffer
-        ? <Main offers={offers} offersCount={offersCount} onTitleClick={this.handleTitleClick} />
+        ? <Main offers={offers} onTitleClick={this.handleTitleClick} />
         : <OfferDetails offer={selectedOffer} offers={offers} reviews={reviews}/>
     );
   }
@@ -54,7 +54,6 @@ class App extends React.PureComponent {
 }
 
 App.propTypes = {
-  offersCount: PropTypes.number.isRequired,
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
 };

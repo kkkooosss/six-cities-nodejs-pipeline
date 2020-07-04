@@ -1,8 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+
 import App from './app.jsx';
 
-const offersCount = 4;
+const store = createStore(() => ({
+  selectedCity: `Amsterdam`,
+  selectedOffers: []
+}));
 
 const OFFERS = [
   {
@@ -157,13 +163,15 @@ const REVIEWS = [
 
 it(`App renders correctly`, () => {
   const tree = renderer
-    .create(<App
-      offersCount={offersCount}
-      offers={OFFERS}
-      reviews={REVIEWS}
-    />, {
-      createNodeMock: () => document.createElement(`div`)
-    })
+    .create(
+        <Provider store={store}>
+          <App
+            offers={OFFERS}
+            reviews={REVIEWS}
+          />
+        </Provider>, {
+          createNodeMock: () => document.createElement(`div`)
+        })
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

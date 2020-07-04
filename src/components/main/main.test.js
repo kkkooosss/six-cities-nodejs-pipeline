@@ -1,6 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 import Main from './main.jsx';
+
+const store = createStore(() => ({
+  selectedCity: `Amsterdam`,
+  selectedOffers: []
+}));
 
 const offersCount = 4;
 
@@ -137,12 +144,15 @@ const OFFERS = [
 
 it(`Main renders correctly`, () => {
   const tree = renderer
-    .create(<Main
-      offersCount={offersCount}
-      offers={OFFERS}
-    />, {
-      createNodeMock: () => document.createElement(`div`)
-    })
+    .create(
+        <Provider store={store}>
+          <Main
+            offersCount={offersCount}
+            offers={OFFERS}
+          />
+        </Provider>, {
+          createNodeMock: () => document.createElement(`div`)
+        })
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
