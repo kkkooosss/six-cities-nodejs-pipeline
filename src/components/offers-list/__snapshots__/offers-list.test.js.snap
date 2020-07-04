@@ -78,14 +78,15 @@ Array [
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "100%",
               }
             }
           />
           <span
             className="visually-hidden"
           >
-            Rating
+            Rating 
+            4.8
           </span>
         </div>
       </div>
@@ -182,7 +183,8 @@ Array [
           <span
             className="visually-hidden"
           >
-            Rating
+            Rating 
+            3.8
           </span>
         </div>
       </div>
@@ -272,14 +274,15 @@ Array [
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "40%",
               }
             }
           />
           <span
             className="visually-hidden"
           >
-            Rating
+            Rating 
+            2.3
           </span>
         </div>
       </div>
@@ -376,14 +379,15 @@ Array [
           <span
             style={
               Object {
-                "width": "80%",
+                "width": "60%",
               }
             }
           />
           <span
             className="visually-hidden"
           >
-            Rating
+            Rating 
+            3.1
           </span>
         </div>
       </div>
