@@ -75,7 +75,7 @@ class Map extends React.PureComponent {
   }
 
   componentDidUpdate() {
-    const {offers, currentOffer, selectedCity} = this.props;
+    const {offers, currentOffer, activeOffer, selectedCity} = this.props;
     const city = CITIES[selectedCity];
 
     this._removeMarkers();
@@ -85,6 +85,10 @@ class Map extends React.PureComponent {
 
     if (currentOffer) {
       this._setCurrentOfferMarker(currentOffer);
+    }
+
+    if (activeOffer) {
+      this._setCurrentOfferMarker(activeOffer);
     }
   }
 
@@ -101,7 +105,8 @@ class Map extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  selectedCity: state.selectedCity
+  selectedCity: state.selectedCity,
+  activeOffer: state.activeOffer
 });
 
 export default connect(mapStateToProps, null)(Map);
@@ -110,5 +115,6 @@ Map.propTypes = {
   selectedCity: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   isPropertyMap: PropTypes.bool.isRequired,
-  currentOffer: OfferTypes
+  currentOffer: OfferTypes,
+  activeOffer: OfferTypes
 };

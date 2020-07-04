@@ -146,7 +146,7 @@ export default [
       `img/apartment-03.jpg`,
       `img/studio-01.jpg`,
       `img/apartment-01.jpg`],
-    rating: 4.8,
+    rating: 1.2,
     bedrooms: 3,
     capacity: 4,
     host: {
@@ -181,7 +181,7 @@ export default [
       `img/apartment-03.jpg`,
       `img/studio-01.jpg`,
       `img/apartment-01.jpg`],
-    rating: 4.8,
+    rating: 0.5,
     bedrooms: 3,
     capacity: 4,
     host: {

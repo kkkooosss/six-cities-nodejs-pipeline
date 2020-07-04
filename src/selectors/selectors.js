@@ -1,3 +1,5 @@
+import {FILTERS_MAP} from '../helpers/helpers.js';
+
 export const excludeCurrentOffer = (offers, currentOfferId) => offers.filter((item) => item.id !== currentOfferId);
 
 export const reduceOffers = (offers) => offers.length <= 3 ? offers : offers.slice(0, 9);
@@ -13,3 +15,24 @@ export const getReviews = (reviews) => reduceReviews(sortReveiwsByDate(reviews))
 export const filterOffers = (offers, city) => offers.filter((offer) => offer.city === city);
 
 export const reduceCities = (cities) => cities.length >= 6 ? cities : cities.slice(0, 6);
+
+export const sortByPrice = (offers) => (offers.sort((a, b) => b.price - a.price));
+
+export const sortByPriceReverse = (offers) => sortByPrice(offers).reverse();
+
+export const sortByRating = (offers) => (offers.sort((a, b) => b.rating - a.rating));
+
+export const filterOffersOrder = (offers, filter) => {
+  switch (filter) {
+    case FILTERS_MAP.popular:
+      return offers;
+    case FILTERS_MAP.priceLowToHight:
+      return sortByPrice(offers);
+    case FILTERS_MAP.priceHightToLow:
+      return sortByPriceReverse(offers);
+    case FILTERS_MAP.topRatedFirst:
+      return sortByRating(offers);
+    default:
+      return offers;
+  }
+};
