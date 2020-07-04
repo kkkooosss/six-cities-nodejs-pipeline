@@ -89,7 +89,7 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
                   <span style={{width: stars}} />
                   <span className="visually-hidden">Rating</span>
                 </div>
-                <span className="property__rating-value rating__value">4.8</span>
+                <span className="property__rating-value rating__value">{rating}</span>
               </div>
               <ul className="property__features">
                 <li className="property__feature property__feature--entire">
