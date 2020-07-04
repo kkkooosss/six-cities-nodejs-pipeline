@@ -41,7 +41,7 @@ class OffersSort extends React.PureComponent {
       <form className="places__sorting" action="#" method="get">
         <span className="places__sorting-caption">Sort by</span>
         <span className="places__sorting-type" tabIndex={0} onClick={() => this.handleListClick()}>
-      Popular
+          {selectedFilter}
           <svg className="places__sorting-arrow" width={7} height={4}>
             <use xlinkHref="#icon-arrow-select" />
           </svg>
@@ -72,6 +72,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {OffersSort};
 export default connect(mapStateToProps, mapDispatchToProps)(OffersSort);
 
 OffersSort.propTypes = {
