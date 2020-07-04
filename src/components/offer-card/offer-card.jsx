@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import OfferTypes from '../../types/offer.js';
 
-const OfferCard = ({offer, onTitleClick, onCardHover, isNearPlacesCard}) => (
+const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPlacesCard}) => (
 
-  <article className={`place-card ${isNearPlacesCard ? `near-places__card` : `cities__place-card`}`} onMouseOver={() => onCardHover(offer)}>
+  <article className={`place-card ${isNearPlacesCard ? `near-places__card` : `cities__place-card`}`} onMouseOver={() => onCardHover(offer)} onMouseLeave={() => onCardHoverLeave()}>
     {offer.isPremium ? <div className="place-card__mark">
       <span>Premium</span>
     </div> : null}
@@ -58,5 +58,6 @@ OfferCard.propTypes = {
   offer: OfferTypes.isRequired,
   onTitleClick: PropTypes.func,
   onCardHover: PropTypes.func,
+  onCardHoverLeave: PropTypes.func,
   isNearPlacesCard: PropTypes.bool.isRequired
 };

@@ -4,6 +4,7 @@ exports[`OffersList renders correctly 1`] = `
 Array [
   <article
     className="place-card cities__place-card"
+    onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
     <div
@@ -107,6 +108,7 @@ Array [
   </article>,
   <article
     className="place-card cities__place-card"
+    onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
     <div
@@ -203,6 +205,7 @@ Array [
   </article>,
   <article
     className="place-card cities__place-card"
+    onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
     <div
@@ -299,6 +302,7 @@ Array [
   </article>,
   <article
     className="place-card cities__place-card"
+    onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
     <div
