@@ -1,6 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+
 import OffersList from './offers-list.jsx';
+
+const store = createStore(() => ({
+  selectedOffer: null
+}));
+
 
 const OFFERS = [
   {
@@ -111,10 +119,14 @@ const OFFERS = [
 
 it(`OffersList renders correctly`, () => {
   const tree = renderer
-    .create(<OffersList
-      offers={OFFERS}
-      isNearPlacesList={false}
-    />)
-    .toJSON();
+    .create(
+        <Provider store={store}>
+          <OffersList
+            offers={OFFERS}
+            isNearPlacesList={false} />
+        </Provider>, {
+          createNodeMock: () => document.createElement(`div`)
+        }
+    ).toJSON();
   expect(tree).toMatchSnapshot();
 });

@@ -12,7 +12,7 @@ const Actions = {
   selectCity: `SELECT_CITY`,
   selectOffers: `SELECT_OFFERS`,
   selectFilter: `SELECT_FILTER`,
-  activeOffer: `SET_ACTIVE_OFFER`
+  setActiveOffer: `SET_ACTIVE_OFFER`
 };
 
 const ActionCreator = {

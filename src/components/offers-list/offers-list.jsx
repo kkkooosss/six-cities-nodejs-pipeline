@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import OfferCard from '../offer-card/offer-card.jsx';
 import OfferTypes from '../../types/offer.js';
+import {ActionCreator} from '../../store/reducer.js';
 
 const OffersList = ({offers, onTitleClick, handleCardHover, isNearPlacesList}) => (
   <>
@@ -10,7 +12,17 @@ const OffersList = ({offers, onTitleClick, handleCardHover, isNearPlacesList}) =
   </>
 );
 
-export default OffersList;
+const mapStateToProps = (state) => ({
+  activeOffer: state.activeOffer
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleCardHover: (offer) => {
+    dispatch(ActionCreator.setActiveOffer(offer));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
