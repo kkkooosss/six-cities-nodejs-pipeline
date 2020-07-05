@@ -5,7 +5,8 @@ const initialState = {
   selectedCity: `Amsterdam`,
   selectedOffers: [],
   selectedFilter: `Popular`,
-  activeOffer: null
+  activeOffer: null,
+  detailsOffer: null
 };
 
 const Actions = {
@@ -13,7 +14,8 @@ const Actions = {
   selectOffers: `SELECT_OFFERS`,
   selectFilter: `SELECT_FILTER`,
   setActiveOffer: `SET_ACTIVE_OFFER`,
-  removeActiveOffer: `REMOVE_ACTIVE_OFFER`
+  removeActiveOffer: `REMOVE_ACTIVE_OFFER`,
+  setDetailsOffer: `SET_DETAILS_OFFER`
 };
 
 const ActionCreator = {
@@ -40,6 +42,11 @@ const ActionCreator = {
 
   removeActiveOffer: () => ({
     type: Actions.removeActiveOffer
+  }),
+
+  setDetailsOffer: (offer) => ({
+    type: Actions.setDetailsOffer,
+    payload: offer
   })
 
 };
@@ -70,6 +77,11 @@ const reducer = (state = initialState, action = {}) => {
     case Actions.removeActiveOffer:
       return extend(state, {
         activeOffer: null
+      });
+
+    case Actions.setDetailsOffer:
+      return extend(state, {
+        detailsOffer: action.payload
       });
   }
   return state;
