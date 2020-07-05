@@ -25,7 +25,7 @@ class OffersSort extends React.PureComponent {
       <li
         className={`places__option ${filter === selectedFilter ? `places__option--active` : null}`}
         tabIndex={i}
-        key={`${filter}-${i}`}
+        key={filter}
         onClick={() => handleClick(filter)}
       >
         {filter}

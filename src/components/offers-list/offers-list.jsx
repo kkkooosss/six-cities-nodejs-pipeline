@@ -13,7 +13,16 @@ const OffersList = ({offers, onTitleClick, selectedFilter, handleCardHover, hand
 
   return (
   <>
-    {filteredOffers.map((offer) => <OfferCard offer={offer} onCardHover={handleCardHover} onCardHoverLeave={handleCardHoverLeave} onTitleClick={onTitleClick} key={offer.id} isNearPlacesCard={isNearPlacesList} />)}
+    {filteredOffers.map((offer) => (
+      <OfferCard
+        offer={offer}
+        onCardHover={handleCardHover}
+        onCardHoverLeave={handleCardHoverLeave}
+        onTitleClick={onTitleClick}
+        key={offer.id}
+        isNearPlacesCard={isNearPlacesList}
+      />))
+    }
   </>
   );
 };
