@@ -1,41 +1,46 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import OfferCard from '../offer-card/offer-card.jsx';
 import OfferTypes from '../../types/offer.js';
+import {ActionCreator} from '../../store/reducer.js';
+import {filterOffersOrder} from '../../selectors/selectors.js';
 
-class OffersList extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const OffersList = ({offers, onTitleClick, selectedFilter, handleCardHover, handleCardHoverLeave, isNearPlacesList}) => {
 
-    this.state = {
-      activeCard: null
-    };
+  const filteredOffers = filterOffersOrder(offers, selectedFilter);
 
-    this.handleCardHover = this.handleCardHover.bind(this);
+  return (
+  <>
+    {filteredOffers.map((offer) => <OfferCard offer={offer} onCardHover={handleCardHover} onCardHoverLeave={handleCardHoverLeave} onTitleClick={onTitleClick} key={offer.id} isNearPlacesCard={isNearPlacesList} />)}
+  </>
+  );
+};
+
+const mapStateToProps = (state) => ({
+  activeOffer: state.activeOffer,
+  selectedFilter: state.selectedFilter
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleCardHover: (offer) => {
+    dispatch(ActionCreator.setActiveOffer(offer));
+  },
+
+  handleCardHoverLeave: () => {
+    dispatch(ActionCreator.removeActiveOffer());
   }
 
-  handleCardHover(offer) {
-    this.setState({
-      activeCard: offer,
-    });
-  }
+});
 
-  render() {
-    const {offers, onTitleClick, isNearPlacesList} = this.props;
-
-    return (
-      <>
-        {offers.map((offer) => <OfferCard offer={offer} onCardHover={this.handleCardHover} onTitleClick={onTitleClick} key={offer.id} isNearPlacesCard={isNearPlacesList} />)}
-      </>
-    );
-  }
-}
-
-export default OffersList;
+export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   onTitleClick: PropTypes.func,
-  isNearPlacesList: PropTypes.bool.isRequired
+  handleCardHover: PropTypes.func,
+  handleCardHoverLeave: PropTypes.func,
+  isNearPlacesList: PropTypes.bool.isRequired,
+  selectedFilter: PropTypes.string.isRequired
 };

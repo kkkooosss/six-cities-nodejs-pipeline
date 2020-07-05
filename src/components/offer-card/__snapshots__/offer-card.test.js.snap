@@ -3,6 +3,7 @@
 exports[`OfferCard renders correctly 1`] = `
 <article
   className="place-card cities__place-card"
+  onMouseLeave={[Function]}
   onMouseOver={[Function]}
 >
   <div
@@ -76,14 +77,15 @@ exports[`OfferCard renders correctly 1`] = `
         <span
           style={
             Object {
-              "width": "80%",
+              "width": "100%",
             }
           }
         />
         <span
           className="visually-hidden"
         >
-          Rating
+          Rating 
+          4.8
         </span>
       </div>
     </div>

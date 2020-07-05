@@ -11,11 +11,11 @@ describe(`Reducer work correctly`, () => {
 
     const action = {
       type: Actions.selectCity,
-      payload: `Brusseles`
+      payload: `Brussels`
     };
 
     expect(reducer(state1, action)).toMatchObject({
-      selectedCity: `Brusseles`,
+      selectedCity: `Brussels`,
       selectedOffers: []
     });
   });
@@ -36,4 +36,30 @@ describe(`Reducer work correctly`, () => {
     });
   });
 
+  it(`Should change selectedFilter with given value`, () => {
+    const state3 = {
+      selectedFilter: `Popular`
+    };
+    const action = {
+      type: Actions.selectFilter,
+      payload: `High to low`
+    };
+    expect(reducer(state3, action)).toMatchObject({
+      selectedFilter: `High to low`
+    });
+  });
+
+
+  it(`Should change selectedOffer with given value`, () => {
+    const state4 = {
+      selectedOffer: null
+    };
+    const action = {
+      type: Actions.selectFilter,
+      payload: {id: 1, title: `title1`, city: `Amsterdam`}
+    };
+    expect(reducer(state4, action)).toMatchObject({
+      selectedFilter: {id: 1, title: `title1`, city: `Amsterdam`}
+    });
+  });
 });

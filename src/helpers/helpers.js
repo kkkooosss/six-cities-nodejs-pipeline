@@ -27,3 +27,11 @@ export const convertDate = (date) => {
 };
 
 export const getCitiesTitles = (offers) => ([...new Set(offers.map((offer) => offer.city))]);
+
+export const FILTERS_MAP = {
+  popular: `Popular`,
+  priceLowToHight: `Price: low to high`,
+  priceHightToLow: `Price: high to low`,
+  topRatedFirst: `Top rated first`
+};
+
