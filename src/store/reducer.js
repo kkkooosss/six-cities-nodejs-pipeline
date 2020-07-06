@@ -25,9 +25,9 @@ const ActionCreator = {
     payload: city
   }),
 
-  selectOffers: (offers, city) => ({
+  selectOffers: (offers) => ({
     type: Actions.selectOffers,
-    payload: filterOffers(offers, city)
+    payload: offers
   }),
 
   selectFilter: (filter) => ({
@@ -61,7 +61,7 @@ const reducer = (state = initialState, action = {}) => {
 
     case Actions.selectOffers:
       return extend(state, {
-        selectedOffers: action.payload
+        selectedOffers: filterOffers(action.payload, state.selectedCity)
       });
 
     case Actions.selectFilter:

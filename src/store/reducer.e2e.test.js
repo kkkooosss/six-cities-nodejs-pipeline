@@ -36,6 +36,21 @@ describe(`Reducer work correctly`, () => {
     });
   });
 
+  it(`Should not assign offers from another city`, () => {
+    const state2 = {
+      selectedCity: `Amsterdam`,
+      selectedOffers: []
+    };
+    const action = {
+      type: Actions.selectOffers,
+      payload: [{id: 1, title: `title1`, city: `Amsterdam`}, {id: 2, title: `title2`, city: `Amsterdam`}, {id: 3, title: `title2`, city: `Bruseles`}]
+    };
+    expect(reducer(state2, action)).toMatchObject({
+      selectedCity: `Amsterdam`,
+      selectedOffers: [{id: 1, title: `title1`, city: `Amsterdam`}, {id: 2, title: `title2`, city: `Amsterdam`}]
+    });
+  });
+
   it(`Should change selectedFilter with given value`, () => {
     const state3 = {
       selectedFilter: `Popular`
