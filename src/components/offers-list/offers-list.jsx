@@ -7,7 +7,13 @@ import OfferTypes from '../../types/offer.js';
 import {ActionCreator} from '../../store/reducer.js';
 import {filterOffersOrder} from '../../selectors/selectors.js';
 
-const OffersList = ({offers, onTitleClick, selectedFilter, handleCardHover, handleCardHoverLeave, isNearPlacesList}) => {
+const OffersList = ({
+  offers,
+  onTitleClick,
+  selectedFilter,
+  handleCardHover,
+  handleCardHoverLeave,
+  isNearPlacesList}) => {
 
   const filteredOffers = filterOffersOrder(offers, selectedFilter);
 

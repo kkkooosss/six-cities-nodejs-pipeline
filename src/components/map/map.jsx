@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import withMap from '../../hocs/with-map.jsx';
+import withMap from '../../hocs/with-map/with-map.jsx';
 
 const Map = ({isPropertyMap, mapRef}) => (
   <section

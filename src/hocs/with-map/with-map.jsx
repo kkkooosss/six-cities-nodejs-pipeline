@@ -3,8 +3,8 @@ import leaflet from 'leaflet';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import OfferTypes from '../types/offer.js';
-import {CITIES, MAP_SETTINGS} from '../helpers/constants.js';
+import OfferTypes from '../../types/offer.js';
+import {CITIES, MAP_SETTINGS} from '../../helpers/constants.js';
 
 const withMap = (Component) => {
   class WithMap extends React.PureComponent {
