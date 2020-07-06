@@ -14,11 +14,9 @@ const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/">
-        {
-          !detailsOffer
-            ? <Main offers={offers} onTitleClick={onTitleClick} />
-            : <OfferDetails offer={detailsOffer} offers={offers} reviews={reviews}/>
-        }
+        {!detailsOffer
+          ? <Main offers={offers} onTitleClick={onTitleClick} />
+          : <OfferDetails offer={detailsOffer} offers={offers} reviews={reviews}/> }
       </Route>
       <Route exact path="/dev-details">
         <OfferDetails offer={offers[0]} reviews={reviews} offers={offers}/>
