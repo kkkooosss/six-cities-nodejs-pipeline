@@ -19,7 +19,7 @@ const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}
   const cities = reduceCities(getCitiesTitles(offers));
   const offersToRender = selectedOffers.length > 0 ? selectedOffers : filterOffers(offers, selectedCity);
   const offersCount = offersToRender.length;
-  const areOffersEmpty = offersCount === 0;
+  const areOffersEmpty = offersCount < 1;
 
   return (
     <div className="page page--gray page--main">
