@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const OffersEmpty = ({city}) => (
+const OffersEmpty = () => (
 
   <div className="cities">
     <div className="cities__places-container cities__places-container--empty container">
@@ -9,7 +8,7 @@ const OffersEmpty = ({city}) => (
         <div className="cities__status-wrapper tabs__content">
           <b className="cities__status">No places to stay available</b>
           <p className="cities__status-description">
-            We could not find any property availbale at the moment in {city}
+            We could not find any property availbale at the moment
           </p>
         </div>
       </section>
@@ -20,7 +19,3 @@ const OffersEmpty = ({city}) => (
 );
 
 export default OffersEmpty;
-
-OffersEmpty.propTypes = {
-  city: PropTypes.string.isRequired
-};
