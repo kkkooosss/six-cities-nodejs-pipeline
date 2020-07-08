@@ -7,13 +7,28 @@ import OfferTypes from '../../types/offer.js';
 import {ActionCreator} from '../../store/reducer.js';
 import {filterOffersOrder} from '../../selectors/selectors.js';
 
-const OffersList = ({offers, onTitleClick, selectedFilter, handleCardHover, handleCardHoverLeave, isNearPlacesList}) => {
+const OffersList = ({
+  offers,
+  onTitleClick,
+  selectedFilter,
+  handleCardHover,
+  handleCardHoverLeave,
+  isNearPlacesList}) => {
 
   const filteredOffers = filterOffersOrder(offers, selectedFilter);
 
   return (
   <>
-    {filteredOffers.map((offer) => <OfferCard offer={offer} onCardHover={handleCardHover} onCardHoverLeave={handleCardHoverLeave} onTitleClick={onTitleClick} key={offer.id} isNearPlacesCard={isNearPlacesList} />)}
+    {filteredOffers.map((offer) => (
+      <OfferCard
+        offer={offer}
+        onCardHover={handleCardHover}
+        onCardHoverLeave={handleCardHoverLeave}
+        onTitleClick={onTitleClick}
+        key={offer.id}
+        isNearPlacesCard={isNearPlacesList}
+      />))
+    }
   </>
   );
 };

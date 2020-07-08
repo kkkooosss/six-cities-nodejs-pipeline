@@ -8,12 +8,12 @@ import OffersSort from '../offers-sort/offers-sort.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
 import Map from '../../components/map/map.jsx';
 
-
 import {getCitiesTitles} from '../../helpers/helpers.js';
 import {filterOffers, reduceCities} from '../../selectors/selectors.js';
 import {ActionCreator} from '../../store/reducer.js';
 
 const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}) => {
+
   const cities = reduceCities(getCitiesTitles(offers));
   const offersToRender = selectedOffers.length > 0 ? selectedOffers : filterOffers(offers, selectedCity);
   const offersCount = offersToRender.length;

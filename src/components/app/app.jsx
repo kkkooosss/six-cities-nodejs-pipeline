@@ -1,61 +1,46 @@
 import React from "react";
 import PropTypes from "prop-types";
+import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
 import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
+import {ActionCreator} from '../../store/reducer.js';
 
-class App extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
 
-    this.state = {
-      selectedOffer: null
-    };
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/">
+        {!detailsOffer
+          ? <Main offers={offers} onTitleClick={onTitleClick} />
+          : <OfferDetails offer={detailsOffer} offers={offers} reviews={reviews}/> }
+      </Route>
+      <Route exact path="/dev-details">
+        <OfferDetails offer={offers[0]} reviews={reviews} offers={offers}/>
+      </Route>
+    </Switch>
+  </BrowserRouter>
 
-    this.handleTitleClick = this.handleTitleClick.bind(this);
+);
+
+const mapStateToProps = (state) => ({
+  detailsOffer: state.detailsOffer,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onTitleClick: (offer) => {
+    dispatch(ActionCreator.setDetailsOffer(offer));
   }
+});
 
-  handleTitleClick(offer) {
-    this.setState({
-      selectedOffer: offer,
-    });
-  }
-
-  _renderApp() {
-    const {offers, reviews} = this.props;
-    const {selectedOffer} = this.state;
-
-    return (
-      !selectedOffer
-        ? <Main offers={offers} onTitleClick={this.handleTitleClick} />
-        : <OfferDetails offer={selectedOffer} offers={offers} reviews={reviews}/>
-    );
-  }
-
-  render() {
-    const {offers, reviews} = this.props;
-
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-details">
-            <OfferDetails offer={offers[0]} reviews={reviews} offers={offers}/>
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
-  }
-}
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 App.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
+  onTitleClick: PropTypes.func.isRequired,
+  detailsOffer: OfferTypes
 };
-
-export default App;
