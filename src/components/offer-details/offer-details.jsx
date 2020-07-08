@@ -156,6 +156,7 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
 };
 
 const mapStateToProps = (state) => ({
+  offers: state.offers,
   selectedCity: state.selectedCity,
   selectedOffers: state.selectedOffers
 });

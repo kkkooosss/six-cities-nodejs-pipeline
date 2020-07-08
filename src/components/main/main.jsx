@@ -55,6 +55,7 @@ const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}
 };
 
 const mapStateToProps = (state) => ({
+  offers: state.offers,
   selectedCity: state.selectedCity,
   selectedOffers: state.selectedOffers
 });

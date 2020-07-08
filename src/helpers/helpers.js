@@ -35,3 +35,28 @@ export const FILTERS_MAP = {
   topRatedFirst: `Top rated first`
 };
 
+export const formatOffer = (offer) => (
+  {
+    id: offer.id,
+    city: offer.city.name,
+    title: offer.title,
+    type: offer.type,
+    isPremium: offer.is_premium,
+    price: offer.price,
+    coordinates: [offer.city.location.latitude, offer.city.location.longitude],
+    img: offer.preview_image,
+    photos: offer.images,
+    host: {
+      id: offer.host.id,
+      isPro: offer.host.is_pro,
+      name: offer.host.name,
+      userPic: offer.host.avatar_url
+    },
+    rating: offer.rating,
+    bedrooms: offer.bedrooms,
+    capacity: offer.max_adults,
+    amenities: offer.goods
+  }
+);
+
+export const formatOffers = (offers) => offers.map((offer) => formatOffer(offer));

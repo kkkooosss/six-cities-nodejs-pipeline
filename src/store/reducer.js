@@ -1,4 +1,4 @@
-import {extend} from '../helpers/helpers.js';
+import {extend, formatOffers} from '../helpers/helpers.js';
 import {filterOffers} from '../selectors/selectors.js';
 
 const initialState = {
@@ -104,7 +104,7 @@ const Operation = {
     return api.get(`/hotels`)
       .then(
           (response) => {
-            dispatch(ActionCreator.getOffers(response.data));
+            dispatch(ActionCreator.getOffers(formatOffers(response.data)));
           });
   }
 };
