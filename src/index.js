@@ -8,7 +8,7 @@ import {compose} from 'recompose';
 import App from './components/app/app.jsx';
 import offers from './mocks/offers.js';
 import reviews from './mocks/reviews.js';
-import {reducer} from './store/reducer.js';
+import {reducer, Operation} from './store/reducer.js';
 import createAPI from './api/api.js';
 
 const api = createAPI((...args) => store.dispatch(...args));
@@ -20,6 +20,8 @@ const store = createStore(
         window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
     )
 );
+
+store.dispatch(Operation.loadOffers());
 
 ReactDOM.render(
     <Provider store={store}>

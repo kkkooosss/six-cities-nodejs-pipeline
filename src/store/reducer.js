@@ -2,6 +2,7 @@ import {extend} from '../helpers/helpers.js';
 import {filterOffers} from '../selectors/selectors.js';
 
 const initialState = {
+  offers: [],
   selectedCity: `Amsterdam`,
   selectedOffers: [],
   selectedFilter: `Popular`,
@@ -10,6 +11,7 @@ const initialState = {
 };
 
 const Actions = {
+  getOffers: `GET_OFFERS`,
   selectCity: `SELECT_CITY`,
   selectOffers: `SELECT_OFFERS`,
   selectFilter: `SELECT_FILTER`,
@@ -19,6 +21,11 @@ const Actions = {
 };
 
 const ActionCreator = {
+
+  getOffers: (offers) => ({
+    type: Actions.getOffers,
+    payload: offers
+  }),
 
   selectCity: (city) => ({
     type: Actions.selectCity,
@@ -54,6 +61,11 @@ const ActionCreator = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
+    case Actions.getOffers:
+      return extend(state, {
+        offers: action.payload
+      });
+
     case Actions.selectCity:
       return extend(state, {
         selectedCity: action.payload
@@ -87,4 +99,14 @@ const reducer = (state = initialState, action = {}) => {
   return state;
 };
 
-export {Actions, ActionCreator, reducer};
+const Operation = {
+  loadOffers: () => (dispatch, getState, api) => {
+    return api.get(`/hotels`)
+      .then(
+          (response) => {
+            dispatch(ActionCreator.getOffers(response.data));
+          });
+  }
+};
+
+export {Actions, ActionCreator, reducer, Operation};
