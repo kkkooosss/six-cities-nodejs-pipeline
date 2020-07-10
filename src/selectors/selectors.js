@@ -12,7 +12,7 @@ const reduceReviews = (reviews) => reviews.length <= 10 ? reviews : reviews.slic
 
 export const getReviews = (reviews) => reduceReviews(sortReveiwsByDate(reviews));
 
-export const filterOffers = (offers, city) => offers.filter((offer) => offer.city === city);
+export const filterOffers = (offers, city) => offers.filter((offer) => offer.city.name === city);
 
 export const reduceCities = (cities) => cities.length >= 6 ? cities : cities.slice(0, 6);
 

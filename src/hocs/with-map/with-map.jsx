@@ -42,18 +42,20 @@ const withMap = (Component) => {
     _setMarkers(offers) {
       const {icon} = MAP_SETTINGS;
 
-      offers.forEach(({id, coordinates}) => {
+      offers.forEach(({id, location}) => {
+        const coordinates = [location.latitude, location.longitude];
         const marker = leaflet.marker(coordinates, {icon});
         marker.addTo(this._map);
         this._markers.push({id, marker});
       });
     }
 
-    _setCurrentOfferMarker(currentOffer) {
+    _setCurrentOfferMarker({location}) {
       const icon = MAP_SETTINGS.currentOfferIcon;
+      const coordinates = [location.latitude, location.longitude];
 
       leaflet
-      .marker(currentOffer.coordinates, {icon})
+      .marker(coordinates, {icon})
       .addTo(this._map);
     }
 

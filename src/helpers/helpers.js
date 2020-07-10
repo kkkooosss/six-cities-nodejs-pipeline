@@ -26,7 +26,7 @@ export const convertDate = (date) => {
   return `${month} ${day}, ${year}`;
 };
 
-export const getCitiesTitles = (offers) => ([...new Set(offers.map((offer) => offer.city))]);
+export const getCitiesTitles = (offers) => ([...new Set(offers.map((offer) => offer.city.name))]);
 
 export const FILTERS_MAP = {
   popular: `Popular`,
@@ -40,12 +40,12 @@ export const FILTERS_MAP = {
 export const formatOffer = (offer) => (
   {
     id: offer.id,
-    city: offer.city.name,
+    city: offer.city,
     title: offer.title,
     type: offer.type,
     isPremium: offer.is_premium,
     price: offer.price,
-    coordinates: [offer.city.location.latitude, offer.city.location.longitude],
+    location: offer.location,
     previewImage: offer.preview_image,
     images: offer.images,
     host: {

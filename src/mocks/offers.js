@@ -32,7 +32,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 2,
@@ -65,7 +66,8 @@ export default [
       `Coffee machine`,
       `Kitchen`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 3,
@@ -96,7 +98,8 @@ export default [
       `Baby seat`,
       `Kitchen`,
       `Dishwasher`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 4,
@@ -129,7 +132,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 5,
@@ -164,7 +168,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley f    lowery and colorful`
   },
   {
     id: 6,
@@ -199,7 +204,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 7,
@@ -223,7 +229,7 @@ export default [
       id: 1,
       isPro: true,
       name: `Angelina`,
-      // userPic: `img/avatar-angelina.jpg`
+      userPic: `img/avatar-angelina.jpg`
     },
     amenities: [`Wi-Fi`,
       `Washing machine`,
@@ -234,7 +240,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 8,
@@ -269,7 +276,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 9,
@@ -304,7 +312,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 10,
@@ -339,7 +348,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 11,
@@ -374,7 +384,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 12,
@@ -409,7 +420,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 13,
@@ -444,7 +456,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 14,
@@ -479,7 +492,8 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
   {
     id: 15,
@@ -514,6 +528,7 @@ export default [
       `Kitchen`,
       `Dishwasher`,
       `Cabel TV`,
-      `Fridge`]
+      `Fridge`],
+    description: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful`
   },
 ];

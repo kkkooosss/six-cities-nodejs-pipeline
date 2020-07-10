@@ -2,12 +2,23 @@ import PropTypes from 'prop-types';
 
 export default PropTypes.exact({
   id: PropTypes.number.isRequired,
-  city: PropTypes.string.isRequired,
+  city: PropTypes.exact({
+    name: PropTypes.string.isRequired,
+    location: PropTypes.exact({
+      latitude: PropTypes.number.isRequired,
+      longitude: PropTypes.number.isRequired,
+      zoom: PropTypes.number.isRequired
+    })
+  }),
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   isPremium: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
-  coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
+  location: PropTypes.exact({
+    latitude: PropTypes.number.isRequired,
+    longitude: PropTypes.number.isRequired,
+    zoom: PropTypes.number.isRequired
+  }),
   previewImage: PropTypes.string.isRequired,
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
   host: PropTypes.exact({
