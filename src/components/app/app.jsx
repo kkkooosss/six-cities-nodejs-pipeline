@@ -15,11 +15,11 @@ const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
     <Switch>
       <Route exact path="/">
         {!detailsOffer
-          ? <Main offers={offers} onTitleClick={onTitleClick} />
-          : <OfferDetails offer={detailsOffer} offers={offers} reviews={reviews}/> }
+          ? <Main onTitleClick={onTitleClick} />
+          : <OfferDetails offer={detailsOffer} reviews={reviews}/> }
       </Route>
       <Route exact path="/dev-details">
-        <OfferDetails offer={offers[0]} reviews={reviews} offers={offers}/>
+        <OfferDetails offer={offers[0]} reviews={reviews}/>
       </Route>
     </Switch>
   </BrowserRouter>
@@ -27,6 +27,7 @@ const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
 );
 
 const mapStateToProps = (state) => ({
+  offers: state.offers,
   detailsOffer: state.detailsOffer,
 });
 
