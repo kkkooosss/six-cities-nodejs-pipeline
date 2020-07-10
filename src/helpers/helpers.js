@@ -57,7 +57,8 @@ export const formatOffer = (offer) => (
     rating: offer.rating,
     bedrooms: offer.bedrooms,
     capacity: offer.max_adults,
-    amenities: offer.goods
+    amenities: offer.goods,
+    description: offer.description
   }
 );
 

@@ -19,5 +19,6 @@ export default PropTypes.exact({
   rating: PropTypes.number.isRequired,
   bedrooms: PropTypes.number.isRequired,
   capacity: PropTypes.number.isRequired,
-  amenities: PropTypes.arrayOf(PropTypes.string).isRequired
+  amenities: PropTypes.arrayOf(PropTypes.string).isRequired,
+  description: PropTypes.string.isRequired
 });
