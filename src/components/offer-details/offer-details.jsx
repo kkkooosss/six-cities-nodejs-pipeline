@@ -18,7 +18,7 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
     type,
     isPremium,
     price,
-    photos,
+    images,
     host,
     rating,
     bedrooms,
@@ -61,9 +61,9 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {photos.map((photo, i) => (
+              {images.map((image, i) => (
                 <div className="property__image-wrapper" key={`key-${i}`}>
-                  <img className="property__image" src={photo} alt={`${type} photo`} />
+                  <img className="property__image" src={image} alt={`${type} photo`} />
                 </div>)
               )}
             </div>

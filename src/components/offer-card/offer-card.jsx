@@ -9,7 +9,7 @@ const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPl
   const {
     isPremium,
     title,
-    img,
+    previewImage,
     price,
     rating,
     type
@@ -26,7 +26,7 @@ const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPl
         <a href="#">
           <img
             className="place-card__image"
-            src={img}
+            src={previewImage}
             width={260}
             height={200}
             alt="Place image"

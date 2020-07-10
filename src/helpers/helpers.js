@@ -46,8 +46,8 @@ export const formatOffer = (offer) => (
     isPremium: offer.is_premium,
     price: offer.price,
     coordinates: [offer.city.location.latitude, offer.city.location.longitude],
-    img: offer.preview_image,
-    photos: offer.images,
+    previewImage: offer.preview_image,
+    images: offer.images,
     host: {
       id: offer.host.id,
       isPro: offer.host.is_pro,

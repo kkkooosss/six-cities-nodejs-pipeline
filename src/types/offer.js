@@ -8,8 +8,8 @@ export default PropTypes.exact({
   isPremium: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
   coordinates: PropTypes.arrayOf(PropTypes.number).isRequired,
-  img: PropTypes.string.isRequired,
-  photos: PropTypes.arrayOf(PropTypes.string).isRequired,
+  previewImage: PropTypes.string.isRequired,
+  images: PropTypes.arrayOf(PropTypes.string).isRequired,
   host: PropTypes.exact({
     id: PropTypes.number.isRequired,
     isPro: PropTypes.bool.isRequired,
