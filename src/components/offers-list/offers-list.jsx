@@ -4,8 +4,11 @@ import {connect} from 'react-redux';
 
 import OfferCard from '../offer-card/offer-card.jsx';
 import OfferTypes from '../../types/offer.js';
-import {ActionCreator} from '../../store/reducer.js';
+import ActiveActionCreator from '../../store/actions/active/active.js';
 import {filterOffersOrder} from '../../selectors/selectors.js';
+import {getSelectedFilter} from '../../store/reducers/filter/selectors.js';
+import {getActiveOffer} from '../../store/reducers/active/selectors.js';
+
 
 const OffersList = ({
   offers,
@@ -34,17 +37,17 @@ const OffersList = ({
 };
 
 const mapStateToProps = (state) => ({
-  activeOffer: state.activeOffer,
-  selectedFilter: state.selectedFilter
+  activeOffer: getActiveOffer(state),
+  selectedFilter: getSelectedFilter(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   handleCardHover: (offer) => {
-    dispatch(ActionCreator.setActiveOffer(offer));
+    dispatch(ActiveActionCreator.setActiveOffer(offer));
   },
 
   handleCardHoverLeave: () => {
-    dispatch(ActionCreator.removeActiveOffer());
+    dispatch(ActiveActionCreator.removeActiveOffer());
   }
 
 });

@@ -35,8 +35,6 @@ export const FILTERS_MAP = {
   topRatedFirst: `Top rated first`
 };
 
-// TODO - make offer and OfferType clother to original server data
-
 export const formatOffer = (offer) => (
   {
     id: offer.id,

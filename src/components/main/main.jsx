@@ -12,7 +12,10 @@ import OffersEmpty from '../../components/offers-empty/offers-empty.jsx';
 
 import {getCitiesTitles} from '../../helpers/helpers.js';
 import {filterOffers, reduceCities} from '../../selectors/selectors.js';
-import {ActionCreator} from '../../store/reducer.js';
+import FilterActionCreator from '../../store/actions/filter/filter.js';
+
+import {getOffers} from '../../store/reducers/data/selectors.js';
+import {getSelectedCity, getSelectedOffers} from '../../store/reducers/filter/selectors.js';
 
 const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}) => {
 
@@ -55,15 +58,15 @@ const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  selectedCity: state.selectedCity,
-  selectedOffers: state.selectedOffers
+  offers: getOffers(state),
+  selectedCity: getSelectedCity(state),
+  selectedOffers: getSelectedOffers(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onCitySelect: (offers, city) => {
-    dispatch(ActionCreator.selectCity(city));
-    dispatch(ActionCreator.selectOffers(offers, city));
+    dispatch(FilterActionCreator.selectCity(city));
+    dispatch(FilterActionCreator.selectOffers(offers, city));
   }
 });
 

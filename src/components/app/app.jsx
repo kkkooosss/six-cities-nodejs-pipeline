@@ -7,7 +7,9 @@ import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
 import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
-import {ActionCreator} from '../../store/reducer.js';
+import DetailsActionCreator from '../../store/actions/details/details.js';
+import {getOffers} from '../../store/reducers/data/selectors.js';
+import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 
 const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
 
@@ -27,13 +29,13 @@ const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
 );
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  detailsOffer: state.detailsOffer,
+  offers: getOffers(state),
+  detailsOffer: getDetailsOffer(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onTitleClick: (offer) => {
-    dispatch(ActionCreator.setDetailsOffer(offer));
+    dispatch(DetailsActionCreator.setDetailsOffer(offer));
   }
 });
 

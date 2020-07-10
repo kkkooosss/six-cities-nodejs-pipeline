@@ -10,6 +10,8 @@ import {getRatingPercents} from '../../helpers/helpers.js';
 import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
 import {getNearOffers, getReviews, filterOffers} from '../../selectors/selectors.js';
+import {getSelectedCity, getSelectedOffers} from '../../store/reducers/filter/selectors.js';
+import {getOffers} from '../../store/reducers/data/selectors.js';
 
 const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) => {
   const {
@@ -154,9 +156,9 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
 };
 
 const mapStateToProps = (state) => ({
-  offers: state.offers,
-  selectedCity: state.selectedCity,
-  selectedOffers: state.selectedOffers
+  offers: getOffers(state),
+  selectedCity: getSelectedCity(state),
+  selectedOffers: getSelectedOffers(state)
 });
 
 export default connect(mapStateToProps, null)(OfferDetails);

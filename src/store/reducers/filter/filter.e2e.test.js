@@ -1,4 +1,5 @@
-import {Actions, reducer} from "./reducer.js";
+import {Actions} from '../../actions/filter/filter.js';
+import reducer from './filter.js';
 
 describe(`Reducer work correctly`, () => {
 
@@ -64,42 +65,4 @@ describe(`Reducer work correctly`, () => {
     });
   });
 
-
-  it(`Should change activeOffer with given value`, () => {
-    const state5 = {
-      activeOffer: null
-    };
-    const action = {
-      type: Actions.setActiveOffer,
-      payload: {id: 1, title: `title1`, city: `Amsterdam`}
-    };
-    expect(reducer(state5, action)).toMatchObject({
-      activeOffer: {id: 1, title: `title1`, city: `Amsterdam`}
-    });
-  });
-
-  it(`Should remove activeOffer `, () => {
-    const state6 = {
-      activeOffer: {id: 1, title: `title1`, city: `Amsterdam`}
-    };
-    const action = {
-      type: Actions.removeActiveOffer
-    };
-    expect(reducer(state6, action)).toMatchObject({
-      activeOffer: null
-    });
-  });
-
-  it(`Should change detailsOffer with given value`, () => {
-    const state7 = {
-      detailsOffer: null
-    };
-    const action = {
-      type: Actions.setDetailsOffer,
-      payload: {id: 1, title: `title1`, city: `Amsterdam`}
-    };
-    expect(reducer(state7, action)).toMatchObject({
-      detailsOffer: {id: 1, title: `title1`, city: `Amsterdam`}
-    });
-  });
 });
