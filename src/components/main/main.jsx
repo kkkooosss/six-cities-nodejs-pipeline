@@ -10,7 +10,7 @@ import Map from '../../components/map/map.jsx';
 import Header from '../../components/header/header.jsx';
 import OffersEmpty from '../../components/offers-empty/offers-empty.jsx';
 
-import {reduceCities} from '../../selectors/selectors.js';
+import {reduceCities, reduceOffers} from '../../selectors/selectors.js';
 import FilterActionCreator from '../../store/actions/filter/filter.js';
 
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
@@ -20,6 +20,7 @@ import {getCities} from '../../store/reducers/data/selectors.js';
 const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick}) => {
 
   const reducedCities = reduceCities(cities);
+  const reducedOffers = reduceOffers(offers);
   const offersCount = offers.length;
   const areOffersEmpty = offersCount < 1;
 
@@ -33,7 +34,7 @@ const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick}) => {
         </div>
 
         {areOffersEmpty
-          ? <OffersEmpty city={selectedCity} />
+          ? <OffersEmpty />
           : <div className="cities">
             <div className="cities__places-container container">
               <section className="cities__places places">
@@ -41,11 +42,11 @@ const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick}) => {
                 <b className="places__found">{offersCount} places to stay in {selectedCity}</b>
                 <OffersSort />
                 <div className="cities__places-list places__list tabs__content">
-                  <OffersList offers={offers} onTitleClick={onTitleClick} isNearPlacesList={false} />
+                  <OffersList offers={reducedOffers} onTitleClick={onTitleClick} isNearPlacesList={false} />
                 </div>
               </section>
               <div className="cities__right-section">
-                <Map offers={offers} isPropertyMap={false} />
+                <Map offers={reducedOffers} isPropertyMap={false} />
               </div>
             </div>
           </div>

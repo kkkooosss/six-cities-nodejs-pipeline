@@ -2,9 +2,7 @@ import {FILTERS_MAP} from '../helpers/helpers.js';
 
 export const excludeCurrentOffer = (offers, currentOfferId) => offers.filter((item) => item.id !== currentOfferId);
 
-export const reduceOffers = (offers) => offers.length <= 3 ? offers : offers.slice(0, 9);
-
-export const getNearOffers = (offers, currentOfferId) => reduceOffers(excludeCurrentOffer(offers, currentOfferId));
+export const reduceOffers = (offers) => offers.length <= 3 ? offers : offers.slice(0, 10);
 
 const sortReveiwsByDate = (reviews) => (reviews.sort((a, b) => (new Date(b.date) - new Date(a.date))));
 
