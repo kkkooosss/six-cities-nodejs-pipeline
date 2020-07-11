@@ -22,6 +22,7 @@ const store = createStore(
 );
 
 store.dispatch(Operation.loadOffers());
+store.dispatch(Operation.loadCities());
 
 ReactDOM.render(
     <Provider store={store}>

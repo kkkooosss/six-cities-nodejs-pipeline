@@ -6,9 +6,15 @@ const Operation = {
     return api.get(`/hotels`)
       .then(
           (response) => {
-            const formatedData = formatOffers(response.data);
-            dispatch(ActionCreator.getOffers(formatedData));
-            dispatch(ActionCreator.getCities(formatedData));
+            dispatch(ActionCreator.getOffers(formatOffers(response.data)));
+          });
+  },
+
+  loadCities: () => (dispatch, getState, api) => {
+    return api.get(`/hotels`)
+      .then(
+          (response) => {
+            dispatch(ActionCreator.getCities(response.data));
           });
   }
 };
