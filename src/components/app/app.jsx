@@ -8,6 +8,7 @@ import OfferDetails from "../offer-details/offer-details.jsx";
 import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
 import DetailsActionCreator from '../../store/actions/details/details.js';
+import Login from '../login/login.jsx';
 import {getOffers} from '../../store/reducers/data/selectors.js';
 import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 
@@ -22,6 +23,9 @@ const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
       </Route>
       <Route exact path="/dev-details">
         <OfferDetails offer={offers[0]} reviews={reviews}/>
+      </Route>
+      <Route exact path="/dev-login">
+        <Login />
       </Route>
     </Switch>
   </BrowserRouter>
