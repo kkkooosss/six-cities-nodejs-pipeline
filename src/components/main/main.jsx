@@ -10,16 +10,16 @@ import Map from '../../components/map/map.jsx';
 import Header from '../../components/header/header.jsx';
 import OffersEmpty from '../../components/offers-empty/offers-empty.jsx';
 
-import {getCitiesTitles} from '../../helpers/helpers.js';
 import {reduceCities} from '../../selectors/selectors.js';
 import FilterActionCreator from '../../store/actions/filter/filter.js';
 
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
-import {getSelectedCity, getSelectedOffers} from '../../store/reducers/filter/selectors.js';
+import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
+import {getCities} from '../../store/reducers/data/selectors.js';
 
-const Main = ({offers, selectedCity, onCitySelect, onTitleClick}) => {
+const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick}) => {
 
-  const cities = reduceCities(getCitiesTitles(offers));
+  const reducedCities = reduceCities(cities);
   const offersCount = offers.length;
   const areOffersEmpty = offersCount < 1;
 
@@ -29,7 +29,7 @@ const Main = ({offers, selectedCity, onCitySelect, onTitleClick}) => {
       <main className={`page__main page__main--index ${areOffersEmpty ? `page__main--index-empty` : null}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <CitiesList cities={cities} selectedCity={selectedCity} onCitySelect={(city) => onCitySelect(offers, city)} />
+          <CitiesList cities={reducedCities} selectedCity={selectedCity} onCitySelect={(city) => onCitySelect(offers, city)} />
         </div>
 
         {areOffersEmpty
@@ -58,14 +58,13 @@ const Main = ({offers, selectedCity, onCitySelect, onTitleClick}) => {
 
 const mapStateToProps = (state) => ({
   offers: filterOffers(state),
-  selectedCity: getSelectedCity(state),
-  selectedOffers: getSelectedOffers(state)
+  cities: getCities(state),
+  selectedCity: getSelectedCity(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onCitySelect: (offers, city) => {
     dispatch(FilterActionCreator.selectCity(city));
-    dispatch(FilterActionCreator.selectOffers(offers, city));
   }
 });
 
@@ -73,7 +72,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
-  selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedCity: PropTypes.string.isRequired,
   onCitySelect: PropTypes.func,
   onTitleClick: PropTypes.func

@@ -5,15 +5,16 @@ import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
-import {getRatingPercents} from '../../helpers/helpers.js';
+import {getRatingInPercents} from '../../helpers/helpers.js';
 
 import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
-import {getNearOffers, getReviews, filterOffers} from '../../selectors/selectors.js';
-import {getSelectedCity, getSelectedOffers} from '../../store/reducers/filter/selectors.js';
-import {getOffers} from '../../store/reducers/data/selectors.js';
+import {excludeCurrentOffer} from '../../selectors/selectors.js';
+import {getReviews} from '../../selectors/selectors.js';
+import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
+import {filterOffers} from '../../store/reducers/filter/selectors.js';
 
-const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) => {
+const OfferDetails = ({offer, offers, reviews}) => {
   const {
     id,
     title,
@@ -29,11 +30,10 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
     description
   } = offer;
 
-  const filteredOffers = filterOffers(offers, selectedCity);
-  const nearbyOffers = selectedOffers.length > 0 ? getNearOffers(selectedOffers, id) : getNearOffers(filteredOffers, id);
   const sortedReviews = getReviews(reviews);
 
-  const stars = getRatingPercents(rating);
+  const nearOffers = excludeCurrentOffer(offers, id);
+  const stars = getRatingInPercents(rating);
 
   return (
     <div className="page">
@@ -137,14 +137,14 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
             </div>
           </div>
         </section>
-        <Map offers={nearbyOffers} isPropertyMap={true} currentOffer={offer} />
+        <Map offers={nearOffers} isPropertyMap={true} currentOffer={offer} />
 
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
 
-              <OffersList offers={nearbyOffers} isNearPlacesList={true} />
+              <OffersList offers={nearOffers} isNearPlacesList={true} />
 
             </div>
           </section>
@@ -156,9 +156,8 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
 };
 
 const mapStateToProps = (state) => ({
-  offers: getOffers(state),
-  selectedCity: getSelectedCity(state),
-  selectedOffers: getSelectedOffers(state)
+  offers: filterOffers(state),
+  selectedCity: getSelectedCity(state)
 });
 
 export default connect(mapStateToProps, null)(OfferDetails);

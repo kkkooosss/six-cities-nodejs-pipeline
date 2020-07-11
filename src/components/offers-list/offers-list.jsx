@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import OfferCard from '../offer-card/offer-card.jsx';
 import OfferTypes from '../../types/offer.js';
 import ActiveActionCreator from '../../store/actions/active/active.js';
+import DetailsActionCreator from '../../store/actions/details/details.js';
 import {filterOffersOrder} from '../../selectors/selectors.js';
 import {getSelectedFilter} from '../../store/reducers/filter/selectors.js';
 import {getActiveOffer} from '../../store/reducers/active/selectors.js';
@@ -12,7 +13,7 @@ import {getActiveOffer} from '../../store/reducers/active/selectors.js';
 
 const OffersList = ({
   offers,
-  onTitleClick,
+  handleTitleClick,
   selectedFilter,
   handleCardHover,
   handleCardHoverLeave,
@@ -27,7 +28,7 @@ const OffersList = ({
         offer={offer}
         onCardHover={handleCardHover}
         onCardHoverLeave={handleCardHoverLeave}
-        onTitleClick={onTitleClick}
+        onTitleClick={handleTitleClick}
         key={offer.id}
         isNearPlacesCard={isNearPlacesList}
       />))
@@ -48,6 +49,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   handleCardHoverLeave: () => {
     dispatch(ActiveActionCreator.removeActiveOffer());
+  },
+
+  handleTitleClick: (offer) => {
+    dispatch(DetailsActionCreator.setDetailsOffer(offer));
   }
 
 });
@@ -56,7 +61,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
-  onTitleClick: PropTypes.func,
+  handleTitleClick: PropTypes.func,
   handleCardHover: PropTypes.func,
   handleCardHoverLeave: PropTypes.func,
   isNearPlacesList: PropTypes.bool.isRequired,

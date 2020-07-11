@@ -6,7 +6,9 @@ const Operation = {
     return api.get(`/hotels`)
       .then(
           (response) => {
-            dispatch(ActionCreator.getOffers(formatOffers(response.data)));
+            const formatedData = formatOffers(response.data);
+            dispatch(ActionCreator.getOffers(formatedData));
+            dispatch(ActionCreator.getCities(formatedData));
           });
   }
 };

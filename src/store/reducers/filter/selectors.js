@@ -4,10 +4,6 @@ import {getOffers} from '../data/selectors.js';
 
 const NAME_SPACE = NameSpace.FILTER;
 
-export const getSelectedOffers = (state) => {
-  return state[NAME_SPACE].selectedOffers;
-};
-
 export const getSelectedCity = (state) => {
   return state[NAME_SPACE].selectedCity;
 };
