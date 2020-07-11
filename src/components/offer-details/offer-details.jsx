@@ -9,7 +9,7 @@ import {getRatingInPercents} from '../../helpers/helpers.js';
 
 import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
-import {excludeCurrentOffer} from '../../selectors/selectors.js';
+import {excludeCurrentOffer, reduceOffers} from '../../selectors/selectors.js';
 import {getReviews} from '../../selectors/selectors.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
@@ -33,6 +33,7 @@ const OfferDetails = ({offer, offers, reviews}) => {
   const sortedReviews = getReviews(reviews);
 
   const nearOffers = excludeCurrentOffer(offers, id);
+  const reducedOffers = reduceOffers(nearOffers);
   const stars = getRatingInPercents(rating);
 
   return (
@@ -137,14 +138,14 @@ const OfferDetails = ({offer, offers, reviews}) => {
             </div>
           </div>
         </section>
-        <Map offers={nearOffers} isPropertyMap={true} currentOffer={offer} />
+        <Map offers={reducedOffers} isPropertyMap={true} currentOffer={offer} />
 
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
 
-              <OffersList offers={nearOffers} isNearPlacesList={true} />
+              <OffersList offers={reducedOffers} isNearPlacesList={true} />
 
             </div>
           </section>
