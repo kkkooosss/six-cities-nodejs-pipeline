@@ -11,17 +11,16 @@ import Header from '../../components/header/header.jsx';
 import OffersEmpty from '../../components/offers-empty/offers-empty.jsx';
 
 import {getCitiesTitles} from '../../helpers/helpers.js';
-import {filterOffers, reduceCities} from '../../selectors/selectors.js';
+import {reduceCities} from '../../selectors/selectors.js';
 import FilterActionCreator from '../../store/actions/filter/filter.js';
 
-import {getOffers} from '../../store/reducers/data/selectors.js';
+import {filterOffers} from '../../store/reducers/filter/selectors.js';
 import {getSelectedCity, getSelectedOffers} from '../../store/reducers/filter/selectors.js';
 
-const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}) => {
+const Main = ({offers, selectedCity, onCitySelect, onTitleClick}) => {
 
   const cities = reduceCities(getCitiesTitles(offers));
-  const offersToRender = selectedOffers.length > 0 ? selectedOffers : filterOffers(offers, selectedCity);
-  const offersCount = offersToRender.length;
+  const offersCount = offers.length;
   const areOffersEmpty = offersCount < 1;
 
   return (
@@ -42,11 +41,11 @@ const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}
                 <b className="places__found">{offersCount} places to stay in {selectedCity}</b>
                 <OffersSort />
                 <div className="cities__places-list places__list tabs__content">
-                  <OffersList offers={offersToRender} onTitleClick={onTitleClick} isNearPlacesList={false} />
+                  <OffersList offers={offers} onTitleClick={onTitleClick} isNearPlacesList={false} />
                 </div>
               </section>
               <div className="cities__right-section">
-                <Map offers={offersToRender} isPropertyMap={false} />
+                <Map offers={offers} isPropertyMap={false} />
               </div>
             </div>
           </div>
@@ -58,7 +57,7 @@ const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}
 };
 
 const mapStateToProps = (state) => ({
-  offers: getOffers(state),
+  offers: filterOffers(state),
   selectedCity: getSelectedCity(state),
   selectedOffers: getSelectedOffers(state)
 });
