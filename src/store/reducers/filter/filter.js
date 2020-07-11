@@ -1,5 +1,4 @@
 import {extend} from '../../../helpers/helpers.js';
-import {filterOffers} from './selectors.js';
 
 import {Actions} from '../../actions/filter/filter.js';
 

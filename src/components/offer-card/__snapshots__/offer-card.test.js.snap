@@ -7,13 +7,6 @@ exports[`OfferCard renders correctly 1`] = `
   onMouseOver={[Function]}
 >
   <div
-    className="place-card__mark"
-  >
-    <span>
-      Premium
-    </span>
-  </div>
-  <div
     className="place-card__image-wrapperd cities__image-wrapper"
   >
     <a
@@ -23,6 +16,7 @@ exports[`OfferCard renders correctly 1`] = `
         alt="Place image"
         className="place-card__image"
         height={200}
+        src="https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/14.jpg"
         width={260}
       />
     </a>
@@ -39,7 +33,7 @@ exports[`OfferCard renders correctly 1`] = `
         <b
           className="place-card__price-value"
         >
-          €120
+          €248
         </b>
         <span
           className="place-card__price-text"
@@ -76,7 +70,7 @@ exports[`OfferCard renders correctly 1`] = `
         <span
           style={
             Object {
-              "width": "100%",
+              "width": "80%",
             }
           }
         />
@@ -84,7 +78,7 @@ exports[`OfferCard renders correctly 1`] = `
           className="visually-hidden"
         >
           Rating 
-          4.8
+          4.4
         </span>
       </div>
     </div>
@@ -95,13 +89,13 @@ exports[`OfferCard renders correctly 1`] = `
       <a
         href="#"
       >
-        Beautiful &amp; luxurious apartment at great location
+        Penthouse, 4-5 rooms + 5 balconies
       </a>
     </h2>
     <p
       className="place-card__type"
     >
-      Apartment
+      hotel
     </p>
   </div>
 </article>

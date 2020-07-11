@@ -44,6 +44,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 App.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
-  onTitleClick: PropTypes.func.isRequired,
+  onTitleClick: PropTypes.func,
   detailsOffer: OfferTypes
 };
