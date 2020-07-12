@@ -1,8 +1,13 @@
 import {extend} from '../../../helpers/helpers.js';
 import {Actions} from '../../actions/user/user.js';
 
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
 const initialState = {
-  authorizationStatus: `NO_AUTH`
+  authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -13,6 +18,7 @@ const reducer = (state = initialState, action = {}) => {
         authorizationStatus: action.payload
       });
   }
+
   return state;
 };
 
