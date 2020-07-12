@@ -2,20 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import OfferTypes from '../../types/offer.js';
-import {getRatingPercents} from '../../helpers/helpers.js';
+import {getRatingInPercents} from '../../helpers/helpers.js';
 
 const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPlacesCard}) => {
 
   const {
     isPremium,
     title,
-    img,
+    previewImage,
     price,
     rating,
     type
   } = offer;
 
-  const stars = getRatingPercents(rating);
+  const stars = getRatingInPercents(rating);
 
   return (
     <article className={`place-card ${isNearPlacesCard ? `near-places__card` : `cities__place-card`}`} onMouseOver={() => onCardHover(offer)} onMouseLeave={() => onCardHoverLeave()}>
@@ -26,7 +26,7 @@ const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPl
         <a href="#">
           <img
             className="place-card__image"
-            src={img}
+            src={previewImage}
             width={260}
             height={200}
             alt="Place image"

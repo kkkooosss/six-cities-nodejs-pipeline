@@ -5,32 +5,36 @@ import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
-import {getRatingPercents} from '../../helpers/helpers.js';
+import {getRatingInPercents} from '../../helpers/helpers.js';
 
 import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
-import {getNearOffers, getReviews, filterOffers} from '../../selectors/selectors.js';
+import {excludeCurrentOffer, reduceOffers} from '../../selectors/selectors.js';
+import {getReviews} from '../../selectors/selectors.js';
+import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
+import {filterOffers} from '../../store/reducers/filter/selectors.js';
 
-const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) => {
+const OfferDetails = ({offer, offers, reviews}) => {
   const {
     id,
     title,
     type,
     isPremium,
     price,
-    photos,
+    images,
     host,
     rating,
     bedrooms,
     capacity,
-    amenities
+    amenities,
+    description
   } = offer;
 
-  const filteredOffers = filterOffers(offers, selectedCity);
-  const nearbyOffers = selectedOffers.length > 0 ? getNearOffers(selectedOffers, id) : getNearOffers(filteredOffers, id);
   const sortedReviews = getReviews(reviews);
 
-  const stars = getRatingPercents(rating);
+  const nearOffers = excludeCurrentOffer(offers, id);
+  const reducedOffers = reduceOffers(nearOffers);
+  const stars = getRatingInPercents(rating);
 
   return (
     <div className="page">
@@ -61,9 +65,9 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
         <section className="property">
           <div className="property__gallery-container container">
             <div className="property__gallery">
-              {photos.map((photo, i) => (
+              {images.map((image, i) => (
                 <div className="property__image-wrapper" key={`key-${i}`}>
-                  <img className="property__image" src={photo} alt={`${type} photo`} />
+                  <img className="property__image" src={image} alt={`${type} photo`} />
                 </div>)
               )}
             </div>
@@ -124,10 +128,7 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
                 </div>
                 <div className="property__description">
                   <p className="property__text">
-                    A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
-                  </p>
-                  <p className="property__text">
-                    An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
+                    {description}
                   </p>
                 </div>
               </div>
@@ -137,14 +138,14 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
             </div>
           </div>
         </section>
-        <Map offers={nearbyOffers} isPropertyMap={true} currentOffer={offer} />
+        <Map offers={reducedOffers} isPropertyMap={true} currentOffer={offer} />
 
         <div className="container">
           <section className="near-places places">
             <h2 className="near-places__title">Other places in the neighbourhood</h2>
             <div className="near-places__list places__list">
 
-              <OffersList offers={nearbyOffers} isNearPlacesList={true} />
+              <OffersList offers={reducedOffers} isNearPlacesList={true} />
 
             </div>
           </section>
@@ -156,8 +157,8 @@ const OfferDetails = ({offer, offers, selectedCity, selectedOffers, reviews}) =>
 };
 
 const mapStateToProps = (state) => ({
-  selectedCity: state.selectedCity,
-  selectedOffers: state.selectedOffers
+  offers: filterOffers(state),
+  selectedCity: getSelectedCity(state)
 });
 
 export default connect(mapStateToProps, null)(OfferDetails);

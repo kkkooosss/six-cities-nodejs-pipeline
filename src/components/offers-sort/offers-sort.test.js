@@ -6,7 +6,10 @@ import {createStore} from 'redux';
 import OffersSort from './offers-sort.jsx';
 
 const store = createStore(() => ({
-  selectedFilter: `Popular`
+  FILTER: {
+    selectedCity: `Amsterdam`,
+    selectedFilter: `Popular`
+  }
 }));
 
 it(`OffersSort renders correctly`, () => {

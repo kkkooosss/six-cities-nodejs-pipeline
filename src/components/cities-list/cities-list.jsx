@@ -1,14 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {reduceCities} from '../../selectors/selectors.js';
 
 const CitiesList = ({cities, selectedCity, onCitySelect}) => {
+
+  const reducedCities = reduceCities(cities);
 
   return (
     <section className="locations container">
 
       <ul className="locations__list tabs__list">
 
-        {cities.map((city, i) => (
+        {reducedCities.map((city, i) => (
           <li className="locations__item" key={`city-${i}`}>
             <a href="#"
               className={`locations__item-link tabs__item ${city === selectedCity ? `tabs__item--active` : null}`}

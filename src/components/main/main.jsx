@@ -10,15 +10,18 @@ import Map from '../../components/map/map.jsx';
 import Header from '../../components/header/header.jsx';
 import OffersEmpty from '../../components/offers-empty/offers-empty.jsx';
 
-import {getCitiesTitles} from '../../helpers/helpers.js';
-import {filterOffers, reduceCities} from '../../selectors/selectors.js';
-import {ActionCreator} from '../../store/reducer.js';
+import {reduceCities, reduceOffers} from '../../selectors/selectors.js';
+import FilterActionCreator from '../../store/actions/filter/filter.js';
 
-const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}) => {
+import {filterOffers} from '../../store/reducers/filter/selectors.js';
+import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
+import {getCities} from '../../store/reducers/data/selectors.js';
 
-  const cities = reduceCities(getCitiesTitles(offers));
-  const offersToRender = selectedOffers.length > 0 ? selectedOffers : filterOffers(offers, selectedCity);
-  const offersCount = offersToRender.length;
+const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick}) => {
+
+  const reducedCities = reduceCities(cities);
+  const reducedOffers = reduceOffers(offers);
+  const offersCount = offers.length;
   const areOffersEmpty = offersCount < 1;
 
   return (
@@ -27,11 +30,11 @@ const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}
       <main className={`page__main page__main--index ${areOffersEmpty ? `page__main--index-empty` : null}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <CitiesList cities={cities} selectedCity={selectedCity} onCitySelect={(city) => onCitySelect(offers, city)} />
+          <CitiesList cities={reducedCities} selectedCity={selectedCity} onCitySelect={(city) => onCitySelect(offers, city)} />
         </div>
 
         {areOffersEmpty
-          ? <OffersEmpty city={selectedCity} />
+          ? <OffersEmpty />
           : <div className="cities">
             <div className="cities__places-container container">
               <section className="cities__places places">
@@ -39,11 +42,11 @@ const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}
                 <b className="places__found">{offersCount} places to stay in {selectedCity}</b>
                 <OffersSort />
                 <div className="cities__places-list places__list tabs__content">
-                  <OffersList offers={offersToRender} onTitleClick={onTitleClick} isNearPlacesList={false} />
+                  <OffersList offers={reducedOffers} onTitleClick={onTitleClick} isNearPlacesList={false} />
                 </div>
               </section>
               <div className="cities__right-section">
-                <Map offers={offersToRender} isPropertyMap={false} />
+                <Map offers={reducedOffers} isPropertyMap={false} />
               </div>
             </div>
           </div>
@@ -55,14 +58,14 @@ const Main = ({offers, selectedOffers, selectedCity, onCitySelect, onTitleClick}
 };
 
 const mapStateToProps = (state) => ({
-  selectedCity: state.selectedCity,
-  selectedOffers: state.selectedOffers
+  offers: filterOffers(state),
+  cities: getCities(state),
+  selectedCity: getSelectedCity(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onCitySelect: (offers, city) => {
-    dispatch(ActionCreator.selectCity(city));
-    dispatch(ActionCreator.selectOffers(offers, city));
+    dispatch(FilterActionCreator.selectCity(city));
   }
 });
 
@@ -70,7 +73,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
-  selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
+  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedCity: PropTypes.string.isRequired,
   onCitySelect: PropTypes.func,
   onTitleClick: PropTypes.func

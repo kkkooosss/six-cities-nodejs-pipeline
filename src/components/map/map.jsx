@@ -11,6 +11,7 @@ const Map = ({isPropertyMap, mapRef}) => (
   </section>
 );
 
+export {Map};
 export default withMap(Map);
 
 Map.propTypes = {

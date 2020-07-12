@@ -1,6 +1,6 @@
 export const extend = (a, b) => Object.assign({}, a, b);
 
-export const getRatingPercents = (rating) => `${(Math.round(rating)) * 20}%`;
+export const getRatingInPercents = (rating) => `${(Math.round(rating)) * 20}%`;
 
 const MONTH_MAP = {
   1: `January`,
@@ -26,8 +26,6 @@ export const convertDate = (date) => {
   return `${month} ${day}, ${year}`;
 };
 
-export const getCitiesTitles = (offers) => ([...new Set(offers.map((offer) => offer.city))]);
-
 export const FILTERS_MAP = {
   popular: `Popular`,
   priceLowToHight: `Price: low to high`,
@@ -35,3 +33,30 @@ export const FILTERS_MAP = {
   topRatedFirst: `Top rated first`
 };
 
+export const formatOffer = (offer) => (
+  {
+    id: offer.id,
+    city: offer.city,
+    title: offer.title,
+    type: offer.type,
+    isPremium: offer.is_premium,
+    isFavoirite: offer.is_favourite,
+    price: offer.price,
+    location: offer.location,
+    previewImage: offer.preview_image,
+    images: offer.images,
+    host: {
+      id: offer.host.id,
+      isPro: offer.host.is_pro,
+      name: offer.host.name,
+      userPic: offer.host.avatar_url
+    },
+    rating: offer.rating,
+    bedrooms: offer.bedrooms,
+    capacity: offer.max_adults,
+    amenities: offer.goods,
+    description: offer.description
+  }
+);
+
+export const formatOffers = (offers) => offers.map((offer) => formatOffer(offer));

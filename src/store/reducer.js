@@ -1,90 +1,13 @@
-import {extend} from '../helpers/helpers.js';
-import {filterOffers} from '../selectors/selectors.js';
+import {combineReducers} from "redux";
+import data from "./reducers/data/data.js";
+import filter from "./reducers/filter/filter.js";
+import active from "./reducers/active/active.js";
+import details from "./reducers/details/details.js";
+import NameSpace from "./name-space.js";
 
-const initialState = {
-  selectedCity: `Amsterdam`,
-  selectedOffers: [],
-  selectedFilter: `Popular`,
-  activeOffer: null,
-  detailsOffer: null
-};
-
-const Actions = {
-  selectCity: `SELECT_CITY`,
-  selectOffers: `SELECT_OFFERS`,
-  selectFilter: `SELECT_FILTER`,
-  setActiveOffer: `SET_ACTIVE_OFFER`,
-  removeActiveOffer: `REMOVE_ACTIVE_OFFER`,
-  setDetailsOffer: `SET_DETAILS_OFFER`
-};
-
-const ActionCreator = {
-
-  selectCity: (city) => ({
-    type: Actions.selectCity,
-    payload: city
-  }),
-
-  selectOffers: (offers) => ({
-    type: Actions.selectOffers,
-    payload: offers
-  }),
-
-  selectFilter: (filter) => ({
-    type: Actions.selectFilter,
-    payload: filter
-  }),
-
-  setActiveOffer: (offer) => ({
-    type: Actions.setActiveOffer,
-    payload: offer
-  }),
-
-  removeActiveOffer: () => ({
-    type: Actions.removeActiveOffer
-  }),
-
-  setDetailsOffer: (offer) => ({
-    type: Actions.setDetailsOffer,
-    payload: offer
-  })
-
-};
-
-const reducer = (state = initialState, action = {}) => {
-  switch (action.type) {
-
-    case Actions.selectCity:
-      return extend(state, {
-        selectedCity: action.payload
-      });
-
-    case Actions.selectOffers:
-      return extend(state, {
-        selectedOffers: filterOffers(action.payload, state.selectedCity)
-      });
-
-    case Actions.selectFilter:
-      return extend(state, {
-        selectedFilter: action.payload
-      });
-
-    case Actions.setActiveOffer:
-      return extend(state, {
-        activeOffer: action.payload
-      });
-
-    case Actions.removeActiveOffer:
-      return extend(state, {
-        activeOffer: null
-      });
-
-    case Actions.setDetailsOffer:
-      return extend(state, {
-        detailsOffer: action.payload
-      });
-  }
-  return state;
-};
-
-export {Actions, ActionCreator, reducer};
+export default combineReducers({
+  [NameSpace.DATA]: data,
+  [NameSpace.FILTER]: filter,
+  [NameSpace.ACTIVE]: active,
+  [NameSpace.DETAILS]: details,
+});

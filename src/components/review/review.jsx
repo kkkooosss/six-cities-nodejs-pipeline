@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getRatingPercents, convertDate} from '../../helpers/helpers.js';
+import {getRatingInPercents, convertDate} from '../../helpers/helpers.js';
 import ReviewTypes from '../../types/review.js';
 
 const Review = ({review}) => {
@@ -12,7 +12,7 @@ const Review = ({review}) => {
     date,
   } = review;
 
-  const stars = getRatingPercents(rating);
+  const stars = getRatingInPercents(rating);
 
   return (
     <li className="reviews__item">

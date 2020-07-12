@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import {ActionCreator} from '../../store/reducer.js';
+import FilterActionCreator from '../../store/actions/filter/filter.js';
 import {FILTERS} from '../../helpers/constants.js';
+import {getSelectedFilter} from '../../store/reducers/filter/selectors.js';
 
 const withSort = (Component) => {
   class WithSort extends React.PureComponent {
@@ -61,12 +62,12 @@ const withSort = (Component) => {
   };
 
   const mapStateToProps = (state) => ({
-    selectedFilter: state.selectedFilter
+    selectedFilter: getSelectedFilter(state)
   });
 
   const mapDispatchToProps = (dispatch) => ({
     onFilterSelect: (offers, filter) => {
-      dispatch(ActionCreator.selectFilter(offers, filter));
+      dispatch(FilterActionCreator.selectFilter(offers, filter));
     }
   });
 

@@ -7,7 +7,9 @@ import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
 import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
-import {ActionCreator} from '../../store/reducer.js';
+import DetailsActionCreator from '../../store/actions/details/details.js';
+import {getOffers} from '../../store/reducers/data/selectors.js';
+import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 
 const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
 
@@ -15,11 +17,11 @@ const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
     <Switch>
       <Route exact path="/">
         {!detailsOffer
-          ? <Main offers={offers} onTitleClick={onTitleClick} />
-          : <OfferDetails offer={detailsOffer} offers={offers} reviews={reviews}/> }
+          ? <Main onTitleClick={onTitleClick} />
+          : <OfferDetails offer={detailsOffer} reviews={reviews}/> }
       </Route>
       <Route exact path="/dev-details">
-        <OfferDetails offer={offers[0]} reviews={reviews} offers={offers}/>
+        <OfferDetails offer={offers[0]} reviews={reviews}/>
       </Route>
     </Switch>
   </BrowserRouter>
@@ -27,12 +29,13 @@ const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
 );
 
 const mapStateToProps = (state) => ({
-  detailsOffer: state.detailsOffer,
+  offers: getOffers(state),
+  detailsOffer: getDetailsOffer(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onTitleClick: (offer) => {
-    dispatch(ActionCreator.setDetailsOffer(offer));
+    dispatch(DetailsActionCreator.setDetailsOffer(offer));
   }
 });
 
@@ -41,6 +44,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 App.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
-  onTitleClick: PropTypes.func.isRequired,
+  onTitleClick: PropTypes.func,
   detailsOffer: OfferTypes
 };

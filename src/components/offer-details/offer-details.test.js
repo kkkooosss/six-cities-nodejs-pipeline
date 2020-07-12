@@ -4,175 +4,96 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import OfferDetails from './offer-details.jsx';
 
-const store = createStore(() => ({
-  selectedCity: `Amsterdam`,
-  selectedOffers: []
-}));
-
-const OFFER = {
-  id: 1,
-  title: `Beautiful & luxurious apartment at great location`,
-  type: `Apartment`,
-  isPremium: true,
-  price: 120,
-  coordinates: [52.3909553943508, 4.85309666406198],
-  img: `img/apartment-01.jpg`,
-  photos: [`img/room.jpg`,
-    `img/apartment-01.jpg`,
-    `img/apartment-02.jpg`,
-    `img/apartment-03.jpg`,
-    `img/studio-01.jpg`,
-    `img/apartment-01.jpg`],
-  rating: 4.8,
-  bedrooms: 3,
-  capacity: 4,
+const OFFERS = [{
+  city: {
+    name: `Amsterdam`,
+    location: {
+      latitude: 52.37454,
+      longitude: 4.897976,
+      zoom: 13
+    }
+  },
+  previewImage: `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/14.jpg`,
+  images: [
+    `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/13.jpg`,
+    `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/1.jpg,`
+  ],
+  title: `Penthouse, 4-5 rooms + 5 balconies`,
+  isFavourite: false,
+  isPremium: false,
+  rating: 4.4,
+  type: `hotel`,
+  bedrooms: 2,
+  capacity: 8,
+  price: 248,
+  amenities: [
+    `Laptop friendly workspace`,
+    `Baby seat`,
+    `Breakfast`,
+    `Fridge`,
+    `Towels`,
+    `Washer`,
+    `Air conditioning`
+  ],
   host: {
-    id: 1,
-    isPro: true,
+    id: 25,
     name: `Angelina`,
+    isPro: true,
     userPic: `img/avatar-angelina.jpg`
   },
-  amenities: [`Wi-Fi`,
-    `Washing machine`,
-    `Towels`,
-    `Heating`,
-    `Coffee machine`,
+  description: `A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.`,
+  location: {
+    latitude: 52.364540000000005,
+    longitude: 4.9019759999999994,
+    zoom: 16
+  },
+  id: 1
+},
+{
+  city: {
+    name: `Amsterdam`,
+    location: {
+      latitude: 52.37454,
+      longitude: 4.897976,
+      zoom: 13
+    }
+  },
+  previewImage: `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/14.jpg`,
+  images: [
+    `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/13.jpg`,
+    `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/1.jpg,`
+  ],
+  title: `Penthouse, 4-5 rooms + 5 balconies`,
+  isFavourite: false,
+  isPremium: false,
+  rating: 4.4,
+  type: `hotel`,
+  bedrooms: 2,
+  capacity: 8,
+  price: 248,
+  amenities: [
+    `Laptop friendly workspace`,
     `Baby seat`,
-    `Kitchen`,
-    `Dishwasher`,
-    `Cabel TV`,
-    `Fridge`]
-};
-
-const OFFERS = [
-  {
-    id: 1,
-    title: `Beautiful & luxurious apartment at great location`,
-    type: `Apartment`,
-    isPremium: true,
-    price: 120,
-    coordinates: [52.3909553943508, 4.85309666406198],
-    img: `img/apartment-01.jpg`,
-    photos: [`img/room.jpg`,
-      `img/apartment-01.jpg`,
-      `img/apartment-02.jpg`,
-      `img/apartment-03.jpg`,
-      `img/studio-01.jpg`,
-      `img/apartment-01.jpg`],
-    rating: 4.8,
-    bedrooms: 3,
-    capacity: 4,
-    host: {
-      id: 1,
-      isPro: true,
-      name: `Angelina`,
-      userPic: `img/avatar-angelina.jpg`
-    },
-    amenities: [`Wi-Fi`,
-      `Washing machine`,
-      `Towels`,
-      `Heating`,
-      `Coffee machine`,
-      `Baby seat`,
-      `Kitchen`,
-      `Dishwasher`,
-      `Cabel TV`,
-      `Fridge`]
+    `Breakfast`,
+    `Fridge`,
+    `Towels`,
+    `Washer`,
+    `Air conditioning`
+  ],
+  host: {
+    id: 25,
+    name: `Angelina`,
+    isPro: true,
+    userPic: `img/avatar-angelina.jpg`
   },
-  {
-    id: 2,
-    title: `Canal View Prinsengracht`,
-    type: `Apartment`,
-    isPremium: false,
-    price: 132,
-    coordinates: [52.369553943508, 4.85309666406198],
-    img: `img/apartment-02.jpg`,
-    photos: [`img/room.jpg`,
-      `img/apartment-01.jpg`,
-      `img/apartment-02.jpg`,
-      `img/apartment-03.jpg`,
-      `img/studio-01.jpg`,
-      `img/apartment-01.jpg`],
-    rating: 3.8,
-    bedrooms: 3,
-    capacity: 4,
-    host: {
-      id: 2,
-      isPro: false,
-      name: `Max`,
-      userPic: `img/avatar-max.jpg`
-    },
-    amenities: [`Wi-Fi`,
-      `Washing machine`,
-      `Towels`,
-      `Heating`,
-      `Coffee machine`,
-      `Kitchen`,
-      `Cabel TV`,
-      `Fridge`]
+  description: `A new spacious villa, one floor. All commodities, jacuzzi and beautiful scenery. Ideal for families or friends.`,
+  location: {
+    latitude: 52.364540000000005,
+    longitude: 4.9019759999999994,
+    zoom: 16
   },
-  {
-    id: 3,
-    title: `Wood and stone place`,
-    type: `Room`,
-    isPremium: false,
-    price: 80,
-    coordinates: [52.3909553943508, 4.929309666406198],
-    img: `img/room.jpg`,
-    photos: [`img/room.jpg`,
-      `img/apartment-01.jpg`,
-      `img/apartment-02.jpg`,
-      `img/apartment-03.jpg`,
-      `img/studio-01.jpg`,
-      `img/apartment-01.jpg`],
-    rating: 2.3,
-    bedrooms: 1,
-    capacity: 2,
-    host: {
-      id: 3,
-      isPro: false,
-      name: `Jane`,
-      userPic: `img/avatar-angelina.jpg`
-    },
-    amenities: [`Wi-Fi`,
-      `Washing machine`,
-      `Baby seat`,
-      `Kitchen`,
-      `Dishwasher`,
-      `Fridge`]
-  },
-  {
-    id: 4,
-    title: `Nice, cozy, warm big bed apartment`,
-    type: `Apartment`,
-    isPremium: true,
-    price: 180,
-    coordinates: [52.3809553943508, 4.939309666406198],
-    img: `img/apartment-03.jpg`,
-    photos: [`img/room.jpg`,
-      `img/apartment-01.jpg`,
-      `img/apartment-02.jpg`,
-      `img/apartment-03.jpg`,
-      `img/studio-01.jpg`,
-      `img/apartment-01.jpg`],
-    rating: 3.1,
-    bedrooms: 2,
-    capacity: 4,
-    host: {
-      id: 4,
-      isPro: true,
-      name: `John`,
-      userPic: `img/avatar-max.jpg`
-    },
-    amenities: [`Wi-Fi`,
-      `Washing machine`,
-      `Heating`,
-      `Coffee machine`,
-      `Kitchen`,
-      `Dishwasher`,
-      `Cabel TV`,
-      `Fridge`]
-  }
+  id: 2
+},
 ];
 
 const REVIEWS = [
@@ -194,12 +115,28 @@ const REVIEWS = [
   }
 ];
 
+const store = createStore(() => ({
+  DATA: {
+    offers: OFFERS,
+    cities: [`Amsterdam`, `Berlin`]
+  },
+  FILTER: {
+    selectedCity: `Amsterdam`,
+    selectedFilter: `Popular`
+  },
+  DETAILS: {
+    detailsOffer: OFFERS[0],
+  },
+  ACTIVE: {
+    activeOffer: OFFERS[0]
+  }
+}));
+
 it(`OfferDetails renders correctly`, () => {
   const tree = renderer
     .create(<Provider store={store}>
       <OfferDetails
-        offer={OFFER}
-        offers={OFFERS}
+        offer={OFFERS[0]}
         reviews={REVIEWS}
       />
     </Provider>, {
