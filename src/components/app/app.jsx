@@ -11,8 +11,9 @@ import DetailsActionCreator from '../../store/actions/details/details.js';
 import Login from '../login/login.jsx';
 import {getOffers} from '../../store/reducers/data/selectors.js';
 import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
+import UserOperation from '../../store/operations/user/user.js';
 
-const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
+const App = ({offers, reviews, onTitleClick, detailsOffer, onLogin}) => (
 
   <BrowserRouter>
     <Switch>
@@ -25,7 +26,7 @@ const App = ({offers, reviews, onTitleClick, detailsOffer}) => (
         <OfferDetails offer={offers[0]} reviews={reviews}/>
       </Route>
       <Route exact path="/dev-login">
-        <Login />
+        <Login onSubmit={onLogin} />
       </Route>
     </Switch>
   </BrowserRouter>
@@ -40,7 +41,10 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onTitleClick: (offer) => {
     dispatch(DetailsActionCreator.setDetailsOffer(offer));
-  }
+  },
+  onLogin(authData) {
+    dispatch(UserOperation.login(authData));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
@@ -49,5 +53,6 @@ App.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
   onTitleClick: PropTypes.func,
-  detailsOffer: OfferTypes
+  detailsOffer: OfferTypes,
+  onLogin: PropTypes.func
 };

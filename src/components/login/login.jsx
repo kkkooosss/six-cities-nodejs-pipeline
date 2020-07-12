@@ -18,7 +18,7 @@ class Login extends React.PureComponent {
     evt.preventDefault();
 
     onSubmit({
-      email: this.loginRef.current.value,
+      email: this.emailRef.current.value,
       password: this.passwordRef.current.value
     });
   }
@@ -27,7 +27,7 @@ class Login extends React.PureComponent {
     return (
 
       <div className="page page--gray page--login">
-        <Header />
+        <Header isAuthorized={false} user={{}} />
 
         <main className="page__main page__main--login">
           <div className="page__login-container container">
