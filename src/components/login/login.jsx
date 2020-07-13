@@ -27,7 +27,7 @@ class Login extends React.PureComponent {
     return (
 
       <div className="page page--gray page--login">
-        <Header isAuthorized={false} user={{}} />
+        <Header />
 
         <main className="page__main page__main--login">
           <div className="page__login-container container">
