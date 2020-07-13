@@ -117,12 +117,17 @@ exports[`Header renders correctly 1`] = `
               type="password"
             />
           </div>
-          <button
-            className="login__submit form__submit button"
-            type="submit"
+          <a
+            href="/"
+            onClick={[Function]}
           >
-            Sign in
-          </button>
+            <button
+              className="login__submit form__submit button"
+              type="submit"
+            >
+              Sign in
+            </button>
+          </a>
         </form>
       </section>
       <section

@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import Header from '../header/header.jsx';
+import {Link} from 'react-router-dom';
 
 class Login extends React.PureComponent {
   constructor(props) {
@@ -21,6 +23,7 @@ class Login extends React.PureComponent {
       email: this.emailRef.current.value,
       password: this.passwordRef.current.value
     });
+
   }
 
   render() {
@@ -42,7 +45,7 @@ class Login extends React.PureComponent {
                   <label className="visually-hidden">Password</label>
                   <input className="login__input form__input" type="password" name="password" placeholder="Password" required ref={this.passwordRef} />
                 </div>
-                <button className="login__submit form__submit button" type="submit">Sign in</button>
+                <Link to="/"><button className="login__submit form__submit button" type="submit">Sign in</button></Link>
               </form>
             </section>
             <section className="locations locations--login locations--current">
@@ -60,7 +63,7 @@ class Login extends React.PureComponent {
 }
 
 Login.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired
 };
 
 export default Login;

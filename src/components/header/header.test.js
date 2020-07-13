@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
+
 import Header from './header.jsx';
 
 const store = createStore(() => ({
