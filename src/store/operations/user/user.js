@@ -5,7 +5,7 @@ const Operation = {
   checkAuthorizationStatus: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then(() => {
-        dispatch(ActionCreator.setAuthorizationStatus(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
       })
       .catch((err) => {
         throw err;
