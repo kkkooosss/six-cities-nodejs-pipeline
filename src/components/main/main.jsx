@@ -26,7 +26,8 @@ const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick}) => {
 
   return (
     <div className="page page--gray page--main">
-      <Header />
+      <Header isAuthorized={false} user={{}} />
+
       <main className={`page__main page__main--index ${areOffersEmpty ? `page__main--index-empty` : null}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">

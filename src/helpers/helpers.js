@@ -40,7 +40,7 @@ export const formatOffer = (offer) => (
     title: offer.title,
     type: offer.type,
     isPremium: offer.is_premium,
-    isFavoirite: offer.is_favourite,
+    isFavorite: offer.is_favorite,
     price: offer.price,
     location: offer.location,
     previewImage: offer.preview_image,
