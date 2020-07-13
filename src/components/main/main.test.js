@@ -19,7 +19,7 @@ const OFFERS = [{
     `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/1.jpg,`
   ],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
-  isFavourite: false,
+  isFavorite: false,
   isPremium: false,
   rating: 4.4,
   type: `hotel`,
@@ -64,7 +64,7 @@ const OFFERS = [{
     `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/1.jpg,`
   ],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
-  isFavourite: false,
+  isFavorite: false,
   isPremium: false,
   rating: 4.4,
   type: `hotel`,
