@@ -15,7 +15,6 @@ import {getReviews} from '../../selectors/selectors.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
 
-
 const OfferDetails = ({offer, offers, reviews}) => {
   const {
     id,

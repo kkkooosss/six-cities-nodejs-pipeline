@@ -2,10 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Review from '../review/review.jsx';
 import ReviewTypes from '../../types/review.js';
+import {connect} from 'react-redux';
 
-const ReviewsList = ({reviews}) => {
+import {AuthorizationStatus} from '../../store/reducers/user/user.js';
+import {getAuthorizationStatus} from '../../store/reducers/user/selectors.js';
+
+const ReviewsList = ({reviews, authorizationStatus}) => {
 
   const reviewsCount = reviews.length;
+  const isAuthorised = authorizationStatus === AuthorizationStatus.AUTH;
 
   return (
     <section className="property__reviews reviews">
@@ -15,7 +20,7 @@ const ReviewsList = ({reviews}) => {
         {reviews.map((review) => <Review review={review} key={review.id} />)}
       </ul>
 
-      <form className="reviews__form form" action="#" method="post">
+      {isAuthorised ? <form className="reviews__form form" action="#" method="post">
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <div className="reviews__rating-form form__rating">
           <input className="form__rating-input visually-hidden" name="rating" defaultValue={5} id="5-stars" type="radio" />
@@ -56,14 +61,19 @@ const ReviewsList = ({reviews}) => {
           </p>
           <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
         </div>
-      </form>
+      </form> : null}
 
     </section>
   );
 };
 
-export default ReviewsList;
+const mapStateToProps = (state) => ({
+  authorizationStatus: getAuthorizationStatus(state)
+});
+
+export default connect(mapStateToProps, null)(ReviewsList);
 
 ReviewsList.propTypes = {
-  reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired
+  reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
+  authorizationStatus: PropTypes.string.isRequired
 };
