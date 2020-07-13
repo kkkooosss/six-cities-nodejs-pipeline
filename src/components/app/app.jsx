@@ -9,11 +9,11 @@ import OfferTypes from '../../types/offer.js';
 import ReviewTypes from '../../types/review.js';
 import DetailsActionCreator from '../../store/actions/details/details.js';
 import Login from '../login/login.jsx';
-import {getOffers} from '../../store/reducers/data/selectors.js';
 import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 import UserOperation from '../../store/operations/user/user.js';
+import mockDetailsOffer from '../../mocks/details.js';
 
-const App = ({offers, reviews, onTitleClick, detailsOffer, onLogin}) => (
+const App = ({reviews, onTitleClick, detailsOffer, onLogin}) => (
 
   <BrowserRouter>
     <Switch>
@@ -23,7 +23,7 @@ const App = ({offers, reviews, onTitleClick, detailsOffer, onLogin}) => (
           : <OfferDetails offer={detailsOffer} reviews={reviews}/> }
       </Route>
       <Route exact path="/dev-details">
-        <OfferDetails offer={offers[0]} reviews={reviews}/>
+        <OfferDetails offer={mockDetailsOffer} reviews={reviews}/>
       </Route>
       <Route exact path="/dev-login">
         <Login onSubmit={onLogin} />
@@ -34,7 +34,6 @@ const App = ({offers, reviews, onTitleClick, detailsOffer, onLogin}) => (
 );
 
 const mapStateToProps = (state) => ({
-  offers: getOffers(state),
   detailsOffer: getDetailsOffer(state),
 });
 
@@ -50,7 +49,6 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 App.propTypes = {
-  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
   onTitleClick: PropTypes.func,
   detailsOffer: OfferTypes,
