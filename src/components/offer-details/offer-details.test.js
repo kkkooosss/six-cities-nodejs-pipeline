@@ -129,6 +129,15 @@ const store = createStore(() => ({
   },
   ACTIVE: {
     activeOffer: OFFERS[0]
+  },
+  USER: {
+    user: {
+      id: 1,
+      email: `mail@email.com`,
+      avatarUrl: `/static/avatar/8.jpg`,
+      isPro: false,
+      name: `Angelina`,
+    }
   }
 }));
 

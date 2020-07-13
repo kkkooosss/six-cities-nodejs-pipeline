@@ -17,8 +17,7 @@ exports[`OfferDetails renders correctly 1`] = `
           className="header__left"
         >
           <a
-            className="header__logo-link"
-            href="main.html"
+            className="header__logo-link header__logo-link--active"
           >
             <img
               alt="6 cities logo"
@@ -44,11 +43,20 @@ exports[`OfferDetails renders correctly 1`] = `
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
-                />
+                >
+                  <img
+                    src="https://4.react.pages.academy/six-cities/static/avatar/8.jpg"
+                    style={
+                      Object {
+                        "borderRadius": "50%",
+                      }
+                    }
+                  />
+                </div>
                 <span
                   className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  mail@email.com
                 </span>
               </a>
             </li>
