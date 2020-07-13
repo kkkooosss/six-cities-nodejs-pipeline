@@ -1,5 +1,6 @@
 import ActionCreator from '../../actions/user/user.js';
 import {AuthorizationStatus} from '../../reducers/user/user.js';
+import {formatUser} from '../../../helpers/helpers.js';
 
 const Operation = {
   checkAuthorizationStatus: () => (dispatch, getState, api) => {
@@ -17,7 +18,8 @@ const Operation = {
       email: authData.email,
       password: authData.password,
     })
-      .then(() => {
+      .then((response) => {
+        dispatch(ActionCreator.setUser(formatUser(response.data)));
         dispatch(ActionCreator.setAuthorizationStatus(AuthorizationStatus.AUTH));
       });
   }

@@ -60,3 +60,11 @@ export const formatOffer = (offer) => (
 );
 
 export const formatOffers = (offers) => offers.map((offer) => formatOffer(offer));
+
+export const formatUser = (user) => ({
+  id: user.id,
+  email: user.email,
+  name: user.name,
+  avatarUrl: user.avatar_url,
+  isPro: user.is_pro,
+});

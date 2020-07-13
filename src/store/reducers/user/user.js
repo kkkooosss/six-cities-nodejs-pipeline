@@ -8,6 +8,7 @@ export const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  user: null
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -16,6 +17,11 @@ const reducer = (state = initialState, action = {}) => {
     case Actions.setAuthorizationStatus:
       return extend(state, {
         authorizationStatus: action.payload
+      });
+
+    case Actions.setUser:
+      return extend(state, {
+        user: action.payload
       });
   }
 
