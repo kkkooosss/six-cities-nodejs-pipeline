@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Header from '../header/header.jsx';
-import {Link} from 'react-router-dom';
 
 class Login extends React.PureComponent {
   constructor(props) {
@@ -51,15 +50,13 @@ class Login extends React.PureComponent {
   }
 
   _handleSubmit(evt) {
-    const {onSubmit} = this.props;
-    const {isValidEmail, isValidPassword} = this.state;
-    const email = this.emailRef.current.value;
-    const password = this.passwordRef.current.value;
+    const {onLogin} = this.props;
+    const {isValidEmail, isValidPassword, email, password} = this.state;
 
     evt.preventDefault();
 
     if (isValidEmail && isValidPassword) {
-      onSubmit({email, password});
+      onLogin({email, password});
     }
   }
 
@@ -107,7 +104,7 @@ class Login extends React.PureComponent {
                     ref={this.passwordRef}
                     onChange={this._handlePasswordChange} />
                 </div>
-                <Link to="/"><button className="login__submit form__submit button" type="submit" disabled={!isValid}>Sign in</button></Link>
+                <button className="login__submit form__submit button" type="submit" disabled={!isValid}>Sign in</button>
               </form>
             </section>
             <section className="locations locations--login locations--current">
@@ -125,7 +122,7 @@ class Login extends React.PureComponent {
 }
 
 Login.propTypes = {
-  onSubmit: PropTypes.func.isRequired
+  onLogin: PropTypes.func.isRequired
 };
 
 export default Login;

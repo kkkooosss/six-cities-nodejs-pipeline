@@ -8,7 +8,7 @@ export const AuthorizationStatus = {
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
-  user: null
+  user: {}
 };
 
 const reducer = (state = initialState, action = {}) => {

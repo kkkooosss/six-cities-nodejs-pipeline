@@ -25,8 +25,8 @@ const App = ({reviews, onTitleClick, detailsOffer, onLogin}) => (
       <Route exact path="/dev-details">
         <OfferDetails offer={mockDetailsOffer} reviews={reviews}/>
       </Route>
-      <Route exact path="/dev-login">
-        <Login onSubmit={onLogin} />
+      <Route exact path="/signin">
+        <Login onLogin={onLogin} />
       </Route>
     </Switch>
   </BrowserRouter>
