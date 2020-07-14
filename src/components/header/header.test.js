@@ -2,6 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
+import {BrowserRouter} from 'react-router-dom';
 
 import Header from './header.jsx';
 
@@ -21,7 +22,9 @@ it(`Header renders correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Header />
+          <BrowserRouter>
+            <Header />
+          </BrowserRouter>
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)
         })

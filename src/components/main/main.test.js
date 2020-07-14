@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import Main from './main.jsx';
+import {BrowserRouter} from 'react-router-dom';
 
 const OFFERS = [{
   city: {
@@ -126,7 +127,9 @@ it(`Main renders correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <Main />
+          <BrowserRouter>
+            <Main />
+          </BrowserRouter>
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)
         })

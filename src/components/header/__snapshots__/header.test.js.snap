@@ -15,6 +15,8 @@ exports[`Header renders correctly 1`] = `
       >
         <a
           className="header__logo-link header__logo-link--active"
+          href="/"
+          onClick={[Function]}
         >
           <img
             alt="6 cities logo"
@@ -36,24 +38,16 @@ exports[`Header renders correctly 1`] = `
           >
             <a
               className="header__nav-link header__nav-link--profile"
-              href="#"
+              href="/signin"
+              onClick={[Function]}
             >
               <div
                 className="header__avatar-wrapper user__avatar-wrapper"
-              >
-                <img
-                  src="https://4.react.pages.academy/six-cities/static/avatar/8.jpg"
-                  style={
-                    Object {
-                      "borderRadius": "50%",
-                    }
-                  }
-                />
-              </div>
+              />
               <span
                 className="header__user-name user__name"
               >
-                mail@email.com
+                Sign In
               </span>
             </a>
           </li>

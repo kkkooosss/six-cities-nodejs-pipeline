@@ -7,6 +7,7 @@ import Login from './login.jsx';
 
 const store = createStore(() => ({
   USER: {
+    authorizationStatus: `N0_AUTH`,
     user: {
       id: 1,
       email: `mail@email.com`,
@@ -22,7 +23,7 @@ it(`Header renders correctly`, () => {
     .create(
         <Provider store={store}>
           <BrowserRouter>
-            <Login onSubmit={() => {}} />
+            <Login onLogin={() => {}}/>
           </BrowserRouter>
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)
