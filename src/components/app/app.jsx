@@ -12,10 +12,11 @@ import Login from '../login/login.jsx';
 import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 import UserOperation from '../../store/operations/user/user.js';
 import mockDetailsOffer from '../../mocks/details.js';
+import history from '../../history.js';
 
 const App = ({reviews, onTitleClick, detailsOffer, onLogin}) => (
 
-  <BrowserRouter>
+  <BrowserRouter history={history}>
     <Switch>
       <Route exact path="/">
         {!detailsOffer
@@ -34,7 +35,7 @@ const App = ({reviews, onTitleClick, detailsOffer, onLogin}) => (
 );
 
 const mapStateToProps = (state) => ({
-  detailsOffer: getDetailsOffer(state),
+  detailsOffer: getDetailsOffer(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -52,5 +53,5 @@ App.propTypes = {
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
   onTitleClick: PropTypes.func,
   detailsOffer: OfferTypes,
-  onLogin: PropTypes.func
+  onLogin: PropTypes.func,
 };

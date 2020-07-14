@@ -58,6 +58,7 @@ class Login extends React.PureComponent {
     if (isValidEmail && isValidPassword) {
       onLogin({email, password});
     }
+    window.history.back();
   }
 
   render() {
