@@ -13,6 +13,7 @@ import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 import UserOperation from '../../store/operations/user/user.js';
 import mockDetailsOffer from '../../mocks/details.js';
 import history from '../../history.js';
+import ReviewForm from "../review-form/review-form.jsx";
 
 const App = ({reviews, onTitleClick, detailsOffer, onLogin}) => (
 
@@ -24,7 +25,10 @@ const App = ({reviews, onTitleClick, detailsOffer, onLogin}) => (
           : <OfferDetails offer={detailsOffer} reviews={reviews}/> }
       </Route>
       <Route exact path="/dev-details">
-        <OfferDetails offer={mockDetailsOffer} reviews={reviews}/>
+        <OfferDetails offer={mockDetailsOffer} reviews={reviews} />
+      </Route>
+      <Route exact path="/dev-review">
+        <ReviewForm />
       </Route>
       <Route exact path="/signin">
         <Login onLogin={onLogin} />
