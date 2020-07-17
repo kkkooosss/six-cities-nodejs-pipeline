@@ -71,6 +71,7 @@ class ReviewForm extends React.PureComponent {
     const {onSubmitReview} = this.props;
     const {rating, isRatingValid, text, isTextValid} = this.state;
     const offerId = this.props.offer.id;
+    const form = this._formRef.current;
 
     evt.preventDefault();
 
@@ -78,7 +79,7 @@ class ReviewForm extends React.PureComponent {
       onSubmitReview(offerId, {rating, text});
     }
 
-    this._formRef.reset();
+    form.reset();
   }
 
   render() {
