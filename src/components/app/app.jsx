@@ -22,7 +22,7 @@ const App = ({reviews, onTitleClick, detailsOffer, onLogin}) => (
       <Route exact path="/">
         {!detailsOffer
           ? <Main onTitleClick={onTitleClick} />
-          : <OfferDetails offer={detailsOffer} reviews={reviews}/> }
+          : <OfferDetails offer={detailsOffer} reviews={reviews} /> }
       </Route>
       <Route exact path="/dev-details">
         <OfferDetails offer={mockDetailsOffer} reviews={reviews} />

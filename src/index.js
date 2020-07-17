@@ -21,7 +21,7 @@ const onUnauthorized = () => {
 
 const api = createAPI(onUnauthorized);
 
-const store = createStore(
+export const store = createStore(
     reducer,
     compose(
         applyMiddleware(thunk.withExtraArgument(api)),

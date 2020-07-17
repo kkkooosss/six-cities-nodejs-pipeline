@@ -68,3 +68,16 @@ export const formatUser = (user) => ({
   avatarUrl: user.avatar_url,
   isPro: user.is_pro,
 });
+
+export const formatReview = (review) => ({
+  id: review.id,
+  name: review.user.name,
+  isPro: review.user.is_pro,
+  userPic: review.user.avatar_url,
+  rating: review.rating,
+  text: review.comment,
+  date: review.date
+});
+
+export const formatReviews = (reviews) => reviews.map((review) => formatReview(review));
+
