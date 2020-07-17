@@ -19,7 +19,6 @@ class ReviewForm extends React.PureComponent {
     };
 
     this._formRef = React.createRef();
-    this.submitRef = React.createRef();
 
     this._handleRatingChange = this._handleRatingChange.bind(this);
     this._handleTextChange = this._handleTextChange.bind(this);
