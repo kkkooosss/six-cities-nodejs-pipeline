@@ -40,7 +40,7 @@ export const formatOffer = (offer) => (
     title: offer.title,
     type: offer.type,
     isPremium: offer.is_premium,
-    isFavoirite: offer.is_favourite,
+    isFavorite: offer.is_favorite,
     price: offer.price,
     location: offer.location,
     previewImage: offer.preview_image,
@@ -60,3 +60,11 @@ export const formatOffer = (offer) => (
 );
 
 export const formatOffers = (offers) => offers.map((offer) => formatOffer(offer));
+
+export const formatUser = (user) => ({
+  id: user.id,
+  email: user.email,
+  name: user.name,
+  avatarUrl: user.avatar_url,
+  isPro: user.is_pro,
+});

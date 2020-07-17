@@ -8,10 +8,18 @@ import {compose} from 'recompose';
 import App from './components/app/app.jsx';
 import reviews from './mocks/reviews.js';
 import reducer from './store/reducer.js';
-import Operation from './store/operations/data/data.js';
+import DataOperation from './store/operations/data/data.js';
+import UserOperation from './store/operations/user/user.js';
 import createAPI from './api/api.js';
 
-const api = createAPI((...args) => store.dispatch(...args));
+import UserActionCreator from './store/actions/user/user.js';
+import {AuthorizationStatus} from './store/reducers/user/user.js';
+
+const onUnauthorized = () => {
+  store.dispatch(UserActionCreator.setAuthorizationStatus(AuthorizationStatus.NO_AUTH));
+};
+
+const api = createAPI(onUnauthorized);
 
 const store = createStore(
     reducer,
@@ -21,8 +29,9 @@ const store = createStore(
     )
 );
 
-store.dispatch(Operation.loadOffers());
-store.dispatch(Operation.loadCities());
+store.dispatch(DataOperation.loadOffers());
+store.dispatch(DataOperation.loadCities());
+store.dispatch(UserOperation.checkAuthorizationStatus());
 
 ReactDOM.render(
     <Provider store={store}>

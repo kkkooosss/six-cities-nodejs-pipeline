@@ -2,12 +2,12 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import {BrowserRouter} from 'react-router-dom';
-
-import Header from './header.jsx';
+import {BrowserRouter} from "react-router-dom";
+import Login from './login.jsx';
 
 const store = createStore(() => ({
   USER: {
+    authorizationStatus: `N0_AUTH`,
     user: {
       id: 1,
       email: `mail@email.com`,
@@ -23,7 +23,7 @@ it(`Header renders correctly`, () => {
     .create(
         <Provider store={store}>
           <BrowserRouter>
-            <Header />
+            <Login onLogin={() => {}}/>
           </BrowserRouter>
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)

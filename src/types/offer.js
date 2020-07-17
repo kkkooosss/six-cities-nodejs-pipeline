@@ -13,7 +13,7 @@ export default PropTypes.exact({
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   isPremium: PropTypes.bool.isRequired,
-  isFavourite: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   price: PropTypes.number.isRequired,
   location: PropTypes.exact({
     latitude: PropTypes.number.isRequired,

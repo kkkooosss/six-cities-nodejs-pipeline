@@ -1,6 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
 import ReviewsList from './reviews-list.jsx';
+
+const store = createStore(() => ({
+  USER: {
+    authorizationStatus: `AUTH`
+  }
+}));
 
 const REVIEWS = [
   {
@@ -24,9 +32,12 @@ const REVIEWS = [
 
 it(`ReviewsList renders correctly`, () => {
   const tree = renderer
-    .create(<ReviewsList
-      reviews={REVIEWS}
-    />)
-    .toJSON();
+  .create(
+      <Provider store={store}>
+        <ReviewsList reviews={REVIEWS} />
+      </Provider>, {
+        createNodeMock: () => document.createElement(`div`)
+      })
+.toJSON();
   expect(tree).toMatchSnapshot();
 });

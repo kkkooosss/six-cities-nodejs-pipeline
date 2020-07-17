@@ -3,6 +3,7 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import OfferDetails from './offer-details.jsx';
+import {BrowserRouter} from 'react-router-dom';
 
 const OFFERS = [{
   city: {
@@ -19,7 +20,7 @@ const OFFERS = [{
     `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/1.jpg,`
   ],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
-  isFavourite: false,
+  isFavorite: false,
   isPremium: false,
   rating: 4.4,
   type: `hotel`,
@@ -64,7 +65,7 @@ const OFFERS = [{
     `https://htmlacademy-react-2.appspot.com/six-cities/static/hotel/1.jpg,`
   ],
   title: `Penthouse, 4-5 rooms + 5 balconies`,
-  isFavourite: false,
+  isFavorite: false,
   isPremium: false,
   rating: 4.4,
   type: `hotel`,
@@ -129,16 +130,27 @@ const store = createStore(() => ({
   },
   ACTIVE: {
     activeOffer: OFFERS[0]
+  },
+  USER: {
+    user: {
+      id: 1,
+      email: `mail@email.com`,
+      avatarUrl: `/static/avatar/8.jpg`,
+      isPro: false,
+      name: `Angelina`,
+    }
   }
 }));
 
 it(`OfferDetails renders correctly`, () => {
   const tree = renderer
     .create(<Provider store={store}>
-      <OfferDetails
-        offer={OFFERS[0]}
-        reviews={REVIEWS}
-      />
+      <BrowserRouter>
+        <OfferDetails
+          offer={OFFERS[0]}
+          reviews={REVIEWS}
+        />
+      </BrowserRouter>
     </Provider>, {
       createNodeMock: () => document.createElement(`div`)
     })
