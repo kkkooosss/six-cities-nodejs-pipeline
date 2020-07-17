@@ -8,12 +8,12 @@ import OfferDetails from "../offer-details/offer-details.jsx";
 import OfferTypes from '../../types/offer.js';
 import DetailsActionCreator from '../../store/actions/details/details.js';
 import Login from '../login/login.jsx';
-import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 import UserOperation from '../../store/operations/user/user.js';
 import mockDetailsOffer from '../../mocks/details.js';
 import mockReviews from '../../mocks/reviews.js';
 import history from '../../history.js';
 import ReviewForm from "../review-form/review-form.jsx";
+import {getDetailsOffer} from "../../store/reducers/details/selectors.js";
 
 const App = ({onTitleClick, detailsOffer, onLogin}) => (
 
@@ -22,7 +22,7 @@ const App = ({onTitleClick, detailsOffer, onLogin}) => (
       <Route exact path="/">
         {!detailsOffer
           ? <Main onTitleClick={onTitleClick} />
-          : <OfferDetails offer={detailsOffer} reviews={mockReviews} /> }
+          : <OfferDetails offer={detailsOffer} /> }
       </Route>
       <Route exact path="/dev-details">
         <OfferDetails offer={mockDetailsOffer} reviews={mockReviews} />
@@ -38,6 +38,10 @@ const App = ({onTitleClick, detailsOffer, onLogin}) => (
 
 );
 
+const mapStateToProps = (state) => ({
+  detailsOffer: getDetailsOffer(state)
+});
+
 const mapDispatchToProps = (dispatch) => ({
   onTitleClick: (offer) => {
     dispatch(DetailsActionCreator.setDetailsOffer(offer));
@@ -47,9 +51,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 App.propTypes = {
+  detailsOffer: OfferTypes,
   onTitleClick: PropTypes.func,
   onLogin: PropTypes.func,
 };

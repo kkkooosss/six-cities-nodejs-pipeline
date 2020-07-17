@@ -1,6 +1,6 @@
 import ActionCreator from '../../actions/user/user.js';
 import {AuthorizationStatus} from '../../reducers/user/user.js';
-import {formatUser} from '../../../helpers/helpers.js';
+import {formatUser} from '../../../helpers/utils.js';
 
 const Operation = {
   checkAuthorizationStatus: () => (dispatch, getState, api) => {

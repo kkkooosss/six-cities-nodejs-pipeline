@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getRatingInPercents, convertDate} from '../../helpers/helpers.js';
+import {getRatingInPercents, convertDate} from '../../helpers/utils.js';
 import ReviewTypes from '../../types/review.js';
 
 const Review = ({review}) => {

@@ -1,5 +1,5 @@
 import ActionCreator from '../../actions/data/data.js';
-import {formatOffers} from '../../../helpers/helpers.js';
+import {formatOffers} from '../../../helpers/utils.js';
 
 const Operation = {
   loadOffers: () => (dispatch, getState, api) => {

@@ -1,4 +1,4 @@
-import {extend} from '../../../helpers/helpers.js';
+import {extend} from '../../../helpers/utils.js';
 import {Actions} from '../../actions/user/user.js';
 
 export const AuthorizationStatus = {

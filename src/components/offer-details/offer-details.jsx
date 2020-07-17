@@ -6,17 +6,14 @@ import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
 import Header from '../header/header.jsx';
-import {getRatingInPercents} from '../../helpers/helpers.js';
+import {getRatingInPercents} from '../../helpers/utils.js';
 
 import OfferTypes from '../../types/offer.js';
-import ReviewTypes from '../../types/review.js';
-import {excludeCurrentOffer, reduceOffers} from '../../selectors/selectors.js';
-import {getReviews} from '../../selectors/selectors.js';
+import {excludeCurrentOffer, reduceOffers} from '../../helpers/utils.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
-import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 
-const OfferDetails = ({offer, offers, reviews}) => {
+const OfferDetails = ({offer, offers}) => {
   const {
     id,
     title,
@@ -31,8 +28,6 @@ const OfferDetails = ({offer, offers, reviews}) => {
     amenities,
     description
   } = offer;
-
-  const sortedReviews = getReviews(reviews);
 
   const nearOffers = excludeCurrentOffer(offers, id);
   const reducedOffers = reduceOffers(nearOffers);
@@ -114,7 +109,7 @@ const OfferDetails = ({offer, offers, reviews}) => {
                 </div>
               </div>
 
-              <ReviewsList offer={offer} reviews={sortedReviews} />
+              <ReviewsList offer={offer} />
 
             </div>
           </div>
@@ -149,5 +144,4 @@ OfferDetails.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired),
   selectedCity: PropTypes.string,
   selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired),
-  reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired
 };

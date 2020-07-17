@@ -1,5 +1,5 @@
 import ActionCreator from '../../actions/review/review.js';
-import {formatReviews} from '../../../helpers/helpers.js';
+import {formatReviews} from '../../../helpers/utils.js';
 
 const Operation = {
   loadReviews: (offerId) => (dispatch, getState, api) => {

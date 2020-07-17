@@ -6,7 +6,7 @@ import OfferCard from '../offer-card/offer-card.jsx';
 import OfferTypes from '../../types/offer.js';
 import ActiveActionCreator from '../../store/actions/active/active.js';
 import DetailsActionCreator from '../../store/actions/details/details.js';
-import {filterOffersOrder} from '../../selectors/selectors.js';
+import {filterOffersOrder} from '../../helpers/utils.js';
 import {getSelectedFilter} from '../../store/reducers/filter/selectors.js';
 import {getActiveOffer} from '../../store/reducers/active/selectors.js';
 
