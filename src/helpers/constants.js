@@ -27,3 +27,11 @@ export const FILTERS = [
   `Price: high to low`,
   `Top rated first`
 ];
+
+export const RATING_TITLES = [
+  `perfect`,
+  `good`,
+  `not good`,
+  `badly`,
+  `terribly`
+];

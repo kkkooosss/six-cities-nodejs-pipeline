@@ -14,6 +14,7 @@ import {excludeCurrentOffer, reduceOffers} from '../../selectors/selectors.js';
 import {getReviews} from '../../selectors/selectors.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
+import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 
 const OfferDetails = ({offer, offers, reviews}) => {
   const {
@@ -113,7 +114,7 @@ const OfferDetails = ({offer, offers, reviews}) => {
                 </div>
               </div>
 
-              <ReviewsList reviews={sortedReviews} />
+              <ReviewsList offer={offer} reviews={sortedReviews} />
 
             </div>
           </div>

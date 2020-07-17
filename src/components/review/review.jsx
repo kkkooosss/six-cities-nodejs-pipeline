@@ -10,6 +10,7 @@ const Review = ({review}) => {
     rating,
     text,
     date,
+    isPro
   } = review;
 
   const stars = getRatingInPercents(rating);
@@ -17,7 +18,7 @@ const Review = ({review}) => {
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
-        <div className="reviews__avatar-wrapper user__avatar-wrapper">
+        <div className={`reviews__avatar-wrapper user__avatar-wrapper`}>
           <img className="reviews__avatar user__avatar" src={userPic} width={54} height={54} alt={`${name} avatar`} />
         </div>
         <span className="reviews__user-name">

@@ -3,7 +3,8 @@ const NameSpace = {
   FILTER: `FILTER`,
   ACTIVE: `ACTIVE`,
   DETAILS: `DETAILS`,
-  USER: `USER`
+  USER: `USER`,
+  REVIEWS: `REVIEWS`
 };
 
 export default NameSpace;
