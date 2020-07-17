@@ -1,5 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import {RATING_TITLES as ratingTitles} from '../../helpers/constants.js';
+import {connect} from 'react-redux';
+import ReviewOperation from '../../store/operations/review/review.js';
+import OfferTypes from '../../types/offer.js';
 
 class ReviewForm extends React.PureComponent {
   constructor(props) {
@@ -13,7 +18,7 @@ class ReviewForm extends React.PureComponent {
       sendingReview: false
     };
 
-    this.textRef = React.createRef();
+    this._formRef = React.createRef();
     this.submitRef = React.createRef();
 
     this._handleRatingChange = this._handleRatingChange.bind(this);
@@ -63,16 +68,17 @@ class ReviewForm extends React.PureComponent {
   }
 
   _handleSubmit(evt) {
-    const {onSendReview} = this.props;
+    const {onSubmitReview} = this.props;
     const {rating, isRatingValid, text, isTextValid} = this.state;
+    const offerId = this.props.offer.id;
 
     evt.preventDefault();
 
     if (isRatingValid && isTextValid) {
-      onSendReview({rating, text});
+      onSubmitReview(offerId, {rating, text});
     }
 
-    this.textRef.value = ``;
+    this._formRef.reset();
   }
 
   render() {
@@ -81,7 +87,7 @@ class ReviewForm extends React.PureComponent {
     const isValid = isRatingValid && isTextValid;
 
     return (
-      <form className="reviews__form form" action="#" method="post" onSubmit={this._handleSubmit}>
+      <form className="reviews__form form" action="#" method="post" onSubmit={this._handleSubmit} ref={this._formRef}>
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
         <div className="reviews__rating-form form__rating">
 
@@ -103,7 +109,6 @@ class ReviewForm extends React.PureComponent {
           name="review"
           placeholder="Tell how was your stay, what you like and what can be improved"
           defaultValue={``}
-          ref={this.textRef}
           maxLength={300}
           onChange={this._handleTextChange}
         />
@@ -118,4 +123,15 @@ class ReviewForm extends React.PureComponent {
   }
 }
 
-export default ReviewForm;
+const mapDispatchToProps = (dispatch) => ({
+  onSubmitReview(offerId, reviewData) {
+    dispatch(ReviewOperation.submitReview(offerId, reviewData));
+  },
+});
+
+ReviewForm.propTypes = {
+  onSubmitReview: PropTypes.func.isRequired,
+  offer: OfferTypes.isRequired
+};
+
+export default connect(null, mapDispatchToProps)(ReviewForm);

@@ -10,13 +10,13 @@ const Operation = {
           });
   },
 
-  submitReview: (offerId, reviewData) => (dispatch, getState, api) => {
+  submitReview: (offerId, {rating, text}) => (dispatch, getState, api) => {
     return api.post(`/comments/${offerId}`, {
-      comment: reviewData.text,
-      rating: reviewData.rating
+      rating,
+      comment: text
     })
       .then((response) => {
-        dispatch(ActionCreator.getReviews(response.data));
+        dispatch(ActionCreator.getReviews(formatReviews(response.data)));
       });
   }
 };

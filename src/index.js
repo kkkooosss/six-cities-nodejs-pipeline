@@ -6,7 +6,6 @@ import thunk from 'redux-thunk';
 import {compose} from 'recompose';
 
 import App from './components/app/app.jsx';
-import reviews from './mocks/reviews.js';
 import reducer from './store/reducer.js';
 import DataOperation from './store/operations/data/data.js';
 import UserOperation from './store/operations/user/user.js';
@@ -35,9 +34,7 @@ store.dispatch(UserOperation.checkAuthorizationStatus());
 
 ReactDOM.render(
     <Provider store={store}>
-      <App
-        reviews={reviews}
-      />
+      <App />
     </Provider>,
     document.getElementById(`root`)
 );

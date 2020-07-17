@@ -16,6 +16,7 @@ import {getReviews} from '../../store/reducers/review/selectors.js';
 class ReviewsList extends React.PureComponent {
   constructor(props) {
     super(props);
+
   }
 
   componentDidMount() {
@@ -24,7 +25,7 @@ class ReviewsList extends React.PureComponent {
   }
 
   render() {
-    const {reviews} = this.props;
+    const {offer, reviews} = this.props;
     const reviewsCount = this.props.reviews.length;
     const isAuthorized = this.props.authorizationStatus === AuthorizationStatus.AUTH;
 
@@ -36,7 +37,9 @@ class ReviewsList extends React.PureComponent {
           {reviews.map((review) => <Review review={review} key={review.id} />)}
         </ul>
 
-        {isAuthorized ? <ReviewForm /> : null}
+        <ReviewForm offer={offer} />
+
+        {/* {isAuthorized ? <ReviewForm offer={this.props.offer} /> : null} */}
 
       </section>
     );

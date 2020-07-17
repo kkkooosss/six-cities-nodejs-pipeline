@@ -138,7 +138,6 @@ const OfferDetails = ({offer, offers, reviews}) => {
 };
 
 const mapStateToProps = (state) => ({
-  detailsOffer: getDetailsOffer(state),
   offers: filterOffers(state),
   selectedCity: getSelectedCity(state)
 });
