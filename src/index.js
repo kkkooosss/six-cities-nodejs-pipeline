@@ -29,7 +29,6 @@ export const store = createStore(
 );
 
 store.dispatch(DataOperation.loadOffers());
-store.dispatch(DataOperation.loadCities());
 store.dispatch(UserOperation.checkAuthorizationStatus());
 
 ReactDOM.render(
