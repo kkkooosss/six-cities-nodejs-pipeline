@@ -1,7 +1,7 @@
 export const Actions = {
   getOffers: `GET_OFFERS`,
   getCities: `GET_CITIES`,
-  getNearOffers: `GET_NEAR_OFFERS`
+  getNearOffers: `GET_NEAR_OFFERS`,
 };
 
 const ActionCreator = {
@@ -19,7 +19,8 @@ const ActionCreator = {
   getNearOffers: (offers) => ({
     type: Actions.getNearOffers,
     payload: offers
-  })
+  }),
+
 };
 
 export default ActionCreator;
