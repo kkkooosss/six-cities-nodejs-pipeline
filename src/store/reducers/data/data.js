@@ -3,7 +3,8 @@ import {Actions} from '../../actions/data/data.js';
 
 const initialState = {
   offers: [],
-  cities: []
+  cities: [],
+  nearOffers: []
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -19,6 +20,10 @@ const reducer = (state = initialState, action = {}) => {
         cities: [...new Set(action.payload.map((offer) => offer.city.name))].sort()
       });
 
+    case Actions.getNearOffers:
+      return extend(state, {
+        nearOffers: action.payload
+      });
   }
   return state;
 };

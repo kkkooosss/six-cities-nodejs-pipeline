@@ -17,8 +17,15 @@ const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.getReviews(formatReviews(response.data)));
+        dispatch(ActionCreator.setSendingFlag(true));
+        dispatch(ActionCreator.setErrorFlag(false));
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.setErrorFlag(true));
+        throw err;
       });
-  }
+  },
+
 };
 
 export default Operation;
