@@ -17,11 +17,12 @@ const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.getReviews(formatReviews(response.data)));
-        dispatch(ActionCreator.setSendingFlag(true));
+        dispatch(ActionCreator.setSendingFlag(false));
         dispatch(ActionCreator.setErrorFlag(false));
       })
       .catch((err) => {
         dispatch(ActionCreator.setErrorFlag(true));
+        dispatch(ActionCreator.setSendingFlag(false));
         throw err;
       });
   },

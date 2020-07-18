@@ -26,6 +26,7 @@ class ReviewsList extends React.PureComponent {
 
   render() {
     const {offer, reviews} = this.props;
+    const {id} = offer;
     const reviewsCount = this.props.reviews.length;
     const isAuthorized = this.props.authorizationStatus === AuthorizationStatus.AUTH;
 
@@ -37,9 +38,7 @@ class ReviewsList extends React.PureComponent {
           {reviews.map((review) => <Review review={review} key={review.id} />)}
         </ul>
 
-        <ReviewForm offer={offer} />
-
-        {/* {isAuthorized ? <ReviewForm offer={this.props.offer} /> : null} */}
+        {isAuthorized ? <ReviewForm offerId={id} /> : null}
 
       </section>
     );

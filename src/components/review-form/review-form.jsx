@@ -21,14 +21,18 @@ class ReviewForm extends React.PureComponent {
 
     this._formRef = React.createRef();
     this._submitRef = React.createRef();
+    this._textRef = React.createRef();
 
     this._handleRatingChange = this._handleRatingChange.bind(this);
     this._handleTextChange = this._handleTextChange.bind(this);
     this._checkRatingValidity = this._checkRatingValidity.bind(this);
     this._checkTextValidity = this._checkTextValidity.bind(this);
+
     this._setSubmitAccess = this._setSubmitAccess.bind(this);
-    this._setFormAccess = this._setFormAccess.bind(this);
+    this._setTextAreaAccess = this._setTextAreaAccess.bind(this);
+
     this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleFormReset = this._handleFormReset.bind(this);
   }
 
   _handleRatingChange(evt) {
@@ -69,22 +73,32 @@ class ReviewForm extends React.PureComponent {
     const {isTextValid, isRatingValid} = this.state;
     const isValid = isRatingValid && isTextValid;
     const submitButton = this._submitRef.current;
+    const {sending} = this.props;
 
-    if (!isValid) {
+    if (!isValid || sending) {
       submitButton.setAttribute(`disabled`, `disabled`);
     } else {
       submitButton.removeAttribute(`disabled`);
     }
   }
 
-  _setFormAccess() {
-    const {sending, error} = this.props;
-    const form = this._formRef.current;
+  _setTextAreaAccess() {
+    const {sending} = this.props;
+    const textArea = this._textRef.current;
 
-    if (sending || error) {
-      form.setAttribute(`disabled`, `disabled`);
+    if (sending) {
+      textArea.setAttribute(`disabled`, `disabled`);
     } else {
-      form.removeAttribute(`disabled`);
+      textArea.removeAttribute(`disabled`);
+    }
+  }
+
+  _handleFormReset() {
+    const form = this._formRef.current;
+    const {error, sending} = this.props;
+
+    if (sending && !error) {
+      form.reset();
     }
   }
 
@@ -92,26 +106,28 @@ class ReviewForm extends React.PureComponent {
     this._checkRatingValidity();
     this._checkTextValidity();
     this._setSubmitAccess();
-    this._setFormAccess();
+    this._setTextAreaAccess();
+
   }
 
   _handleSubmit(evt) {
-    const {onSubmitReview, onToggleSendingFlag} = this.props;
+    const {onSubmitReview, setSendingFlag} = this.props;
     const {rating, isRatingValid, text, isTextValid} = this.state;
-    const offerId = this.props.offer.id;
-    const form = this._formRef.current;
+    const {offerId} = this.props;
 
     evt.preventDefault();
 
     if (isRatingValid && isTextValid) {
+      setSendingFlag(true);
       onSubmitReview(offerId, {rating, text});
-      onToggleSendingFlag();
+      this._handleFormReset();
     }
 
-    form.reset();
   }
 
   render() {
+    const {error} = this.props;
+    const errorStyle = {color: `#BF616A`, paddingBottom: `5px`};
 
     return (
       <form
@@ -122,6 +138,7 @@ class ReviewForm extends React.PureComponent {
         ref={this._formRef}
       >
         <label className="reviews__label form__label" htmlFor="review">Your review</label>
+        {error ? <div style={errorStyle}>Sorry, can not send your review, please try again later</div> : null}
         <div className="reviews__rating-form form__rating">
 
           {ratingTitles.map((title, i) =>
@@ -151,6 +168,7 @@ class ReviewForm extends React.PureComponent {
           defaultValue={``}
           maxLength={300}
           onChange={this._handleTextChange}
+          ref={this._textRef}
         />
         <div className="reviews__button-wrapper">
           <p className="reviews__help">
@@ -159,6 +177,7 @@ class ReviewForm extends React.PureComponent {
           <button
             className="reviews__submit form__submit button"
             type="submit"
+            disabled
             ref={this._submitRef}
           >
             Submit
@@ -175,8 +194,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onToggleSendingFlag() {
-    dispatch(ActionCreator.toggleSendingFlag());
+  setSendingFlag(flag) {
+    dispatch(ActionCreator.setSendingFlag(flag));
   },
   onSubmitReview(offerId, reviewData) {
     dispatch(ReviewOperation.submitReview(offerId, reviewData));
@@ -188,7 +207,7 @@ ReviewForm.propTypes = {
   offer: OfferTypes.isRequired,
   sending: PropTypes.bool.isRequired,
   error: PropTypes.bool.isRequired,
-  onToggleSendingFlag: PropTypes.func.isRequired
+  setSendingFlag: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ReviewForm);
