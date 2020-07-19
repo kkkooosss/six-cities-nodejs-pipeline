@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {RATING_TITLES as ratingTitles} from '../../helpers/constants.js';
 import {connect} from 'react-redux';
 import ReviewOperation from '../../store/operations/review/review.js';
-import OfferTypes from '../../types/offer.js';
 import {getSendingFlag, getErrorFlag} from '../../store/reducers/review/selectors.js';
 import ActionCreator from '../../store/actions/review/review.js';
 
@@ -204,7 +203,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 ReviewForm.propTypes = {
   onSubmitReview: PropTypes.func.isRequired,
-  offer: OfferTypes.isRequired,
+  offerId: PropTypes.number.isRequired,
   sending: PropTypes.bool.isRequired,
   error: PropTypes.bool.isRequired,
   setSendingFlag: PropTypes.func.isRequired

@@ -16,9 +16,6 @@ import {getNearOffers} from '../../store/reducers/data/selectors.js';
 import {store} from '../../index.js';
 
 class OfferDetails extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
 
   componentDidMount() {
     const {id} = this.props.offer;
@@ -29,6 +26,7 @@ class OfferDetails extends React.PureComponent {
   render() {
     const {offer, nearOffers} = this.props;
     const {
+      id,
       title,
       type,
       isPremium,
@@ -124,7 +122,7 @@ class OfferDetails extends React.PureComponent {
                     </div>
                   </div>
 
-                  <ReviewsList offer={offer} />
+                  <ReviewsList offerId={id} />
 
                 </div>
               </div>
@@ -152,6 +150,7 @@ const mapStateToProps = (state) => ({
   selectedCity: getSelectedCity(state)
 });
 
+export {OfferDetails};
 export default connect(mapStateToProps, null)(OfferDetails);
 
 OfferDetails.propTypes = {

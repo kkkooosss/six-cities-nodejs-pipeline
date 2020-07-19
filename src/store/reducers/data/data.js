@@ -4,8 +4,7 @@ import {Actions} from '../../actions/data/data.js';
 const initialState = {
   offers: [],
   cities: [],
-  nearOffers: [],
-  favorites: []
+  nearOffers: []
 };
 
 const reducer = (state = initialState, action = {}) => {

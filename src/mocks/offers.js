@@ -1,11 +1,4 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-
-import App from './app.jsx';
-
-const OFFERS = [{
+export default [{
   city: {
     name: `Amsterdam`,
     location: {
@@ -96,61 +89,3 @@ const OFFERS = [{
   id: 2
 },
 ];
-
-const REVIEWS = [
-  {
-    id: 1,
-    name: `Max`,
-    userPic: `img/avatar-max.jpg`,
-    rating: 4,
-    text: `A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.`,
-    date: `2019-04-24`
-  },
-  {
-    id: 2,
-    name: `Angelina`,
-    userPic: `img/avatar-angelina.jpg`,
-    rating: 5,
-    text: `An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.`,
-    date: `2019-05-14`
-  }
-];
-
-const store = createStore(() => ({
-  DATA: {
-    offers: OFFERS
-  },
-  FILTER: {
-    selectedCity: `Amsterdam`,
-    selectedFilter: `Popular`
-  },
-  DETAILS: {
-    detailsOffer: OFFERS[0],
-  },
-  ACTIVE: {
-    activeOffer: OFFERS[0]
-  },
-  USER: {
-    user: {
-      id: 1,
-      email: `mail@email.com`,
-      avatarUrl: `/static/avatar/8.jpg`,
-      isPro: false,
-      name: `Angelina`,
-    }
-  }
-}));
-
-it(`App renders correctly`, () => {
-  const tree = renderer
-    .create(
-        <Provider store={store}>
-          <App
-            reviews={REVIEWS}
-          />
-        </Provider>, {
-          createNodeMock: () => document.createElement(`div`)
-        })
-    .toJSON();
-  expect(tree).toMatchSnapshot();
-});

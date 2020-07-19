@@ -12,7 +12,6 @@ import UserOperation from '../../store/operations/user/user.js';
 import mockDetailsOffer from '../../mocks/details.js';
 import mockReviews from '../../mocks/reviews.js';
 import history from '../../history.js';
-import ReviewForm from "../review-form/review-form.jsx";
 import {getDetailsOffer} from "../../store/reducers/details/selectors.js";
 
 const App = ({onTitleClick, detailsOffer, onLogin}) => (
@@ -26,9 +25,6 @@ const App = ({onTitleClick, detailsOffer, onLogin}) => (
       </Route>
       <Route exact path="/dev-details">
         <OfferDetails offer={mockDetailsOffer} reviews={mockReviews} />
-      </Route>
-      <Route exact path="/dev-review">
-        <ReviewForm detailsOffer={mockDetailsOffer}/>
       </Route>
       <Route exact path="/signin">
         <Login onLogin={onLogin} />
@@ -50,6 +46,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(UserOperation.login(authData));
   },
 });
+
+export {App};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 

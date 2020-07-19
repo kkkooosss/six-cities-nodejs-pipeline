@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
 export default PropTypes.exact({
-  id: PropTypes.number.isRequired,
-  email: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string.isRequired,
-  isPro: PropTypes.bool.isRequired
+  id: PropTypes.number,
+  email: PropTypes.string,
+  name: PropTypes.string,
+  avatarUrl: PropTypes.string,
+  isPro: PropTypes.bool
 });

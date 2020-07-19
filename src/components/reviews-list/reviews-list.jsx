@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import Review from '../review/review.jsx';
 import ReviewTypes from '../../types/review.js';
 import {connect} from 'react-redux';
-import OfferTypes from '../../types/offer.js';
 
 import {AuthorizationStatus} from '../../store/reducers/user/user.js';
 import {getAuthorizationStatus} from '../../store/reducers/user/selectors.js';
@@ -14,19 +13,14 @@ import {store} from '../../index.js';
 import {getReviews} from '../../store/reducers/review/selectors.js';
 
 class ReviewsList extends React.PureComponent {
-  constructor(props) {
-    super(props);
-
-  }
 
   componentDidMount() {
-    const {id} = this.props.offer;
-    store.dispatch(ReviewOperation.loadReviews(id));
+    const {offerId} = this.props;
+    store.dispatch(ReviewOperation.loadReviews(offerId));
   }
 
   render() {
-    const {offer, reviews} = this.props;
-    const {id} = offer;
+    const {offerId, reviews} = this.props;
     const reviewsCount = this.props.reviews.length;
     const isAuthorized = this.props.authorizationStatus === AuthorizationStatus.AUTH;
 
@@ -38,7 +32,7 @@ class ReviewsList extends React.PureComponent {
           {reviews.map((review) => <Review review={review} key={review.id} />)}
         </ul>
 
-        {isAuthorized ? <ReviewForm offerId={id} /> : null}
+        {isAuthorized ? <ReviewForm offerId={offerId} /> : null}
 
       </section>
     );
@@ -51,10 +45,12 @@ const mapStateToProps = (state) => ({
   reviews: getReviews(state)
 });
 
+export {ReviewsList};
+
 export default connect(mapStateToProps, null)(ReviewsList);
 
 ReviewsList.propTypes = {
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
-  offer: OfferTypes.isRequired,
+  offerId: PropTypes.number.isRequired,
 };

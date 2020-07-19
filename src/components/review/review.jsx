@@ -9,8 +9,7 @@ const Review = ({review}) => {
     userPic,
     rating,
     text,
-    date,
-    isPro
+    date
   } = review;
 
   const stars = getRatingInPercents(rating);
