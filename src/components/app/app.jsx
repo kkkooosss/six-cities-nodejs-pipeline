@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {connect} from 'react-redux';
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {Router, Route, Switch} from "react-router-dom";
 
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
@@ -22,7 +22,7 @@ const App = ({
   onRequestNearOffers
 }) => (
 
-  <BrowserRouter history={history}>
+  <Router history={history}>
     <Switch>
       <Route exact path="/">
         {!detailsOffer
@@ -44,7 +44,7 @@ const App = ({
         <Login onLogin={onLogin} />
       </Route>
     </Switch>
-  </BrowserRouter>
+  </Router>
 
 );
 
