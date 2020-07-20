@@ -48,5 +48,5 @@ ReactDOM.render(
         onRequestNearOffers={onRequestNearOffers}
       />
     </Provider>,
-    document.getElementById(`root`) || document.createElement(`div`)
+    document.getElementById(`root`)
 );
