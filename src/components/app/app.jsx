@@ -14,17 +14,31 @@ import mockReviews from '../../mocks/reviews.js';
 import history from '../../history.js';
 import {getDetailsOffer} from "../../store/reducers/details/selectors.js";
 
-const App = ({onTitleClick, detailsOffer, onLogin}) => (
+const App = ({
+  onTitleClick,
+  detailsOffer,
+  onLogin,
+  onRequestReviews,
+  onRequestNearOffers
+}) => (
 
   <BrowserRouter history={history}>
     <Switch>
       <Route exact path="/">
         {!detailsOffer
           ? <Main onTitleClick={onTitleClick} />
-          : <OfferDetails offer={detailsOffer} /> }
+          : <OfferDetails
+            offer={detailsOffer}
+            onRequestReviews={onRequestReviews}
+            onRequestNearOffers={onRequestNearOffers}
+          /> }
       </Route>
       <Route exact path="/dev-details">
-        <OfferDetails offer={mockDetailsOffer} reviews={mockReviews} />
+        <OfferDetails
+          offer={mockDetailsOffer}
+          reviews={mockReviews}
+          onRequestReviews={onRequestReviews}
+        />
       </Route>
       <Route exact path="/signin">
         <Login onLogin={onLogin} />
@@ -55,4 +69,6 @@ App.propTypes = {
   detailsOffer: OfferTypes,
   onTitleClick: PropTypes.func,
   onLogin: PropTypes.func,
+  onRequestReviews: PropTypes.func.isRequired,
+  onRequestNearOffers: PropTypes.func.isRequired
 };

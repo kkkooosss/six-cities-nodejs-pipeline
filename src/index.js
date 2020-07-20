@@ -12,6 +12,7 @@ import UserOperation from './store/operations/user/user.js';
 import createAPI from './api/api.js';
 
 import UserActionCreator from './store/actions/user/user.js';
+import ReviewOperation from './store/operations/review/review.js';
 import {AuthorizationStatus} from './store/reducers/user/user.js';
 
 const onUnauthorized = () => {
@@ -20,7 +21,7 @@ const onUnauthorized = () => {
 
 const api = createAPI(onUnauthorized);
 
-export const store = createStore(
+const store = createStore(
     reducer,
     compose(
         applyMiddleware(thunk.withExtraArgument(api)),
@@ -31,9 +32,21 @@ export const store = createStore(
 store.dispatch(DataOperation.loadOffers());
 store.dispatch(UserOperation.checkAuthorizationStatus());
 
+const onRequestReviews = (offerId) => {
+  store.dispatch(ReviewOperation.loadReviews(offerId));
+};
+
+const onRequestNearOffers = (offerId) => {
+  store.dispatch(DataOperation.loadNearOffers(offerId));
+};
+
+
 ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <App
+        onRequestReviews={onRequestReviews}
+        onRequestNearOffers={onRequestNearOffers}
+      />
     </Provider>,
     document.getElementById(`root`) || document.createElement(`div`)
 );

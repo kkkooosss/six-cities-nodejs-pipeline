@@ -6,17 +6,15 @@ import {connect} from 'react-redux';
 
 import {AuthorizationStatus} from '../../store/reducers/user/user.js';
 import {getAuthorizationStatus} from '../../store/reducers/user/selectors.js';
-import ReviewOperation from '../../store/operations/review/review.js';
 import ReviewForm from '../review-form/review-form.jsx';
 
-import {store} from '../../index.js';
 import {getReviews} from '../../store/reducers/review/selectors.js';
 
 class ReviewsList extends React.PureComponent {
 
   componentDidMount() {
-    const {offerId} = this.props;
-    store.dispatch(ReviewOperation.loadReviews(offerId));
+    const {offerId, onRequestReviews} = this.props;
+    onRequestReviews(offerId);
   }
 
   render() {
@@ -53,4 +51,5 @@ ReviewsList.propTypes = {
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   offerId: PropTypes.number.isRequired,
+  onRequestReviews: PropTypes.func.isRequired
 };

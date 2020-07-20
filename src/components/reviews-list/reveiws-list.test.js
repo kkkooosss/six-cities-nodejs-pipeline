@@ -29,7 +29,12 @@ it(`ReviewsList renders correctly`, () => {
   const tree = renderer
   .create(
       <Provider store={mockStore}>
-        <ReviewsList offerId={1} authorizationStatus={`AUTH`} reviews={mockReviews} />
+        <ReviewsList
+          offerId={1}
+          authorizationStatus={`AUTH`}
+          reviews={mockReviews}
+          onRequestReviews={() => mockReviews}
+        />
       </Provider>, {
         createNodeMock: () => document.createElement(`div`)
       })

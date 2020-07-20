@@ -65,7 +65,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCitySelect: (offers, city) => {
+  onCitySelect: (city) => {
     dispatch(FilterActionCreator.selectCity(city));
   }
 });

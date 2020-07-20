@@ -10,21 +10,20 @@ import {getRatingInPercents} from '../../helpers/utils.js';
 
 import OfferTypes from '../../types/offer.js';
 import {reduceOffers} from '../../helpers/utils.js';
-import DataOperation from '../../store/operations/data/data.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
 import {getNearOffers} from '../../store/reducers/data/selectors.js';
-import {store} from '../../index.js';
 
 class OfferDetails extends React.PureComponent {
 
   componentDidMount() {
+    const {onRequestNearOffers} = this.props;
     const {id} = this.props.offer;
 
-    store.dispatch(DataOperation.loadNearOffers(id));
+    onRequestNearOffers(id);
   }
 
   render() {
-    const {offer, nearOffers} = this.props;
+    const {offer, nearOffers, onRequestReviews} = this.props;
     const {
       id,
       title,
@@ -122,7 +121,7 @@ class OfferDetails extends React.PureComponent {
                     </div>
                   </div>
 
-                  <ReviewsList offerId={id} />
+                  <ReviewsList offerId={id} onRequestReviews={onRequestReviews} />
 
                 </div>
               </div>
@@ -158,4 +157,6 @@ OfferDetails.propTypes = {
   nearOffers: PropTypes.arrayOf(OfferTypes.isRequired),
   selectedCity: PropTypes.string,
   selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired),
+  onRequestReviews: PropTypes.func.isRequired,
+  onRequestNearOffers: PropTypes.func.isRequired,
 };
