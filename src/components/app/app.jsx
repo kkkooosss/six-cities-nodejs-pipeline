@@ -33,13 +33,6 @@ const App = ({
             onRequestNearOffers={onRequestNearOffers}
           /> }
       </Route>
-      <Route exact path="/dev-details">
-        <OfferDetails
-          offer={mockDetailsOffer}
-          reviews={mockReviews}
-          onRequestReviews={onRequestReviews}
-        />
-      </Route>
       <Route exact path="/signin">
         <Login onLogin={onLogin} />
       </Route>
