@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {getRatingInPercents, convertDate} from '../../helpers/helpers.js';
+import {getRatingInPercents, convertDate} from '../../helpers/utils.js';
 import ReviewTypes from '../../types/review.js';
 
 const Review = ({review}) => {
@@ -9,7 +9,7 @@ const Review = ({review}) => {
     userPic,
     rating,
     text,
-    date,
+    date
   } = review;
 
   const stars = getRatingInPercents(rating);
@@ -17,7 +17,7 @@ const Review = ({review}) => {
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
-        <div className="reviews__avatar-wrapper user__avatar-wrapper">
+        <div className={`reviews__avatar-wrapper user__avatar-wrapper`}>
           <img className="reviews__avatar user__avatar" src={userPic} width={54} height={54} alt={`${name} avatar`} />
         </div>
         <span className="reviews__user-name">

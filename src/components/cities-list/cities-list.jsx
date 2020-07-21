@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {reduceCities} from '../../selectors/selectors.js';
+import {reduceCities} from '../../helpers/utils.js';
 
 const CitiesList = ({cities, selectedCity, onCitySelect}) => {
 

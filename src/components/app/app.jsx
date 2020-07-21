@@ -6,25 +6,39 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import Main from "../main/main.jsx";
 import OfferDetails from "../offer-details/offer-details.jsx";
 import OfferTypes from '../../types/offer.js';
-import ReviewTypes from '../../types/review.js';
 import DetailsActionCreator from '../../store/actions/details/details.js';
 import Login from '../login/login.jsx';
-import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 import UserOperation from '../../store/operations/user/user.js';
 import mockDetailsOffer from '../../mocks/details.js';
+import mockReviews from '../../mocks/reviews.js';
 import history from '../../history.js';
+import {getDetailsOffer} from "../../store/reducers/details/selectors.js";
 
-const App = ({reviews, onTitleClick, detailsOffer, onLogin}) => (
+const App = ({
+  onTitleClick,
+  detailsOffer,
+  onLogin,
+  onRequestReviews,
+  onRequestNearOffers
+}) => (
 
   <BrowserRouter history={history}>
     <Switch>
       <Route exact path="/">
         {!detailsOffer
           ? <Main onTitleClick={onTitleClick} />
-          : <OfferDetails offer={detailsOffer} reviews={reviews}/> }
+          : <OfferDetails
+            offer={detailsOffer}
+            onRequestReviews={onRequestReviews}
+            onRequestNearOffers={onRequestNearOffers}
+          /> }
       </Route>
       <Route exact path="/dev-details">
-        <OfferDetails offer={mockDetailsOffer} reviews={reviews}/>
+        <OfferDetails
+          offer={mockDetailsOffer}
+          reviews={mockReviews}
+          onRequestReviews={onRequestReviews}
+        />
       </Route>
       <Route exact path="/signin">
         <Login onLogin={onLogin} />
@@ -47,11 +61,14 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {App};
+
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 App.propTypes = {
-  reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
-  onTitleClick: PropTypes.func,
   detailsOffer: OfferTypes,
+  onTitleClick: PropTypes.func,
   onLogin: PropTypes.func,
+  onRequestReviews: PropTypes.func.isRequired,
+  onRequestNearOffers: PropTypes.func.isRequired
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import OfferTypes from '../../types/offer.js';
-import {getRatingInPercents} from '../../helpers/helpers.js';
+import {getRatingInPercents} from '../../helpers/utils.js';
 
 const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPlacesCard}) => {
 

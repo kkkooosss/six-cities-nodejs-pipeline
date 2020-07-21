@@ -6,74 +6,50 @@ import {connect} from 'react-redux';
 
 import {AuthorizationStatus} from '../../store/reducers/user/user.js';
 import {getAuthorizationStatus} from '../../store/reducers/user/selectors.js';
+import ReviewForm from '../review-form/review-form.jsx';
 
-const ReviewsList = ({reviews, authorizationStatus}) => {
+import {getReviews} from '../../store/reducers/review/selectors.js';
 
-  const reviewsCount = reviews.length;
-  const isAuthorised = authorizationStatus === AuthorizationStatus.AUTH;
+class ReviewsList extends React.PureComponent {
 
-  return (
-    <section className="property__reviews reviews">
-      <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviewsCount}</span></h2>
+  componentDidMount() {
+    const {offerId, onRequestReviews} = this.props;
+    onRequestReviews(offerId);
+  }
 
-      <ul className="reviews__list">
-        {reviews.map((review) => <Review review={review} key={review.id} />)}
-      </ul>
+  render() {
+    const {offerId, reviews} = this.props;
+    const reviewsCount = this.props.reviews.length;
+    const isAuthorized = this.props.authorizationStatus === AuthorizationStatus.AUTH;
 
-      {isAuthorised ? <form className="reviews__form form" action="#" method="post">
-        <label className="reviews__label form__label" htmlFor="review">Your review</label>
-        <div className="reviews__rating-form form__rating">
-          <input className="form__rating-input visually-hidden" name="rating" defaultValue={5} id="5-stars" type="radio" />
-          <label htmlFor="5-stars" className="reviews__rating-label form__rating-label" title="perfect">
-            <svg className="form__star-image" width={37} height={33}>
-              <use xlinkHref="#icon-star" />
-            </svg>
-          </label>
-          <input className="form__rating-input visually-hidden" name="rating" defaultValue={4} id="4-stars" type="radio" />
-          <label htmlFor="4-stars" className="reviews__rating-label form__rating-label" title="good">
-            <svg className="form__star-image" width={37} height={33}>
-              <use xlinkHref="#icon-star" />
-            </svg>
-          </label>
-          <input className="form__rating-input visually-hidden" name="rating" defaultValue={3} id="3-stars" type="radio" />
-          <label htmlFor="3-stars" className="reviews__rating-label form__rating-label" title="not bad">
-            <svg className="form__star-image" width={37} height={33}>
-              <use xlinkHref="#icon-star" />
-            </svg>
-          </label>
-          <input className="form__rating-input visually-hidden" name="rating" defaultValue={2} id="2-stars" type="radio" />
-          <label htmlFor="2-stars" className="reviews__rating-label form__rating-label" title="badly">
-            <svg className="form__star-image" width={37} height={33}>
-              <use xlinkHref="#icon-star" />
-            </svg>
-          </label>
-          <input className="form__rating-input visually-hidden" name="rating" defaultValue={1} id="1-star" type="radio" />
-          <label htmlFor="1-star" className="reviews__rating-label form__rating-label" title="terribly">
-            <svg className="form__star-image" width={37} height={33}>
-              <use xlinkHref="#icon-star" />
-            </svg>
-          </label>
-        </div>
-        <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" defaultValue={``} />
-        <div className="reviews__button-wrapper">
-          <p className="reviews__help">
-          To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>.
-          </p>
-          <button className="reviews__submit form__submit button" type="submit" disabled>Submit</button>
-        </div>
-      </form> : null}
+    return (
+      <section className="property__reviews reviews">
+        <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviewsCount}</span></h2>
 
-    </section>
-  );
-};
+        <ul className="reviews__list">
+          {reviews.map((review) => <Review review={review} key={review.id} />)}
+        </ul>
+
+        {isAuthorized ? <ReviewForm offerId={offerId} /> : null}
+
+      </section>
+    );
+  }
+
+}
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state)
+  authorizationStatus: getAuthorizationStatus(state),
+  reviews: getReviews(state)
 });
+
+export {ReviewsList};
 
 export default connect(mapStateToProps, null)(ReviewsList);
 
 ReviewsList.propTypes = {
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
-  authorizationStatus: PropTypes.string.isRequired
+  authorizationStatus: PropTypes.string.isRequired,
+  offerId: PropTypes.number.isRequired,
+  onRequestReviews: PropTypes.func.isRequired
 };

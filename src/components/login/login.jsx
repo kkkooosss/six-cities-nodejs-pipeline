@@ -68,9 +68,9 @@ const Login = ({
 };
 
 Login.propTypes = {
-  isValid: PropTypes.bool.isRequired,
-  emailError: PropTypes.string.isRequired,
-  passwordError: PropTypes.string.isRequired,
+  isValid: PropTypes.bool,
+  emailError: PropTypes.string,
+  passwordError: PropTypes.string,
   onEmailChange: PropTypes.func.isRequired,
   onPasswordChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired

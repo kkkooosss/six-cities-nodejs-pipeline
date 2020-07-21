@@ -125,7 +125,7 @@ exports[`ReviewsList renders correctly 1`] = `
         <p
           className="reviews__text"
         >
-          A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam. The building is green and from 18th century.
+          An independent House, strategically located between Rembrand Square and National Opera, but where the bustle of the city comes to rest in this alley flowery and colorful.
         </p>
         <time
           className="reviews__time"
@@ -140,6 +140,7 @@ exports[`ReviewsList renders correctly 1`] = `
     action="#"
     className="reviews__form form"
     method="post"
+    onSubmit={[Function]}
   >
     <label
       className="reviews__label form__label"
@@ -155,6 +156,7 @@ exports[`ReviewsList renders correctly 1`] = `
         defaultValue={5}
         id="5-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
       />
       <label
@@ -177,6 +179,7 @@ exports[`ReviewsList renders correctly 1`] = `
         defaultValue={4}
         id="4-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
       />
       <label
@@ -199,12 +202,13 @@ exports[`ReviewsList renders correctly 1`] = `
         defaultValue={3}
         id="3-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
       />
       <label
         className="reviews__rating-label form__rating-label"
         htmlFor="3-stars"
-        title="not bad"
+        title="not good"
       >
         <svg
           className="form__star-image"
@@ -221,6 +225,7 @@ exports[`ReviewsList renders correctly 1`] = `
         defaultValue={2}
         id="2-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
       />
       <label
@@ -241,13 +246,14 @@ exports[`ReviewsList renders correctly 1`] = `
       <input
         className="form__rating-input visually-hidden"
         defaultValue={1}
-        id="1-star"
+        id="1-stars"
         name="rating"
+        onChange={[Function]}
         type="radio"
       />
       <label
         className="reviews__rating-label form__rating-label"
-        htmlFor="1-star"
+        htmlFor="1-stars"
         title="terribly"
       >
         <svg
@@ -265,7 +271,9 @@ exports[`ReviewsList renders correctly 1`] = `
       className="reviews__textarea form__textarea"
       defaultValue=""
       id="review"
+      maxLength={300}
       name="review"
+      onChange={[Function]}
       placeholder="Tell how was your stay, what you like and what can be improved"
     />
     <div
@@ -285,6 +293,12 @@ exports[`ReviewsList renders correctly 1`] = `
           className="reviews__text-amount"
         >
           50 characters
+        </b>
+        . Maximum review length is 
+        <b
+          className="reviews__text-amount"
+        >
+          300 characters
         </b>
         .
       </p>

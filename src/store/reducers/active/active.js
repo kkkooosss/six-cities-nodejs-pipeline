@@ -1,5 +1,5 @@
 import {Actions} from '../../actions/active/active.js';
-import {extend} from '../../../helpers/helpers.js';
+import {extend} from '../../../helpers/utils.js';
 
 const initialState = {
   activeOffer: null

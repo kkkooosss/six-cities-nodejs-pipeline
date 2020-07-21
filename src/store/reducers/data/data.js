@@ -1,9 +1,10 @@
-import {extend} from '../../../helpers/helpers.js';
+import {extend} from '../../../helpers/utils.js';
 import {Actions} from '../../actions/data/data.js';
 
 const initialState = {
   offers: [],
-  cities: []
+  cities: [],
+  nearOffers: []
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -17,6 +18,11 @@ const reducer = (state = initialState, action = {}) => {
     case Actions.getCities:
       return extend(state, {
         cities: [...new Set(action.payload.map((offer) => offer.city.name))].sort()
+      });
+
+    case Actions.getNearOffers:
+      return extend(state, {
+        nearOffers: action.payload
       });
 
   }

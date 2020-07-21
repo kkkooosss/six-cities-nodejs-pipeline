@@ -10,7 +10,7 @@ import Map from '../../components/map/map.jsx';
 import Header from '../../components/header/header.jsx';
 import OffersEmpty from '../../components/offers-empty/offers-empty.jsx';
 
-import {reduceCities, reduceOffers} from '../../selectors/selectors.js';
+import {reduceCities, reduceOffers} from '../../helpers/utils.js';
 import FilterActionCreator from '../../store/actions/filter/filter.js';
 
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
@@ -65,7 +65,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onCitySelect: (offers, city) => {
+  onCitySelect: (city) => {
     dispatch(FilterActionCreator.selectCity(city));
   }
 });
