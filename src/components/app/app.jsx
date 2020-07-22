@@ -9,9 +9,6 @@ import OfferTypes from '../../types/offer.js';
 import DetailsActionCreator from '../../store/actions/details/details.js';
 import Login from '../login/login.jsx';
 import UserOperation from '../../store/operations/user/user.js';
-import mockDetailsOffer from '../../mocks/details.js';
-import mockReviews from '../../mocks/reviews.js';
-import history from '../../history.js';
 import {getDetailsOffer} from "../../store/reducers/details/selectors.js";
 
 const App = ({
@@ -22,24 +19,23 @@ const App = ({
   onRequestNearOffers
 }) => (
 
-  <BrowserRouter history={history}>
+  <BrowserRouter>
     <Switch>
       <Route exact path="/">
-        {!detailsOffer
-          ? <Main onTitleClick={onTitleClick} />
-          : <OfferDetails
-            offer={detailsOffer}
-            onRequestReviews={onRequestReviews}
-            onRequestNearOffers={onRequestNearOffers}
-          /> }
+        <Main onTitleClick={onTitleClick} />
       </Route>
-      <Route exact path="/dev-details">
-        <OfferDetails
-          offer={mockDetailsOffer}
-          reviews={mockReviews}
-          onRequestReviews={onRequestReviews}
-        />
-      </Route>
+      <Route exact path="/offer/:id"
+        render={({match}) => {
+          const {id} = match.params;
+          return (
+            <OfferDetails
+              offerId={id}
+              offer={detailsOffer}
+              onRequestReviews={onRequestReviews}
+              onRequestNearOffers={onRequestNearOffers}
+            />
+          );
+        }}/>
       <Route exact path="/signin">
         <Login onLogin={onLogin} />
       </Route>

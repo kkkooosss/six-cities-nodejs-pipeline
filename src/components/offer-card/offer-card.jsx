@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 import OfferTypes from '../../types/offer.js';
 import {getRatingInPercents} from '../../helpers/utils.js';
@@ -55,11 +56,11 @@ const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPl
             <span className="visually-hidden">Rating {rating}</span>
           </div>
         </div>
-        <h2 className="place-card__name" onClick={() => onTitleClick(offer)}>
-          <a href="#">
+        <Link to={`/offer/${offer.id}`}>
+          <h2 className="place-card__name" onClick={() => onTitleClick(offer)}>
             {title}
-          </a>
-        </h2>
+          </h2>
+        </Link>
         <p className="place-card__type">{type}</p>
       </div>
     </article>
