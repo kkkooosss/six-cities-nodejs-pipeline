@@ -16,10 +16,9 @@ import {getNearOffers} from '../../store/reducers/data/selectors.js';
 class OfferDetails extends React.PureComponent {
 
   componentDidMount() {
-    const {onRequestNearOffers} = this.props;
-    const {id} = this.props.offer;
+    const {onRequestNearOffers, offerId} = this.props;
 
-    onRequestNearOffers(id);
+    onRequestNearOffers(offerId);
   }
 
   render() {
@@ -153,6 +152,7 @@ export {OfferDetails};
 export default connect(mapStateToProps, null)(OfferDetails);
 
 OfferDetails.propTypes = {
+  offerId: PropTypes.string,
   offer: OfferTypes.isRequired,
   nearOffers: PropTypes.arrayOf(OfferTypes.isRequired),
   selectedCity: PropTypes.string,
