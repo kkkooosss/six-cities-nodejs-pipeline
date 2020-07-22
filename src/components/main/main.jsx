@@ -31,7 +31,7 @@ const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick}) => {
       <main className={`page__main page__main--index ${areOffersEmpty ? `page__main--index-empty` : null}`}>
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <CitiesList cities={reducedCities} selectedCity={selectedCity} onCitySelect={(city) => onCitySelect(offers, city)} />
+          <CitiesList cities={reducedCities} selectedCity={selectedCity} onCitySelect={(city) => onCitySelect(city)} />
         </div>
 
         {areOffersEmpty
