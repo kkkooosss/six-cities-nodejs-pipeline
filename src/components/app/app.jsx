@@ -14,6 +14,7 @@ import DataOperation from '../../store/operations/data/data.js';
 import OfferTypes from '../../types/offer.js';
 import {getDetailsOffer} from "../../store/reducers/details/selectors.js";
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
+import {ROUTES as routes} from '../../helpers/constants.js';
 
 const App = ({
   offers,
@@ -28,7 +29,7 @@ const App = ({
 
   <BrowserRouter>
     <Switch>
-      <Route exact path="/"
+      <Route exact path={routes.main}
         render={(props) => {
           return (
             <Main
@@ -38,8 +39,9 @@ const App = ({
               onTitleClick={onTitleClick}
             />
           );
-        }}/>
-      <Route exact path="/offer/:id"
+        }}
+      />
+      <Route exact path={routes.details}
         render={({match}) => {
           const {id} = match.params;
           return (
@@ -51,8 +53,9 @@ const App = ({
               onSetFavoriteStatus={onSetFavoriteStatus}
             />
           );
-        }}/>
-      <Route exact path="/favorites"
+        }}
+      />
+      <Route exact path={routes.favorites}
         render={() => {
           return (
             <Favorites
@@ -60,10 +63,17 @@ const App = ({
               onSetFavoriteStatus={onSetFavoriteStatus}
             />
           );
-        }} />
-      <Route exact path="/signin">
-        <Login onLogin={onLogin} />
-      </Route>
+        }}
+      />
+      <Route exact path={routes.login}
+        render={() => {
+          return (
+            <Login
+              onLogin={onLogin}
+            />
+          );
+        }}
+      />
     </Switch>
   </BrowserRouter>
 

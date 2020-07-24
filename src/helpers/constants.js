@@ -36,6 +36,13 @@ export const RATING_TITLES = [
   `terribly`
 ];
 
+export const ROUTES = {
+  main: `/`,
+  login: `/login`,
+  favorites: `/favorites`,
+  details: `/offer/:id`,
+};
+
 export const REQUEST_CODES = {
   add: 1,
   remove: 0
