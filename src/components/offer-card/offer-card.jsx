@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import OfferTypes from '../../types/offer.js';
 import {getRatingInPercents} from '../../helpers/utils.js';
 
-const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPlacesCard, onSetFavoriteStatus}) => {
+const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPlacesCard, isFavoritesCard, onSetFavoriteStatus}) => {
 
   const {
     id,
@@ -21,11 +21,22 @@ const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPl
   const stars = getRatingInPercents(rating);
 
   return (
-    <article className={`place-card ${isNearPlacesCard ? `near-places__card` : `cities__place-card`}`} onMouseOver={() => onCardHover(offer)} onMouseLeave={() => onCardHoverLeave()}>
+    <article
+      className={`place-card
+      ${isNearPlacesCard ? `near-places__card` : `cities__place-card`}
+      ${isFavoritesCard ? `favorites__card` : ``}
+      `}
+      onMouseOver={() => onCardHover(offer)}
+      onMouseLeave={() => onCardHoverLeave()}
+    >
       {isPremium ? <div className="place-card__mark">
         <span>Premium</span>
       </div> : null}
-      <div className={`place-card__image-wrapperd ${isNearPlacesCard ? `near-places__image-wrapper` : `cities__image-wrapper`}`}>
+      <div
+        className={`place-card__image-wrapperd
+        ${isNearPlacesCard ? `near-places__image-wrapper` : `cities__image-wrapper`}
+        ${isFavoritesCard ? `favorites__image-wrapper` : ``}
+        `}>
         <a href="#">
           <img
             className="place-card__image"
@@ -80,6 +91,7 @@ OfferCard.propTypes = {
   onTitleClick: PropTypes.func,
   onCardHover: PropTypes.func,
   onCardHoverLeave: PropTypes.func,
-  isNearPlacesCard: PropTypes.bool.isRequired,
+  isNearPlacesCard: PropTypes.bool,
+  isFavoritesCard: PropTypes.bool,
   onSetFavoriteStatus: PropTypes.func
 };

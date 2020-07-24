@@ -4,12 +4,14 @@ import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 
 import Main from "../main/main.jsx";
-import OfferDetails from "../offer-details/offer-details.jsx";
-import OfferTypes from '../../types/offer.js';
-import DetailsActionCreator from '../../store/actions/details/details.js';
 import Login from '../login/login.jsx';
+import Favorites from '../favorites/favorites.jsx';
+import OfferDetails from "../offer-details/offer-details.jsx";
+
+import DetailsActionCreator from '../../store/actions/details/details.js';
 import UserOperation from '../../store/operations/user/user.js';
 import DataOperation from '../../store/operations/data/data.js';
+import OfferTypes from '../../types/offer.js';
 import {getDetailsOffer} from "../../store/reducers/details/selectors.js";
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
 
@@ -21,6 +23,7 @@ const App = ({
   onRequestReviews,
   onRequestNearOffers,
   onSetFavoriteStatus,
+  handleTitleClick
 }) => (
 
   <BrowserRouter>
@@ -49,6 +52,14 @@ const App = ({
             />
           );
         }}/>
+      <Route exact path="/favorites"
+        render={() => {
+          return (
+            <Favorites
+              onTitleClick={handleTitleClick}
+            />
+          );
+        }} />
       <Route exact path="/signin">
         <Login onLogin={onLogin} />
       </Route>
@@ -66,12 +77,18 @@ const mapDispatchToProps = (dispatch) => ({
   onTitleClick: (offer) => {
     dispatch(DetailsActionCreator.setDetailsOffer(offer));
   },
+
   onLogin(authData) {
     dispatch(UserOperation.login(authData));
   },
+
   onSetFavoriteStatus(offerId, isFavorite) {
     dispatch(DataOperation.setFavoriteStatus(offerId, isFavorite));
   },
+
+  handleTitleClick: (offer) => {
+    dispatch(DetailsActionCreator.setDetailsOffer(offer));
+  }
 });
 
 export {App};
@@ -86,4 +103,5 @@ App.propTypes = {
   onRequestReviews: PropTypes.func.isRequired,
   onRequestNearOffers: PropTypes.func.isRequired,
   onSetFavoriteStatus: PropTypes.func.isRequired,
+  handleTitleClick: PropTypes.func
 };
