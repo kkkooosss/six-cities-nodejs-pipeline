@@ -26,7 +26,7 @@ const reducer = (state = initialState, action = {}) => {
         nearOffers: action.payload
       });
 
-    case Actions.getFavourites:
+    case Actions.getFavorites:
       return extend(state, {
         favorites: action.payload
       });

@@ -2,7 +2,7 @@ export const Actions = {
   getOffers: `GET_OFFERS`,
   getCities: `GET_CITIES`,
   getNearOffers: `GET_NEAR_OFFERS`,
-  getFavourites: `GET_FAVOURITES`,
+  getFavorites: `GET_FAVORITES`,
 };
 
 const ActionCreator = {
@@ -22,8 +22,8 @@ const ActionCreator = {
     payload: offers
   }),
 
-  getFavourites: (offers) => ({
-    type: Actions.getFavourites,
+  getFavorites: (offers) => ({
+    type: Actions.getFavorites,
     payload: offers
   }),
 

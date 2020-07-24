@@ -57,6 +57,7 @@ const App = ({
           return (
             <Favorites
               onTitleClick={handleTitleClick}
+              onSetFavoriteStatus={onSetFavoriteStatus}
             />
           );
         }} />

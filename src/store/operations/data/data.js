@@ -24,7 +24,7 @@ const Operation = {
     return api.get(`/favorite`)
       .then(
           (response) => {
-            dispatch(ActionCreator.getFavourites(formatOffers(response.data)));
+            dispatch(ActionCreator.getFavorites(formatOffers(response.data)));
           });
   },
 
