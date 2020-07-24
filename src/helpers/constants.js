@@ -36,9 +36,14 @@ export const RATING_TITLES = [
   `terribly`
 ];
 
+export const AuthStatus = {
+  auth: `AUTH`,
+  noAuth: `NO_AUTH`,
+};
+
 export const ROUTES = {
   main: `/`,
-  login: `/login`,
+  login: `/signin`,
   favorites: `/favorites`,
   details: `/offer/:id`,
 };

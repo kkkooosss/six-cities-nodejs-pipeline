@@ -4,8 +4,8 @@ import Review from '../review/review.jsx';
 import ReviewTypes from '../../types/review.js';
 import {connect} from 'react-redux';
 
-import {AuthorizationStatus} from '../../store/reducers/user/user.js';
-import {getAuthorizationStatus} from '../../store/reducers/user/selectors.js';
+import {AuthStatus} from '../../helpers/constants.js';
+import {getAuthStatus} from '../../store/reducers/user/selectors.js';
 import ReviewForm from '../review-form/review-form.jsx';
 
 import {getReviews} from '../../store/reducers/review/selectors.js';
@@ -20,7 +20,7 @@ class ReviewsList extends React.PureComponent {
   render() {
     const {offerId, reviews} = this.props;
     const reviewsCount = this.props.reviews.length;
-    const isAuthorized = this.props.authorizationStatus === AuthorizationStatus.AUTH;
+    const isAuthorized = this.props.authorizationStatus === AuthStatus.auth;
 
     return (
       <section className="property__reviews reviews">
@@ -39,7 +39,7 @@ class ReviewsList extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => ({
-  authorizationStatus: getAuthorizationStatus(state),
+  authorizationStatus: getAuthStatus(state),
   reviews: getReviews(state)
 });
 

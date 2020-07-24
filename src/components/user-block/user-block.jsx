@@ -5,12 +5,12 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {API_BASE} from '../../api/api.js';
-import {AuthorizationStatus} from '../../store/reducers/user/user.js';
-import {getUser, getAuthorizationStatus} from '../../store/reducers/user/selectors.js';
+import {AuthStatus} from '../../helpers/constants.js';
+import {getUser, getAuthStatus} from '../../store/reducers/user/selectors.js';
 
 
-const UserBlock = ({authorizationStatus, user}) => {
-  const isAuthorized = authorizationStatus === AuthorizationStatus.AUTH;
+const UserBlock = ({authStatus, user}) => {
+  const isAuthorized = authStatus === AuthStatus.auth;
 
   return (
     <Link to={isAuthorized ? `/` : `/signin`} className="header__nav-link header__nav-link--profile" href="#" >
@@ -27,12 +27,12 @@ const UserBlock = ({authorizationStatus, user}) => {
 
 const mapStateToPros = (state) => ({
   user: getUser(state),
-  authorizationStatus: getAuthorizationStatus(state)
+  authStatus: getAuthStatus(state)
 });
 
 export default connect(mapStateToPros, null)(UserBlock);
 
 UserBlock.propTypes = {
   user: UserTypes,
-  authorizationStatus: PropTypes.string.isRequired
+  authStatus: PropTypes.string.isRequired
 };
