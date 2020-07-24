@@ -17,7 +17,8 @@ const OffersList = ({
   selectedFilter,
   handleCardHover,
   handleCardHoverLeave,
-  isNearPlacesList}) => {
+  isNearPlacesList,
+  onSetFavoriteStatus}) => {
 
   const filteredOffers = filterOffersOrder(offers, selectedFilter);
 
@@ -28,6 +29,7 @@ const OffersList = ({
         offer={offer}
         onCardHover={handleCardHover}
         onCardHoverLeave={handleCardHoverLeave}
+        onSetFavoriteStatus={onSetFavoriteStatus}
         onTitleClick={handleTitleClick}
         key={offer.id}
         isNearPlacesCard={isNearPlacesList}
@@ -65,5 +67,6 @@ OffersList.propTypes = {
   handleCardHover: PropTypes.func,
   handleCardHoverLeave: PropTypes.func,
   isNearPlacesList: PropTypes.bool.isRequired,
-  selectedFilter: PropTypes.string.isRequired
+  selectedFilter: PropTypes.string.isRequired,
+  onSetFavoriteStatus: PropTypes.func
 };

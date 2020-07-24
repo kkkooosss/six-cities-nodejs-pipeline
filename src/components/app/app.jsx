@@ -9,21 +9,33 @@ import OfferTypes from '../../types/offer.js';
 import DetailsActionCreator from '../../store/actions/details/details.js';
 import Login from '../login/login.jsx';
 import UserOperation from '../../store/operations/user/user.js';
+import DataOperation from '../../store/operations/data/data.js';
 import {getDetailsOffer} from "../../store/reducers/details/selectors.js";
+import {filterOffers} from '../../store/reducers/filter/selectors.js';
 
 const App = ({
+  offers,
   onTitleClick,
   detailsOffer,
   onLogin,
   onRequestReviews,
-  onRequestNearOffers
+  onRequestNearOffers,
+  onSetFavoriteStatus,
 }) => (
 
   <BrowserRouter>
     <Switch>
-      <Route exact path="/">
-        <Main onTitleClick={onTitleClick} />
-      </Route>
+      <Route exact path="/"
+        render={(props) => {
+          return (
+            <Main
+              {...props}
+              offers={offers}
+              onSetFavoriteStatus={onSetFavoriteStatus}
+              onTitleClick={onTitleClick}
+            />
+          );
+        }}/>
       <Route exact path="/offer/:id"
         render={({match}) => {
           const {id} = match.params;
@@ -33,6 +45,7 @@ const App = ({
               offer={detailsOffer}
               onRequestReviews={onRequestReviews}
               onRequestNearOffers={onRequestNearOffers}
+              onSetFavoriteStatus={onSetFavoriteStatus}
             />
           );
         }}/>
@@ -45,6 +58,7 @@ const App = ({
 );
 
 const mapStateToProps = (state) => ({
+  offers: filterOffers(state),
   detailsOffer: getDetailsOffer(state)
 });
 
@@ -55,6 +69,9 @@ const mapDispatchToProps = (dispatch) => ({
   onLogin(authData) {
     dispatch(UserOperation.login(authData));
   },
+  onSetFavoriteStatus(offerId, isFavorite) {
+    dispatch(DataOperation.setFavoriteStatus(offerId, isFavorite));
+  },
 });
 
 export {App};
@@ -62,9 +79,11 @@ export {App};
 export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 App.propTypes = {
+  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   detailsOffer: OfferTypes,
   onTitleClick: PropTypes.func,
   onLogin: PropTypes.func,
   onRequestReviews: PropTypes.func.isRequired,
-  onRequestNearOffers: PropTypes.func.isRequired
+  onRequestNearOffers: PropTypes.func.isRequired,
+  onSetFavoriteStatus: PropTypes.func.isRequired,
 };

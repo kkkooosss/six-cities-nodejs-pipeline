@@ -13,11 +13,10 @@ import OffersEmpty from '../../components/offers-empty/offers-empty.jsx';
 import {reduceCities, reduceOffers} from '../../helpers/utils.js';
 import FilterActionCreator from '../../store/actions/filter/filter.js';
 
-import {filterOffers} from '../../store/reducers/filter/selectors.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
 import {getCities} from '../../store/reducers/data/selectors.js';
 
-const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick}) => {
+const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick, onSetFavoriteStatus}) => {
 
   const reducedCities = reduceCities(cities);
   const reducedOffers = reduceOffers(offers);
@@ -43,7 +42,7 @@ const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick}) => {
                 <b className="places__found">{offersCount} places to stay in {selectedCity}</b>
                 <OffersSort />
                 <div className="cities__places-list places__list tabs__content">
-                  <OffersList offers={reducedOffers} onTitleClick={onTitleClick} isNearPlacesList={false} />
+                  <OffersList offers={reducedOffers} onTitleClick={onTitleClick} onSetFavoriteStatus={onSetFavoriteStatus} isNearPlacesList={false} />
                 </div>
               </section>
               <div className="cities__right-section">
@@ -59,7 +58,6 @@ const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick}) => {
 };
 
 const mapStateToProps = (state) => ({
-  offers: filterOffers(state),
   cities: getCities(state),
   selectedCity: getSelectedCity(state)
 });
@@ -77,5 +75,6 @@ Main.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedCity: PropTypes.string.isRequired,
   onCitySelect: PropTypes.func,
-  onTitleClick: PropTypes.func
+  onTitleClick: PropTypes.func,
+  onSetFavoriteStatus: PropTypes.func
 };

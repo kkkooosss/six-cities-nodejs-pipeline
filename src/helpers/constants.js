@@ -35,3 +35,8 @@ export const RATING_TITLES = [
   `badly`,
   `terribly`
 ];
+
+export const REQUEST_CODES = {
+  add: 1,
+  remove: 0
+};

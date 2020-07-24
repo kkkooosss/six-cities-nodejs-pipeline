@@ -5,11 +5,13 @@ import {Link} from 'react-router-dom';
 import OfferTypes from '../../types/offer.js';
 import {getRatingInPercents} from '../../helpers/utils.js';
 
-const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPlacesCard}) => {
+const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPlacesCard, onSetFavoriteStatus}) => {
 
   const {
+    id,
     isPremium,
     title,
+    isFavorite,
     previewImage,
     price,
     rating,
@@ -40,7 +42,11 @@ const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPl
             <b className="place-card__price-value">{`€${price}`}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button className="place-card__bookmark-button button" type="button">
+          <button
+            className={`${isFavorite ? `place-card__bookmark-button--active` : `place-card__bookmark-button`} button`}
+            type="button"
+            onClick={() => onSetFavoriteStatus(id, isFavorite)}
+          >
             <svg
               className="place-card__bookmark-icon"
               width={18}
@@ -56,7 +62,7 @@ const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPl
             <span className="visually-hidden">Rating {rating}</span>
           </div>
         </div>
-        <Link to={`/offer/${offer.id}`}>
+        <Link to={`/offer/${id}`}>
           <h2 className="place-card__name" onClick={() => onTitleClick(offer)}>
             {title}
           </h2>
@@ -74,5 +80,6 @@ OfferCard.propTypes = {
   onTitleClick: PropTypes.func,
   onCardHover: PropTypes.func,
   onCardHoverLeave: PropTypes.func,
-  isNearPlacesCard: PropTypes.bool.isRequired
+  isNearPlacesCard: PropTypes.bool.isRequired,
+  onSetFavoriteStatus: PropTypes.func
 };

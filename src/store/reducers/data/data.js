@@ -4,7 +4,8 @@ import {Actions} from '../../actions/data/data.js';
 const initialState = {
   offers: [],
   cities: [],
-  nearOffers: []
+  nearOffers: [],
+  favourites: []
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -23,6 +24,11 @@ const reducer = (state = initialState, action = {}) => {
     case Actions.getNearOffers:
       return extend(state, {
         nearOffers: action.payload
+      });
+
+    case Actions.getFavourites:
+      return extend(state, {
+        favourites: action.payload
       });
 
   }

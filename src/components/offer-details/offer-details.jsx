@@ -22,12 +22,13 @@ class OfferDetails extends React.PureComponent {
   }
 
   render() {
-    const {offer, nearOffers, onRequestReviews} = this.props;
+    const {offer, nearOffers, onRequestReviews, onSetFavoriteStatus} = this.props;
     const {
       id,
       title,
       type,
       isPremium,
+      isFavorite,
       price,
       images,
       host,
@@ -68,7 +69,11 @@ class OfferDetails extends React.PureComponent {
                     <h1 className="property__name">
                       {title}
                     </h1>
-                    <button className="property__bookmark-button button" type="button">
+                    <button
+                      className={`${isFavorite ? `property__bookmark-button--active` : `property__bookmark-button`} button`}
+                      type="button"
+                      onClick={() => onSetFavoriteStatus(id, isFavorite)}
+                    >
                       <svg className="property__bookmark-icon" width={31} height={33}>
                         <use xlinkHref="#icon-bookmark" />
                       </svg>
@@ -132,7 +137,7 @@ class OfferDetails extends React.PureComponent {
                 <h2 className="near-places__title">Other places in the neighbourhood</h2>
                 <div className="near-places__list places__list">
 
-                  <OffersList offers={reducedOffers} isNearPlacesList={true} />
+                  <OffersList offers={reducedOffers} onSetFavoriteStatus={onSetFavoriteStatus} isNearPlacesList={true} />
 
                 </div>
               </section>
@@ -159,4 +164,5 @@ OfferDetails.propTypes = {
   selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired),
   onRequestReviews: PropTypes.func.isRequired,
   onRequestNearOffers: PropTypes.func.isRequired,
+  onSetFavoriteStatus: PropTypes.func.isRequired
 };
