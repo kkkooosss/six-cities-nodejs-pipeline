@@ -21,8 +21,6 @@ const App = ({
   onTitleClick,
   detailsOffer,
   onLogin,
-  onRequestReviews,
-  onRequestNearOffers,
   onSetFavoriteStatus,
   handleTitleClick
 }) => (
@@ -48,8 +46,6 @@ const App = ({
             <OfferDetails
               offerId={id}
               offer={detailsOffer}
-              onRequestReviews={onRequestReviews}
-              onRequestNearOffers={onRequestNearOffers}
               onSetFavoriteStatus={onSetFavoriteStatus}
             />
           );
@@ -111,8 +107,6 @@ App.propTypes = {
   detailsOffer: OfferTypes,
   onTitleClick: PropTypes.func,
   onLogin: PropTypes.func,
-  onRequestReviews: PropTypes.func.isRequired,
-  onRequestNearOffers: PropTypes.func.isRequired,
   onSetFavoriteStatus: PropTypes.func.isRequired,
   handleTitleClick: PropTypes.func
 };

@@ -9,6 +9,8 @@ import Header from '../header/header.jsx';
 import {getRatingInPercents} from '../../helpers/utils.js';
 
 import OfferTypes from '../../types/offer.js';
+import DataOperation from '../../store/operations/data/data.js';
+import ReviewOperation from '../../store/operations/review/review.js';
 import {reduceOffers} from '../../helpers/utils.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
 import {getNearOffers} from '../../store/reducers/data/selectors.js';
@@ -153,8 +155,19 @@ const mapStateToProps = (state) => ({
   selectedCity: getSelectedCity(state)
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onRequestReviews: (offerId) => {
+    dispatch(ReviewOperation.loadReviews(offerId));
+  },
+
+  onRequestNearOffers: (offerId) => {
+    dispatch(DataOperation.loadNearOffers(offerId));
+  },
+
+});
+
 export {OfferDetails};
-export default connect(mapStateToProps, null)(OfferDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);
 
 OfferDetails.propTypes = {
   offerId: PropTypes.string,
