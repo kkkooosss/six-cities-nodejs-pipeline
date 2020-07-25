@@ -7,13 +7,24 @@ export const getOffers = (state) => {
   return state[NAME_SPACE].offers;
 };
 
-const stateMock = (state) => state;
+export const getDetailsOfferId = (state) => {
+  return state[NAME_SPACE].detailsOfferId;
+}
 
-export const getOfferById = (id) => createSelector(
-    getOffers,
-    stateMock,
-    (offers) => {
-      return offers.find((offer) => offer.id === Number(id));
+// const stateMock = (state) => state;
+
+// export const getOfferById = (id) => createSelector(
+//     getOffers,
+//     stateMock,
+//     (offers) => {
+//       return offers.find((offer) => offer.id === Number(id));
+//     }
+// );
+
+export const getOfferById = createSelector(
+    [getOffers, getDetailsOfferId],
+    (offers, offerId) => {
+      return offers.find((offer) => offer.id === offerId);
     }
 );
 

@@ -3,6 +3,7 @@ export const Actions = {
   getCities: `GET_CITIES`,
   getNearOffers: `GET_NEAR_OFFERS`,
   getFavorites: `GET_FAVORITES`,
+  setDetailsOfferId: `SET_DETAILS_OFFER_ID`
 };
 
 const ActionCreator = {
@@ -25,6 +26,11 @@ const ActionCreator = {
   getFavorites: (offers) => ({
     type: Actions.getFavorites,
     payload: offers
+  }),
+
+  setDetailsOfferId: (offerId) => ({
+    type: Actions.setDetailsOfferId,
+    payload: offerId
   }),
 
 };

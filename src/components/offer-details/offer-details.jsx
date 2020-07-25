@@ -9,54 +9,55 @@ import Header from '../header/header.jsx';
 import {getRatingInPercents} from '../../helpers/utils.js';
 
 import OfferTypes from '../../types/offer.js';
+import DataActionsCreator from '../../store/actions/data/data.js';
 import DataOperation from '../../store/operations/data/data.js';
 import ReviewOperation from '../../store/operations/review/review.js';
 import {reduceOffers} from '../../helpers/utils.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
-import {getOfferById, getNearOffers} from '../../store/reducers/data/selectors.js';
+import {getOfferById, getNearOffers, getOffers} from '../../store/reducers/data/selectors.js';
 
 class OfferDetails extends React.PureComponent {
 
   componentDidMount() {
-    const {onRequestNearOffers, offerId} = this.props;
+    const {onRequestNearOffers, setDetailsOfferId, offerId} = this.props;
+    setDetailsOfferId(offerId);
 
     onRequestNearOffers(offerId);
   }
 
   componentDidUpdate(prevProps) {
-    const {onRequestNearOffers, offerId} = this.props;
+    const {onRequestNearOffers, setDetailsOfferId, offerId} = this.props;
 
     if (offerId !== prevProps.offerId) {
+      setDetailsOfferId(offerId);
       onRequestNearOffers(offerId);
     }
   }
 
   render() {
-    const {offer, nearOffers, onRequestReviews, onSetFavoriteStatus} = this.props;
-    const {
-      id,
-      title,
-      type,
-      isPremium,
-      isFavorite,
-      price,
-      images,
-      host,
-      rating,
-      bedrooms,
-      capacity,
-      amenities,
-      description
-    } = offer;
+    if (this.props.offer) {
+      const {offer, nearOffers, onRequestReviews, onSetFavoriteStatus} = this.props;
+      const {
+        id,
+        title,
+        type,
+        isPremium,
+        isFavorite,
+        price,
+        images,
+        host,
+        rating,
+        bedrooms,
+        capacity,
+        amenities,
+        description
+      } = offer;
 
-    const hasData = offer && nearOffers;
-    const reducedOffers = reduceOffers(nearOffers);
-    const stars = getRatingInPercents(rating);
+      const reducedOffers = reduceOffers(nearOffers);
+      const stars = getRatingInPercents(rating);
 
-    return (
-      !hasData
-        ? <div>Loading...</div>
-        : <div className="page">
+      return (
+        <div className="page">
           <Header />
 
           <main className="page__main page__main--property">
@@ -105,7 +106,7 @@ class OfferDetails extends React.PureComponent {
                       {bedrooms} Bedrooms
                     </li>
                     <li className="property__feature property__feature--adults">
-                  Max {capacity} adults
+                Max {capacity} adults
                     </li>
                   </ul>
                   <div className="property__price">
@@ -155,11 +156,15 @@ class OfferDetails extends React.PureComponent {
             </div>
           </main>
         </div>);
+    } else {
+      return <div>Loading...</div>;
+    }
   }
 }
 
-const mapStateToProps = (state, {offerId}) => ({
-  offer: getOfferById(offerId)(state),
+const mapStateToProps = (state) => ({
+  offers: getOffers(state),
+  offer: getOfferById(state),
   nearOffers: getNearOffers(state),
   selectedCity: getSelectedCity(state)
 });
@@ -167,6 +172,11 @@ const mapStateToProps = (state, {offerId}) => ({
 const mapDispatchToProps = (dispatch) => ({
   onRequestReviews: (offerId) => {
     dispatch(ReviewOperation.loadReviews(offerId));
+  },
+
+  setDetailsOfferId: (offerId) => {
+    const newOfferId = parseInt(offerId, 10);
+    dispatch(DataActionsCreator.setDetailsOfferId(newOfferId));
   },
 
   onRequestNearOffers: (offerId) => {
@@ -186,5 +196,6 @@ OfferDetails.propTypes = {
   selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired),
   onRequestReviews: PropTypes.func.isRequired,
   onRequestNearOffers: PropTypes.func.isRequired,
-  onSetFavoriteStatus: PropTypes.func.isRequired
+  onSetFavoriteStatus: PropTypes.func.isRequired,
+  setDetailsOfferId: PropTypes.func.isRequired
 };

@@ -5,7 +5,8 @@ const initialState = {
   offers: [],
   cities: [],
   nearOffers: [],
-  favorites: []
+  favorites: [],
+  detailsOfferId: null,
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -29,6 +30,11 @@ const reducer = (state = initialState, action = {}) => {
     case Actions.getFavorites:
       return extend(state, {
         favorites: action.payload
+      });
+
+    case Actions.setDetailsOfferId:
+      return extend(state, {
+        detailsOfferId: action.payload
       });
 
   }
