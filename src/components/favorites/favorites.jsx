@@ -8,7 +8,6 @@ import OfferCard from '../offer-card/offer-card.jsx';
 import Footer from '../footer/footer.jsx';
 import {getFavorites} from '../../store/reducers/data/selectors.js';
 import DataOperation from '../../store/operations/data/data.js';
-import withPrivateRoute from '../../hocs/with-private-route/with-private-route.jsx';
 
 class Favorites extends React.Component {
   constructor(props) {

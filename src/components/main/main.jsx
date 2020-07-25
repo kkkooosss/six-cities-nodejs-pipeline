@@ -6,6 +6,7 @@ import OffersList from '../offers-list/offers-list.jsx';
 import OfferTypes from '../../types/offer.js';
 import OffersSort from '../offers-sort/offers-sort.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
+import Loader from '../loader/loader.jsx';
 import Map from '../../components/map/map.jsx';
 import Header from '../../components/header/header.jsx';
 import OffersEmpty from '../../components/offers-empty/offers-empty.jsx';
@@ -23,7 +24,7 @@ const Main = ({offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus, 
   const offersCount = offers.length;
   const areOffersEmpty = offersCount < 1;
 
-  return loading ? <div>Loading...</div> : (
+  return loading ? <Loader /> : (
     <div className="page page--gray page--main">
       <Header />
 

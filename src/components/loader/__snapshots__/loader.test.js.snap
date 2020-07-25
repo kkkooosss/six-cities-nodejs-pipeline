@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header renders correctly 1`] = `
+Array [
+  <h1
+    className="loader__text"
+  >
+    Loading...
+  </h1>,
+  <div
+    className="loader__spinner"
+  />,
+]
+`;

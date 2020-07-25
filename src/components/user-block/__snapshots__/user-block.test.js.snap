@@ -3,7 +3,7 @@
 exports[`UserBlock renders correctly 1`] = `
 <a
   className="header__nav-link header__nav-link--profile"
-  href="/signin"
+  href="/favorites"
   onClick={[Function]}
 >
   <div

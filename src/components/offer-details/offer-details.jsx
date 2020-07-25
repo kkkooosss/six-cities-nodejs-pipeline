@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
+import Loader from '../loader/loader.jsx';
 import Header from '../header/header.jsx';
 import {getRatingInPercents} from '../../helpers/utils.js';
 
@@ -157,7 +158,7 @@ class OfferDetails extends React.PureComponent {
           </main>
         </div>);
     } else {
-      return <div>Loading...</div>;
+      return <Loader />;
     }
   }
 }
