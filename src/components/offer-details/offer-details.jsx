@@ -13,7 +13,7 @@ import DataOperation from '../../store/operations/data/data.js';
 import ReviewOperation from '../../store/operations/review/review.js';
 import {reduceOffers} from '../../helpers/utils.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
-import {getNearOffers} from '../../store/reducers/data/selectors.js';
+import {getOfferById, getNearOffers} from '../../store/reducers/data/selectors.js';
 
 class OfferDetails extends React.PureComponent {
 
@@ -21,6 +21,14 @@ class OfferDetails extends React.PureComponent {
     const {onRequestNearOffers, offerId} = this.props;
 
     onRequestNearOffers(offerId);
+  }
+
+  componentDidUpdate(prevProps) {
+    const {onRequestNearOffers, offerId} = this.props;
+
+    if (offerId !== prevProps.offerId) {
+      onRequestNearOffers(offerId);
+    }
   }
 
   render() {
@@ -150,7 +158,8 @@ class OfferDetails extends React.PureComponent {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, {offerId}) => ({
+  offer: getOfferById(offerId)(state),
   nearOffers: getNearOffers(state),
   selectedCity: getSelectedCity(state)
 });

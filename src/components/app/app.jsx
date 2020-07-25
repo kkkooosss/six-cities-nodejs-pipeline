@@ -8,11 +8,9 @@ import Login from '../login/login.jsx';
 import Favorites from '../favorites/favorites.jsx';
 import OfferDetails from '../offer-details/offer-details.jsx';
 
-import DetailsActionCreator from '../../store/actions/details/details.js';
 import UserOperation from '../../store/operations/user/user.js';
 import DataOperation from '../../store/operations/data/data.js';
 import OfferTypes from '../../types/offer.js';
-import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
 import {ROUTES as routes} from '../../helpers/constants.js';
 import {getAuthStatus} from '../../store/reducers/user/selectors.js';
@@ -22,7 +20,6 @@ import withPrivateRoute from '../../hocs/with-private-route/with-private-route.j
 const App = ({
   offers,
   onTitleClick,
-  detailsOffer,
   authStatus,
   onLogin,
   onSetFavoriteStatus,
@@ -51,7 +48,6 @@ const App = ({
             return (
               <OfferDetails
                 offerId={id}
-                offer={detailsOffer}
                 onSetFavoriteStatus={onSetFavoriteStatus}
               />
             );
@@ -78,19 +74,15 @@ const App = ({
         />
       </Switch>
     </BrowserRouter>
-  ) 
+  );
 };
 
 const mapStateToProps = (state) => ({
   offers: filterOffers(state),
-  detailsOffer: getDetailsOffer(state),
   authStatus: getAuthStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onTitleClick: (offer) => {
-    dispatch(DetailsActionCreator.setDetailsOffer(offer));
-  },
 
   onLogin(authData) {
     dispatch(UserOperation.login(authData));
@@ -100,9 +92,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataOperation.setFavoriteStatus(offerId, isFavorite));
   },
 
-  handleTitleClick: (offer) => {
-    dispatch(DetailsActionCreator.setDetailsOffer(offer));
-  }
 });
 
 export {App};
@@ -112,7 +101,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 App.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   authStatus: PropTypes.string.isRequired,
-  detailsOffer: OfferTypes,
   onTitleClick: PropTypes.func,
   onLogin: PropTypes.func,
   onSetFavoriteStatus: PropTypes.func.isRequired,

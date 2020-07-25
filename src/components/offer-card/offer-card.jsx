@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom';
 import OfferTypes from '../../types/offer.js';
 import {getRatingInPercents} from '../../helpers/utils.js';
 
-const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPlacesCard, isFavoritesCard, onSetFavoriteStatus}) => {
+const OfferCard = ({offer, onCardHover, onCardHoverLeave, isNearPlacesCard, isFavoritesCard, onSetFavoriteStatus}) => {
 
   const {
     id,
@@ -74,7 +74,7 @@ const OfferCard = ({offer, onTitleClick, onCardHover, onCardHoverLeave, isNearPl
           </div>
         </div>
         <Link to={`/offer/${id}`}>
-          <h2 className="place-card__name" onClick={() => onTitleClick(offer)}>
+          <h2 className="place-card__name">
             {title}
           </h2>
         </Link>
@@ -88,7 +88,6 @@ export default OfferCard;
 
 OfferCard.propTypes = {
   offer: OfferTypes.isRequired,
-  onTitleClick: PropTypes.func,
   onCardHover: PropTypes.func,
   onCardHoverLeave: PropTypes.func,
   isNearPlacesCard: PropTypes.bool,

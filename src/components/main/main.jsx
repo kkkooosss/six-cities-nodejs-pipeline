@@ -16,7 +16,7 @@ import FilterActionCreator from '../../store/actions/filter/filter.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
 import {getCities} from '../../store/reducers/data/selectors.js';
 
-const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick, onSetFavoriteStatus}) => {
+const Main = ({offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus}) => {
 
   const reducedCities = reduceCities(cities);
   const reducedOffers = reduceOffers(offers);
@@ -42,7 +42,7 @@ const Main = ({offers, cities, selectedCity, onCitySelect, onTitleClick, onSetFa
                 <b className="places__found">{offersCount} places to stay in {selectedCity}</b>
                 <OffersSort />
                 <div className="cities__places-list places__list tabs__content">
-                  <OffersList offers={reducedOffers} onTitleClick={onTitleClick} onSetFavoriteStatus={onSetFavoriteStatus} isNearPlacesList={false} />
+                  <OffersList offers={reducedOffers} onSetFavoriteStatus={onSetFavoriteStatus} isNearPlacesList={false} />
                 </div>
               </section>
               <div className="cities__right-section">
@@ -75,6 +75,5 @@ Main.propTypes = {
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedCity: PropTypes.string.isRequired,
   onCitySelect: PropTypes.func,
-  onTitleClick: PropTypes.func,
   onSetFavoriteStatus: PropTypes.func
 };
