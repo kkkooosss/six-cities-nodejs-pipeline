@@ -17,27 +17,32 @@ import {reduceOffers} from '../../helpers/utils.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
 import {getOfferById, getNearOffers, getOffers} from '../../store/reducers/data/selectors.js';
 
+import {getAuthStatus} from '../../store/reducers/user/selectors.js';
+import {getReviews} from '../../store/reducers/review/selectors.js';
+import ReviewTypes from '../../types/review.js';
+
 class OfferDetails extends React.PureComponent {
 
   componentDidMount() {
-    const {onRequestNearOffers, setDetailsOfferId, offerId} = this.props;
+    const {onRequestNearOffers, setDetailsOfferId, onRequestReviews, offerId} = this.props;
     setDetailsOfferId(offerId);
-
     onRequestNearOffers(offerId);
+    onRequestReviews(offerId);
   }
 
   componentDidUpdate(prevProps) {
-    const {onRequestNearOffers, setDetailsOfferId, offerId} = this.props;
+    const {onRequestNearOffers, setDetailsOfferId, onRequestReviews, offerId} = this.props;
 
     if (offerId !== prevProps.offerId) {
       setDetailsOfferId(offerId);
       onRequestNearOffers(offerId);
+      onRequestReviews(offerId);
     }
   }
 
   render() {
     if (this.props.offer) {
-      const {offer, nearOffers, onRequestReviews, onSetFavoriteStatus} = this.props;
+      const {offer, nearOffers, onSetFavoriteStatus, authStatus, reviews} = this.props;
       const {
         id,
         title,
@@ -137,19 +142,31 @@ class OfferDetails extends React.PureComponent {
                     </div>
                   </div>
 
-                  <ReviewsList offerId={id} onRequestReviews={onRequestReviews} />
+                  <ReviewsList
+                    offerId={id}
+                    authStatus={authStatus}
+                    reviews={reviews}
+                  />
 
                 </div>
               </div>
             </section>
-            <Map offers={reducedOffers} isPropertyMap={true} currentOffer={offer} />
+            <Map
+              offers={reducedOffers}
+              isPropertyMap={true}
+              currentOffer={offer}
+            />
 
             <div className="container">
               <section className="near-places places">
                 <h2 className="near-places__title">Other places in the neighbourhood</h2>
                 <div className="near-places__list places__list">
 
-                  <OffersList offers={reducedOffers} onSetFavoriteStatus={onSetFavoriteStatus} isNearPlacesList={true} />
+                  <OffersList
+                    offers={reducedOffers}
+                    onSetFavoriteStatus={onSetFavoriteStatus}
+                    isNearPlacesList={true}
+                  />
 
                 </div>
               </section>
@@ -167,7 +184,9 @@ const mapStateToProps = (state) => ({
   offers: getOffers(state),
   offer: getOfferById(state),
   nearOffers: getNearOffers(state),
-  selectedCity: getSelectedCity(state)
+  selectedCity: getSelectedCity(state),
+  authStatus: getAuthStatus(state),
+  reviews: getReviews(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -198,5 +217,7 @@ OfferDetails.propTypes = {
   onRequestReviews: PropTypes.func.isRequired,
   onRequestNearOffers: PropTypes.func.isRequired,
   onSetFavoriteStatus: PropTypes.func.isRequired,
-  setDetailsOfferId: PropTypes.func.isRequired
+  setDetailsOfferId: PropTypes.func.isRequired,
+  reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
+  authStatus: PropTypes.string.isRequired,
 };
