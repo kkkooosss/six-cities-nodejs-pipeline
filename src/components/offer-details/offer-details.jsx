@@ -24,17 +24,17 @@ import ReviewTypes from '../../types/review.js';
 class OfferDetails extends React.PureComponent {
 
   componentDidMount() {
-    const {onRequestNearOffers, setDetailsOfferId, onRequestReviews, offerId} = this.props;
-    setDetailsOfferId(offerId);
+    const {onRequestNearOffers, onSetDetailsOfferId, onRequestReviews, offerId} = this.props;
+    onSetDetailsOfferId(offerId);
     onRequestNearOffers(offerId);
     onRequestReviews(offerId);
   }
 
   componentDidUpdate(prevProps) {
-    const {onRequestNearOffers, setDetailsOfferId, onRequestReviews, offerId} = this.props;
+    const {onRequestNearOffers, onSetDetailsOfferId, onRequestReviews, offerId} = this.props;
 
     if (offerId !== prevProps.offerId) {
-      setDetailsOfferId(offerId);
+      onSetDetailsOfferId(offerId);
       onRequestNearOffers(offerId);
       onRequestReviews(offerId);
     }
@@ -194,7 +194,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ReviewOperation.loadReviews(offerId));
   },
 
-  setDetailsOfferId: (offerId) => {
+  onSetDetailsOfferId: (offerId) => {
     const newOfferId = parseInt(offerId, 10);
     dispatch(DataActionsCreator.setDetailsOfferId(newOfferId));
   },
@@ -217,7 +217,7 @@ OfferDetails.propTypes = {
   onRequestReviews: PropTypes.func.isRequired,
   onRequestNearOffers: PropTypes.func.isRequired,
   onSetFavoriteStatus: PropTypes.func.isRequired,
-  setDetailsOfferId: PropTypes.func.isRequired,
+  onSetDetailsOfferId: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
   authStatus: PropTypes.string.isRequired,
 };
