@@ -15,70 +15,76 @@ import OfferTypes from '../../types/offer.js';
 import {getDetailsOffer} from '../../store/reducers/details/selectors.js';
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
 import {ROUTES as routes} from '../../helpers/constants.js';
+import {getAuthStatus} from '../../store/reducers/user/selectors.js';
+import {AuthStatus} from '../../helpers/constants.js';
 import withPrivateRoute from '../../hocs/with-private-route/with-private-route.jsx';
 
 const App = ({
   offers,
   onTitleClick,
   detailsOffer,
+  authStatus,
   onLogin,
   onSetFavoriteStatus,
   handleTitleClick
-}) => (
-
-  <BrowserRouter>
-    <Switch>
-      <Route exact path={routes.main}
-        render={(props) => {
-          return (
-            <Main
-              {...props}
-              offers={offers}
-              onSetFavoriteStatus={onSetFavoriteStatus}
-              onTitleClick={onTitleClick}
-            />
-          );
-        }}
-      />
-      <Route exact path={routes.details}
-        render={({match}) => {
-          const {id} = match.params;
-          return (
-            <OfferDetails
-              offerId={id}
-              offer={detailsOffer}
-              onSetFavoriteStatus={onSetFavoriteStatus}
-            />
-          );
-        }}
-      />
-      <Route exact path={routes.favorites}
-        render={() => {
-          return (
-            withPrivateRoute(<Favorites
-              onTitleClick={handleTitleClick}
-              onSetFavoriteStatus={onSetFavoriteStatus}
-            />)
-          );
-        }}
-      />
-      <Route exact path={routes.login}
-        render={() => {
-          return (
-            <Login
-              onLogin={onLogin}
-            />
-          );
-        }}
-      />
-    </Switch>
-  </BrowserRouter>
-
-);
+}) => {
+  const isAuthorized = authStatus === AuthStatus.auth;
+  const FavoritesWrapped = withPrivateRoute(Favorites, isAuthorized);
+  return (
+    <BrowserRouter>
+      <Switch>
+        <Route exact path={routes.main}
+          render={(props) => {
+            return (
+              <Main
+                {...props}
+                offers={offers}
+                onSetFavoriteStatus={onSetFavoriteStatus}
+                onTitleClick={onTitleClick}
+              />
+            );
+          }}
+        />
+        <Route exact path={routes.details}
+          render={({match}) => {
+            const {id} = match.params;
+            return (
+              <OfferDetails
+                offerId={id}
+                offer={detailsOffer}
+                onSetFavoriteStatus={onSetFavoriteStatus}
+              />
+            );
+          }}
+        />
+        <Route exact path={routes.favorites}
+          render={() => {
+            return (
+              <FavoritesWrapped
+                onTitleClick={handleTitleClick}
+                onSetFavoriteStatus={onSetFavoriteStatus}
+              />
+            );
+          }}
+        />
+        <Route exact path={routes.login}
+          render={() => {
+            return (
+              <Login
+                onLogin={onLogin}
+              />
+            );
+          }}
+        />
+      </Switch>
+    </BrowserRouter>
+  ) 
+};
 
 const mapStateToProps = (state) => ({
   offers: filterOffers(state),
   detailsOffer: getDetailsOffer(state),
+  authStatus: getAuthStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -105,6 +111,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 App.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
+  authStatus: PropTypes.string.isRequired,
   detailsOffer: OfferTypes,
   onTitleClick: PropTypes.func,
   onLogin: PropTypes.func,
