@@ -3,7 +3,8 @@ export const Actions = {
   getCities: `GET_CITIES`,
   getNearOffers: `GET_NEAR_OFFERS`,
   getFavorites: `GET_FAVORITES`,
-  setDetailsOfferId: `SET_DETAILS_OFFER_ID`
+  setDetailsOfferId: `SET_DETAILS_OFFER_ID`,
+  setLoadingFlag: `SET_LOADING_FLAG`
 };
 
 const ActionCreator = {
@@ -31,6 +32,11 @@ const ActionCreator = {
   setDetailsOfferId: (offerId) => ({
     type: Actions.setDetailsOfferId,
     payload: offerId
+  }),
+
+  setLoadingFlag: (flag) => ({
+    type: Actions.setLoadingFlag,
+    payload: flag
   }),
 
 };

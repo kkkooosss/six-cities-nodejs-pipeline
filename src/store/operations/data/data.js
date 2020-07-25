@@ -4,11 +4,13 @@ import {REQUEST_CODES as requestCodes} from '../../../helpers/constants.js';
 
 const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
+    dispatch(ActionCreator.setLoadingFlag(true));
     return api.get(`/hotels`)
       .then(
           (response) => {
             dispatch(ActionCreator.getOffers(formatOffers(response.data)));
             dispatch(ActionCreator.getCities(response.data));
+            dispatch(ActionCreator.setLoadingFlag(false));
           });
   },
 

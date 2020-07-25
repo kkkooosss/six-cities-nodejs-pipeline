@@ -14,16 +14,16 @@ import {reduceCities, reduceOffers} from '../../helpers/utils.js';
 import FilterActionCreator from '../../store/actions/filter/filter.js';
 
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
-import {getCities} from '../../store/reducers/data/selectors.js';
+import {getCities, getLoadingFlag} from '../../store/reducers/data/selectors.js';
 
-const Main = ({offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus}) => {
+const Main = ({offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus, loading}) => {
 
   const reducedCities = reduceCities(cities);
   const reducedOffers = reduceOffers(offers);
   const offersCount = offers.length;
   const areOffersEmpty = offersCount < 1;
 
-  return (
+  return loading ? <div>Loading...</div> : (
     <div className="page page--gray page--main">
       <Header />
 
@@ -58,6 +58,7 @@ const Main = ({offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus})
 };
 
 const mapStateToProps = (state) => ({
+  loading: getLoadingFlag(state),
   cities: getCities(state),
   selectedCity: getSelectedCity(state)
 });
@@ -72,6 +73,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(Main);
 
 Main.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
+  loading: PropTypes.bool.isRequired,
   cities: PropTypes.arrayOf(PropTypes.string).isRequired,
   selectedCity: PropTypes.string.isRequired,
   onCitySelect: PropTypes.func,

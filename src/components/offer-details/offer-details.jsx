@@ -190,7 +190,7 @@ export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);
 
 OfferDetails.propTypes = {
   offerId: PropTypes.string,
-  offer: OfferTypes.isRequired,
+  offer: OfferTypes,
   nearOffers: PropTypes.arrayOf(OfferTypes.isRequired),
   selectedCity: PropTypes.string,
   selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired),

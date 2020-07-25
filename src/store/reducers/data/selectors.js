@@ -9,17 +9,7 @@ export const getOffers = (state) => {
 
 export const getDetailsOfferId = (state) => {
   return state[NAME_SPACE].detailsOfferId;
-}
-
-// const stateMock = (state) => state;
-
-// export const getOfferById = (id) => createSelector(
-//     getOffers,
-//     stateMock,
-//     (offers) => {
-//       return offers.find((offer) => offer.id === Number(id));
-//     }
-// );
+};
 
 export const getOfferById = createSelector(
     [getOffers, getDetailsOfferId],
@@ -27,6 +17,10 @@ export const getOfferById = createSelector(
       return offers.find((offer) => offer.id === offerId);
     }
 );
+
+export const getLoadingFlag = (state) => {
+  return state[NAME_SPACE].loading;
+};
 
 export const getCities = (state) => {
   return state[NAME_SPACE].cities;
