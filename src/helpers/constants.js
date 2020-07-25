@@ -12,11 +12,11 @@ export const CITIES = {
 export const MAP_SETTINGS = {
   zoom: 12,
   icon: leaflet.icon({
-    iconUrl: `img/pin.svg`,
+    iconUrl: `/img/pin.svg`,
     iconSize: [30, 30]
   }),
   currentOfferIcon: leaflet.icon({
-    iconUrl: `img/pin-active.svg`,
+    iconUrl: `/img/pin-active.svg`,
     iconSize: [30, 30]
   })
 };

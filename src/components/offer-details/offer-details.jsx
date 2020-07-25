@@ -79,9 +79,9 @@ class OfferDetails extends React.PureComponent {
               </div>
               <div className="property__container container">
                 <div className="property__wrapper">
-                  <div className="property__mark">
-                    {isPremium ? <span>Premium</span> : null}
-                  </div>
+                  {isPremium ? <div className="property__mark">
+                    <span>Premium</span>
+                  </div> : null}
                   <div className="property__name-wrapper">
                     <h1 className="property__name">
                       {title}
@@ -129,7 +129,7 @@ class OfferDetails extends React.PureComponent {
                     <h2 className="property__host-title">Meet the host</h2>
                     <div className="property__host-user user">
                       <div className={`property__avatar-wrapper user__avatar-wrapper ${host.isPro ? `property__avatar-wrapper--pro` : null}`}>
-                        <img className="property__avatar user__avatar" src={host.userPic} width={74} height={74} alt="Host avatar" />
+                        <img className="property__avatar user__avatar" src={`/${host.userPic}`} width={74} height={74} alt="Host avatar" />
                       </div>
                       <span className="property__user-name">
                         {host.name}
