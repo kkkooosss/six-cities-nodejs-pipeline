@@ -8,6 +8,7 @@ import OfferCard from '../offer-card/offer-card.jsx';
 import Footer from '../footer/footer.jsx';
 import {getFavorites} from '../../store/reducers/data/selectors.js';
 import DataOperation from '../../store/operations/data/data.js';
+import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
 
 class Favorites extends React.Component {
   constructor(props) {
@@ -22,8 +23,9 @@ class Favorites extends React.Component {
   render() {
     const {favorites, onSetFavoriteStatus, onTitleClick} = this.props;
     const cities = [...new Set(favorites.map((offer) => offer.city.name))].sort();
+    const hasFavorites = favorites.length > 0;
 
-    return (
+    return hasFavorites ? (
       <div className="page">
 
         <Header />
@@ -69,7 +71,7 @@ class Favorites extends React.Component {
 
         <Footer />
       </div>
-    );
+    ) : <FavoritesEmpty />;
   }
 }
 

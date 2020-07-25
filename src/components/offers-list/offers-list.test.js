@@ -4,6 +4,7 @@ import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
 import OffersList from './offers-list.jsx';
+import {BrowserRouter} from 'react-router-dom';
 
 const OFFERS = [
   {
@@ -119,9 +120,11 @@ it(`OffersList renders correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <OffersList
-            offers={OFFERS}
-            isNearPlacesList={false} />
+          <BrowserRouter>
+            <OffersList
+              offers={OFFERS}
+              isNearPlacesList={false} />
+          </BrowserRouter>
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)
         }

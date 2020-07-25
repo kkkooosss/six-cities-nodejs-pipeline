@@ -53,21 +53,6 @@ Enzyme.configure({adapter: new Adapter()});
 
 describe(`e2e in OfferCard`, () => {
 
-  it(`click on the title works correctly`, () => {
-    const clickHandler = jest.fn();
-
-    const tree = shallow(<OfferCard
-      offer={OFFER}
-      onTitleClick={clickHandler}
-      isNearPlacesCard={false}
-    />);
-
-    const title = tree.find(`.place-card__name`);
-    title.simulate(`click`);
-
-    expect(clickHandler).toHaveBeenCalledTimes(1);
-  });
-
   it(`hover on the card works correctly`, () => {
     const hoverHandler = jest.fn();
 

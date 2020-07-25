@@ -41,25 +41,16 @@ exports[`Main renders correctly 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/"
+                href="/favorites"
                 onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
-                >
-                  <img
-                    src="https://4.react.pages.academy/six-cities/static/avatar/8.jpg"
-                    style={
-                      Object {
-                        "borderRadius": "50%",
-                      }
-                    }
-                  />
-                </div>
+                />
                 <span
                   className="header__user-name user__name"
                 >
-                  mail@email.com
+                  Sign In
                 </span>
               </a>
             </li>
@@ -166,12 +157,18 @@ exports[`Main renders correctly 1`] = `
             className="cities__places-list places__list tabs__content"
           >
             <article
-              className="place-card cities__place-card"
+              className="place-card
+      cities__place-card
+      
+      "
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
               <div
-                className="place-card__image-wrapperd cities__image-wrapper"
+                className="place-card__image-wrapperd
+        cities__image-wrapper
+        
+        "
               >
                 <a
                   href="#"
@@ -207,6 +204,7 @@ exports[`Main renders correctly 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -246,16 +244,16 @@ exports[`Main renders correctly 1`] = `
                     </span>
                   </div>
                 </div>
-                <h2
-                  className="place-card__name"
+                <a
+                  href="/offer/1"
                   onClick={[Function]}
                 >
-                  <a
-                    href="#"
+                  <h2
+                    className="place-card__name"
                   >
                     Penthouse, 4-5 rooms + 5 balconies
-                  </a>
-                </h2>
+                  </h2>
+                </a>
                 <p
                   className="place-card__type"
                 >
@@ -264,12 +262,18 @@ exports[`Main renders correctly 1`] = `
               </div>
             </article>
             <article
-              className="place-card cities__place-card"
+              className="place-card
+      cities__place-card
+      
+      "
               onMouseLeave={[Function]}
               onMouseOver={[Function]}
             >
               <div
-                className="place-card__image-wrapperd cities__image-wrapper"
+                className="place-card__image-wrapperd
+        cities__image-wrapper
+        
+        "
               >
                 <a
                   href="#"
@@ -305,6 +309,7 @@ exports[`Main renders correctly 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -344,16 +349,16 @@ exports[`Main renders correctly 1`] = `
                     </span>
                   </div>
                 </div>
-                <h2
-                  className="place-card__name"
+                <a
+                  href="/offer/2"
                   onClick={[Function]}
                 >
-                  <a
-                    href="#"
+                  <h2
+                    className="place-card__name"
                   >
                     Penthouse, 4-5 rooms + 5 balconies
-                  </a>
-                </h2>
+                  </h2>
+                </a>
                 <p
                   className="place-card__type"
                 >

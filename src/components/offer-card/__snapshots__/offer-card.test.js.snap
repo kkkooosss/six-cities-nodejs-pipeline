@@ -2,12 +2,18 @@
 
 exports[`OfferCard renders correctly 1`] = `
 <article
-  className="place-card cities__place-card"
+  className="place-card
+      cities__place-card
+      
+      "
   onMouseLeave={[Function]}
   onMouseOver={[Function]}
 >
   <div
-    className="place-card__image-wrapperd cities__image-wrapper"
+    className="place-card__image-wrapperd
+        cities__image-wrapper
+        
+        "
   >
     <a
       href="#"
@@ -43,6 +49,7 @@ exports[`OfferCard renders correctly 1`] = `
       </div>
       <button
         className="place-card__bookmark-button button"
+        onClick={[Function]}
         type="button"
       >
         <svg
@@ -82,16 +89,16 @@ exports[`OfferCard renders correctly 1`] = `
         </span>
       </div>
     </div>
-    <h2
-      className="place-card__name"
+    <a
+      href="/offer/1"
       onClick={[Function]}
     >
-      <a
-        href="#"
+      <h2
+        className="place-card__name"
       >
         Penthouse, 4-5 rooms + 5 balconies
-      </a>
-    </h2>
+      </h2>
+    </a>
     <p
       className="place-card__type"
     >

@@ -19,12 +19,17 @@ describe(`Load Offer operation works correctly`, () => {
 
     return dataLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
-        expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.getOffers,
-          payload: formatOffers(rawOffers)
-        });
-      });
+        expect(dispatch).toHaveBeenCalledTimes(4);
+        expect(dispatch).toHaveBeenNthCalledWith(1,
+            {
+              type: Actions.setLoadingFlag,
+              payload: true});
+      },
+      {
+        type: Actions.getOffers,
+        payload: formatOffers(rawOffers)
+      }
+      );
   });
 
   it(`Should make a correct API call to /hotels and get nearOffers for hotel number 1`, function () {

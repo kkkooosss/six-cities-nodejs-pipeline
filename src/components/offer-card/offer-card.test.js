@@ -1,5 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {BrowserRouter} from 'react-router-dom';
+
 import OfferCard from './offer-card.jsx';
 
 const OFFER = {
@@ -48,15 +50,15 @@ const OFFER = {
   id: 1
 };
 
-
 it(`OfferCard renders correctly`, () => {
   const tree = renderer
-    .create(<OfferCard
-      offer={OFFER}
-      isNearPlacesCard={false}
-    />, {
-      createNodeMock: () => document.createElement(`div`)
-    })
+    .create(
+        <BrowserRouter>
+          <OfferCard offer={OFFER}
+            isNearPlacesCard={false} />
+        </BrowserRouter>, {
+          createNodeMock: () => document.createElement(`div`)
+        })
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

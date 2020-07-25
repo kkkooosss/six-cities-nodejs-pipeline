@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import Loader from './loader.jsx';
 
-it(`Header renders correctly`, () => {
+it(`Loader renders correctly`, () => {
   const tree = renderer
     .create(
         <Loader />, {
