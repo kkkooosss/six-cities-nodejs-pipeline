@@ -57,7 +57,7 @@ const withLogin = (Component) => {
       if (isValidEmail && isValidPassword) {
         onLogin({email, password});
       }
-      window.history.back();
+      history.back();
     }
 
     render() {
