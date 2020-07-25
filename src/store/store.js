@@ -11,7 +11,7 @@ import UserActionCreator from './actions/user/user.js';
 import {AuthStatus} from '../helpers/constants.js';
 
 const onUnauthorized = () => {
-  store.dispatch(UserActionCreator.setAuthorizationStatus(AuthStatus.noAuth));
+  store.dispatch(UserActionCreator.setAuthStatus(AuthStatus.noAuth));
 };
 
 const api = createAPI(onUnauthorized);

@@ -10,7 +10,7 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
-    case Actions.setAuthorizationStatus:
+    case Actions.setAuthStatus:
       return extend(state, {
         authStatus: action.payload
       });
