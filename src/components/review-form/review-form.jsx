@@ -83,4 +83,6 @@ ReviewForm.propTypes = {
   submitRef: PropTypes.object.isRequired,
 };
 
+export {ReviewForm};
+
 export default withReviewForm(ReviewForm);

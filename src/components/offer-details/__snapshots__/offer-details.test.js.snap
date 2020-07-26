@@ -25,7 +25,7 @@ exports[`OfferDetails renders correctly 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height={41}
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width={81}
             />
           </a>
@@ -97,9 +97,6 @@ exports[`OfferDetails renders correctly 1`] = `
         <div
           className="property__wrapper"
         >
-          <div
-            className="property__mark"
-          />
           <div
             className="property__name-wrapper"
           >
@@ -257,7 +254,7 @@ exports[`OfferDetails renders correctly 1`] = `
                   alt="Host avatar"
                   className="property__avatar user__avatar"
                   height={74}
-                  src="img/avatar-angelina.jpg"
+                  src="/img/avatar-angelina.jpg"
                   width={74}
                 />
               </div>

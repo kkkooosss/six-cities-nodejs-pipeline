@@ -85,6 +85,8 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {Favorites};
+
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
 
 Favorites.propTypes = {
