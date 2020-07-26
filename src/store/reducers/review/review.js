@@ -20,11 +20,6 @@ const reducer = (state = initialState, action = {}) => {
         sending: action.payload
       });
 
-    case Actions.toggleSendingFlag:
-      return extend(state, {
-        sending: !state.sending
-      });
-
     case Actions.setErrorFlag:
       return extend(state, {
         error: action.payload

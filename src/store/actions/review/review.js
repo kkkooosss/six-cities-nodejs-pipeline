@@ -1,7 +1,6 @@
 export const Actions = {
   getReviews: `GET_REVIEWS`,
   setSendingFlag: `SET_SENDING_FLAG`,
-  toggleSendingFlag: `TOGGLE_SENDING_FLAG`,
   setErrorFlag: `SET_ERROR_FLAG`,
 };
 
@@ -17,12 +16,6 @@ const ActionCreator = {
     return {
       type: Actions.setSendingFlag,
       payload: flag
-    };
-  },
-
-  toggleSendingFlag: () => {
-    return {
-      type: Actions.toggleSendingFlag
     };
   },
 
