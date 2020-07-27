@@ -21,6 +21,7 @@ import {getAuthStatus} from '../../store/reducers/user/selectors.js';
 import {getReviews} from '../../store/reducers/review/selectors.js';
 import ReviewTypes from '../../types/review.js';
 import {CARD_TYPES} from '../../helpers/constants.js';
+import {AuthStatus} from '../../helpers/constants.js';
 
 class OfferDetails extends React.PureComponent {
 
@@ -60,6 +61,7 @@ class OfferDetails extends React.PureComponent {
         description
       } = offer;
 
+      const isAuthorized = authStatus === AuthStatus.auth;
       const reducedOffers = reduceOffers(nearOffers);
       const stars = getRatingInPercents(rating);
 
@@ -89,10 +91,19 @@ class OfferDetails extends React.PureComponent {
                     </h1>
                     <button
                       type="button"
-                      className={`button ${isFavorite ? `property__bookmark-button--active` : `property__bookmark-button`}`}
+                      className="button property__bookmark-button"
                       onClick={() => onSetFavoriteStatus(id, isFavorite)}
+                      disabled={!isAuthorized}
                     >
-                      <svg className="property__bookmark-icon" width={31} height={33}>
+                      <svg
+                        className="property__bookmark-icon"
+                        width={31}
+                        height={33}
+                        style={{
+                          fill: isFavorite ? `#4481c3` : `none`,
+                          stroke: isFavorite ? `#4481c3` : `#979797`
+                        }}
+                      >
                         <use xlinkHref="#icon-bookmark" />
                       </svg>
                       <span className="visually-hidden">To bookmarks</span>
@@ -146,6 +157,7 @@ class OfferDetails extends React.PureComponent {
                   <ReviewsList
                     offerId={id}
                     authStatus={authStatus}
+                    isAuthorized={isAuthorized}
                     reviews={reviews}
                   />
 

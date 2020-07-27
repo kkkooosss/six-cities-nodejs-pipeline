@@ -123,7 +123,7 @@ it(`OffersList renders correctly`, () => {
           <BrowserRouter>
             <OffersList
               offers={OFFERS}
-              isNearPlacesList={false} />
+              cardType={`cities`} />
           </BrowserRouter>
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)

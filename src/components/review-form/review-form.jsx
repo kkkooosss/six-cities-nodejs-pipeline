@@ -74,7 +74,7 @@ const ReviewForm = ({
 
 ReviewForm.propTypes = {
   errorStyle: PropTypes.object.isRequired,
-  error: PropTypes.string,
+  error: PropTypes.bool,
   onRatingChange: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,

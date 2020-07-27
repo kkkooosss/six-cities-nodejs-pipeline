@@ -37,8 +37,10 @@ it(`OfferDetails renders correctly`, () => {
           offers={mockOffers}
           nearOffers={mockOffers}
           reviews={mockReviews}
+          authStatus={`AUTH`}
           onRequestReviews={() => mockReviews}
           onRequestNearOffers={() => mockOffers}
+          onSetFavoriteStatus={() => {}}
           onSetDetailsOfferId={() => 1}
         />
       </BrowserRouter>

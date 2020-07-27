@@ -2,15 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ReviewTypes from '../../types/review.js';
-import {AuthStatus} from '../../helpers/constants.js';
 
 import Review from '../review/review.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
 
-const ReviewsList = ({offerId, reviews, authStatus}) => {
+const ReviewsList = ({offerId, reviews, isAuthorized}) => {
 
   const reviewsCount = reviews.length;
-  const isAuthorized = authStatus === AuthStatus.auth;
 
   return (
     <section className="property__reviews reviews">
@@ -30,6 +28,6 @@ export default ReviewsList;
 
 ReviewsList.propTypes = {
   reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
-  authStatus: PropTypes.string.isRequired,
+  isAuthorized: PropTypes.bool.isRequired,
   offerId: PropTypes.number.isRequired,
 };

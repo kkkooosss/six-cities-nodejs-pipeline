@@ -55,7 +55,7 @@ it(`OfferCard renders correctly`, () => {
     .create(
         <BrowserRouter>
           <OfferCard offer={OFFER}
-            isNearPlacesCard={false} />
+            cardType={`cities`} />
         </BrowserRouter>, {
           createNodeMock: () => document.createElement(`div`)
         })

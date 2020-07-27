@@ -59,7 +59,7 @@ describe(`e2e in OfferCard`, () => {
     const tree = shallow(<OfferCard
       offer={OFFER}
       onCardHover={hoverHandler}
-      isNearPlacesCard={false}
+      cardType={`cities`}
     />);
 
     tree.simulate(`mouseover`);

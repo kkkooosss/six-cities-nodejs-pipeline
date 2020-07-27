@@ -31,7 +31,7 @@ it(`ReviewsList renders correctly`, () => {
       <Provider store={mockStore}>
         <ReviewsList
           offerId={1}
-          authStatus={`AUTH`}
+          isAuthorized={true}
           reviews={mockReviews}
           onRequestReviews={() => mockReviews}
         />
