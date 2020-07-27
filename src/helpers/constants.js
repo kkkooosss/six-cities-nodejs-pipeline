@@ -52,3 +52,21 @@ export const REQUEST_CODES = {
   add: 1,
   remove: 0
 };
+
+export const CARD_TYPES = [
+  `cities`,
+  `nearPlaces`,
+  `favorites`
+];
+
+export const CARD_CLASSES = {
+  cities: `cities__place-card`,
+  nearPlaces: `near-places__card`,
+  favorites: `favorites__card`
+};
+
+export const WRAPPER_CLASSES = {
+  cities: `cities__image-wrapper`,
+  nearPlaces: `near-places__image-wrapper`,
+  favorites: `favorites__image-wrapper`
+};

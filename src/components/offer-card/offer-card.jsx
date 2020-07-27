@@ -4,8 +4,9 @@ import {Link} from 'react-router-dom';
 
 import OfferTypes from '../../types/offer.js';
 import {getRatingInPercents} from '../../helpers/utils.js';
+import {CARD_CLASSES, WRAPPER_CLASSES} from '../../helpers/constants.js';
 
-const OfferCard = ({offer, onCardHover, onCardHoverLeave, isNearPlacesCard, isFavoritesCard, onSetFavoriteStatus}) => {
+const OfferCard = ({offer, onCardHover, onCardHoverLeave, cardType, onSetFavoriteStatus}) => {
 
   const {
     id,
@@ -18,14 +19,14 @@ const OfferCard = ({offer, onCardHover, onCardHoverLeave, isNearPlacesCard, isFa
     type
   } = offer;
 
+  const cardClass = CARD_CLASSES[cardType];
+  const wrapperClass = WRAPPER_CLASSES[cardType];
+
   const stars = getRatingInPercents(rating);
 
   return (
     <article
-      className={`place-card
-      ${isNearPlacesCard ? `near-places__card` : `cities__place-card`}
-      ${isFavoritesCard ? `favorites__card` : ``}
-      `}
+      className={`place-card ${cardClass}`}
       onMouseOver={() => onCardHover(offer)}
       onMouseLeave={() => onCardHoverLeave()}
     >
@@ -33,10 +34,7 @@ const OfferCard = ({offer, onCardHover, onCardHoverLeave, isNearPlacesCard, isFa
         <span>Premium</span>
       </div> : null}
       <div
-        className={`place-card__image-wrapperd
-        ${isNearPlacesCard ? `near-places__image-wrapper` : `cities__image-wrapper`}
-        ${isFavoritesCard ? `favorites__image-wrapper` : ``}
-        `}>
+        className={`place-card__image-wrapper ${wrapperClass}`}>
         <a href="#">
           <img
             className="place-card__image"
@@ -90,7 +88,6 @@ OfferCard.propTypes = {
   offer: OfferTypes.isRequired,
   onCardHover: PropTypes.func,
   onCardHoverLeave: PropTypes.func,
-  isNearPlacesCard: PropTypes.bool,
-  isFavoritesCard: PropTypes.bool,
+  cardType: PropTypes.string.isRequired,
   onSetFavoriteStatus: PropTypes.func
 };

@@ -20,6 +20,7 @@ import {getOfferById, getNearOffers, getOffers} from '../../store/reducers/data/
 import {getAuthStatus} from '../../store/reducers/user/selectors.js';
 import {getReviews} from '../../store/reducers/review/selectors.js';
 import ReviewTypes from '../../types/review.js';
+import {CARD_TYPES} from '../../helpers/constants.js';
 
 class OfferDetails extends React.PureComponent {
 
@@ -87,8 +88,8 @@ class OfferDetails extends React.PureComponent {
                       {title}
                     </h1>
                     <button
-                      className={`${isFavorite ? `property__bookmark-button--active` : `property__bookmark-button`} button`}
                       type="button"
+                      className={`button ${isFavorite ? `property__bookmark-button--active` : `property__bookmark-button`}`}
                       onClick={() => onSetFavoriteStatus(id, isFavorite)}
                     >
                       <svg className="property__bookmark-icon" width={31} height={33}>
@@ -165,7 +166,7 @@ class OfferDetails extends React.PureComponent {
                   <OffersList
                     offers={reducedOffers}
                     onSetFavoriteStatus={onSetFavoriteStatus}
-                    isNearPlacesList={true}
+                    cardType={CARD_TYPES.nearPlaces}
                   />
 
                 </div>

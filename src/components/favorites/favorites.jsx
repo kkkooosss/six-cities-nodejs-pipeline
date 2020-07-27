@@ -9,6 +9,7 @@ import Footer from '../footer/footer.jsx';
 import {getFavorites} from '../../store/reducers/data/selectors.js';
 import DataOperation from '../../store/operations/data/data.js';
 import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
+import {CARD_TYPES} from '../../helpers/constants.js';
 
 class Favorites extends React.Component {
   constructor(props) {
@@ -57,7 +58,7 @@ class Favorites extends React.Component {
                           onSetFavoriteStatus={onSetFavoriteStatus}
                           onTitleClick={onTitleClick}
                           key={offer.id}
-                          isFavoritesCard={true}
+                          cardType={CARD_TYPES.favorites}
                         />))}
 
                     </div>

@@ -106,7 +106,7 @@ exports[`OfferDetails renders correctly 1`] = `
               Penthouse, 4-5 rooms + 5 balconies
             </h1>
             <button
-              className="property__bookmark-button button"
+              className="button property__bookmark-button"
               onClick={[Function]}
               type="button"
             >
@@ -432,18 +432,12 @@ exports[`OfferDetails renders correctly 1`] = `
           className="near-places__list places__list"
         >
           <article
-            className="place-card
-      near-places__card
-      
-      "
+            className="place-card undefined"
             onMouseLeave={[Function]}
             onMouseOver={[Function]}
           >
             <div
-              className="place-card__image-wrapperd
-        near-places__image-wrapper
-        
-        "
+              className="place-card__image-wrapper undefined"
             >
               <a
                 href="#"
@@ -537,18 +531,12 @@ exports[`OfferDetails renders correctly 1`] = `
             </div>
           </article>
           <article
-            className="place-card
-      near-places__card
-      
-      "
+            className="place-card undefined"
             onMouseLeave={[Function]}
             onMouseOver={[Function]}
           >
             <div
-              className="place-card__image-wrapperd
-        near-places__image-wrapper
-        
-        "
+              className="place-card__image-wrapper undefined"
             >
               <a
                 href="#"

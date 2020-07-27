@@ -3,18 +3,12 @@
 exports[`OffersList renders correctly 1`] = `
 Array [
   <article
-    className="place-card
-      cities__place-card
-      
-      "
+    className="place-card undefined"
     onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
     <div
-      className="place-card__image-wrapperd
-        cities__image-wrapper
-        
-        "
+      className="place-card__image-wrapper undefined"
     >
       <a
         href="#"
@@ -108,18 +102,12 @@ Array [
     </div>
   </article>,
   <article
-    className="place-card
-      cities__place-card
-      
-      "
+    className="place-card undefined"
     onMouseLeave={[Function]}
     onMouseOver={[Function]}
   >
     <div
-      className="place-card__image-wrapperd
-        cities__image-wrapper
-        
-        "
+      className="place-card__image-wrapper undefined"
     >
       <a
         href="#"
