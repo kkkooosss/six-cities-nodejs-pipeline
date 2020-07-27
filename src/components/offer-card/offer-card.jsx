@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 import OfferTypes from '../../types/offer.js';
 import {getRatingInPercents} from '../../helpers/utils.js';
-import {CARD_CLASSES, WRAPPER_CLASSES} from '../../helpers/constants.js';
+import {CARD_CLASSES, WRAPPER_CLASSES, CARD_TYPES, IMAGE_SIZES} from '../../helpers/constants.js';
 
 const OfferCard = ({offer, onCardHover, onCardHoverLeave, cardType, onSetFavoriteStatus}) => {
 
@@ -21,6 +21,8 @@ const OfferCard = ({offer, onCardHover, onCardHoverLeave, cardType, onSetFavorit
 
   const cardClass = CARD_CLASSES[cardType];
   const wrapperClass = WRAPPER_CLASSES[cardType];
+  const imageWidth = IMAGE_SIZES[cardType].width;
+  const imageHeight = IMAGE_SIZES[cardType].height;
 
   const stars = getRatingInPercents(rating);
 
@@ -39,8 +41,8 @@ const OfferCard = ({offer, onCardHover, onCardHoverLeave, cardType, onSetFavorit
           <img
             className="place-card__image"
             src={previewImage}
-            width={260}
-            height={200}
+            width={imageWidth}
+            height={imageHeight}
             alt="Place image"
           />
         </a>

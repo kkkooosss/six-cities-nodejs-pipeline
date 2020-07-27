@@ -70,3 +70,18 @@ export const WRAPPER_CLASSES = {
   nearPlaces: `near-places__image-wrapper`,
   favorites: `favorites__image-wrapper`
 };
+
+export const IMAGE_SIZES = {
+  cities: {
+    width: 260,
+    height: 200
+  },
+  nearPlaces: {
+    width: 260,
+    height: 200
+  },
+  favorites: {
+    width: 150,
+    height: 110
+  }
+};
