@@ -1,14 +1,7 @@
 import {Actions} from '../../actions/user/user.js';
 import {AuthStatus} from '../../../helpers/constants.js';
 import reducer from './user.js';
-
-const USER = {
-  id: 1,
-  email: `mail@email.com`,
-  name: `John Doe`,
-  avatarUrl: `/img/john_doe.jpg`,
-  isPro: true
-};
+import USER from '../../../mocks/user.js';
 
 describe(`User reducer work correctly`, () => {
 
