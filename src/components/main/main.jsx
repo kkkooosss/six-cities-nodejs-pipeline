@@ -16,6 +16,7 @@ import FilterActionCreator from '../../store/actions/filter/filter.js';
 
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
 import {getCities, getLoadingFlag} from '../../store/reducers/data/selectors.js';
+import {CARD_TYPES} from '../../helpers/constants.js';
 
 const Main = ({offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus, loading}) => {
 
@@ -43,7 +44,7 @@ const Main = ({offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus, 
                 <b className="places__found">{offersCount} places to stay in {selectedCity}</b>
                 <OffersSort />
                 <div className="cities__places-list places__list tabs__content">
-                  <OffersList offers={reducedOffers} onSetFavoriteStatus={onSetFavoriteStatus} isNearPlacesList={false} />
+                  <OffersList offers={reducedOffers} onSetFavoriteStatus={onSetFavoriteStatus} cardType={CARD_TYPES.cities} />
                 </div>
               </section>
               <div className="cities__right-section">

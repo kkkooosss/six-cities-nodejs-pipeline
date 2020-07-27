@@ -53,11 +53,11 @@ export const REQUEST_CODES = {
   remove: 0
 };
 
-export const CARD_TYPES = [
-  `cities`,
-  `nearPlaces`,
-  `favorites`
-];
+export const CARD_TYPES = {
+  cities: `cities`,
+  nearPlaces: `nearPlaces`,
+  favorites: `favorites`
+};
 
 export const CARD_CLASSES = {
   cities: `cities__place-card`,
