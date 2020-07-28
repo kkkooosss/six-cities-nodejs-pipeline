@@ -4,7 +4,10 @@ import {Actions} from '../../actions/data/data.js';
 const initialState = {
   offers: [],
   cities: [],
-  nearOffers: []
+  nearOffers: [],
+  favorites: [],
+  detailsOfferId: null,
+  loading: true
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -25,6 +28,20 @@ const reducer = (state = initialState, action = {}) => {
         nearOffers: action.payload
       });
 
+    case Actions.getFavorites:
+      return extend(state, {
+        favorites: action.payload
+      });
+
+    case Actions.setDetailsOfferId:
+      return extend(state, {
+        detailsOfferId: action.payload
+      });
+
+    case Actions.setLoadingFlag:
+      return extend(state, {
+        loading: action.payload
+      });
   }
   return state;
 };

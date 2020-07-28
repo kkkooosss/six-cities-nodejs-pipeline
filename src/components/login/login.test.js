@@ -10,7 +10,9 @@ it(`Header renders correctly`, () => {
     .create(
         <Provider store={mockStore}>
           <BrowserRouter>
-            <Login onLogin={() => {}}/>
+            <Login
+              onLogin={() => {}}
+            />
           </BrowserRouter>
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)

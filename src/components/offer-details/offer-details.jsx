@@ -5,48 +5,68 @@ import {connect} from 'react-redux';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Map from '../map/map.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
+import Loader from '../loader/loader.jsx';
 import Header from '../header/header.jsx';
 import {getRatingInPercents} from '../../helpers/utils.js';
 
 import OfferTypes from '../../types/offer.js';
+import DataActionsCreator from '../../store/actions/data/data.js';
+import DataOperation from '../../store/operations/data/data.js';
+import ReviewOperation from '../../store/operations/review/review.js';
 import {reduceOffers} from '../../helpers/utils.js';
 import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
-import {getNearOffers} from '../../store/reducers/data/selectors.js';
+import {getOfferById, getNearOffers, getOffers} from '../../store/reducers/data/selectors.js';
+
+import {getAuthStatus} from '../../store/reducers/user/selectors.js';
+import {getReviews} from '../../store/reducers/review/selectors.js';
+import ReviewTypes from '../../types/review.js';
+import {CARD_TYPES} from '../../helpers/constants.js';
+import {AuthStatus} from '../../helpers/constants.js';
 
 class OfferDetails extends React.PureComponent {
 
   componentDidMount() {
-    const {onRequestNearOffers} = this.props;
-    const {id} = this.props.offer;
+    const {onRequestNearOffers, onSetDetailsOfferId, onRequestReviews, offerId} = this.props;
+    onSetDetailsOfferId(offerId);
+    onRequestNearOffers(offerId);
+    onRequestReviews(offerId);
+  }
 
-    onRequestNearOffers(id);
+  componentDidUpdate(prevProps) {
+    const {onRequestNearOffers, onSetDetailsOfferId, onRequestReviews, offerId} = this.props;
+
+    if (offerId !== prevProps.offerId) {
+      onSetDetailsOfferId(offerId);
+      onRequestNearOffers(offerId);
+      onRequestReviews(offerId);
+    }
   }
 
   render() {
-    const {offer, nearOffers, onRequestReviews} = this.props;
-    const {
-      id,
-      title,
-      type,
-      isPremium,
-      price,
-      images,
-      host,
-      rating,
-      bedrooms,
-      capacity,
-      amenities,
-      description
-    } = offer;
+    if (this.props.offer) {
+      const {offer, nearOffers, onSetFavoriteStatus, authStatus, reviews} = this.props;
+      const {
+        id,
+        title,
+        type,
+        isPremium,
+        isFavorite,
+        price,
+        images,
+        host,
+        rating,
+        bedrooms,
+        capacity,
+        amenities,
+        description
+      } = offer;
 
-    const hasData = offer && nearOffers;
-    const reducedOffers = reduceOffers(nearOffers);
-    const stars = getRatingInPercents(rating);
+      const isAuthorized = authStatus === AuthStatus.auth;
+      const reducedOffers = reduceOffers(nearOffers);
+      const stars = getRatingInPercents(rating);
 
-    return (
-      !hasData
-        ? <div>Loading...</div>
-        : <div className="page">
+      return (
+        <div className="page">
           <Header />
 
           <main className="page__main page__main--property">
@@ -62,15 +82,28 @@ class OfferDetails extends React.PureComponent {
               </div>
               <div className="property__container container">
                 <div className="property__wrapper">
-                  <div className="property__mark">
-                    {isPremium ? <span>Premium</span> : null}
-                  </div>
+                  {isPremium ? <div className="property__mark">
+                    <span>Premium</span>
+                  </div> : null}
                   <div className="property__name-wrapper">
                     <h1 className="property__name">
                       {title}
                     </h1>
-                    <button className="property__bookmark-button button" type="button">
-                      <svg className="property__bookmark-icon" width={31} height={33}>
+                    <button
+                      type="button"
+                      className="button property__bookmark-button"
+                      onClick={() => onSetFavoriteStatus(id, isFavorite)}
+                      disabled={!isAuthorized}
+                    >
+                      <svg
+                        className="property__bookmark-icon"
+                        width={31}
+                        height={33}
+                        style={{
+                          fill: isFavorite ? `#4481c3` : `none`,
+                          stroke: isFavorite ? `#4481c3` : `#979797`
+                        }}
+                      >
                         <use xlinkHref="#icon-bookmark" />
                       </svg>
                       <span className="visually-hidden">To bookmarks</span>
@@ -91,7 +124,7 @@ class OfferDetails extends React.PureComponent {
                       {bedrooms} Bedrooms
                     </li>
                     <li className="property__feature property__feature--adults">
-                  Max {capacity} adults
+                Max {capacity} adults
                     </li>
                   </ul>
                   <div className="property__price">
@@ -108,7 +141,7 @@ class OfferDetails extends React.PureComponent {
                     <h2 className="property__host-title">Meet the host</h2>
                     <div className="property__host-user user">
                       <div className={`property__avatar-wrapper user__avatar-wrapper ${host.isPro ? `property__avatar-wrapper--pro` : null}`}>
-                        <img className="property__avatar user__avatar" src={host.userPic} width={74} height={74} alt="Host avatar" />
+                        <img className="property__avatar user__avatar" src={`/${host.userPic}`} width={74} height={74} alt="Host avatar" />
                       </div>
                       <span className="property__user-name">
                         {host.name}
@@ -121,19 +154,32 @@ class OfferDetails extends React.PureComponent {
                     </div>
                   </div>
 
-                  <ReviewsList offerId={id} onRequestReviews={onRequestReviews} />
+                  <ReviewsList
+                    offerId={id}
+                    authStatus={authStatus}
+                    isAuthorized={isAuthorized}
+                    reviews={reviews}
+                  />
 
                 </div>
               </div>
             </section>
-            <Map offers={reducedOffers} isPropertyMap={true} currentOffer={offer} />
+            <Map
+              offers={reducedOffers}
+              isPropertyMap={true}
+              currentOffer={offer}
+            />
 
             <div className="container">
               <section className="near-places places">
                 <h2 className="near-places__title">Other places in the neighbourhood</h2>
                 <div className="near-places__list places__list">
 
-                  <OffersList offers={reducedOffers} isNearPlacesList={true} />
+                  <OffersList
+                    offers={reducedOffers}
+                    onSetFavoriteStatus={onSetFavoriteStatus}
+                    cardType={CARD_TYPES.nearPlaces}
+                  />
 
                 </div>
               </section>
@@ -141,22 +187,50 @@ class OfferDetails extends React.PureComponent {
             </div>
           </main>
         </div>);
+    } else {
+      return <Loader />;
+    }
   }
 }
 
 const mapStateToProps = (state) => ({
+  offers: getOffers(state),
+  offer: getOfferById(state),
   nearOffers: getNearOffers(state),
-  selectedCity: getSelectedCity(state)
+  selectedCity: getSelectedCity(state),
+  authStatus: getAuthStatus(state),
+  reviews: getReviews(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onRequestReviews: (offerId) => {
+    dispatch(ReviewOperation.loadReviews(offerId));
+  },
+
+  onSetDetailsOfferId: (offerId) => {
+    const newOfferId = parseInt(offerId, 10);
+    dispatch(DataActionsCreator.setDetailsOfferId(newOfferId));
+  },
+
+  onRequestNearOffers: (offerId) => {
+    dispatch(DataOperation.loadNearOffers(offerId));
+  },
+
 });
 
 export {OfferDetails};
-export default connect(mapStateToProps, null)(OfferDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);
 
 OfferDetails.propTypes = {
-  offer: OfferTypes.isRequired,
+  offerId: PropTypes.string,
+  offer: OfferTypes,
   nearOffers: PropTypes.arrayOf(OfferTypes.isRequired),
   selectedCity: PropTypes.string,
   selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired),
   onRequestReviews: PropTypes.func.isRequired,
   onRequestNearOffers: PropTypes.func.isRequired,
+  onSetFavoriteStatus: PropTypes.func.isRequired,
+  onSetDetailsOfferId: PropTypes.func.isRequired,
+  reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
+  authStatus: PropTypes.string.isRequired,
 };

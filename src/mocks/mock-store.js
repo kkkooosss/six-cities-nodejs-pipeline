@@ -6,7 +6,8 @@ const store = createStore(() => ({
   DATA: {
     offers: OFFERS,
     cities: [`Amsterdam`, `Berlin`],
-    nearOffers: OFFERS
+    nearOffers: OFFERS,
+    loading: false
   },
   FILTER: {
     selectedCity: `Amsterdam`,
@@ -16,13 +17,15 @@ const store = createStore(() => ({
     detailsOffer: OFFERS[0],
   },
   REVIEWS: {
-    reviews: REVIEWS
+    reviews: REVIEWS,
+    sending: false,
+    error: false
   },
   ACTIVE: {
     activeOffer: OFFERS[0]
   },
   USER: {
-    authorizationStatus: `AUTH`,
+    authStatus: `AUTH`,
     user: {
       id: 1,
       email: `mail@email.com`,

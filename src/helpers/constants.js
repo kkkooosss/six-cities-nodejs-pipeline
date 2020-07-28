@@ -12,11 +12,11 @@ export const CITIES = {
 export const MAP_SETTINGS = {
   zoom: 12,
   icon: leaflet.icon({
-    iconUrl: `img/pin.svg`,
+    iconUrl: `/img/pin.svg`,
     iconSize: [30, 30]
   }),
   currentOfferIcon: leaflet.icon({
-    iconUrl: `img/pin-active.svg`,
+    iconUrl: `/img/pin-active.svg`,
     iconSize: [30, 30]
   })
 };
@@ -35,3 +35,53 @@ export const RATING_TITLES = [
   `badly`,
   `terribly`
 ];
+
+export const AuthStatus = {
+  auth: `AUTH`,
+  noAuth: `NO_AUTH`,
+};
+
+export const ROUTES = {
+  main: `/`,
+  login: `/signin`,
+  favorites: `/favorites`,
+  details: `/offer/:id`,
+};
+
+export const REQUEST_CODES = {
+  add: 1,
+  remove: 0
+};
+
+export const CARD_TYPES = {
+  cities: `cities`,
+  nearPlaces: `nearPlaces`,
+  favorites: `favorites`
+};
+
+export const CARD_CLASSES = {
+  cities: `cities__place-card`,
+  nearPlaces: `near-places__card`,
+  favorites: `favorites__card`
+};
+
+export const WRAPPER_CLASSES = {
+  cities: `cities__image-wrapper`,
+  nearPlaces: `near-places__image-wrapper`,
+  favorites: `favorites__image-wrapper`
+};
+
+export const IMAGE_SIZES = {
+  cities: {
+    width: 260,
+    height: 200
+  },
+  nearPlaces: {
+    width: 260,
+    height: 200
+  },
+  favorites: {
+    width: 150,
+    height: 110
+  }
+};

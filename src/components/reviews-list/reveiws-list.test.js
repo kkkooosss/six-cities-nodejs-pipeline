@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import {ReviewsList} from './reviews-list.jsx';
+import ReviewsList from './reviews-list.jsx';
 import mockStore from '../../mocks/mock-store.js';
 
 const mockReviews = [
@@ -31,7 +31,7 @@ it(`ReviewsList renders correctly`, () => {
       <Provider store={mockStore}>
         <ReviewsList
           offerId={1}
-          authorizationStatus={`AUTH`}
+          isAuthorized={true}
           reviews={mockReviews}
           onRequestReviews={() => mockReviews}
         />

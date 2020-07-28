@@ -25,7 +25,7 @@ exports[`Main renders correctly 1`] = `
               alt="6 cities logo"
               className="header__logo"
               height={41}
-              src="img/logo.svg"
+              src="/img/logo.svg"
               width={81}
             />
           </a>
@@ -41,7 +41,7 @@ exports[`Main renders correctly 1`] = `
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="/"
+                href="/favorites"
                 onClick={[Function]}
               >
                 <div
@@ -171,7 +171,7 @@ exports[`Main renders correctly 1`] = `
               onMouseOver={[Function]}
             >
               <div
-                className="place-card__image-wrapperd cities__image-wrapper"
+                className="place-card__image-wrapper cities__image-wrapper"
               >
                 <a
                   href="#"
@@ -207,6 +207,7 @@ exports[`Main renders correctly 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -246,16 +247,16 @@ exports[`Main renders correctly 1`] = `
                     </span>
                   </div>
                 </div>
-                <h2
-                  className="place-card__name"
+                <a
+                  href="/offer/1"
                   onClick={[Function]}
                 >
-                  <a
-                    href="#"
+                  <h2
+                    className="place-card__name"
                   >
                     Penthouse, 4-5 rooms + 5 balconies
-                  </a>
-                </h2>
+                  </h2>
+                </a>
                 <p
                   className="place-card__type"
                 >
@@ -269,7 +270,7 @@ exports[`Main renders correctly 1`] = `
               onMouseOver={[Function]}
             >
               <div
-                className="place-card__image-wrapperd cities__image-wrapper"
+                className="place-card__image-wrapper cities__image-wrapper"
               >
                 <a
                   href="#"
@@ -305,6 +306,7 @@ exports[`Main renders correctly 1`] = `
                   </div>
                   <button
                     className="place-card__bookmark-button button"
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -344,16 +346,16 @@ exports[`Main renders correctly 1`] = `
                     </span>
                   </div>
                 </div>
-                <h2
-                  className="place-card__name"
+                <a
+                  href="/offer/2"
                   onClick={[Function]}
                 >
-                  <a
-                    href="#"
+                  <h2
+                    className="place-card__name"
                   >
                     Penthouse, 4-5 rooms + 5 balconies
-                  </a>
-                </h2>
+                  </h2>
+                </a>
                 <p
                   className="place-card__type"
                 >

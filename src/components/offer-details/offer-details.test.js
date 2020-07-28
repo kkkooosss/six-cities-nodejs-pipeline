@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import OfferDetails from './offer-details.jsx';
+import {OfferDetails} from './offer-details.jsx';
 import {BrowserRouter} from 'react-router-dom';
 
 import mockStore from '../../mocks/mock-store.js';
@@ -34,8 +34,14 @@ it(`OfferDetails renders correctly`, () => {
       <BrowserRouter>
         <OfferDetails
           offer={mockOffers[0]}
+          offers={mockOffers}
+          nearOffers={mockOffers}
+          reviews={mockReviews}
+          authStatus={`AUTH`}
           onRequestReviews={() => mockReviews}
           onRequestNearOffers={() => mockOffers}
+          onSetFavoriteStatus={() => {}}
+          onSetDetailsOfferId={() => 1}
         />
       </BrowserRouter>
     </Provider>, {
