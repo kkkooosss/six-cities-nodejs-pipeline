@@ -9,7 +9,7 @@ import {REQUEST_CODES as requestCodes} from '../../../helpers/constants.js';
 const api = createAPI(() => {});
 
 describe(`Load Offer operation works correctly`, () => {
-  it(`Should make a correct API call to /hotels and get offers and cities`, function () {
+  it(`Should make a correct API call to /hotels and get offers and cities`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const dataLoader = Operation.loadOffers();
@@ -33,7 +33,7 @@ describe(`Load Offer operation works correctly`, () => {
       );
   });
 
-  it(`Should make a correct API call to /hotels/:id/nearby and get nearOffers for hotel number 1`, function () {
+  it(`Should make a correct API call to /hotels/:id/nearby and get nearOffers for hotel number 1`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const id = 1;
@@ -53,7 +53,7 @@ describe(`Load Offer operation works correctly`, () => {
       });
   });
 
-  it(`Should make a correct API call to /favorite and get favorites`, function () {
+  it(`Should make a correct API call to /favorite and get favorites`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const dataLoader = Operation.loadFavorites();
@@ -72,7 +72,7 @@ describe(`Load Offer operation works correctly`, () => {
       });
   });
 
-  it(`Should make a correct API call to /favorite add set offer as favorite`, function () {
+  it(`Should make a correct API call to /favorite add set offer as favorite`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const dataLoader = Operation.loadFavorites();

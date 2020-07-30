@@ -8,7 +8,7 @@ import rawReviews from '../../../mocks/raw-reviews.js';
 const api = createAPI(() => {});
 
 describe(`Review operation works correctly`, () => {
-  it(`Should make a correct API call to /comments with id = 1 and get reviews`, function () {
+  it(`Should make a correct API call to /comments with id = 1 and get reviews`, () => {
     const offerId = 1;
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
@@ -28,7 +28,7 @@ describe(`Review operation works correctly`, () => {
       });
   });
 
-  it(`Should make a correct API call to /comments with id = 1 and post a review`, function () {
+  it(`Should make a correct API call to /comments with id = 1, post a review and load reviews`, () => {
     const offerId = 1;
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();

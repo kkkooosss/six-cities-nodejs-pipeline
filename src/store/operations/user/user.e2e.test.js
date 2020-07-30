@@ -21,7 +21,7 @@ apiMock
 
 describe(`User operation works correctly`, () => {
 
-  it(`Should make a correct API call to /login and get authStatus`, function () {
+  it(`Should make a correct API call to /login and get authStatus`, () => {
     const dispatch = jest.fn();
     const dataLoader = Operation.checkAuthStatus();
 
