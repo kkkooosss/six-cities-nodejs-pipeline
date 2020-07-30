@@ -26,12 +26,16 @@ const withSort = (Component) => {
     }
 
     getFilterOptions(selectedFilter, handleClick) {
+
       return (FILTERS.map((filter, i) => (
         <li
           className={`places__option ${filter === selectedFilter ? `places__option--active` : null}`}
           tabIndex={i}
           key={filter}
-          onClick={() => handleClick(filter)}
+          onClick={() => {
+            handleClick(filter);
+            this.handleListClick();
+          }}
         >
           {filter}
         </li>
