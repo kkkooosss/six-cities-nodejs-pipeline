@@ -4,6 +4,7 @@ import Operation from './data.js';
 import {Actions} from '../../actions/data/data.js';
 import {formatOffers} from '../../../helpers/utils.js';
 import rawOffers from '../../../mocks/raw-offers.js';
+import {REQUEST_CODES as requestCodes} from '../../../helpers/constants.js';
 
 const api = createAPI(() => {});
 
@@ -68,6 +69,27 @@ describe(`Load Offer operation works correctly`, () => {
           type: Actions.getFavorites,
           payload: formatOffers(rawOffers)
         });
+      });
+  });
+
+  it(`Should make a correct API call to /favorite add set offer as favorite`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const dataLoader = Operation.loadFavorites();
+    const offerId = 1;
+
+    apiMock
+    .onGet(`/favorite`).reply(200, rawOffers)
+    .onPost(`/favorite/${offerId}/${requestCodes.add}`).reply(200, {});
+
+    return dataLoader(dispatch, () => {}, api)
+      .then(() => {
+        expect(dispatch).toHaveBeenCalledTimes(1);
+        expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: Actions.getFavorites,
+          payload: formatOffers(rawOffers)
+        });
+
       });
   });
 
