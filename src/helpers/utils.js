@@ -17,15 +17,16 @@ export const sortByPriceReverse = (offers) => sortByPrice(offers).reverse();
 export const sortByRating = (offers) => (offers.sort((a, b) => b.rating - a.rating));
 
 export const filterOffersOrder = (offers, filter) => {
+  const offersToFilter = offers.slice();
   switch (filter) {
     case FILTERS_MAP.popular:
       return offers;
     case FILTERS_MAP.priceLowToHight:
-      return sortByPrice(offers);
+      return sortByPrice(offersToFilter);
     case FILTERS_MAP.priceHightToLow:
-      return sortByPriceReverse(offers);
+      return sortByPriceReverse(offersToFilter);
     case FILTERS_MAP.topRatedFirst:
-      return sortByRating(offers);
+      return sortByRating(offersToFilter);
     default:
       return offers;
   }

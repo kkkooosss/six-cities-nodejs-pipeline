@@ -13,7 +13,12 @@ const OffersSort = ({
 
   <form className="places__sorting" action="#" method="get">
     <span className="places__sorting-caption">Sort by </span>
-    <span className="places__sorting-type" tabIndex={0} onClick={() => handleListClick()} style={{userSelect: `none`, outline: `none`}}>
+    <span
+      className="places__sorting-type"
+      tabIndex={0}
+      style={{userSelect: `none`, outline: `none`}}
+      onClick={() => handleListClick()}
+    >
       {selectedFilter}
       <svg className="places__sorting-arrow" width={7} height={4}>
         <use xlinkHref="#icon-arrow-select" />
