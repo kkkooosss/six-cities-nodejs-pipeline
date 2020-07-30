@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {compose} from 'recompose';
 
 import FilterActionCreator from '../../store/actions/filter/filter.js';
 import {FILTERS} from '../../helpers/constants.js';
@@ -65,17 +66,24 @@ const withSort = (Component) => {
     onFilterSelect: PropTypes.func
   };
 
-  const mapStateToProps = (state) => ({
-    selectedFilter: getSelectedFilter(state)
-  });
-
-  const mapDispatchToProps = (dispatch) => ({
-    onFilterSelect: (offers, filter) => {
-      dispatch(FilterActionCreator.selectFilter(offers, filter));
-    }
-  });
-
-  return connect(mapStateToProps, mapDispatchToProps)(WithSort);
+  return WithSort;
 };
 
-export default withSort;
+const mapStateToProps = (state) => ({
+  selectedFilter: getSelectedFilter(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onFilterSelect: (offers, filter) => {
+    dispatch(FilterActionCreator.selectFilter(offers, filter));
+  }
+});
+
+const withSortConnected = compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withSort
+);
+
+export {withSort};
+
+export default withSortConnected;
