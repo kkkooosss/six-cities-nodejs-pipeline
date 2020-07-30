@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
+import {compose} from 'recompose';
 import ReviewOperation from '../../store/operations/review/review.js';
 import {getSendingFlag, getErrorFlag} from '../../store/reducers/review/selectors.js';
 import ActionCreator from '../../store/actions/review/review.js';
@@ -144,20 +145,6 @@ const withReviewForm = (Component) => {
     }
   }
 
-  const mapStateToProps = (state) => ({
-    sending: getSendingFlag(state),
-    error: getErrorFlag(state)
-  });
-
-  const mapDispatchToProps = (dispatch) => ({
-    setSendingFlag(flag) {
-      dispatch(ActionCreator.setSendingFlag(flag));
-    },
-    onSubmitReview(offerId, reviewData) {
-      dispatch(ReviewOperation.submitReview(offerId, reviewData));
-    },
-  });
-
   WithReviewForm.propTypes = {
     Component: PropTypes.element,
     onSubmitReview: PropTypes.func.isRequired,
@@ -167,7 +154,28 @@ const withReviewForm = (Component) => {
     setSendingFlag: PropTypes.func.isRequired
   };
 
-  return connect(mapStateToProps, mapDispatchToProps)(WithReviewForm);
+  return WithReviewForm;
 };
 
-export default withReviewForm;
+const mapStateToProps = (state) => ({
+  sending: getSendingFlag(state),
+  error: getErrorFlag(state)
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setSendingFlag(flag) {
+    dispatch(ActionCreator.setSendingFlag(flag));
+  },
+  onSubmitReview(offerId, reviewData) {
+    dispatch(ReviewOperation.submitReview(offerId, reviewData));
+  },
+});
+
+const withReviewFormConnected = compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withReviewForm
+);
+
+export {withReviewForm};
+
+export default withReviewFormConnected;
