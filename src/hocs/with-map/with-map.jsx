@@ -56,9 +56,9 @@ const withMap = (Component) => {
       const icon = MAP_SETTINGS.currentOfferIcon;
       const coordinates = [location.latitude, location.longitude];
 
-      leaflet
-      .marker(coordinates, {icon})
-      .addTo(this._map);
+      const marker = leaflet.marker(coordinates, {icon});
+      marker.addTo(this._map);
+      this._markers.push({marker});
     }
 
     _removeMarkers() {
