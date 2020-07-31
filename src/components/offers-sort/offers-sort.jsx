@@ -8,7 +8,7 @@ const OffersSort = ({
   selectedFilter,
   onFilterSelect,
   getFilterOptions,
-  handleListClick
+  onListClick
 }) => (
 
   <form className="places__sorting" action="#" method="get">
@@ -17,7 +17,7 @@ const OffersSort = ({
       className="places__sorting-type"
       tabIndex={0}
       style={{userSelect: `none`, outline: `none`}}
-      onClick={() => handleListClick()}
+      onClick={() => onListClick()}
     >
       {selectedFilter}
       <svg className="places__sorting-arrow" width={7} height={4}>
@@ -45,5 +45,5 @@ OffersSort.propTypes = {
   onFilterSelect: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
   getFilterOptions: PropTypes.func.isRequired,
-  handleListClick: PropTypes.func.isRequired
+  onListClick: PropTypes.func.isRequired
 };

@@ -17,10 +17,10 @@ const withSort = (Component) => {
       };
 
       this.getFilterOptions = this.getFilterOptions.bind(this);
-      this.handleListClick = this.handleListClick.bind(this);
+      this._handleListClick = this._handleListClick.bind(this);
     }
 
-    handleListClick() {
+    _handleListClick() {
       this.setState({
         isOpen: !this.state.isOpen
       });
@@ -35,7 +35,7 @@ const withSort = (Component) => {
           key={filter}
           onClick={() => {
             handleClick(filter);
-            this.handleListClick();
+            this._handleListClick();
           }}
         >
           {filter}
@@ -54,7 +54,7 @@ const withSort = (Component) => {
           selectedFilter={selectedFilter}
           onFilterSelect={onFilterSelect}
           getFilterOptions={this.getFilterOptions}
-          handleListClick={this.handleListClick}
+          onListClick={this._handleListClick}
         />
       );
     }

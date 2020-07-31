@@ -17,12 +17,12 @@ describe(`withSort hoc e2e test`, () => {
   });
 
   it(`isActive changes correctly to true`, () => {
-    wrapper.instance().handleListClick();
+    wrapper.instance()._handleListClick();
     expect(wrapper.state(`isOpen`)).toBe(true);
   });
 
   it(`isActive changes correctly to false`, () => {
-    wrapper.instance().handleListClick();
+    wrapper.instance()._handleListClick();
     expect(wrapper.state(`isOpen`)).toBe(false);
   });
 
