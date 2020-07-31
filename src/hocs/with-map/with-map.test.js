@@ -9,7 +9,7 @@ import mockOffers from '../../mocks/offers.js';
 const MockComponent = ({mapRef}) => <div ref={mapRef}/>;
 const WrappedComponent = withMap(MockComponent);
 
-it(`Header renders correctly`, () => {
+it(`withMap renders correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={mockStore}>
