@@ -13,7 +13,10 @@ it(`withMap renders correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={mockStore}>
-          <WrappedComponent offers={mockOffers} />
+          <WrappedComponent
+            offers={mockOffers}
+            isPropertyMap={false}
+          />
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)
         })

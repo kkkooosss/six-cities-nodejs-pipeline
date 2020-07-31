@@ -5,6 +5,10 @@ import {Provider} from 'react-redux';
 import withReviewForm from './with-review-form.jsx';
 import mockStore from '../../mocks/mock-store.js';
 
+const TEXT = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`;
+const RATING = 5;
+const OFFER_ID = 1;
+
 const MockComponent = ({formRef, textRef, submitRef}) => (
   <div>
     <form ref={formRef}>
@@ -20,7 +24,13 @@ it(`withReviewForm renders correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={mockStore}>
-          <WrappedComponent offerId={1} />
+          <WrappedComponent
+            offerId={OFFER_ID}
+            rating={RATING}
+            isRatingValid={true}
+            text={TEXT}
+            isTextValid={true}
+          />
         </Provider>, {
           createNodeMock: () => document.createElement(`div`)
         })
@@ -31,5 +41,5 @@ it(`withReviewForm renders correctly`, () => {
 MockComponent.propTypes = {
   formRef: PropTypes.object.isRequired,
   textRef: PropTypes.object.isRequired,
-  submitRef: PropTypes.object.isRequired
+  submitRef: PropTypes.object.isRequired,
 };
