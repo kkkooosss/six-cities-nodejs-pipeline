@@ -4,7 +4,7 @@ import Operation from './data.js';
 import {Actions} from '../../actions/data/data.js';
 import {formatOffers} from '../../../helpers/utils.js';
 import rawOffers from '../../../mocks/raw-offers.js';
-import {REQUEST_CODES as requestCodes} from '../../../helpers/constants.js';
+import {REQUEST_CODES} from '../../../helpers/constants.js';
 
 const api = createAPI(() => {});
 
@@ -80,7 +80,7 @@ describe(`Load Offer operation works correctly`, () => {
 
     apiMock
     .onGet(`/favorite`).reply(200, rawOffers)
-    .onPost(`/favorite/${offerId}/${requestCodes.add}`).reply(200, {});
+    .onPost(`/favorite/${offerId}/${REQUEST_CODES.add}`).reply(200, {});
 
     return dataLoader(dispatch, () => {}, api)
       .then(() => {

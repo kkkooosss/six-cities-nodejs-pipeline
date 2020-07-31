@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {RATING_TITLES as ratingTitles} from '../../helpers/constants.js';
+import {RATING_TITLES} from '../../helpers/constants.js';
 import withReviewForm from '../../hocs/with-review-form/with-review-form.jsx';
+import withFormValidation from '../../hocs/with-form-validation/with-form-validation.jsx';
 
 const ReviewForm = ({
   errorStyle,
@@ -26,7 +27,7 @@ const ReviewForm = ({
       {error ? <div style={errorStyle}>Sorry, can not send your review, please try again later</div> : null}
       <div className="reviews__rating-form form__rating">
 
-        {ratingTitles.map((title, i) =>
+        {RATING_TITLES.map((title, i) =>
           <React.Fragment key={title}>
             <input
               className="form__rating-input visually-hidden"
@@ -85,4 +86,6 @@ ReviewForm.propTypes = {
 
 export {ReviewForm};
 
-export default withReviewForm(ReviewForm);
+const ReviewFormWrapped = withFormValidation(withReviewForm(ReviewForm));
+
+export default ReviewFormWrapped;

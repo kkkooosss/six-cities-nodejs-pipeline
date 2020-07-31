@@ -3,7 +3,7 @@ import MockAdapter from 'axios-mock-adapter';
 import createAPI from '../../../api/api.js';
 import Operation from './user.js';
 import {Actions} from '../../actions/user/user.js';
-import {AuthStatus} from '../../../helpers/constants.js';
+import {AUTH_STATUS} from '../../../helpers/constants.js';
 import rawUser from '../../../mocks/raw-user.js';
 import mockUser from '../../../mocks/user.js';
 
@@ -16,7 +16,7 @@ const mockAuthData = {
 };
 
 apiMock
-  .onGet(`/login`).reply(200, AuthStatus.noAuth)
+  .onGet(`/login`).reply(200, AUTH_STATUS.noAuth)
   .onPost(`/login`).reply(200, rawUser);
 
 describe(`User operation works correctly`, () => {
@@ -30,7 +30,7 @@ describe(`User operation works correctly`, () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: Actions.setAuthStatus,
-          payload: AuthStatus.noAuth
+          payload: AUTH_STATUS.noAuth
         });
       });
   });
@@ -48,7 +48,7 @@ describe(`User operation works correctly`, () => {
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: Actions.setAuthStatus,
-          payload: AuthStatus.auth
+          payload: AUTH_STATUS.auth
         });
       });
 

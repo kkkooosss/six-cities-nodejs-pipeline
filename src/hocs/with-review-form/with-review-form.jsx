@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
-import ReviewOperation from '../../store/operations/review/review.js';
 import {getSendingFlag, getErrorFlag} from '../../store/reducers/review/selectors.js';
+import ReviewOperation from '../../store/operations/review/review.js';
 import ActionCreator from '../../store/actions/review/review.js';
 
 const withReviewForm = (Component) => {
@@ -12,66 +12,19 @@ const withReviewForm = (Component) => {
     constructor(props) {
       super(props);
 
-      this.state = {
-        rating: 0,
-        text: ``,
-        isRatingValid: false,
-        isTextValid: false
-      };
-
       this._formRef = React.createRef();
       this._submitRef = React.createRef();
       this._textRef = React.createRef();
 
-      this._handleRatingChange = this._handleRatingChange.bind(this);
-      this._handleTextChange = this._handleTextChange.bind(this);
-      this._checkRatingValidity = this._checkRatingValidity.bind(this);
-      this._checkTextValidity = this._checkTextValidity.bind(this);
-
       this._setSubmitAccess = this._setSubmitAccess.bind(this);
       this._setTextAreaAccess = this._setTextAreaAccess.bind(this);
-
       this._handleSubmit = this._handleSubmit.bind(this);
       this._handleFormReset = this._handleFormReset.bind(this);
 
     }
 
-    _handleRatingChange(evt) {
-      const rating = parseInt(evt.target.value, 10);
-
-      this.setState({
-        rating
-      });
-    }
-
-    _handleTextChange(evt) {
-      const text = evt.target.value;
-
-      this.setState({
-        text
-      });
-    }
-
-    _checkRatingValidity() {
-      const {rating} = this.state;
-      const isRatingValid = rating >= 1 && rating <= 5;
-
-      this.setState({
-        isRatingValid
-      });
-    }
-
-    _checkTextValidity() {
-      const {text} = this.state;
-      const isTextValid = text.length >= 50 && text.length <= 300;
-
-      this.setState({
-        isTextValid
-      });
-    }
-
     _setSubmitAccess() {
-      const {isTextValid, isRatingValid} = this.state;
+      const {isTextValid, isRatingValid} = this.props;
       const isValid = isRatingValid && isTextValid;
       const submitButton = this._submitRef.current;
       const {sending} = this.props;
@@ -104,16 +57,13 @@ const withReviewForm = (Component) => {
     }
 
     componentDidUpdate() {
-      this._checkRatingValidity();
-      this._checkTextValidity();
       this._setSubmitAccess();
       this._setTextAreaAccess();
-
     }
 
     _handleSubmit(evt) {
       const {onSubmitReview, setSendingFlag} = this.props;
-      const {rating, isRatingValid, text, isTextValid} = this.state;
+      const {rating, isRatingValid, text, isTextValid} = this.props;
       const {offerId} = this.props;
 
       evt.preventDefault();
@@ -123,7 +73,6 @@ const withReviewForm = (Component) => {
         onSubmitReview(offerId, {rating, text});
         this._handleFormReset();
       }
-
     }
 
     render() {
@@ -132,10 +81,8 @@ const withReviewForm = (Component) => {
       return (
         <Component
           {...this.props}
-          errorStyle={errorStyle}
           error={error}
-          onRatingChange={this._handleRatingChange}
-          onTextChange={this._handleTextChange}
+          errorStyle={errorStyle}
           onSubmit={this._handleSubmit}
           formRef={this._formRef}
           textRef={this._textRef}
@@ -151,7 +98,11 @@ const withReviewForm = (Component) => {
     offerId: PropTypes.number.isRequired,
     sending: PropTypes.bool.isRequired,
     error: PropTypes.bool.isRequired,
-    setSendingFlag: PropTypes.func.isRequired
+    setSendingFlag: PropTypes.func.isRequired,
+    rating: PropTypes.number.isRequired,
+    isRatingValid: PropTypes.bool.isRequired,
+    text: PropTypes.string.isRequired,
+    isTextValid: PropTypes.bool.isRequired
   };
 
   return WithReviewForm;
@@ -159,7 +110,7 @@ const withReviewForm = (Component) => {
 
 const mapStateToProps = (state) => ({
   sending: getSendingFlag(state),
-  error: getErrorFlag(state)
+  error: getErrorFlag(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -175,7 +126,5 @@ const withReviewFormConnected = compose(
     connect(mapStateToProps, mapDispatchToProps),
     withReviewForm
 );
-
-export {withReviewForm};
 
 export default withReviewFormConnected;

@@ -6,6 +6,7 @@ import {ReviewForm} from './review-form.jsx';
 const errorStyle = {color: `#BF616A`, paddingBottom: `5px`};
 
 it(`ReviewForm renders correctly`, () => {
+
   const tree = renderer
     .create(
         <ReviewForm
@@ -13,6 +14,9 @@ it(`ReviewForm renders correctly`, () => {
           onRatingChange={() => {}}
           onTextChange={() => {}}
           errorStyle={errorStyle}
+          textRef={React.createRef()}
+          submitRef={React.createRef()}
+          formRef={React.createRef()}
         />, {
           createNodeMock: () => document.createElement(`div`)
         })

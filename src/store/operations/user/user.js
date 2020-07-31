@@ -1,12 +1,12 @@
 import ActionCreator from '../../actions/user/user.js';
-import {AuthStatus} from '../../../helpers/constants.js';
+import {AUTH_STATUS} from '../../../helpers/constants.js';
 import {formatUser} from '../../../helpers/utils.js';
 
 const Operation = {
   checkAuthStatus: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then(() => {
-        dispatch(ActionCreator.setAuthStatus(AuthStatus.noAuth));
+        dispatch(ActionCreator.setAuthStatus(AUTH_STATUS.noAuth));
       })
       .catch((err) => {
         throw err;
@@ -20,7 +20,7 @@ const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.setUser(formatUser(response.data)));
-        dispatch(ActionCreator.setAuthStatus(AuthStatus.auth));
+        dispatch(ActionCreator.setAuthStatus(AUTH_STATUS.auth));
       });
   }
 };
