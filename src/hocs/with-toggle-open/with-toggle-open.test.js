@@ -5,7 +5,7 @@ import withToggleOpen from './with-toggle-open.jsx';
 const MockComponent = () => <div />;
 const WrappedComponent = withToggleOpen(MockComponent);
 
-it(`withSort renders correctly`, () => {
+it(`withToggleOpen renders correctly`, () => {
   const tree = renderer
     .create(
         <WrappedComponent />, {
