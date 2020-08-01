@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import Header from '../header/header.jsx';
 import withLogin from '../../hocs/with-login/with-login.jsx';
+import Loader from '../loader/loader.jsx';
 
 const Login = ({
   isValid,
@@ -10,7 +11,8 @@ const Login = ({
   passwordError,
   onEmailChange,
   onPasswordChange,
-  onSubmit
+  onSubmit,
+  loading
 }) => {
 
   const ErrorMessageStyle = {
@@ -20,7 +22,7 @@ const Login = ({
     paddingLeft: `15px`
   };
 
-  return (
+  return loading ? <Loader /> : (
     <div className="page page--gray page--login">
       <Header />
 
@@ -69,6 +71,7 @@ const Login = ({
 
 Login.propTypes = {
   isValid: PropTypes.bool,
+  loading: PropTypes.bool.isRequired,
   emailError: PropTypes.string,
   passwordError: PropTypes.string,
   onEmailChange: PropTypes.func.isRequired,

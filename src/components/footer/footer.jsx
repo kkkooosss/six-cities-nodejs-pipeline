@@ -1,8 +1,9 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 const Footer = () => (
   <footer className="footer container">
-    <a className="footer__logo-link" href="main.html">
+    <Link to="/" className="footer__logo-link">
       <img
         className="footer__logo"
         src="img/logo.svg"
@@ -10,7 +11,7 @@ const Footer = () => (
         width={64}
         height={33}
       />
-    </a>
+    </Link>
   </footer>
 );
 

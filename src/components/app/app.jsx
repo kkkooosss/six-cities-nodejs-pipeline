@@ -16,10 +16,12 @@ import {ROUTES} from '../../helpers/constants.js';
 import {getAuthStatus} from '../../store/reducers/user/selectors.js';
 import {AUTH_STATUS} from '../../helpers/constants.js';
 import withPrivateRoute from '../../hocs/with-private-route/with-private-route.jsx';
+import {getLoadingFlag} from '../../store/reducers/data/selectors.js';
 
 const App = ({
   offers,
   authStatus,
+  loading,
   onLogin,
   onSetFavoriteStatus,
 }) => {
@@ -64,6 +66,7 @@ const App = ({
             return (
               <Login
                 onLogin={onLogin}
+                loading={loading}
               />
             );
           }}
@@ -75,6 +78,7 @@ const App = ({
 
 const mapStateToProps = (state) => ({
   offers: filterOffers(state),
+  loading: getLoadingFlag(state),
   authStatus: getAuthStatus(state)
 });
 
@@ -99,5 +103,6 @@ App.propTypes = {
   authStatus: PropTypes.string.isRequired,
   onLogin: PropTypes.func,
   onSetFavoriteStatus: PropTypes.func.isRequired,
-  handleTitleClick: PropTypes.func
+  handleTitleClick: PropTypes.func,
+  loading: PropTypes.bool.isRequired,
 };

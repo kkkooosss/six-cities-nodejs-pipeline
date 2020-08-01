@@ -3,6 +3,7 @@ import MockAdapter from 'axios-mock-adapter';
 import createAPI from '../../../api/api.js';
 import Operation from './user.js';
 import {Actions} from '../../actions/user/user.js';
+import {Actions as DataActions} from '../../actions/data/data.js';
 import {AUTH_STATUS} from '../../../helpers/constants.js';
 import rawUser from '../../../test-data/raw-user.js';
 import mockUser from '../../../test-data/user.js';
@@ -35,20 +36,28 @@ describe(`User operation works correctly`, () => {
       });
   });
 
-  it(`Shoul make a correct API call to /login and sign in`, () => {
+  it(`Should make a correct API call to /login and sign in`, () => {
     const dispatch = jest.fn();
     const dataLoader = Operation.login(mockAuthData);
 
     return dataLoader(dispatch, () => {}, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(2);
+        expect(dispatch).toHaveBeenCalledTimes(4);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
+          type: DataActions.setLoadingFlag,
+          payload: true
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(2, {
           type: Actions.setUser,
           payload: mockUser
         });
-        expect(dispatch).toHaveBeenNthCalledWith(2, {
+        expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: Actions.setAuthStatus,
           payload: AUTH_STATUS.auth
+        });
+        expect(dispatch).toHaveBeenNthCalledWith(4, {
+          type: DataActions.setLoadingFlag,
+          payload: false
         });
       });
 

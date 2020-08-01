@@ -12,6 +12,7 @@ it(`Header renders correctly`, () => {
           <BrowserRouter>
             <Login
               onLogin={() => {}}
+              loading={false}
             />
           </BrowserRouter>
         </Provider>, {
