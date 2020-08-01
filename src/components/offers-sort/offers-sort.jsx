@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import withToggleOpen from '../../hocs/with-sort/with-toggle-open.jsx';
+import withToggleOpen from '../../hocs/with-toggle-open/with-toggle-open.jsx';
 
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
