@@ -24,7 +24,7 @@ exports[`ReviewsList renders correctly 1`] = `
         className="reviews__user user"
       >
         <div
-          className="reviews__avatar-wrapper user__avatar-wrapper"
+          className="reviews__avatar-wrapper user__avatar-wrapper null"
         >
           <img
             alt="Max avatar"
@@ -83,7 +83,7 @@ exports[`ReviewsList renders correctly 1`] = `
         className="reviews__user user"
       >
         <div
-          className="reviews__avatar-wrapper user__avatar-wrapper"
+          className="reviews__avatar-wrapper user__avatar-wrapper null"
         >
           <img
             alt="Angelina avatar"
