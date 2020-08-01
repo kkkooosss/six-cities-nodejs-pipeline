@@ -9,6 +9,7 @@ const Review = ({review}) => {
     userPic,
     rating,
     text,
+    isPro,
     date
   } = review;
 
@@ -17,7 +18,8 @@ const Review = ({review}) => {
   return (
     <li className="reviews__item">
       <div className="reviews__user user">
-        <div className={`reviews__avatar-wrapper user__avatar-wrapper`}>
+        <div
+          className={`reviews__avatar-wrapper user__avatar-wrapper ${isPro ? `user__avatar-wrapper--pro` : null}`}>
           <img className="reviews__avatar user__avatar" src={userPic} width={54} height={54} alt={`${name} avatar`} />
         </div>
         <span className="reviews__user-name">
