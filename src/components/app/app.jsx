@@ -19,11 +19,9 @@ import withPrivateRoute from '../../hocs/with-private-route/with-private-route.j
 
 const App = ({
   offers,
-  onTitleClick,
   authStatus,
   onLogin,
   onSetFavoriteStatus,
-  handleTitleClick
 }) => {
   const isAuthorized = authStatus === AUTH_STATUS.auth;
   const FavoritesWrapped = withPrivateRoute(Favorites, isAuthorized);
@@ -37,7 +35,6 @@ const App = ({
                 {...props}
                 offers={offers}
                 onSetFavoriteStatus={onSetFavoriteStatus}
-                onTitleClick={onTitleClick}
               />
             );
           }}
@@ -57,7 +54,6 @@ const App = ({
           render={() => {
             return (
               <FavoritesWrapped
-                onTitleClick={handleTitleClick}
                 onSetFavoriteStatus={onSetFavoriteStatus}
               />
             );
@@ -101,7 +97,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 App.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   authStatus: PropTypes.string.isRequired,
-  onTitleClick: PropTypes.func,
   onLogin: PropTypes.func,
   onSetFavoriteStatus: PropTypes.func.isRequired,
   handleTitleClick: PropTypes.func

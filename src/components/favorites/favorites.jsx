@@ -22,7 +22,7 @@ class Favorites extends React.Component {
   }
 
   render() {
-    const {favorites, onSetFavoriteStatus, onTitleClick} = this.props;
+    const {favorites, onSetFavoriteStatus} = this.props;
     const cities = [...new Set(favorites.map((offer) => offer.city.name))].sort();
     const hasFavorites = favorites.length > 0;
 
@@ -56,7 +56,6 @@ class Favorites extends React.Component {
                           onCardHover={() => {}}
                           onCardHoverLeave={() => {}}
                           onSetFavoriteStatus={onSetFavoriteStatus}
-                          onTitleClick={onTitleClick}
                           key={offer.id}
                           cardType={CARD_TYPES.favorites}
                         />))}
@@ -93,6 +92,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
 Favorites.propTypes = {
   favorites: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   onSetFavoriteStatus: PropTypes.func,
-  onTitleClick: PropTypes.func,
   onRequestFavorites: PropTypes.func.isRequired
 };
