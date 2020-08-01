@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import PropTypes from 'prop-types';
 import {Provider} from 'react-redux';
 import withReviewForm from './with-review-form.jsx';
-import mockStore from '../../mocks/mock-store.js';
+import mockStore from '../../test-data/mock-store.js';
 
 const TEXT = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`;
 const RATING = 5;

@@ -1,5 +1,5 @@
 import ActionCreator, {Actions} from './data.js';
-import mockOffers from '../../../mocks/offers.js';
+import mockOffers from '../../../test-data/offers.js';
 
 describe(`Data action creator work correctly`, () => {
   it(`Action creator for getOffers Offer returns correct action`, () => {

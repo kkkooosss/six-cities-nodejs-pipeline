@@ -4,8 +4,8 @@ import createAPI from '../../../api/api.js';
 import Operation from './user.js';
 import {Actions} from '../../actions/user/user.js';
 import {AUTH_STATUS} from '../../../helpers/constants.js';
-import rawUser from '../../../mocks/raw-user.js';
-import mockUser from '../../../mocks/user.js';
+import rawUser from '../../../test-data/raw-user.js';
+import mockUser from '../../../test-data/user.js';
 
 const api = createAPI(() => {});
 const apiMock = new MockAdapter(api);

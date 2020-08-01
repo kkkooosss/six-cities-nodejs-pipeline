@@ -1,7 +1,7 @@
 import {Actions} from '../../actions/data/data.js';
 import reducer from './data.js';
 
-import mockOffers from '../../../mocks/offers';
+import mockOffers from '../../../test-data/offers';
 
 describe(`Data reducer work correctly`, () => {
 

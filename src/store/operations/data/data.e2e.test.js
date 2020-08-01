@@ -3,7 +3,7 @@ import createAPI from '../../../api/api.js';
 import Operation from './data.js';
 import {Actions} from '../../actions/data/data.js';
 import {formatOffers} from '../../../helpers/utils.js';
-import rawOffers from '../../../mocks/raw-offers.js';
+import rawOffers from '../../../test-data/raw-offers.js';
 import {REQUEST_CODES} from '../../../helpers/constants.js';
 
 const api = createAPI(() => {});

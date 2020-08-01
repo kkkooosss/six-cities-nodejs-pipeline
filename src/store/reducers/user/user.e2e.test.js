@@ -1,7 +1,7 @@
 import {Actions} from '../../actions/user/user.js';
 import {AUTH_STATUS} from '../../../helpers/constants.js';
 import reducer from './user.js';
-import USER from '../../../mocks/user.js';
+import USER from '../../../test-data/user.js';
 
 describe(`User reducer work correctly`, () => {
 

@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import withLogin from './with-login.jsx';
-import mockStore from '../../mocks/mock-store.js';
+import mockStore from '../../test-data/mock-store.js';
 
 const MockComponent = () => <div />;
 const WrappedComponent = withLogin(MockComponent);

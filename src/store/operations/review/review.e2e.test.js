@@ -3,7 +3,7 @@ import createAPI from '../../../api/api.js';
 import Operation from './review.js';
 import {Actions} from '../../actions/review/review.js';
 import {formatReviews} from '../../../helpers/utils.js';
-import rawReviews from '../../../mocks/raw-reviews.js';
+import rawReviews from '../../../test-data/raw-reviews.js';
 
 const api = createAPI(() => {});
 
