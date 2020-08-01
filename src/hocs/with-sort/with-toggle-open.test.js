@@ -1,18 +1,14 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Provider} from 'react-redux';
-import withSort from './with-sort.jsx';
-import mockStore from '../../test-data/mock-store.js';
+import withToggleOpen from './with-toggle-open.jsx';
 
 const MockComponent = () => <div />;
-const WrappedComponent = withSort(MockComponent);
+const WrappedComponent = withToggleOpen(MockComponent);
 
 it(`withSort renders correctly`, () => {
   const tree = renderer
     .create(
-        <Provider store={mockStore}>
-          <WrappedComponent />
-        </Provider>, {
+        <WrappedComponent />, {
           createNodeMock: () => document.createElement(`div`)
         })
     .toJSON();
