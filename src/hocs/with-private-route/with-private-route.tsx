@@ -1,9 +1,11 @@
-import * as React from 'react';
+import * as React from "react";
 import {Redirect} from "react-router-dom";
-import {ROUTES as routes} from '../../helpers/constants';
+import {ROUTES as routes} from '../../helpers/constants.js';
 
 const withPrivateRoute = (Component, isAuthorized) => {
-  class WithPrivateRoute extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+
+  class WithPrivateRoute extends React.PureComponent<P> {
     constructor(props) {
       super(props);
     }

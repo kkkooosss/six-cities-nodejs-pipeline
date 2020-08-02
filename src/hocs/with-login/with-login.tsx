@@ -1,8 +1,24 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+import {Subtract} from "utility-types";
+
+interface State {
+  email: string;
+  password: string;
+  isValidEmail: boolean;
+  emailError: string;
+  isValidPassword: boolean;
+  passwordError: string;
+}
+
+interface InjectingProps {
+  onLogin: (review: {email: string; password: string}) => void;
+}
 
 const withLogin = (Component) => {
-  class WithLogin extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Subtract<P, InjectingProps>;
+
+  class WithLogin extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -77,11 +93,6 @@ const withLogin = (Component) => {
       );
     }
   }
-
-  WithLogin.propTypes = {
-    Component: PropTypes.element,
-    onLogin: PropTypes.func.isRequired
-  };
 
   return WithLogin;
 };

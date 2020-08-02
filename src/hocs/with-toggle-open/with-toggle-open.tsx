@@ -1,7 +1,15 @@
 import * as React from 'react';
 
+interface State {
+  isOpen: boolean;
+}
+
+
 const withToggleOpen = (Component) => {
-  class WithToggleOpen extends React.PureComponent {
+
+  type P = React.ComponentProps<typeof Component>;
+
+  class WithToggleOpen extends React.PureComponent<P, State> {
     constructor(props) {
       super(props);
 

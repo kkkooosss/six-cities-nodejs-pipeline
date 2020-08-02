@@ -22,7 +22,11 @@ interface Props {
   onSubmitReview: (offerId: number | string, review: {rating: number, text: string}) => void;
 }
 
-class ReviewForm extends React.PureComponent<Props> {
+class ReviewForm extends React.PureComponent<Props, {}> {
+  private _formRef;
+  private _submitRef;
+  private _textRef;
+
   constructor(props) {
     super(props);
 

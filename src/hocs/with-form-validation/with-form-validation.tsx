@@ -1,8 +1,16 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
+
+interface State {
+  rating: number;
+  text: string;
+  isRatingValid: boolean;
+  isTextValid: boolean;
+}
 
 const withFormValidation = (Component) => {
-  class WithFormValidation extends React.PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+
+  class WithFormValidation extends React.PureComponent<P, State> {
     constructor(props) {
       super(props);
 
@@ -75,10 +83,6 @@ const withFormValidation = (Component) => {
     }
 
   }
-
-  WithFormValidation.propTypes = {
-    Component: PropTypes.element,
-  };
 
   return WithFormValidation;
 };

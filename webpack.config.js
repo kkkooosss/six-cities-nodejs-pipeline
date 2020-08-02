@@ -16,16 +16,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(tsx|ts)?$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: {
-          loader: `ts-loader`
+          loader: `babel-loader`,
         },
-      },
+      }, {
+        test: /\.(tsx|ts)?$/,
+        loader: `ts-loader`
+      }
     ],
   },
   resolve: {
-    extensions: [`.ts`, `.tsx`, ``, `json`]
+    extensions: [`.ts`, `.tsx`, `.js`, `json`]
   },
   devtool: `source-map`,
 };

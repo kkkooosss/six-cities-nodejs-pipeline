@@ -15,14 +15,19 @@ interface Props {
   activeOffer: Offer;
 }
 
-class Map extends React.PureComponent<Props> {
+class Map extends React.PureComponent<Props, {}> {
+  private _map;
+  private _mapRef;
+  private _markers;
+  private _zoom;
+
   constructor(props) {
     super(props);
 
     this._map = null;
+    this._mapRef = React.createRef();
     this._markers = [];
     this._zoom = MAP_SETTINGS.zoom;
-    this._mapRef = React.createRef();
 
   }
 

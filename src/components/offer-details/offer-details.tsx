@@ -170,7 +170,6 @@ class OfferDetails extends React.PureComponent<Props> {
 
                   <ReviewsList
                     offerId={id}
-                    authStatus={authStatus}
                     isAuthorized={isAuthorized}
                     reviews={reviews}
                   />
