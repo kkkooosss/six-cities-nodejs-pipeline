@@ -1,5 +1,5 @@
 import * as React from 'react';
-import leaflet from 'leaflet';
+import * as leaflet from 'leaflet';
 import {connect} from 'react-redux';
 
 import {CITIES, MAP_SETTINGS} from '../../helpers/constants';
