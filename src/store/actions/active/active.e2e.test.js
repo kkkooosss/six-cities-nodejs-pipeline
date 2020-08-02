@@ -1,5 +1,5 @@
 import ActionCreator, {Actions} from './active.js';
-import OFFERS from '../../../mocks/offers';
+import OFFERS from '../../../test-data/offers';
 
 const OFFER = OFFERS[0];
 

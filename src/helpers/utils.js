@@ -17,15 +17,16 @@ export const sortByPriceReverse = (offers) => sortByPrice(offers).reverse();
 export const sortByRating = (offers) => (offers.sort((a, b) => b.rating - a.rating));
 
 export const filterOffersOrder = (offers, filter) => {
+  const offersToFilter = offers.slice();
   switch (filter) {
     case FILTERS_MAP.popular:
       return offers;
     case FILTERS_MAP.priceLowToHight:
-      return sortByPrice(offers);
+      return sortByPrice(offersToFilter);
     case FILTERS_MAP.priceHightToLow:
-      return sortByPriceReverse(offers);
+      return sortByPriceReverse(offersToFilter);
     case FILTERS_MAP.topRatedFirst:
-      return sortByRating(offers);
+      return sortByRating(offersToFilter);
     default:
       return offers;
   }
@@ -35,25 +36,25 @@ export const extend = (a, b) => Object.assign({}, a, b);
 
 export const getRatingInPercents = (rating) => `${(Math.round(rating)) * 20}%`;
 
-const MONTH_MAP = {
-  1: `January`,
-  2: `February`,
-  3: `March`,
-  4: `April`,
-  5: `May`,
-  6: `June`,
-  7: `July`,
-  8: `August`,
-  9: `September`,
-  10: `October`,
-  11: `November`,
-  12: `December`
-};
+const MONTHS = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`
+];
 
 export const convertDate = (date) => {
   const dateObject = new Date(date);
-  const day = dateObject.getDay();
-  const month = MONTH_MAP[dateObject.getMonth()];
+  const day = dateObject.getDate();
+  const month = MONTHS[dateObject.getMonth()];
   const year = dateObject.getFullYear();
 
   return `${month} ${day}, ${year}`;

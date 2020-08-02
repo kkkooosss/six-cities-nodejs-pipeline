@@ -1,6 +1,6 @@
 import ActionCreator from '../../actions/data/data.js';
 import {formatOffers} from '../../../helpers/utils.js';
-import {REQUEST_CODES as requestCodes} from '../../../helpers/constants.js';
+import {REQUEST_CODES} from '../../../helpers/constants.js';
 
 const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
@@ -31,7 +31,7 @@ const Operation = {
   },
 
   setFavoriteStatus: (offerId, isFavorite) => (dispatch, getState, api) => {
-    let request = isFavorite ? requestCodes.remove : requestCodes.add;
+    let request = isFavorite ? REQUEST_CODES.remove : REQUEST_CODES.add;
     return api.post(`/favorite/${offerId}/${request}`, {})
       .then(() => {
         dispatch(Operation.loadFavorites());

@@ -12,37 +12,36 @@ import UserOperation from '../../store/operations/user/user.js';
 import DataOperation from '../../store/operations/data/data.js';
 import OfferTypes from '../../types/offer.js';
 import {filterOffers} from '../../store/reducers/filter/selectors.js';
-import {ROUTES as routes} from '../../helpers/constants.js';
+import {ROUTES} from '../../helpers/constants.js';
 import {getAuthStatus} from '../../store/reducers/user/selectors.js';
-import {AuthStatus} from '../../helpers/constants.js';
+import {AUTH_STATUS} from '../../helpers/constants.js';
 import withPrivateRoute from '../../hocs/with-private-route/with-private-route.jsx';
+import {getLoadingFlag} from '../../store/reducers/data/selectors.js';
 
 const App = ({
   offers,
-  onTitleClick,
   authStatus,
+  loading,
   onLogin,
   onSetFavoriteStatus,
-  handleTitleClick
 }) => {
-  const isAuthorized = authStatus === AuthStatus.auth;
+  const isAuthorized = authStatus === AUTH_STATUS.auth;
   const FavoritesWrapped = withPrivateRoute(Favorites, isAuthorized);
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={routes.main}
+        <Route exact path={ROUTES.main}
           render={(props) => {
             return (
               <Main
                 {...props}
                 offers={offers}
                 onSetFavoriteStatus={onSetFavoriteStatus}
-                onTitleClick={onTitleClick}
               />
             );
           }}
         />
-        <Route exact path={routes.details}
+        <Route exact path={ROUTES.details}
           render={({match}) => {
             const {id} = match.params;
             return (
@@ -53,21 +52,21 @@ const App = ({
             );
           }}
         />
-        <Route exact path={routes.favorites}
+        <Route exact path={ROUTES.favorites}
           render={() => {
             return (
               <FavoritesWrapped
-                onTitleClick={handleTitleClick}
                 onSetFavoriteStatus={onSetFavoriteStatus}
               />
             );
           }}
         />
-        <Route exact path={routes.login}
+        <Route exact path={ROUTES.login}
           render={() => {
             return (
               <Login
                 onLogin={onLogin}
+                loading={loading}
               />
             );
           }}
@@ -79,6 +78,7 @@ const App = ({
 
 const mapStateToProps = (state) => ({
   offers: filterOffers(state),
+  loading: getLoadingFlag(state),
   authStatus: getAuthStatus(state)
 });
 
@@ -101,8 +101,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(App);
 App.propTypes = {
   offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
   authStatus: PropTypes.string.isRequired,
-  onTitleClick: PropTypes.func,
   onLogin: PropTypes.func,
   onSetFavoriteStatus: PropTypes.func.isRequired,
-  handleTitleClick: PropTypes.func
+  handleTitleClick: PropTypes.func,
+  loading: PropTypes.bool.isRequired,
 };

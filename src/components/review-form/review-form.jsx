@@ -1,88 +1,176 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {RATING_TITLES as ratingTitles} from '../../helpers/constants.js';
-import withReviewForm from '../../hocs/with-review-form/with-review-form.jsx';
+import {connect} from 'react-redux';
+import {compose} from 'recompose';
+import {getSendingFlag, getErrorFlag} from '../../store/reducers/review/selectors.js';
+import {RATING_TITLES} from '../../helpers/constants.js';
+import ReviewOperation from '../../store/operations/review/review.js';
+import ActionCreator from '../../store/actions/review/review.js';
+import withFormValidation from '../../hocs/with-form-validation/with-form-validation.jsx';
 
-const ReviewForm = ({
-  errorStyle,
-  error,
-  onRatingChange,
-  onTextChange,
-  onSubmit,
-  formRef,
-  textRef,
-  submitRef,
-}) => {
-  return (
-    <form
-      className="reviews__form form"
-      action="#"
-      method="post"
-      onSubmit={onSubmit}
-      ref={formRef}
-    >
-      <label className="reviews__label form__label" htmlFor="review">Your review</label>
-      {error ? <div style={errorStyle}>Sorry, can not send your review, please try again later</div> : null}
-      <div className="reviews__rating-form form__rating">
+class ReviewForm extends React.PureComponent {
+  constructor(props) {
+    super(props);
 
-        {ratingTitles.map((title, i) =>
-          <React.Fragment key={title}>
-            <input
-              className="form__rating-input visually-hidden"
-              name="rating"
-              defaultValue={5 - i}
-              id={`${5 - i}-stars`}
-              type="radio"
-              onChange={onRatingChange}
-            />
-            <label htmlFor={`${5 - i}-stars`} className="reviews__rating-label form__rating-label" title={title}>
-              <svg className="form__star-image" width={37} height={33}>
-                <use xlinkHref="#icon-star" />
-              </svg>
-            </label>
-          </React.Fragment>
-        )}
+    this._formRef = React.createRef();
+    this._submitRef = React.createRef();
+    this._textRef = React.createRef();
 
-      </div>
-      <textarea
-        className="reviews__textarea form__textarea"
-        id="review"
-        name="review"
-        placeholder="Tell how was your stay, what you like and what can be improved"
-        defaultValue={``}
-        maxLength={300}
-        onChange={onTextChange}
-        ref={textRef}
-      />
-      <div className="reviews__button-wrapper">
-        <p className="reviews__help">
+    this._setSubmitAccess = this._setSubmitAccess.bind(this);
+    this._setTextAreaAccess = this._setTextAreaAccess.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleFormReset = this._handleFormReset.bind(this);
+
+  }
+
+  _setSubmitAccess() {
+    const {isTextValid, isRatingValid} = this.props;
+    const isValid = isRatingValid && isTextValid;
+    const submitButton = this._submitRef.current;
+    const {sending} = this.props;
+
+    if (!isValid || sending) {
+      submitButton.setAttribute(`disabled`, `disabled`);
+    } else {
+      submitButton.removeAttribute(`disabled`);
+    }
+  }
+
+  _setTextAreaAccess() {
+    const {sending} = this.props;
+    const textArea = this._textRef.current;
+
+    if (sending) {
+      textArea.setAttribute(`disabled`, `disabled`);
+    } else {
+      textArea.removeAttribute(`disabled`);
+    }
+  }
+
+  _handleFormReset() {
+    const form = this._formRef.current;
+    const {error, sending} = this.props;
+
+    if (sending && !error) {
+      form.reset();
+    }
+  }
+
+  componentDidUpdate() {
+    this._setSubmitAccess();
+    this._setTextAreaAccess();
+  }
+
+  _handleSubmit(evt) {
+    const {onSubmitReview, onSetSendingFlag} = this.props;
+    const {rating, isRatingValid, text, isTextValid} = this.props;
+    const {offerId} = this.props;
+
+    evt.preventDefault();
+
+    if (isRatingValid && isTextValid) {
+      onSetSendingFlag(true);
+      onSubmitReview(offerId, {rating, text});
+      this._handleFormReset();
+    }
+  }
+
+  render() {
+    const {error, onRatingChange, onTextChange} = this.props;
+    const errorStyle = {color: `#BF616A`, paddingBottom: `5px`};
+    return (
+      <form
+        className="reviews__form form"
+        action="#"
+        method="post"
+        onSubmit={this._handleSubmit}
+        ref={this._formRef}
+      >
+        <label className="reviews__label form__label" htmlFor="review">Your review</label>
+        {error ? <div style={errorStyle}>Sorry, can not send your review, please try again later</div> : null}
+        <div className="reviews__rating-form form__rating">
+
+          {RATING_TITLES.map((title, i) =>
+            <React.Fragment key={title}>
+              <input
+                className="form__rating-input visually-hidden"
+                name="rating"
+                defaultValue={5 - i}
+                id={`${5 - i}-stars`}
+                type="radio"
+                onChange={onRatingChange}
+              />
+              <label htmlFor={`${5 - i}-stars`} className="reviews__rating-label form__rating-label" title={title}>
+                <svg className="form__star-image" width={37} height={33}>
+                  <use xlinkHref="#icon-star" />
+                </svg>
+              </label>
+            </React.Fragment>
+          )}
+
+        </div>
+        <textarea
+          className="reviews__textarea form__textarea"
+          id="review"
+          name="review"
+          placeholder="Tell how was your stay, what you like and what can be improved"
+          defaultValue={``}
+          maxLength={300}
+          onChange={onTextChange}
+          ref={this._textRef}
+        />
+        <div className="reviews__button-wrapper">
+          <p className="reviews__help">
             To submit review please make sure to set <span className="reviews__star">rating</span> and describe your stay with at least <b className="reviews__text-amount">50 characters</b>. Maximum review length is <b className="reviews__text-amount">300 characters</b>.
-        </p>
-        <button
-          className="reviews__submit form__submit button"
-          type="submit"
-          disabled
-          ref={submitRef}
-        >
+          </p>
+          <button
+            className="reviews__submit form__submit button"
+            type="submit"
+            disabled
+            ref={this._submitRef}
+          >
             Submit
-        </button>
-      </div>
-    </form>
-  );
-};
+          </button>
+        </div>
+      </form>
+    );
+  }
+}
 
 ReviewForm.propTypes = {
-  errorStyle: PropTypes.object.isRequired,
-  error: PropTypes.bool,
+  offerId: PropTypes.number.isRequired,
+  sending: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
+  rating: PropTypes.number.isRequired,
+  isRatingValid: PropTypes.bool.isRequired,
+  text: PropTypes.string.isRequired,
+  isTextValid: PropTypes.bool.isRequired,
   onRatingChange: PropTypes.func.isRequired,
   onTextChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-  formRef: PropTypes.object.isRequired,
-  textRef: PropTypes.object.isRequired,
-  submitRef: PropTypes.object.isRequired,
+  onSetSendingFlag: PropTypes.func.isRequired,
+  onSubmitReview: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  sending: getSendingFlag(state),
+  error: getErrorFlag(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onSetSendingFlag(flag) {
+    dispatch(ActionCreator.setSendingFlag(flag));
+  },
+  onSubmitReview(offerId, reviewData) {
+    dispatch(ReviewOperation.submitReview(offerId, reviewData));
+  },
+});
+
+const withFormValidationAndConnect = compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withFormValidation
+);
 
 export {ReviewForm};
 
-export default withReviewForm(ReviewForm);
+export default withFormValidationAndConnect(ReviewForm);

@@ -143,11 +143,17 @@ exports[`App renders correctly 1`] = `
             <span
               className="places__sorting-caption"
             >
-              Sort by
+              Sort by 
             </span>
             <span
               className="places__sorting-type"
               onClick={[Function]}
+              style={
+                Object {
+                  "outline": "none",
+                  "userSelect": "none",
+                }
+              }
               tabIndex={0}
             >
               Popular
@@ -369,7 +375,7 @@ exports[`App renders correctly 1`] = `
           className="cities__right-section"
         >
           <section
-            className="map cities__map"
+            className="map property__map"
             id="map"
           />
         </div>

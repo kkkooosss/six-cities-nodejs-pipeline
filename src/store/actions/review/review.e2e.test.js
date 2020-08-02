@@ -1,5 +1,5 @@
 import ActionCreator, {Actions} from './review.js';
-import mockReviews from '../../../mocks/reviews.js';
+import mockReviews from '../../../test-data/reviews.js';
 
 describe(`Reviews action creator work correctly`, () => {
 

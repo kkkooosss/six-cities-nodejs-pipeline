@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
-import mockStore from '../../mocks/mock-store.js';
+import mockStore from '../../test-data/mock-store.js';
 import UserBlock from './user-block.jsx';
 
 

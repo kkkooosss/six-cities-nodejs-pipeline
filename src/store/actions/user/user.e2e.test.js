@@ -1,5 +1,5 @@
 import ActionCreator, {Actions} from './user.js';
-import USER from '../../../mocks/user.js';
+import USER from '../../../test-data/user.js';
 
 describe(`User action creator work correctly`, () => {
 

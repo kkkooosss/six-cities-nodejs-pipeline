@@ -36,7 +36,7 @@ export const RATING_TITLES = [
   `terribly`
 ];
 
-export const AuthStatus = {
+export const AUTH_STATUS = {
   auth: `AUTH`,
   noAuth: `NO_AUTH`,
 };

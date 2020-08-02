@@ -8,7 +8,7 @@ exports[`Review renders correctly 1`] = `
     className="reviews__user user"
   >
     <div
-      className="reviews__avatar-wrapper user__avatar-wrapper"
+      className="reviews__avatar-wrapper user__avatar-wrapper null"
     >
       <img
         alt="Max avatar"
@@ -56,7 +56,7 @@ exports[`Review renders correctly 1`] = `
       className="reviews__time"
       dateTime="2019-04-24"
     >
-      March 3, 2019
+      April 24, 2019
     </time>
   </div>
 </li>

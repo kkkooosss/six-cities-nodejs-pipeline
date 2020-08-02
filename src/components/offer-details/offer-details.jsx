@@ -21,7 +21,7 @@ import {getAuthStatus} from '../../store/reducers/user/selectors.js';
 import {getReviews} from '../../store/reducers/review/selectors.js';
 import ReviewTypes from '../../types/review.js';
 import {CARD_TYPES} from '../../helpers/constants.js';
-import {AuthStatus} from '../../helpers/constants.js';
+import {AUTH_STATUS} from '../../helpers/constants.js';
 
 class OfferDetails extends React.PureComponent {
 
@@ -61,7 +61,7 @@ class OfferDetails extends React.PureComponent {
         description
       } = offer;
 
-      const isAuthorized = authStatus === AuthStatus.auth;
+      const isAuthorized = authStatus === AUTH_STATUS.auth;
       const reducedOffers = reduceOffers(nearOffers);
       const stars = getRatingInPercents(rating);
 

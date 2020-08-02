@@ -2,9 +2,9 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import mockStore from '../../mocks/mock-store.js';
-import mockOffers from '../../mocks/offers.js';
-import mockReviews from '../../mocks/reviews';
+import mockStore from '../../test-data/mock-store.js';
+import mockOffers from '../../test-data/offers.js';
+import mockReviews from '../../test-data/reviews';
 import App from './app.jsx';
 
 it(`App renders correctly`, () => {

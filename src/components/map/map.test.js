@@ -1,19 +1,22 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Map} from './map.jsx';
+import {Provider} from 'react-redux';
+import mockStore from '../../test-data/mock-store.js';
+import mockOffers from '../../test-data/offers.js';
+import Map from './map.jsx';
 
-const MAP_REF = React.createRef();
 
 it(`Map renders correctly`, () => {
   const tree = renderer
     .create(
-        <Map
-          mapRef={MAP_REF}
-          isPropertyMap={false}
-        />, {
+        <Provider store={mockStore}>
+          <Map
+            offers={mockOffers}
+            isPropertyMap={false}
+          />
+        </Provider>, {
           createNodeMock: () => document.createElement(`div`)
-        }
-    ).toJSON();
-
+        })
+    .toJSON();
   expect(tree).toMatchSnapshot();
 });
