@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import ReviewsList from '../reviews-list/reviews-list';
@@ -9,7 +8,6 @@ import Loader from '../loader/loader';
 import Header from '../header/header';
 import {getRatingInPercents} from '../../helpers/utils';
 
-import OfferTypes from '../../types/offer';
 import DataActionsCreator from '../../store/actions/data/data';
 import DataOperation from '../../store/operations/data/data';
 import ReviewOperation from '../../store/operations/review/review';
@@ -19,11 +17,27 @@ import {getOfferById, getNearOffers, getOffers} from '../../store/reducers/data/
 
 import {getAuthStatus} from '../../store/reducers/user/selectors';
 import {getReviews} from '../../store/reducers/review/selectors';
-import ReviewTypes from '../../types/review';
 import {CARD_TYPES} from '../../helpers/constants';
 import {AUTH_STATUS} from '../../helpers/constants';
 
-class OfferDetails extends React.PureComponent {
+import Offer from '../../interfaces/offer';
+import Review from '../../interfaces/review';
+
+interface Props {
+  offerId: string;
+  selectedCity: string;
+  authStatus: string;
+  offer: Offer;
+  nearOffers: Offer[];
+  reviews: Review[];
+  selectedOffers: Offer[];
+  onRequestReviews: (offerId: string | number) => void;
+  onRequestNearOffers: (offerId: string | number) => void;
+  onSetDetailsOfferId: (offerId: string | number) => void;
+  onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
+}
+
+class OfferDetails extends React.PureComponent<Props> {
 
   componentDidMount() {
     const {onRequestNearOffers, onSetDetailsOfferId, onRequestReviews, offerId} = this.props;
@@ -220,17 +234,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 export {OfferDetails};
 export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);
-
-OfferDetails.propTypes = {
-  offerId: PropTypes.string,
-  offer: OfferTypes,
-  nearOffers: PropTypes.arrayOf(OfferTypes.isRequired),
-  selectedCity: PropTypes.string,
-  selectedOffers: PropTypes.arrayOf(OfferTypes.isRequired),
-  onRequestReviews: PropTypes.func.isRequired,
-  onRequestNearOffers: PropTypes.func.isRequired,
-  onSetFavoriteStatus: PropTypes.func.isRequired,
-  onSetDetailsOfferId: PropTypes.func.isRequired,
-  reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
-  authStatus: PropTypes.string.isRequired,
-};

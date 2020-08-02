@@ -1,14 +1,21 @@
 import * as React from 'react';
 import leaflet from 'leaflet';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import OfferTypes from '../../types/offer';
 import {CITIES, MAP_SETTINGS} from '../../helpers/constants';
 import {getSelectedCity} from '../../store/reducers/filter/selectors';
 import {getActiveOffer} from '../../store/reducers/active/selectors';
+import Offer from '../../interfaces/offer';
 
-class Map extends React.PureComponent {
+interface Props {
+  selectedCity: string;
+  offers: Offer[];
+  isPropertyMap: boolean;
+  currentOffer: Offer;
+  activeOffer: Offer;
+}
+
+class Map extends React.PureComponent<Props> {
   constructor(props) {
     super(props);
 
@@ -118,15 +125,4 @@ const mapStateToProps = (state) => ({
   activeOffer: getActiveOffer(state)
 });
 
-Map.propTypes = {
-  Component: PropTypes.element,
-  selectedCity: PropTypes.string.isRequired,
-  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
-  isPropertyMap: PropTypes.bool.isRequired,
-  currentOffer: OfferTypes,
-  activeOffer: OfferTypes,
-};
-
-
 export default connect(mapStateToProps, null)(Map);
-

@@ -1,9 +1,14 @@
 import * as React from 'react';
 
 import {getRatingInPercents, convertDate} from '../../helpers/utils';
-import ReviewTypes from '../../types/review';
+import Review from '../../interfaces/review';
 
-const Review = ({review}) => {
+interface Props {
+  review: Review;
+}
+
+const ReviewCard = (props: Props) => {
+  const {review} = props;
   const {
     name,
     userPic,
@@ -42,8 +47,4 @@ const Review = ({review}) => {
   );
 };
 
-export default Review;
-
-Review.propTypes = {
-  review: ReviewTypes.isRequired
-};
+export default ReviewCard;

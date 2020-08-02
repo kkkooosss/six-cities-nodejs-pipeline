@@ -16,3 +16,14 @@
   background-position: center -1px;
   background-repeat: no-repeat;
 }
+
+.login__input-wrapper {
+  position: relative;
+}
+
+.login__error-message {
+  position: absolute;
+  top: -20px;
+  color: #BF616A;
+  padding-left: 15px;
+}

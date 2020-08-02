@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
@@ -10,21 +9,24 @@ import OfferDetails from '../offer-details/offer-details';
 
 import UserOperation from '../../store/operations/user/user';
 import DataOperation from '../../store/operations/data/data';
-import OfferTypes from '../../types/offer';
 import {filterOffers} from '../../store/reducers/filter/selectors';
 import {ROUTES} from '../../helpers/constants';
 import {getAuthStatus} from '../../store/reducers/user/selectors';
 import {AUTH_STATUS} from '../../helpers/constants';
 import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
 import {getLoadingFlag} from '../../store/reducers/data/selectors';
+import Offer from '../../interfaces/offer';
 
-const App = ({
-  offers,
-  authStatus,
-  loading,
-  onLogin,
-  onSetFavoriteStatus,
-}) => {
+interface Props {
+  offers: Offer[];
+  authStatus: boolean;
+  loading: boolean;
+  onLogin: (authData: boolean) => void;
+  onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
+}
+
+const App = (props: Props) => {
+  const {offers, authStatus, loading, onLogin, onSetFavoriteStatus} = props;
   const isAuthorized = authStatus === AUTH_STATUS.auth;
   const FavoritesWrapped = withPrivateRoute(Favorites, isAuthorized);
   return (
@@ -84,11 +86,11 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
 
-  onLogin(authData) {
+  onLogin(authData: boolean) {
     dispatch(UserOperation.login(authData));
   },
 
-  onSetFavoriteStatus(offerId, isFavorite) {
+  onSetFavoriteStatus(offerId: number | number, isFavorite: boolean) {
     dispatch(DataOperation.setFavoriteStatus(offerId, isFavorite));
   },
 
@@ -97,12 +99,3 @@ const mapDispatchToProps = (dispatch) => ({
 export {App};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
-
-App.propTypes = {
-  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
-  authStatus: PropTypes.string.isRequired,
-  onLogin: PropTypes.func,
-  onSetFavoriteStatus: PropTypes.func.isRequired,
-  handleTitleClick: PropTypes.func,
-  loading: PropTypes.bool.isRequired,
-};

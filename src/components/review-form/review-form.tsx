@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
@@ -9,7 +8,21 @@ import ReviewOperation from '../../store/operations/review/review';
 import ActionCreator from '../../store/actions/review/review';
 import withFormValidation from '../../hocs/with-form-validation/with-form-validation';
 
-class ReviewForm extends React.PureComponent {
+interface Props {
+  offerId: number;
+  rating: number;
+  sending: boolean;
+  error: boolean;
+  text: string,
+  isRatingValid: boolean;
+  isTextValid: boolean;
+  onRatingChange: () => void;
+  onTextChange: () => void;
+  onSetSendingFlag: (flag: boolean) => void;
+  onSubmitReview: (offerId: number | string, review: {rating: number, text: string}) => void;
+}
+
+class ReviewForm extends React.PureComponent<Props> {
   constructor(props) {
     super(props);
 
@@ -137,20 +150,6 @@ class ReviewForm extends React.PureComponent {
     );
   }
 }
-
-ReviewForm.propTypes = {
-  offerId: PropTypes.number.isRequired,
-  sending: PropTypes.bool.isRequired,
-  error: PropTypes.bool.isRequired,
-  rating: PropTypes.number.isRequired,
-  isRatingValid: PropTypes.bool.isRequired,
-  text: PropTypes.string.isRequired,
-  isTextValid: PropTypes.bool.isRequired,
-  onRatingChange: PropTypes.func.isRequired,
-  onTextChange: PropTypes.func.isRequired,
-  onSetSendingFlag: PropTypes.func.isRequired,
-  onSubmitReview: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   sending: getSendingFlag(state),

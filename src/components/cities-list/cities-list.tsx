@@ -1,8 +1,14 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {reduceCities} from '../../helpers/utils';
 
-const CitiesList = ({cities, selectedCity, onCitySelect}) => {
+interface Props {
+  cities: string[];
+  selectedCity: string;
+  onCitySelect: (city: string) => void;
+}
+
+const CitiesList = (props: Props) => {
+  const {cities, selectedCity, onCitySelect} = props;
 
   const reducedCities = reduceCities(cities);
 
@@ -31,9 +37,3 @@ const CitiesList = ({cities, selectedCity, onCitySelect}) => {
 };
 
 export default CitiesList;
-
-CitiesList.propTypes = {
-  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedCity: PropTypes.string.isRequired,
-  onCitySelect: PropTypes.func
-};

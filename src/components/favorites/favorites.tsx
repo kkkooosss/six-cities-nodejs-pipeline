@@ -1,8 +1,7 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import OfferTypes from '../../types/offer';
+import Offer from '../../interfaces/offer';
 import Header from '../header/header';
 import OfferCard from '../offer-card/offer-card';
 import Footer from '../footer/footer';
@@ -11,7 +10,13 @@ import DataOperation from '../../store/operations/data/data';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
 import {CARD_TYPES} from '../../helpers/constants';
 
-class Favorites extends React.Component {
+interface Props {
+  favorites: Offer[];
+  onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
+  onRequestFavorites: () => void;
+};
+
+class Favorites extends React.Component<Props> {
   constructor(props) {
     super(props);
   }
@@ -88,9 +93,3 @@ const mapDispatchToProps = (dispatch) => ({
 export {Favorites};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Favorites);
-
-Favorites.propTypes = {
-  favorites: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
-  onSetFavoriteStatus: PropTypes.func,
-  onRequestFavorites: PropTypes.func.isRequired
-};

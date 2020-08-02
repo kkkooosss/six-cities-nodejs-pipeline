@@ -1,26 +1,21 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 import Header from '../header/header';
 import withLogin from '../../hocs/with-login/with-login';
 import Loader from '../loader/loader';
 
-const Login = ({
-  isValid,
-  emailError,
-  passwordError,
-  onEmailChange,
-  onPasswordChange,
-  onSubmit,
-  loading
-}) => {
+interface Props {
+  isValid: boolean;
+  loading: boolean;
+  emailError: string;
+  passwordError: string;
+  onEmailChange: () => void;
+  onPasswordChange: () => void;
+  onSubmit: () => void;
+}
 
-  const ErrorMessageStyle = {
-    position: `absolute`,
-    top: `-20px`,
-    color: `#BF616A`,
-    paddingLeft: `15px`
-  };
+const Login = (props: Props) => {
+  const {isValid, emailError, passwordError, onEmailChange, onPasswordChange, onSubmit, loading} = props;
 
   return loading ? <Loader /> : (
     <div className="page page--gray page--login">
@@ -31,8 +26,8 @@ const Login = ({
           <section className="login">
             <h1 className="login__title">Sign in</h1>
             <form className="login__form form" action="#" method="post" onSubmit={onSubmit}>
-              <div className="login__input-wrapper form__input-wrapper" style={{position: `relative`}}>
-                {emailError ? <span style={ErrorMessageStyle}>{emailError}</span> : null}
+              <div className="login__input-wrapper form__input-wrapper">
+                {emailError ? <span className="login__error-message">{emailError}</span> : null}
                 <label className="visually-hidden">E-mail</label>
                 <input
                   className="login__input form__input"
@@ -42,8 +37,8 @@ const Login = ({
                   required
                   onChange={onEmailChange} />
               </div>
-              <div className="login__input-wrapper form__input-wrapper" style={{position: `relative`}} >
-                {passwordError ? <span style={ErrorMessageStyle}>{passwordError}</span> : null}
+              <div className="login__input-wrapper form__input-wrapper">
+                {passwordError ? <span className="login__error-message">{passwordError}</span> : null}
                 <label className="visually-hidden">Password</label>
                 <input
                   className="login__input form__input"
@@ -69,15 +64,4 @@ const Login = ({
   );
 };
 
-Login.propTypes = {
-  isValid: PropTypes.bool,
-  loading: PropTypes.bool.isRequired,
-  emailError: PropTypes.string,
-  passwordError: PropTypes.string,
-  onEmailChange: PropTypes.func.isRequired,
-  onPasswordChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired
-};
-
 export default withLogin(Login);
-

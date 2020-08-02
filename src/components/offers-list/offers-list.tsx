@@ -1,23 +1,24 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import OfferCard from '../offer-card/offer-card';
-import OfferTypes from '../../types/offer';
 import ActiveActionCreator from '../../store/actions/active/active';
 import {filterOffersOrder} from '../../helpers/utils';
 import {getSelectedFilter} from '../../store/reducers/filter/selectors';
 import {getActiveOffer} from '../../store/reducers/active/selectors';
+import Offer from '../../interfaces/offer';
 
+interface Props {
+  offers: Offer[];
+  cardType: string;
+  selectedFilter: string;
+  handleCardHover: (offer: Offer) => void;
+  handleCardHoverLeave: () => void;
+  onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
+}
 
-const OffersList = ({
-  offers,
-  selectedFilter,
-  handleCardHover,
-  handleCardHoverLeave,
-  cardType,
-  onSetFavoriteStatus}) => {
-
+const OffersList = (props: Props) => {
+  const {offers, selectedFilter, handleCardHover, handleCardHoverLeave, cardType, onSetFavoriteStatus} = props;
   const filteredOffers = filterOffersOrder(offers, selectedFilter);
 
   return (
@@ -42,7 +43,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleCardHover: (offer) => {
+  handleCardHover: (offer: Offer) => {
     dispatch(ActiveActionCreator.setActiveOffer(offer));
   },
 
@@ -53,12 +54,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(OffersList);
-
-OffersList.propTypes = {
-  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
-  handleCardHover: PropTypes.func,
-  handleCardHoverLeave: PropTypes.func,
-  cardType: PropTypes.string.isRequired,
-  selectedFilter: PropTypes.string.isRequired,
-  onSetFavoriteStatus: PropTypes.func
-};

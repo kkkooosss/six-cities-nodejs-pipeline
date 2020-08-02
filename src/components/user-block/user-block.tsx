@@ -1,15 +1,19 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import UserTypes from '../../types/user';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {API_BASE} from '../../api/api';
 import {AUTH_STATUS, ROUTES} from '../../helpers/constants';
 import {getUser, getAuthStatus} from '../../store/reducers/user/selectors';
+import User from '../../interfaces/user';
 
+interface Props {
+  user: User;
+  authStatus: string;
+}
 
-const UserBlock = ({authStatus, user}) => {
+const UserBlock = (props: Props) => {
+  const {authStatus, user} = props;
   const isAuthorized = authStatus === AUTH_STATUS.auth;
 
   return (
@@ -31,8 +35,3 @@ const mapStateToPros = (state) => ({
 });
 
 export default connect(mapStateToPros, null)(UserBlock);
-
-UserBlock.propTypes = {
-  user: UserTypes,
-  authStatus: PropTypes.string.isRequired
-};

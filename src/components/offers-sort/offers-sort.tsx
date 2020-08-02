@@ -1,5 +1,4 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
 import withToggleOpen from '../../hocs/with-toggle-open/with-toggle-open';
 
@@ -10,7 +9,14 @@ import FilterActionCreator from '../../store/actions/filter/filter';
 import {FILTERS} from '../../helpers/constants';
 import {getSelectedFilter} from '../../store/reducers/filter/selectors';
 
-class OffersSort extends React.PureComponent {
+interface Props {
+  isOpen: boolean;
+  selectedFilter: string;
+  onToggleOpen: () => void;
+  onFilterSelect: (filter:string) => void;
+}
+
+class OffersSort extends React.PureComponent<Props> {
   constructor(props) {
     super(props);
 
@@ -68,14 +74,6 @@ class OffersSort extends React.PureComponent {
     );
   }
 }
-OffersSort.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onToggleOpen: PropTypes.func.isRequired,
-  Component: PropTypes.element,
-  selectedFilter: PropTypes.string.isRequired,
-  onFilterSelect: PropTypes.func
-};
-
 
 const mapStateToProps = (state) => ({
   selectedFilter: getSelectedFilter(state)

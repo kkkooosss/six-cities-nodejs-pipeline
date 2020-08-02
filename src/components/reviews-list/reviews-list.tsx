@@ -1,12 +1,18 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 
-import ReviewTypes from '../../types/review';
 
-import Review from '../review/review';
+import ReviewCard from '../review/review-card';
 import ReviewForm from '../review-form/review-form';
+import Review from '../../interfaces/review';
 
-const ReviewsList = ({offerId, reviews, isAuthorized}) => {
+interface Props {
+  reviews: Review[];
+  isAuthorized: boolean;
+  offerId: number;
+}
+
+const ReviewsList = (props: Props) => {
+  const {offerId, reviews, isAuthorized} = props;
 
   const reviewsCount = reviews.length;
 
@@ -15,7 +21,7 @@ const ReviewsList = ({offerId, reviews, isAuthorized}) => {
       <h2 className="reviews__title">Reviews · <span className="reviews__amount">{reviewsCount}</span></h2>
 
       <ul className="reviews__list">
-        {reviews.map((review) => <Review review={review} key={review.id} />)}
+        {reviews.map((review) => <ReviewCard review={review} key={review.id} />)}
       </ul>
 
       {isAuthorized ? <ReviewForm offerId={offerId} /> : null}
@@ -25,9 +31,3 @@ const ReviewsList = ({offerId, reviews, isAuthorized}) => {
 };
 
 export default ReviewsList;
-
-ReviewsList.propTypes = {
-  reviews: PropTypes.arrayOf(ReviewTypes.isRequired).isRequired,
-  isAuthorized: PropTypes.bool.isRequired,
-  offerId: PropTypes.number.isRequired,
-};

@@ -1,13 +1,20 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import OfferTypes from '../../types/offer';
 import {getRatingInPercents} from '../../helpers/utils';
 import {CARD_CLASSES, WRAPPER_CLASSES, IMAGE_SIZES} from '../../helpers/constants';
+import Offer from '../../interfaces/offer';
 
-const OfferCard = ({offer, onCardHover, onCardHoverLeave, cardType, onSetFavoriteStatus}) => {
+interface Props {
+  offer: Offer;
+  cardType: string;
+  onCardHover: (offer: Offer) => void;
+  onCardHoverLeave: () => void;
+  onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
+}
 
+const OfferCard = (props: Props) => {
+  const {offer, onCardHover, onCardHoverLeave, cardType, onSetFavoriteStatus} = props;
   const {
     id,
     isPremium,
@@ -85,11 +92,3 @@ const OfferCard = ({offer, onCardHover, onCardHoverLeave, cardType, onSetFavorit
 };
 
 export default OfferCard;
-
-OfferCard.propTypes = {
-  offer: OfferTypes.isRequired,
-  onCardHover: PropTypes.func,
-  onCardHoverLeave: PropTypes.func,
-  cardType: PropTypes.string.isRequired,
-  onSetFavoriteStatus: PropTypes.func
-};

@@ -1,9 +1,7 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import OffersList from '../offers-list/offers-list';
-import OfferTypes from '../../types/offer';
 import OffersSort from '../offers-sort/offers-sort';
 import CitiesList from '../cities-list/cities-list';
 import Loader from '../loader/loader';
@@ -17,8 +15,19 @@ import FilterActionCreator from '../../store/actions/filter/filter';
 import {getSelectedCity} from '../../store/reducers/filter/selectors';
 import {getCities, getLoadingFlag} from '../../store/reducers/data/selectors';
 import {CARD_TYPES} from '../../helpers/constants';
+import Offer from '../../interfaces/offer';
 
-const Main = ({offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus, loading}) => {
+interface Props {
+  offers: Offer[];
+  loading: boolean;
+  cities: string[];
+  selectedCity: string;
+  onCitySelect: (city: string) => void;
+  onSetFavoriteStatus: () => void;
+};
+
+const Main = (props: Props) => {
+  const {offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus, loading} = props;
 
   const reducedCities = reduceCities(cities);
   const reducedOffers = reduceOffers(offers);
@@ -72,12 +81,3 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
-
-Main.propTypes = {
-  offers: PropTypes.arrayOf(OfferTypes.isRequired).isRequired,
-  loading: PropTypes.bool.isRequired,
-  cities: PropTypes.arrayOf(PropTypes.string).isRequired,
-  selectedCity: PropTypes.string.isRequired,
-  onCitySelect: PropTypes.func,
-  onSetFavoriteStatus: PropTypes.func
-};
