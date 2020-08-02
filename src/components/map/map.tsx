@@ -1,12 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import leaflet from 'leaflet';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import OfferTypes from '../../types/offer.js';
-import {CITIES, MAP_SETTINGS} from '../../helpers/constants.js';
-import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
-import {getActiveOffer} from '../../store/reducers/active/selectors.js';
+import OfferTypes from '../../types/offer';
+import {CITIES, MAP_SETTINGS} from '../../helpers/constants';
+import {getSelectedCity} from '../../store/reducers/filter/selectors';
+import {getActiveOffer} from '../../store/reducers/active/selectors';
 
 class Map extends React.PureComponent {
   constructor(props) {

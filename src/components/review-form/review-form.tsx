@@ -1,13 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
-import {getSendingFlag, getErrorFlag} from '../../store/reducers/review/selectors.js';
-import {RATING_TITLES} from '../../helpers/constants.js';
-import ReviewOperation from '../../store/operations/review/review.js';
-import ActionCreator from '../../store/actions/review/review.js';
-import withFormValidation from '../../hocs/with-form-validation/with-form-validation.jsx';
+import {getSendingFlag, getErrorFlag} from '../../store/reducers/review/selectors';
+import {RATING_TITLES} from '../../helpers/constants';
+import ReviewOperation from '../../store/operations/review/review';
+import ActionCreator from '../../store/actions/review/review';
+import withFormValidation from '../../hocs/with-form-validation/with-form-validation';
 
 class ReviewForm extends React.PureComponent {
   constructor(props) {

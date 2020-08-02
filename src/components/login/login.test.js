@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from "react-router-dom";
-import Login from './login.jsx';
-import mockStore from '../../test-data/mock-store.js';
+import Login from './login';
+import mockStore from '../../test-data/mock-store';
 
 it(`Header renders correctly`, () => {
   const tree = renderer

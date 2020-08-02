@@ -1,13 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import OfferCard from '../offer-card/offer-card.jsx';
-import OfferTypes from '../../types/offer.js';
-import ActiveActionCreator from '../../store/actions/active/active.js';
-import {filterOffersOrder} from '../../helpers/utils.js';
-import {getSelectedFilter} from '../../store/reducers/filter/selectors.js';
-import {getActiveOffer} from '../../store/reducers/active/selectors.js';
+import OfferCard from '../offer-card/offer-card';
+import OfferTypes from '../../types/offer';
+import ActiveActionCreator from '../../store/actions/active/active';
+import {filterOffersOrder} from '../../helpers/utils';
+import {getSelectedFilter} from '../../store/reducers/filter/selectors';
+import {getActiveOffer} from '../../store/reducers/active/selectors';
 
 
 const OffersList = ({

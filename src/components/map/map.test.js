@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import mockStore from '../../test-data/mock-store.js';
-import mockOffers from '../../test-data/offers.js';
-import Map from './map.jsx';
+import mockStore from '../../test-data/mock-store';
+import mockOffers from '../../test-data/offers';
+import Map from './map';
 
 
 it(`Map renders correctly`, () => {

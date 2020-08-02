@@ -1,15 +1,15 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import OfferTypes from '../../types/offer';
-import Header from '../header/header.jsx';
-import OfferCard from '../offer-card/offer-card.jsx';
-import Footer from '../footer/footer.jsx';
-import {getFavorites} from '../../store/reducers/data/selectors.js';
-import DataOperation from '../../store/operations/data/data.js';
-import FavoritesEmpty from '../favorites-empty/favorites-empty.jsx';
-import {CARD_TYPES} from '../../helpers/constants.js';
+import Header from '../header/header';
+import OfferCard from '../offer-card/offer-card';
+import Footer from '../footer/footer';
+import {getFavorites} from '../../store/reducers/data/selectors';
+import DataOperation from '../../store/operations/data/data';
+import FavoritesEmpty from '../favorites-empty/favorites-empty';
+import {CARD_TYPES} from '../../helpers/constants';
 
 class Favorites extends React.Component {
   constructor(props) {

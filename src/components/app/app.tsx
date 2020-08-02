@@ -1,22 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
-import Main from '../main/main.jsx';
-import Login from '../login/login.jsx';
-import Favorites from '../favorites/favorites.jsx';
-import OfferDetails from '../offer-details/offer-details.jsx';
+import Main from '../main/main';
+import Login from '../login/login';
+import Favorites from '../favorites/favorites';
+import OfferDetails from '../offer-details/offer-details';
 
-import UserOperation from '../../store/operations/user/user.js';
-import DataOperation from '../../store/operations/data/data.js';
-import OfferTypes from '../../types/offer.js';
-import {filterOffers} from '../../store/reducers/filter/selectors.js';
-import {ROUTES} from '../../helpers/constants.js';
-import {getAuthStatus} from '../../store/reducers/user/selectors.js';
-import {AUTH_STATUS} from '../../helpers/constants.js';
-import withPrivateRoute from '../../hocs/with-private-route/with-private-route.jsx';
-import {getLoadingFlag} from '../../store/reducers/data/selectors.js';
+import UserOperation from '../../store/operations/user/user';
+import DataOperation from '../../store/operations/data/data';
+import OfferTypes from '../../types/offer';
+import {filterOffers} from '../../store/reducers/filter/selectors';
+import {ROUTES} from '../../helpers/constants';
+import {getAuthStatus} from '../../store/reducers/user/selectors';
+import {AUTH_STATUS} from '../../helpers/constants';
+import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
+import {getLoadingFlag} from '../../store/reducers/data/selectors';
 
 const App = ({
   offers,

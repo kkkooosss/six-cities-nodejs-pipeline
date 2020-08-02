@@ -1,4 +1,4 @@
-import ActionCreator, {Actions} from './active.js';
+import ActionCreator, {Actions} from './active';
 import OFFERS from '../../../test-data/offers';
 
 const OFFER = OFFERS[0];

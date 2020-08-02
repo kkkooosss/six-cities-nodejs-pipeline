@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
-import withFormValidation from './with-form-validation.jsx';
+import withFormValidation from './with-form-validation';
 
 const MockComponent = () => <div />;
 const WrappedComponent = withFormValidation(MockComponent);

@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 
-import App from './components/app/app.jsx';
-import store from './store/store.js';
-import {initApp} from './store/store.js';
+import App from './components/app/app';
+import store from './store/store';
+import {initApp} from './store/store';
 
 initApp();
 

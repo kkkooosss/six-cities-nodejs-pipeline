@@ -1,10 +1,10 @@
 import MockAdapter from 'axios-mock-adapter';
-import createAPI from '../../../api/api.js';
-import Operation from './data.js';
-import {Actions} from '../../actions/data/data.js';
-import {formatOffers} from '../../../helpers/utils.js';
-import rawOffers from '../../../test-data/raw-offers.js';
-import {REQUEST_CODES} from '../../../helpers/constants.js';
+import createAPI from '../../../api/api';
+import Operation from './data';
+import {Actions} from '../../actions/data/data';
+import {formatOffers} from '../../../helpers/utils';
+import rawOffers from '../../../test-data/raw-offers';
+import {REQUEST_CODES} from '../../../helpers/constants';
 
 const api = createAPI(() => {});
 

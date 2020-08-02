@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import Main from './main.jsx';
+import Main from './main';
 import {BrowserRouter} from 'react-router-dom';
-import mockStore from '../../test-data/mock-store.js';
-import mockOffers from '../../test-data/offers.js';
+import mockStore from '../../test-data/mock-store';
+import mockOffers from '../../test-data/offers';
 
 
 it(`Main renders correctly`, () => {

@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 
-import {Favorites} from './favorites.jsx';
-import mockStore from '../../test-data/mock-store.js';
-import offersMock from '../../test-data/offers.js';
+import {Favorites} from './favorites';
+import mockStore from '../../test-data/mock-store';
+import offersMock from '../../test-data/offers';
 
 it(`Favorites renders correctly`, () => {
   const tree = renderer

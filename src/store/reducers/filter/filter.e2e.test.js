@@ -1,5 +1,5 @@
-import {Actions} from '../../actions/filter/filter.js';
-import reducer from './filter.js';
+import {Actions} from '../../actions/filter/filter';
+import reducer from './filter';
 
 describe(`Reducer work correctly`, () => {
 

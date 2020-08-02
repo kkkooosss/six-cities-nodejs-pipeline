@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
-import OffersSort from './offers-sort.jsx';
+import OffersSort from './offers-sort';
 
 const store = createStore(() => ({
   FILTER: {

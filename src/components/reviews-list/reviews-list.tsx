@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import ReviewTypes from '../../types/review.js';
+import ReviewTypes from '../../types/review';
 
-import Review from '../review/review.jsx';
-import ReviewForm from '../review-form/review-form.jsx';
+import Review from '../review/review';
+import ReviewForm from '../review-form/review-form';
 
 const ReviewsList = ({offerId, reviews, isAuthorized}) => {
 

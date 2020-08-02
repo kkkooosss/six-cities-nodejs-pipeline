@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import ReviewsList from './reviews-list.jsx';
-import mockStore from '../../test-data/mock-store.js';
+import ReviewsList from './reviews-list';
+import mockStore from '../../test-data/mock-store';
 
 const mockReviews = [
   {

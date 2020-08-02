@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
-import withToggleOpen from './with-toggle-open.jsx';
+import withToggleOpen from './with-toggle-open';
 
 const MockComponent = () => <div />;
 const WrappedComponent = withToggleOpen(MockComponent);

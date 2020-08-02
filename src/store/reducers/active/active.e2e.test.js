@@ -1,5 +1,5 @@
-import {Actions} from '../../actions/active/active.js';
-import reducer from './active.js';
+import {Actions} from '../../actions/active/active';
+import reducer from './active';
 
 describe(`Active reducer work correctly`, () => {
 

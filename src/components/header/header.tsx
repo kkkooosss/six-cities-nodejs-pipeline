@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import {Link} from 'react-router-dom';
 
-import UserBlock from '../user-block/user-block.jsx';
+import UserBlock from '../user-block/user-block';
 
 const Header = () => (
   <header className="header">

@@ -1,5 +1,5 @@
-import {Actions} from '../../actions/review/review.js';
-import reducer from './review.js';
+import {Actions} from '../../actions/review/review';
+import reducer from './review';
 
 describe(`Review reducer works correctly`, () => {
 

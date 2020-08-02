@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 
-import Header from '../header/header.jsx';
-import Footer from '../footer/footer.jsx';
+import Header from '../header/header';
+import Footer from '../footer/footer';
 
 const FavoritesEmpty = () => (
   <div className="page page--favorites-empty">

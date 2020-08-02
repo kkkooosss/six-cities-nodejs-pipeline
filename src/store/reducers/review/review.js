@@ -1,5 +1,5 @@
-import {extend} from '../../../helpers/utils.js';
-import {Actions} from '../../actions/review/review.js';
+import {extend} from '../../../helpers/utils';
+import {Actions} from '../../actions/review/review';
 
 const initialState = {
   reviews: [],

@@ -1,12 +1,12 @@
 import MockAdapter from 'axios-mock-adapter';
 
-import createAPI from '../../../api/api.js';
-import Operation from './user.js';
-import {Actions} from '../../actions/user/user.js';
-import {Actions as DataActions} from '../../actions/data/data.js';
-import {AUTH_STATUS} from '../../../helpers/constants.js';
-import rawUser from '../../../test-data/raw-user.js';
-import mockUser from '../../../test-data/user.js';
+import createAPI from '../../../api/api';
+import Operation from './user';
+import {Actions} from '../../actions/user/user';
+import {Actions as DataActions} from '../../actions/data/data';
+import {AUTH_STATUS} from '../../../helpers/constants';
+import rawUser from '../../../test-data/raw-user';
+import mockUser from '../../../test-data/user';
 
 const api = createAPI(() => {});
 const apiMock = new MockAdapter(api);

@@ -1,27 +1,27 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import ReviewsList from '../reviews-list/reviews-list.jsx';
-import Map from '../map/map.jsx';
-import OffersList from '../offers-list/offers-list.jsx';
-import Loader from '../loader/loader.jsx';
-import Header from '../header/header.jsx';
-import {getRatingInPercents} from '../../helpers/utils.js';
+import ReviewsList from '../reviews-list/reviews-list';
+import Map from '../map/map';
+import OffersList from '../offers-list/offers-list';
+import Loader from '../loader/loader';
+import Header from '../header/header';
+import {getRatingInPercents} from '../../helpers/utils';
 
-import OfferTypes from '../../types/offer.js';
-import DataActionsCreator from '../../store/actions/data/data.js';
-import DataOperation from '../../store/operations/data/data.js';
-import ReviewOperation from '../../store/operations/review/review.js';
-import {reduceOffers} from '../../helpers/utils.js';
-import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
-import {getOfferById, getNearOffers, getOffers} from '../../store/reducers/data/selectors.js';
+import OfferTypes from '../../types/offer';
+import DataActionsCreator from '../../store/actions/data/data';
+import DataOperation from '../../store/operations/data/data';
+import ReviewOperation from '../../store/operations/review/review';
+import {reduceOffers} from '../../helpers/utils';
+import {getSelectedCity} from '../../store/reducers/filter/selectors';
+import {getOfferById, getNearOffers, getOffers} from '../../store/reducers/data/selectors';
 
-import {getAuthStatus} from '../../store/reducers/user/selectors.js';
-import {getReviews} from '../../store/reducers/review/selectors.js';
-import ReviewTypes from '../../types/review.js';
-import {CARD_TYPES} from '../../helpers/constants.js';
-import {AUTH_STATUS} from '../../helpers/constants.js';
+import {getAuthStatus} from '../../store/reducers/user/selectors';
+import {getReviews} from '../../store/reducers/review/selectors';
+import ReviewTypes from '../../types/review';
+import {CARD_TYPES} from '../../helpers/constants';
+import {AUTH_STATUS} from '../../helpers/constants';
 
 class OfferDetails extends React.PureComponent {
 

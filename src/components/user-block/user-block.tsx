@@ -1,12 +1,12 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import UserTypes from '../../types/user';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {API_BASE} from '../../api/api.js';
-import {AUTH_STATUS, ROUTES} from '../../helpers/constants.js';
-import {getUser, getAuthStatus} from '../../store/reducers/user/selectors.js';
+import {API_BASE} from '../../api/api';
+import {AUTH_STATUS, ROUTES} from '../../helpers/constants';
+import {getUser, getAuthStatus} from '../../store/reducers/user/selectors';
 
 
 const UserBlock = ({authStatus, user}) => {

@@ -1,7 +1,7 @@
-import ActionCreator from '../../actions/user/user.js';
-import DataActionCreator from '../../actions/data/data.js';
-import {AUTH_STATUS} from '../../../helpers/constants.js';
-import {formatUser} from '../../../helpers/utils.js';
+import ActionCreator from '../../actions/user/user';
+import DataActionCreator from '../../actions/data/data';
+import {AUTH_STATUS} from '../../../helpers/constants';
+import {formatUser} from '../../../helpers/utils';
 
 const Operation = {
   checkAuthStatus: () => (dispatch, getState, api) => {

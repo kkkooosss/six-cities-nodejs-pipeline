@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import {OfferDetails} from './offer-details.jsx';
+import {OfferDetails} from './offer-details';
 import {BrowserRouter} from 'react-router-dom';
 
-import mockStore from '../../test-data/mock-store.js';
-import mockOffers from '../../test-data/offers.js';
+import mockStore from '../../test-data/mock-store';
+import mockOffers from '../../test-data/offers';
 
 const mockReviews = [
   {

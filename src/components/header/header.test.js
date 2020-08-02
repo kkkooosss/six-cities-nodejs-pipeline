@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {BrowserRouter} from 'react-router-dom';
 import mockStore from '../../test-data/mock-store';
 
-import Header from './header.jsx';
+import Header from './header';
 
 it(`Header renders correctly`, () => {
   const tree = renderer

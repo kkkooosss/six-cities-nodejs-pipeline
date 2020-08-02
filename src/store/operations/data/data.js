@@ -1,6 +1,6 @@
-import ActionCreator from '../../actions/data/data.js';
-import {formatOffers} from '../../../helpers/utils.js';
-import {REQUEST_CODES} from '../../../helpers/constants.js';
+import ActionCreator from '../../actions/data/data';
+import {formatOffers} from '../../../helpers/utils';
+import {REQUEST_CODES} from '../../../helpers/constants';
 
 const Operation = {
   loadOffers: () => (dispatch, getState, api) => {

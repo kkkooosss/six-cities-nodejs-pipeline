@@ -1,11 +1,11 @@
 
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
-import mockStore from '../../test-data/mock-store.js';
-import mockOffers from '../../test-data/offers.js';
+import mockStore from '../../test-data/mock-store';
+import mockOffers from '../../test-data/offers';
 import mockReviews from '../../test-data/reviews';
-import App from './app.jsx';
+import App from './app';
 
 it(`App renders correctly`, () => {
   const tree = renderer

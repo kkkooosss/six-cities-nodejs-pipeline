@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 
-import withPrivateRoute from './with-private-route.jsx';
+import withPrivateRoute from './with-private-route';
 
 const MockComponent = () => <div />;
 const WrappedComponent = withPrivateRoute(MockComponent);

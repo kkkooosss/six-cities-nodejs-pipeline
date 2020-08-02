@@ -1,4 +1,4 @@
-import ActionCreator, {Actions} from './filter.js';
+import ActionCreator, {Actions} from './filter';
 
 describe(`Filter action creator work correctly`, () => {
 

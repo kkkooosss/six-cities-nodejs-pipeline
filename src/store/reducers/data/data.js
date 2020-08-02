@@ -1,5 +1,5 @@
-import {extend} from '../../../helpers/utils.js';
-import {Actions} from '../../actions/data/data.js';
+import {extend} from '../../../helpers/utils';
+import {Actions} from '../../actions/data/data';
 
 const initialState = {
   offers: [],

@@ -1,14 +1,14 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import withToggleOpen from '../../hocs/with-toggle-open/with-toggle-open.jsx';
+import withToggleOpen from '../../hocs/with-toggle-open/with-toggle-open';
 
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
 
-import FilterActionCreator from '../../store/actions/filter/filter.js';
-import {FILTERS} from '../../helpers/constants.js';
-import {getSelectedFilter} from '../../store/reducers/filter/selectors.js';
+import FilterActionCreator from '../../store/actions/filter/filter';
+import {FILTERS} from '../../helpers/constants';
+import {getSelectedFilter} from '../../store/reducers/filter/selectors';
 
 class OffersSort extends React.PureComponent {
   constructor(props) {

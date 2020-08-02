@@ -1,22 +1,22 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import OffersList from '../offers-list/offers-list.jsx';
-import OfferTypes from '../../types/offer.js';
-import OffersSort from '../offers-sort/offers-sort.jsx';
-import CitiesList from '../cities-list/cities-list.jsx';
-import Loader from '../loader/loader.jsx';
-import Map from '../../components/map/map.jsx';
-import Header from '../../components/header/header.jsx';
-import OffersEmpty from '../../components/offers-empty/offers-empty.jsx';
+import OffersList from '../offers-list/offers-list';
+import OfferTypes from '../../types/offer';
+import OffersSort from '../offers-sort/offers-sort';
+import CitiesList from '../cities-list/cities-list';
+import Loader from '../loader/loader';
+import Map from '../../components/map/map';
+import Header from '../../components/header/header';
+import OffersEmpty from '../../components/offers-empty/offers-empty';
 
-import {reduceCities, reduceOffers} from '../../helpers/utils.js';
-import FilterActionCreator from '../../store/actions/filter/filter.js';
+import {reduceCities, reduceOffers} from '../../helpers/utils';
+import FilterActionCreator from '../../store/actions/filter/filter';
 
-import {getSelectedCity} from '../../store/reducers/filter/selectors.js';
-import {getCities, getLoadingFlag} from '../../store/reducers/data/selectors.js';
-import {CARD_TYPES} from '../../helpers/constants.js';
+import {getSelectedCity} from '../../store/reducers/filter/selectors';
+import {getCities, getLoadingFlag} from '../../store/reducers/data/selectors';
+import {CARD_TYPES} from '../../helpers/constants';
 
 const Main = ({offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus, loading}) => {
 

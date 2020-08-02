@@ -1,5 +1,5 @@
-import ActionCreator, {Actions} from './user.js';
-import USER from '../../../test-data/user.js';
+import ActionCreator, {Actions} from './user';
+import USER from '../../../test-data/user';
 
 describe(`User action creator work correctly`, () => {
 

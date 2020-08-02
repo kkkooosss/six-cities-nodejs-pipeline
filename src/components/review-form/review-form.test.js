@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 
-import {ReviewForm} from './review-form.jsx';
+import {ReviewForm} from './review-form';
 const TEXT = `Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 tempor incididunt ut labore et dolore magna aliqua.`;
 

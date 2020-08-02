@@ -1,5 +1,5 @@
-import {Actions} from '../../actions/data/data.js';
-import reducer from './data.js';
+import {Actions} from '../../actions/data/data';
+import reducer from './data';
 
 import mockOffers from '../../../test-data/offers';
 

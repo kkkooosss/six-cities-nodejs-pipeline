@@ -1,7 +1,7 @@
-import React from 'react';
+import * as React from 'react';
 
-import {getRatingInPercents, convertDate} from '../../helpers/utils.js';
-import ReviewTypes from '../../types/review.js';
+import {getRatingInPercents, convertDate} from '../../helpers/utils';
+import ReviewTypes from '../../types/review';
 
 const Review = ({review}) => {
   const {

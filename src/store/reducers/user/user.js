@@ -1,6 +1,6 @@
-import {extend} from '../../../helpers/utils.js';
-import {Actions} from '../../actions/user/user.js';
-import {AUTH_STATUS} from '../../../helpers/constants.js';
+import {extend} from '../../../helpers/utils';
+import {Actions} from '../../actions/user/user';
+import {AUTH_STATUS} from '../../../helpers/constants';
 
 const initialState = {
   authStatus: AUTH_STATUS.noAuth,

@@ -1,8 +1,8 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {BrowserRouter} from 'react-router-dom';
 
-import Footer from './footer.jsx';
+import Footer from './footer';
 
 it(`Footer renders correctly`, () => {
   const tree = renderer

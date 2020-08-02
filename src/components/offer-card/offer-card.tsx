@@ -1,10 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
-import OfferTypes from '../../types/offer.js';
-import {getRatingInPercents} from '../../helpers/utils.js';
-import {CARD_CLASSES, WRAPPER_CLASSES, IMAGE_SIZES} from '../../helpers/constants.js';
+import OfferTypes from '../../types/offer';
+import {getRatingInPercents} from '../../helpers/utils';
+import {CARD_CLASSES, WRAPPER_CLASSES, IMAGE_SIZES} from '../../helpers/constants';
 
 const OfferCard = ({offer, onCardHover, onCardHoverLeave, cardType, onSetFavoriteStatus}) => {
 

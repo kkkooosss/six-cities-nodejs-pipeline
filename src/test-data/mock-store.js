@@ -1,6 +1,6 @@
 import {createStore} from 'redux';
-import OFFERS from './offers.js';
-import REVIEWS from './reviews.js';
+import OFFERS from './offers';
+import REVIEWS from './reviews';
 
 const store = createStore(() => ({
   DATA: {

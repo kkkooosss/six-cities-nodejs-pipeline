@@ -1,6 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
-import OffersEmpty from './offers-empty.jsx';
+import OffersEmpty from './offers-empty';
 
 it(`OffersEmpty renders correctly`, () => {
   const tree = renderer

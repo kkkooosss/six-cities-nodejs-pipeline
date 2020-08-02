@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 
-import Header from '../header/header.jsx';
-import withLogin from '../../hocs/with-login/with-login.jsx';
-import Loader from '../loader/loader.jsx';
+import Header from '../header/header';
+import withLogin from '../../hocs/with-login/with-login';
+import Loader from '../loader/loader';
 
 const Login = ({
   isValid,

@@ -1,6 +1,6 @@
-import {extend} from '../../../helpers/utils.js';
+import {extend} from '../../../helpers/utils';
 
-import {Actions} from '../../actions/filter/filter.js';
+import {Actions} from '../../actions/filter/filter';
 
 const initialState = {
   selectedCity: `Amsterdam`,

@@ -1,9 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 
-import OffersList from './offers-list.jsx';
+import OffersList from './offers-list';
 import {BrowserRouter} from 'react-router-dom';
 
 const OFFERS = [
