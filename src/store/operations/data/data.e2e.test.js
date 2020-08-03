@@ -6,7 +6,7 @@ import {formatOffers} from '../../../helpers/utils';
 import rawOffers from '../../../test-data/raw-offers';
 import {REQUEST_CODES} from '../../../helpers/constants';
 
-const api = createAPI(() => {});
+const api = createAPI(jest.fn());
 
 describe(`Load Offer operation works correctly`, () => {
   it(`Should make a correct API call to /hotels and get offers and cities`, () => {
@@ -18,7 +18,7 @@ describe(`Load Offer operation works correctly`, () => {
       .onGet(`/hotels`)
       .reply(200, rawOffers);
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(4);
         expect(dispatch).toHaveBeenNthCalledWith(1,
@@ -43,7 +43,7 @@ describe(`Load Offer operation works correctly`, () => {
       .onGet(`/hotels/${id}/nearby`)
       .reply(200, rawOffers);
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -62,7 +62,7 @@ describe(`Load Offer operation works correctly`, () => {
       .onGet(`/favorite`)
       .reply(200, rawOffers);
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -82,7 +82,7 @@ describe(`Load Offer operation works correctly`, () => {
     .onGet(`/favorite`).reply(200, rawOffers)
     .onPost(`/favorite/${offerId}/${REQUEST_CODES.add}`).reply(200, {});
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {

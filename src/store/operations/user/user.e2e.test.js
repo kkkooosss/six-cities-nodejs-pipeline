@@ -8,7 +8,7 @@ import {AUTH_STATUS} from '../../../helpers/constants';
 import rawUser from '../../../test-data/raw-user';
 import mockUser from '../../../test-data/user';
 
-const api = createAPI(() => {});
+const api = createAPI(jest.fn());
 const apiMock = new MockAdapter(api);
 
 const mockAuthData = {
@@ -26,7 +26,7 @@ describe(`User operation works correctly`, () => {
     const dispatch = jest.fn();
     const dataLoader = Operation.checkAuthStatus();
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
@@ -40,7 +40,7 @@ describe(`User operation works correctly`, () => {
     const dispatch = jest.fn();
     const dataLoader = Operation.login(mockAuthData);
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(4);
         expect(dispatch).toHaveBeenNthCalledWith(1, {

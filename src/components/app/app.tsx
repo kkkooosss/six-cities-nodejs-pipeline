@@ -20,7 +20,7 @@ import ActiveActionCreator from '../../store/actions/active/active';
 
 interface Props {
   offers: Offer[];
-  authStatus: boolean;
+  authStatus: string;
   loading: boolean;
   onLogin: (authData: boolean) => void;
   onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
