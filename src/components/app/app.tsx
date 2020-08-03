@@ -98,20 +98,18 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(UserOperation.login(authData));
   },
 
-  onSetFavoriteStatus(offerId: number | number, isFavorite: boolean) {
+  onSetFavoriteStatus(offerId: number | string, isFavorite: boolean) {
     dispatch(DataOperation.setFavoriteStatus(offerId, isFavorite));
   },
 
-  handleCardHover: (offer: Offer) => {
+  onCardHover: (offer: Offer) => {
     dispatch(ActiveActionCreator.setActiveOffer(offer));
   },
 
-  handleCardHoverLeave: () => {
+  onCardHoverLeave: () => {
     dispatch(ActiveActionCreator.removeActiveOffer());
   },
 
 });
-
-export {App};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
