@@ -14,7 +14,9 @@ interface Props {
   favorites: Offer[];
   onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
   onRequestFavorites: () => void;
-};
+  onCardHover: (offer: Offer) => void;
+  onCardHoverLeave: () => void;
+}
 
 class Favorites extends React.Component<Props> {
   constructor(props) {
@@ -27,7 +29,7 @@ class Favorites extends React.Component<Props> {
   }
 
   render() {
-    const {favorites, onSetFavoriteStatus} = this.props;
+    const {favorites, onSetFavoriteStatus, onCardHover, onCardHoverLeave} = this.props;
     const cities = [...new Set(favorites.map((offer) => offer.city.name))].sort();
     const hasFavorites = favorites.length > 0;
 
@@ -58,8 +60,8 @@ class Favorites extends React.Component<Props> {
                       {favorites.filter((offer) => offer.city.name === city).map((offer) => (
                         <OfferCard
                           offer={offer}
-                          onCardHover={() => {}}
-                          onCardHoverLeave={() => {}}
+                          onCardHover={onCardHover}
+                          onCardHoverLeave={onCardHoverLeave}
                           onSetFavoriteStatus={onSetFavoriteStatus}
                           key={offer.id}
                           cardType={CARD_TYPES.favorites}

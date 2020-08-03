@@ -13,13 +13,13 @@ interface Props {
   rating: number;
   sending: boolean;
   error: boolean;
-  text: string,
+  text: string;
   isRatingValid: boolean;
   isTextValid: boolean;
   onRatingChange: () => void;
   onTextChange: () => void;
   onSetSendingFlag: (flag: boolean) => void;
-  onSubmitReview: (offerId: number | string, review: {rating: number, text: string}) => void;
+  onSubmitReview: (offerId: number | string, review: {rating: number; text: string}) => void;
 }
 
 class ReviewForm extends React.PureComponent<Props, {}> {

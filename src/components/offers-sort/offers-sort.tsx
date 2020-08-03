@@ -13,7 +13,7 @@ interface Props {
   isOpen: boolean;
   selectedFilter: string;
   onToggleOpen: () => void;
-  onFilterSelect: (filter:string) => void;
+  onFilterSelect: (filter: string) => void;
 }
 
 class OffersSort extends React.PureComponent<Props> {

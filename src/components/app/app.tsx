@@ -16,6 +16,7 @@ import {AUTH_STATUS} from '../../helpers/constants';
 import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
 import {getLoadingFlag} from '../../store/reducers/data/selectors';
 import Offer from '../../interfaces/offer';
+import ActiveActionCreator from '../../store/actions/active/active';
 
 interface Props {
   offers: Offer[];
@@ -23,22 +24,25 @@ interface Props {
   loading: boolean;
   onLogin: (authData: boolean) => void;
   onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
+  onCardHover: (offer: Offer) => void;
+  onCardHoverLeave: () => void;
 }
 
 const App = (props: Props) => {
-  const {offers, authStatus, loading, onLogin, onSetFavoriteStatus} = props;
+  const {offers, authStatus, loading, onLogin, onSetFavoriteStatus, onCardHover, onCardHoverLeave} = props;
   const isAuthorized = authStatus === AUTH_STATUS.auth;
   const FavoritesWrapped = withPrivateRoute(Favorites, isAuthorized);
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path={ROUTES.main}
-          render={(props) => {
+          render={() => {
             return (
               <Main
-                {...props}
                 offers={offers}
                 onSetFavoriteStatus={onSetFavoriteStatus}
+                onCardHover={onCardHover}
+                onCardHoverLeave={onCardHoverLeave}
               />
             );
           }}
@@ -50,6 +54,8 @@ const App = (props: Props) => {
               <OfferDetails
                 offerId={id}
                 onSetFavoriteStatus={onSetFavoriteStatus}
+                onCardHover={onCardHover}
+                onCardHoverLeave={onCardHoverLeave}
               />
             );
           }}
@@ -59,6 +65,8 @@ const App = (props: Props) => {
             return (
               <FavoritesWrapped
                 onSetFavoriteStatus={onSetFavoriteStatus}
+                onCardHover={onCardHover}
+                onCardHoverLeave={onCardHoverLeave}
               />
             );
           }}
@@ -92,6 +100,14 @@ const mapDispatchToProps = (dispatch) => ({
 
   onSetFavoriteStatus(offerId: number | number, isFavorite: boolean) {
     dispatch(DataOperation.setFavoriteStatus(offerId, isFavorite));
+  },
+
+  handleCardHover: (offer: Offer) => {
+    dispatch(ActiveActionCreator.setActiveOffer(offer));
+  },
+
+  handleCardHoverLeave: () => {
+    dispatch(ActiveActionCreator.removeActiveOffer());
   },
 
 });

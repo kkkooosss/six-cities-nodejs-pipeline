@@ -35,6 +35,8 @@ interface Props {
   onRequestNearOffers: (offerId: string | number) => void;
   onSetDetailsOfferId: (offerId: string | number) => void;
   onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
+  onCardHover: (offer: Offer) => void;
+  onCardHoverLeave: () => void;
 }
 
 class OfferDetails extends React.PureComponent<Props> {
@@ -58,7 +60,7 @@ class OfferDetails extends React.PureComponent<Props> {
 
   render() {
     if (this.props.offer) {
-      const {offer, nearOffers, onSetFavoriteStatus, authStatus, reviews} = this.props;
+      const {offer, nearOffers, onSetFavoriteStatus, onCardHover, onCardHoverLeave, authStatus, reviews} = this.props;
       const {
         id,
         title,
@@ -192,6 +194,8 @@ class OfferDetails extends React.PureComponent<Props> {
                     offers={reducedOffers}
                     onSetFavoriteStatus={onSetFavoriteStatus}
                     cardType={CARD_TYPES.nearPlaces}
+                    onCardHover={onCardHover}
+                    onCardHoverLeave={onCardHoverLeave}
                   />
 
                 </div>

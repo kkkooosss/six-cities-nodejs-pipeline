@@ -24,10 +24,12 @@ interface Props {
   selectedCity: string;
   onCitySelect: (city: string) => void;
   onSetFavoriteStatus: () => void;
-};
+  onCardHover: (offer: Offer) => void;
+  onCardHoverLeave: () => void;
+}
 
 const Main = (props: Props) => {
-  const {offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus, loading} = props;
+  const {offers, cities, selectedCity, onCitySelect, onSetFavoriteStatus, onCardHover, onCardHoverLeave, loading} = props;
 
   const reducedCities = reduceCities(cities);
   const reducedOffers = reduceOffers(offers);
@@ -53,7 +55,13 @@ const Main = (props: Props) => {
                 <b className="places__found">{offersCount} places to stay in {selectedCity}</b>
                 <OffersSort />
                 <div className="cities__places-list places__list tabs__content">
-                  <OffersList offers={reducedOffers} onSetFavoriteStatus={onSetFavoriteStatus} cardType={CARD_TYPES.cities} />
+                  <OffersList
+                    offers={reducedOffers}
+                    onSetFavoriteStatus={onSetFavoriteStatus}
+                    cardType={CARD_TYPES.cities}
+                    onCardHover={onCardHover}
+                    onCardHoverLeave={onCardHoverLeave}
+                  />
                 </div>
               </section>
               <div className="cities__right-section">
