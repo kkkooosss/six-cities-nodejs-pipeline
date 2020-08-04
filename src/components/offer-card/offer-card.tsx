@@ -2,7 +2,7 @@ import * as React from 'react';
 import {Link} from 'react-router-dom';
 
 import {getRatingInPercents} from '../../helpers/utils';
-import {CARD_CLASSES, WRAPPER_CLASSES, IMAGE_SIZES} from '../../helpers/constants';
+import {CardClasses, WrapperClasses, ImageSizes, Routes} from '../../helpers/constants';
 import Offer from '../../interfaces/offer';
 
 interface Props {
@@ -11,10 +11,11 @@ interface Props {
   onCardHover: (offer: Offer) => void;
   onCardHoverLeave: () => void;
   onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
+  isAuthorized: boolean;
 }
 
 const OfferCard = (props: Props) => {
-  const {offer, onCardHover, onCardHoverLeave, cardType, onSetFavoriteStatus} = props;
+  const {offer, isAuthorized, onCardHover, onCardHoverLeave, cardType, onSetFavoriteStatus} = props;
   const {
     id,
     isPremium,
@@ -26,10 +27,10 @@ const OfferCard = (props: Props) => {
     type
   } = offer;
 
-  const cardClass = CARD_CLASSES[cardType];
-  const wrapperClass = WRAPPER_CLASSES[cardType];
-  const imageWidth = IMAGE_SIZES[cardType].width;
-  const imageHeight = IMAGE_SIZES[cardType].height;
+  const cardClass = CardClasses[cardType];
+  const wrapperClass = WrapperClasses[cardType];
+  const imageWidth = ImageSizes[cardType].WIDTH;
+  const imageHeight = ImageSizes[cardType].HEIGHT;
 
   const stars = getRatingInPercents(rating);
 
@@ -60,10 +61,10 @@ const OfferCard = (props: Props) => {
             <b className="place-card__price-value">{`€${price}`}</b>
             <span className="place-card__price-text">/&nbsp;night</span>
           </div>
-          <button
+          <Link
+            to={isAuthorized ? {} : Routes.LOGIN}
+            onClick={isAuthorized ? () => onSetFavoriteStatus(id, isFavorite) : null}
             className={`${isFavorite ? `place-card__bookmark-button--active` : `place-card__bookmark-button`} button`}
-            type="button"
-            onClick={() => onSetFavoriteStatus(id, isFavorite)}
           >
             <svg
               className="place-card__bookmark-icon"
@@ -72,7 +73,7 @@ const OfferCard = (props: Props) => {
               <use xlinkHref="#icon-bookmark" />
             </svg>
             <span className="visually-hidden">To bookmarks</span>
-          </button>
+          </Link>
         </div>
         <div className="place-card__rating rating">
           <div className="place-card__stars rating__stars">

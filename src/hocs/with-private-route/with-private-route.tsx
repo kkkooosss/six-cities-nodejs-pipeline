@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Redirect} from "react-router-dom";
-import {ROUTES as routes} from '../../helpers/constants.js';
+import {Routes as Routes} from '../../helpers/constants.js';
 
 const withPrivateRoute = (Component, isAuthorized) => {
   type P = React.ComponentProps<typeof Component>;
@@ -14,7 +14,7 @@ const withPrivateRoute = (Component, isAuthorized) => {
       if (isAuthorized) {
         return <Component {...this.props} />;
       } else {
-        return <Redirect to={routes.login} />;
+        return <Redirect to={Routes.LOGIN} />;
       }
     }
   }

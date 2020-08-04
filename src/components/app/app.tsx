@@ -10,9 +10,9 @@ import OfferDetails from '../offer-details/offer-details';
 import UserOperation from '../../store/operations/user/user';
 import DataOperation from '../../store/operations/data/data';
 import {filterOffers} from '../../store/reducers/filter/selectors';
-import {ROUTES} from '../../helpers/constants';
+import {Routes} from '../../helpers/constants';
 import {getAuthStatus} from '../../store/reducers/user/selectors';
-import {AUTH_STATUS} from '../../helpers/constants';
+import {AuthStatus} from '../../helpers/constants';
 import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
 import {getLoadingFlag} from '../../store/reducers/data/selectors';
 import Offer from '../../interfaces/offer';
@@ -30,12 +30,12 @@ interface Props {
 
 const App = (props: Props) => {
   const {offers, authStatus, loading, onLogin, onSetFavoriteStatus, onCardHover, onCardHoverLeave} = props;
-  const isAuthorized = authStatus === AUTH_STATUS.auth;
+  const isAuthorized = authStatus === AuthStatus.AUTH;
   const FavoritesWrapped = withPrivateRoute(Favorites, isAuthorized);
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path={ROUTES.main}
+        <Route exact path={Routes.MAIN}
           render={() => {
             return (
               <Main
@@ -47,7 +47,7 @@ const App = (props: Props) => {
             );
           }}
         />
-        <Route exact path={ROUTES.details}
+        <Route exact path={Routes.DETAILS}
           render={({match}) => {
             const {id} = match.params;
             return (
@@ -60,7 +60,7 @@ const App = (props: Props) => {
             );
           }}
         />
-        <Route exact path={ROUTES.favorites}
+        <Route exact path={Routes.FAVORITES}
           render={() => {
             return (
               <FavoritesWrapped
@@ -71,7 +71,7 @@ const App = (props: Props) => {
             );
           }}
         />
-        <Route exact path={ROUTES.login}
+        <Route exact path={Routes.LOGIN}
           render={() => {
             return (
               <Login

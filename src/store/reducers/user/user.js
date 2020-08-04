@@ -1,9 +1,9 @@
 import {extend} from '../../../helpers/utils';
 import {Actions} from '../../actions/user/user';
-import {AUTH_STATUS} from '../../../helpers/constants';
+import {AuthStatus} from '../../../helpers/constants';
 
 const initialState = {
-  authStatus: AUTH_STATUS.noAuth,
+  authStatus: AuthStatus.NO_AUTH,
   user: {}
 };
 

@@ -4,7 +4,7 @@ import Operation from './data';
 import {Actions} from '../../actions/data/data';
 import {formatOffers} from '../../../helpers/utils';
 import rawOffers from '../../../test-data/raw-offers';
-import {REQUEST_CODES} from '../../../helpers/constants';
+import {RequestCodes} from '../../../helpers/constants';
 
 const api = createAPI(jest.fn());
 
@@ -80,7 +80,7 @@ describe(`Load Offer operation works correctly`, () => {
 
     apiMock
     .onGet(`/favorite`).reply(200, rawOffers)
-    .onPost(`/favorite/${offerId}/${REQUEST_CODES.add}`).reply(200, {});
+    .onPost(`/favorite/${offerId}/${RequestCodes.ADD}`).reply(200, {});
 
     return dataLoader(dispatch, jest.fn(), api)
       .then(() => {

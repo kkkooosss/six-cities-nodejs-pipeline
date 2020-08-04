@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as leaflet from 'leaflet';
 import {connect} from 'react-redux';
 
-import {CITIES, MAP_SETTINGS} from '../../helpers/constants';
+import {Cities, MapSettings} from '../../helpers/constants';
 import {getSelectedCity} from '../../store/reducers/filter/selectors';
 import {getActiveOffer} from '../../store/reducers/active/selectors';
 import Offer from '../../interfaces/offer';
@@ -27,8 +27,44 @@ class Map extends React.PureComponent<Props, {}> {
     this._map = null;
     this._mapRef = React.createRef();
     this._markers = [];
-    this._zoom = MAP_SETTINGS.zoom;
+    this._zoom = MapSettings.ZOOM;
 
+  }
+
+  componentDidMount() {
+    const {offers, currentOffer, selectedCity} = this.props;
+    const city = Cities[selectedCity];
+
+    this._setMap(city);
+    this._setView(city);
+    this._setLayer();
+    this._setMarkers(offers);
+
+    if (currentOffer) {
+      this._setCurrentOfferMarker(currentOffer);
+    }
+  }
+
+  componentDidUpdate() {
+    const {offers, currentOffer, activeOffer, selectedCity} = this.props;
+    const city = Cities[selectedCity];
+
+    this._removeMarkers();
+    this._setView(city);
+    this._setLayer();
+    this._setMarkers(offers);
+
+    if (currentOffer) {
+      this._setCurrentOfferMarker(currentOffer);
+    }
+
+    if (activeOffer) {
+      this._setCurrentOfferMarker(activeOffer);
+    }
+  }
+
+  componentWillUnmount() {
+    this._map = null;
   }
 
   _setMap(city) {
@@ -53,7 +89,7 @@ class Map extends React.PureComponent<Props, {}> {
   }
 
   _setMarkers(offers) {
-    const {icon} = MAP_SETTINGS;
+    const icon = MapSettings.ICON;
 
     offers.forEach(({id, location}) => {
       const coordinates = [location.latitude, location.longitude];
@@ -64,7 +100,7 @@ class Map extends React.PureComponent<Props, {}> {
   }
 
   _setCurrentOfferMarker({location}) {
-    const icon = MAP_SETTINGS.currentOfferIcon;
+    const icon = MapSettings.CURRENT_OFFER_ICON;
     const coordinates = [location.latitude, location.longitude];
 
     const marker = leaflet.marker(coordinates, {icon});
@@ -75,42 +111,6 @@ class Map extends React.PureComponent<Props, {}> {
   _removeMarkers() {
     this._markers.forEach(({marker}) => marker.remove());
     this._markers = [];
-  }
-
-  componentDidMount() {
-    const {offers, currentOffer, selectedCity} = this.props;
-    const city = CITIES[selectedCity];
-
-    this._setMap(city);
-    this._setView(city);
-    this._setLayer();
-    this._setMarkers(offers);
-
-    if (currentOffer) {
-      this._setCurrentOfferMarker(currentOffer);
-    }
-  }
-
-  componentDidUpdate() {
-    const {offers, currentOffer, activeOffer, selectedCity} = this.props;
-    const city = CITIES[selectedCity];
-
-    this._removeMarkers();
-    this._setView(city);
-    this._setLayer();
-    this._setMarkers(offers);
-
-    if (currentOffer) {
-      this._setCurrentOfferMarker(currentOffer);
-    }
-
-    if (activeOffer) {
-      this._setCurrentOfferMarker(activeOffer);
-    }
-  }
-
-  componentWillUnmount() {
-    this._map = null;
   }
 
   render() {

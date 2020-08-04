@@ -6,12 +6,14 @@ import Header from '../header/header';
 import OfferCard from '../offer-card/offer-card';
 import Footer from '../footer/footer';
 import {getFavorites} from '../../store/reducers/data/selectors';
+import {getAuthStatus} from '../../store/reducers/user/selectors';
 import DataOperation from '../../store/operations/data/data';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
-import {CARD_TYPES} from '../../helpers/constants';
+import {AuthStatus, CardTypes} from '../../helpers/constants';
 
 interface Props {
   favorites: Offer[];
+  authStatus: string;
   onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
   onRequestFavorites: () => void;
   onCardHover: (offer: Offer) => void;
@@ -29,9 +31,10 @@ class Favorites extends React.Component<Props> {
   }
 
   render() {
-    const {favorites, onSetFavoriteStatus, onCardHover, onCardHoverLeave} = this.props;
+    const {favorites, authStatus, onSetFavoriteStatus, onCardHover, onCardHoverLeave} = this.props;
     const cities = [...new Set(favorites.map((offer) => offer.city.name))].sort();
     const hasFavorites = favorites.length > 0;
+    const isAuthorized = authStatus === AuthStatus.AUTH;
 
     return hasFavorites ? (
       <div className="page">
@@ -64,7 +67,8 @@ class Favorites extends React.Component<Props> {
                           onCardHoverLeave={onCardHoverLeave}
                           onSetFavoriteStatus={onSetFavoriteStatus}
                           key={offer.id}
-                          cardType={CARD_TYPES.favorites}
+                          isAuthorized={isAuthorized}
+                          cardType={CardTypes.FAVORITES}
                         />))}
 
                     </div>
@@ -84,6 +88,7 @@ class Favorites extends React.Component<Props> {
 
 const mapStateToProps = (state) => ({
   favorites: getFavorites(state),
+  authStatus: getAuthStatus(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

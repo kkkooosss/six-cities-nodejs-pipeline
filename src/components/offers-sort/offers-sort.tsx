@@ -6,14 +6,14 @@ import {connect} from 'react-redux';
 import {compose} from 'recompose';
 
 import FilterActionCreator from '../../store/actions/filter/filter';
-import {FILTERS} from '../../helpers/constants';
+import {filters} from '../../helpers/constants';
 import {getSelectedFilter} from '../../store/reducers/filter/selectors';
 
 interface Props {
   isOpen: boolean;
   selectedFilter: string;
   onToggleOpen: () => void;
-  onFilterSelect: (filter: string) => void;
+  onfilterselect: (filter: string) => void;
 }
 
 class OffersSort extends React.PureComponent<Props> {
@@ -26,7 +26,7 @@ class OffersSort extends React.PureComponent<Props> {
   _getFilterOptions(selectedFilter, handleClick) {
     const {onToggleOpen} = this.props;
 
-    return (FILTERS.map((filter, i) => (
+    return (filters.map((filter, i) => (
       <li
         className={`places__option ${filter === selectedFilter ? `places__option--active` : null}`}
         tabIndex={i}
@@ -42,7 +42,7 @@ class OffersSort extends React.PureComponent<Props> {
   }
 
   render() {
-    const {selectedFilter, onFilterSelect, isOpen, onToggleOpen} = this.props;
+    const {selectedFilter, onfilterselect, isOpen, onToggleOpen} = this.props;
 
     return (
 
@@ -61,7 +61,7 @@ class OffersSort extends React.PureComponent<Props> {
         </span>
 
         {isOpen ? <ul className="places__options places__options--custom places__options--opened">
-          {this._getFilterOptions(selectedFilter, onFilterSelect)}
+          {this._getFilterOptions(selectedFilter, onfilterselect)}
         </ul> : null}
 
         {/* <select className="places__sorting-type" id="places-sorting">
@@ -80,7 +80,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onFilterSelect: (offers, filter) => {
+  onfilterselect: (offers, filter) => {
     dispatch(FilterActionCreator.selectFilter(offers, filter));
   }
 });

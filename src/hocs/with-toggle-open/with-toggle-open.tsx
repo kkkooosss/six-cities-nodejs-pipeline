@@ -21,8 +21,8 @@ const withToggleOpen = (Component) => {
     }
 
     _toggleOpen() {
-      this.setState({
-        isOpen: !this.state.isOpen
+      this.setState(function (prevState) {
+        return {isOpen: !prevState.isOpen};
       });
     }
 

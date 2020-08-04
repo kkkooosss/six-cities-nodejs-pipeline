@@ -8,10 +8,10 @@ import DataOperation from './operations/data/data';
 import UserOperation from './operations/user/user';
 
 import UserActionCreator from './actions/user/user';
-import {AUTH_STATUS} from '../helpers/constants';
+import {AuthStatus} from '../helpers/constants';
 
 const onUnauthorized = () => {
-  store.dispatch(UserActionCreator.setAuthStatus(AUTH_STATUS.noAuth));
+  store.dispatch(UserActionCreator.setAuthStatus(AuthStatus.NO_AUTH));
 };
 
 const api = createAPI(onUnauthorized);

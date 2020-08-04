@@ -14,7 +14,7 @@ import FilterActionCreator from '../../store/actions/filter/filter';
 
 import {getSelectedCity} from '../../store/reducers/filter/selectors';
 import {getCities, getLoadingFlag} from '../../store/reducers/data/selectors';
-import {CARD_TYPES} from '../../helpers/constants';
+import {CardTypes} from '../../helpers/constants';
 import Offer from '../../interfaces/offer';
 
 interface Props {
@@ -58,7 +58,7 @@ const Main = (props: Props) => {
                   <OffersList
                     offers={reducedOffers}
                     onSetFavoriteStatus={onSetFavoriteStatus}
-                    cardType={CARD_TYPES.cities}
+                    cardType={CardTypes.CITIES}
                     onCardHover={onCardHover}
                     onCardHoverLeave={onCardHoverLeave}
                   />

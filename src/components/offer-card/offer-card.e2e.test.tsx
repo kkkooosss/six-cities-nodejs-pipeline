@@ -4,8 +4,10 @@ import * as Adapter from 'enzyme-adapter-react-16';
 import OfferCard from './offer-card';
 import Offer from '../../interfaces/offer';
 import mockOffers from '../../test-data/offers';
+import {CardTypes} from '../../helpers/constants';
 
 const OFFER: Offer = mockOffers[0];
+const CARD_TYPE: string = CardTypes.CITIES;
 
 configure({adapter: new Adapter()});
 
@@ -16,10 +18,11 @@ describe(`e2e in OfferCard`, () => {
 
     const tree = shallow(<OfferCard
       offer={OFFER}
+      isAuthorized={false}
       onCardHover={hoverHandler}
       onCardHoverLeave={jest.fn()}
       onSetFavoriteStatus={jest.fn()}
-      cardType={`cities`}
+      cardType={CARD_TYPE}
     />);
 
     tree.simulate(`mouseover`);

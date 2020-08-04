@@ -4,7 +4,7 @@ import createAPI from '../../../api/api';
 import Operation from './user';
 import {Actions} from '../../actions/user/user';
 import {Actions as DataActions} from '../../actions/data/data';
-import {AUTH_STATUS} from '../../../helpers/constants';
+import {AuthStatus} from '../../../helpers/constants';
 import rawUser from '../../../test-data/raw-user';
 import mockUser from '../../../test-data/user';
 
@@ -17,7 +17,7 @@ const mockAuthData = {
 };
 
 apiMock
-  .onGet(`/login`).reply(200, AUTH_STATUS.noAuth)
+  .onGet(`/login`).reply(200, AuthStatus.NO_AUTH)
   .onPost(`/login`).reply(200, rawUser);
 
 describe(`User operation works correctly`, () => {
@@ -31,7 +31,7 @@ describe(`User operation works correctly`, () => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
           type: Actions.setAuthStatus,
-          payload: AUTH_STATUS.noAuth
+          payload: AuthStatus.NO_AUTH
         });
       });
   });
@@ -53,7 +53,7 @@ describe(`User operation works correctly`, () => {
         });
         expect(dispatch).toHaveBeenNthCalledWith(3, {
           type: Actions.setAuthStatus,
-          payload: AUTH_STATUS.auth
+          payload: AuthStatus.AUTH
         });
         expect(dispatch).toHaveBeenNthCalledWith(4, {
           type: DataActions.setLoadingFlag,

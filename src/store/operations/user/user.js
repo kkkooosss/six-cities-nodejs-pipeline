@@ -1,13 +1,13 @@
 import ActionCreator from '../../actions/user/user';
 import DataActionCreator from '../../actions/data/data';
-import {AUTH_STATUS} from '../../../helpers/constants';
+import {AuthStatus} from '../../../helpers/constants';
 import {formatUser} from '../../../helpers/utils';
 
 const Operation = {
   checkAuthStatus: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then(() => {
-        dispatch(ActionCreator.setAuthStatus(AUTH_STATUS.noAuth));
+        dispatch(ActionCreator.setAuthStatus(AuthStatus.NO_AUTH));
       })
       .catch((err) => {
         throw err;
@@ -22,7 +22,7 @@ const Operation = {
     })
       .then((response) => {
         dispatch(ActionCreator.setUser(formatUser(response.data)));
-        dispatch(ActionCreator.setAuthStatus(AUTH_STATUS.auth));
+        dispatch(ActionCreator.setAuthStatus(AuthStatus.AUTH));
         dispatch(DataActionCreator.setLoadingFlag(false));
       });
   }

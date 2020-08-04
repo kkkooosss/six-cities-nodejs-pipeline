@@ -12,7 +12,7 @@ import mockReviews from '../../test-data/reviews';
 
 const OFFER_ID = `1`;
 const SELECTED_CITY = `Amsterdam`;
-const AUTH_STATUS = `NO_AUTH`;
+const AuthStatus = `NO_AUTH`;
 const OFFER: Offer = mockOffers[0];
 const NEAR_OFFERS: Offer[] = mockOffers;
 const SELECTED_OFFERS: Offer[] = mockOffers;
@@ -25,7 +25,7 @@ it(`OfferDetails renders correctly`, () => {
         <OfferDetails
           offerId={OFFER_ID}
           selectedCity={SELECTED_CITY}
-          authStatus={AUTH_STATUS}
+          authStatus={AuthStatus}
           offer={OFFER}
           nearOffers={NEAR_OFFERS}
           selectedOffers={SELECTED_OFFERS}

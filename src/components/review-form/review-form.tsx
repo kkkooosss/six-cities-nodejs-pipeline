@@ -3,7 +3,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {compose} from 'recompose';
 import {getSendingFlag, getErrorFlag} from '../../store/reducers/review/selectors';
-import {RATING_TITLES} from '../../helpers/constants';
+import {ratingTitles} from '../../helpers/constants';
 import ReviewOperation from '../../store/operations/review/review';
 import ActionCreator from '../../store/actions/review/review';
 import withFormValidation from '../../hocs/with-form-validation/with-form-validation';
@@ -41,6 +41,11 @@ class ReviewForm extends React.PureComponent<Props, {}> {
 
   }
 
+  componentDidUpdate() {
+    this._setSubmitAccess();
+    this._setTextAreaAccess();
+  }
+
   _setSubmitAccess() {
     const {isTextValid, isRatingValid} = this.props;
     const isValid = isRatingValid && isTextValid;
@@ -74,11 +79,6 @@ class ReviewForm extends React.PureComponent<Props, {}> {
     }
   }
 
-  componentDidUpdate() {
-    this._setSubmitAccess();
-    this._setTextAreaAccess();
-  }
-
   _handleSubmit(evt) {
     const {onSubmitReview, onSetSendingFlag} = this.props;
     const {rating, isRatingValid, text, isTextValid} = this.props;
@@ -108,7 +108,7 @@ class ReviewForm extends React.PureComponent<Props, {}> {
         {error ? <div style={errorStyle}>Sorry, can not send your review, please try again later</div> : null}
         <div className="reviews__rating-form form__rating">
 
-          {RATING_TITLES.map((title, i) =>
+          {ratingTitles.map((title, i) =>
             <React.Fragment key={title}>
               <input
                 className="form__rating-input visually-hidden"

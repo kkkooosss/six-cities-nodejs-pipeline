@@ -114,11 +114,10 @@ exports[`OfferDetails renders correctly 1`] = `
             >
               Penthouse, 4-5 rooms + 5 balconies
             </h1>
-            <button
+            <a
               className="button property__bookmark-button"
-              disabled={true}
+              href="/signin"
               onClick={[Function]}
-              type="button"
             >
               <svg
                 className="property__bookmark-icon"
@@ -140,7 +139,7 @@ exports[`OfferDetails renders correctly 1`] = `
               >
                 To bookmarks
               </span>
-            </button>
+            </a>
           </div>
           <div
             className="property__rating rating"
@@ -487,10 +486,10 @@ exports[`OfferDetails renders correctly 1`] = `
                     / night
                   </span>
                 </div>
-                <button
+                <a
                   className="place-card__bookmark-button button"
+                  href="/"
                   onClick={[Function]}
-                  type="button"
                 >
                   <svg
                     className="place-card__bookmark-icon"
@@ -506,7 +505,7 @@ exports[`OfferDetails renders correctly 1`] = `
                   >
                     To bookmarks
                   </span>
-                </button>
+                </a>
               </div>
               <div
                 className="place-card__rating rating"
@@ -586,10 +585,10 @@ exports[`OfferDetails renders correctly 1`] = `
                     / night
                   </span>
                 </div>
-                <button
+                <a
                   className="place-card__bookmark-button button"
+                  href="/"
                   onClick={[Function]}
-                  type="button"
                 >
                   <svg
                     className="place-card__bookmark-icon"
@@ -605,7 +604,7 @@ exports[`OfferDetails renders correctly 1`] = `
                   >
                     To bookmarks
                   </span>
-                </button>
+                </a>
               </div>
               <div
                 className="place-card__rating rating"

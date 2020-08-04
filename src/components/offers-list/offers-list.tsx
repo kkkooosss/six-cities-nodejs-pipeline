@@ -4,12 +4,15 @@ import {connect} from 'react-redux';
 import OfferCard from '../offer-card/offer-card';
 
 import {filterOffersOrder} from '../../helpers/utils';
+import {AuthStatus} from '../../helpers/constants';
 import {getSelectedFilter} from '../../store/reducers/filter/selectors';
 import {getActiveOffer} from '../../store/reducers/active/selectors';
+import {getAuthStatus} from '../../store/reducers/user/selectors';
 import Offer from '../../interfaces/offer';
 
 interface Props {
   offers: Offer[];
+  authStatus: string;
   cardType: string;
   selectedFilter: string;
   onCardHover: (offer: Offer) => void;
@@ -18,8 +21,9 @@ interface Props {
 }
 
 const OffersList = (props: Props) => {
-  const {offers, selectedFilter, onCardHover, onCardHoverLeave, cardType, onSetFavoriteStatus} = props;
+  const {offers, authStatus, selectedFilter, onCardHover, onCardHoverLeave, cardType, onSetFavoriteStatus} = props;
   const filteredOffers = filterOffersOrder(offers, selectedFilter);
+  const isAuthorized = authStatus === AuthStatus.AUTH;
 
   return (
   <>
@@ -31,6 +35,7 @@ const OffersList = (props: Props) => {
         onSetFavoriteStatus={onSetFavoriteStatus}
         key={offer.id}
         cardType={cardType}
+        isAuthorized={isAuthorized}
       />))
     }
   </>
@@ -39,7 +44,8 @@ const OffersList = (props: Props) => {
 
 const mapStateToProps = (state) => ({
   activeOffer: getActiveOffer(state),
-  selectedFilter: getSelectedFilter(state)
+  selectedFilter: getSelectedFilter(state),
+  authStatus: getAuthStatus(state)
 });
 
 export default connect(mapStateToProps, null)(OffersList);

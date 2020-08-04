@@ -7,7 +7,7 @@ import Offer from '../../interfaces/offer';
 import mockStore from '../../test-data/mock-store';
 import mockOffers from '../../test-data/offers';
 
-const AUTH_STATUS = `NO_AUTH`;
+const AuthStatus = `NO_AUTH`;
 const LOADING = false;
 const OFFERS: Offer[] = mockOffers;
 
@@ -18,7 +18,7 @@ it(`App renders correctly`, () => {
           <App
             offers={OFFERS}
             loading={LOADING}
-            authStatus={AUTH_STATUS}
+            authStatus={AuthStatus}
             onLogin={jest.fn()}
             onSetFavoriteStatus={jest.fn()}
             onCardHover={jest.fn()}

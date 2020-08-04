@@ -27,6 +27,11 @@ const withFormValidation = (Component) => {
       this._checkTextValidity = this._checkTextValidity.bind(this);
     }
 
+    componentDidUpdate() {
+      this._checkRatingValidity();
+      this._checkTextValidity();
+    }
+
     _handleRatingChange(evt) {
       const rating = parseInt(evt.target.value, 10);
 
@@ -59,11 +64,6 @@ const withFormValidation = (Component) => {
       this.setState({
         isRatingValid
       });
-    }
-
-    componentDidUpdate() {
-      this._checkRatingValidity();
-      this._checkTextValidity();
     }
 
     render() {

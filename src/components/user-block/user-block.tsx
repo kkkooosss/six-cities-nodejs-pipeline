@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import {API_BASE} from '../../api/api';
-import {AUTH_STATUS, ROUTES} from '../../helpers/constants';
+import {AuthStatus, Routes} from '../../helpers/constants';
 import {getUser, getAuthStatus} from '../../store/reducers/user/selectors';
 import User from '../../interfaces/user';
 
@@ -14,10 +14,10 @@ interface Props {
 
 const UserBlock = (props: Props) => {
   const {authStatus, user} = props;
-  const isAuthorized = authStatus === AUTH_STATUS.auth;
+  const isAuthorized = authStatus === AuthStatus.AUTH;
 
   return (
-    <Link to={ROUTES.favorites} className="header__nav-link header__nav-link--profile" href="#" >
+    <Link to={Routes.FAVORITES} className="header__nav-link header__nav-link--profile" href="#" >
       <div className="header__avatar-wrapper user__avatar-wrapper">
         {isAuthorized ? <img src={`${API_BASE}${user.avatarUrl}`} style={{borderRadius: `50%`}} /> : null}
       </div>

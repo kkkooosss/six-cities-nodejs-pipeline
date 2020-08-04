@@ -1,5 +1,5 @@
 export const Actions = {
-  setAuthStatus: `SET_AUTH_STATUS`,
+  setAuthStatus: `SET_AuthStatus`,
   setUser: `SET_USER`
 };
 

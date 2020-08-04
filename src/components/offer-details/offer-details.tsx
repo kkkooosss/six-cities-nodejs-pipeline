@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import ReviewsList from '../reviews-list/reviews-list';
 import Map from '../map/map';
@@ -17,8 +18,7 @@ import {getOfferById, getNearOffers, getOffers} from '../../store/reducers/data/
 
 import {getAuthStatus} from '../../store/reducers/user/selectors';
 import {getReviews} from '../../store/reducers/review/selectors';
-import {CARD_TYPES} from '../../helpers/constants';
-import {AUTH_STATUS} from '../../helpers/constants';
+import {CardTypes, AuthStatus, Routes} from '../../helpers/constants';
 
 import Offer from '../../interfaces/offer';
 import Review from '../../interfaces/review';
@@ -77,7 +77,7 @@ class OfferDetails extends React.PureComponent<Props> {
         description
       } = offer;
 
-      const isAuthorized = authStatus === AUTH_STATUS.auth;
+      const isAuthorized = authStatus === AuthStatus.AUTH;
       const reducedOffers = reduceOffers(nearOffers);
       const stars = getRatingInPercents(rating);
 
@@ -105,11 +105,10 @@ class OfferDetails extends React.PureComponent<Props> {
                     <h1 className="property__name">
                       {title}
                     </h1>
-                    <button
-                      type="button"
+                    <Link
+                      to={isAuthorized ? {} : Routes.LOGIN}
+                      onClick={isAuthorized ? () => onSetFavoriteStatus(id, isFavorite) : null}
                       className="button property__bookmark-button"
-                      onClick={() => onSetFavoriteStatus(id, isFavorite)}
-                      disabled={!isAuthorized}
                     >
                       <svg
                         className="property__bookmark-icon"
@@ -123,7 +122,7 @@ class OfferDetails extends React.PureComponent<Props> {
                         <use xlinkHref="#icon-bookmark" />
                       </svg>
                       <span className="visually-hidden">To bookmarks</span>
-                    </button>
+                    </Link>
                   </div>
                   <div className="property__rating rating">
                     <div className="property__stars rating__stars">
@@ -140,7 +139,7 @@ class OfferDetails extends React.PureComponent<Props> {
                       {bedrooms} Bedrooms
                     </li>
                     <li className="property__feature property__feature--adults">
-                Max {capacity} adults
+                      Max {capacity} adults
                     </li>
                   </ul>
                   <div className="property__price">
@@ -193,7 +192,7 @@ class OfferDetails extends React.PureComponent<Props> {
                   <OffersList
                     offers={reducedOffers}
                     onSetFavoriteStatus={onSetFavoriteStatus}
-                    cardType={CARD_TYPES.nearPlaces}
+                    cardType={CardTypes.NEAR_PLACES}
                     onCardHover={onCardHover}
                     onCardHoverLeave={onCardHoverLeave}
                   />

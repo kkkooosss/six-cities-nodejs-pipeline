@@ -1,6 +1,6 @@
 import leaflet from 'leaflet';
 
-export const CITIES = {
+export const Cities = {
   Amsterdam: [52.38333, 4.9],
   Dusseldorf: [51.225402, 6.776314],
   Hamburg: [53.550341, 10.000654],
@@ -9,26 +9,26 @@ export const CITIES = {
   Cologne: [50.938361, 6.959974],
 };
 
-export const MAP_SETTINGS = {
-  zoom: 12,
-  icon: leaflet.icon({
+export const MapSettings = {
+  ZOOM: 12,
+  ICON: leaflet.icon({
     iconUrl: `/img/pin.svg`,
     iconSize: [30, 30]
   }),
-  currentOfferIcon: leaflet.icon({
+  CURRENT_OFFER_ICON: leaflet.icon({
     iconUrl: `/img/pin-active.svg`,
     iconSize: [30, 30]
   })
 };
 
-export const FILTERS = [
+export const filters = [
   `Popular`,
   `Price: low to high`,
   `Price: high to low`,
   `Top rated first`
 ];
 
-export const RATING_TITLES = [
+export const ratingTitles = [
   `perfect`,
   `good`,
   `not good`,
@@ -36,52 +36,74 @@ export const RATING_TITLES = [
   `terribly`
 ];
 
-export const AUTH_STATUS = {
-  auth: `AUTH`,
-  noAuth: `NO_AUTH`,
+export const AuthStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
 };
 
-export const ROUTES = {
-  main: `/`,
-  login: `/signin`,
-  favorites: `/favorites`,
-  details: `/offer/:id`,
+export const Routes = {
+  MAIN: `/`,
+  LOGIN: `/signin`,
+  FAVORITES: `/favorites`,
+  DETAILS: `/offer/:id`,
 };
 
-export const REQUEST_CODES = {
-  add: 1,
-  remove: 0
+export const RequestCodes = {
+  ADD: 1,
+  REMOVE: 0
 };
 
-export const CARD_TYPES = {
-  cities: `cities`,
-  nearPlaces: `nearPlaces`,
-  favorites: `favorites`
+export const CardTypes = {
+  CITIES: `CITIES`,
+  NEAR_PLACES: `NEAR_PLACES`,
+  FAVORITES: `FAVORITES`
 };
 
-export const CARD_CLASSES = {
-  cities: `cities__place-card`,
-  nearPlaces: `near-places__card`,
-  favorites: `favorites__card`
+export const CardClasses = {
+  CITIES: `cities__place-card`,
+  NEAR_PLACES: `near-places__card`,
+  FAVORITES: `favorites__card`
 };
 
-export const WRAPPER_CLASSES = {
-  cities: `cities__image-wrapper`,
-  nearPlaces: `near-places__image-wrapper`,
-  favorites: `favorites__image-wrapper`
+export const WrapperClasses = {
+  CITIES: `cities__image-wrapper`,
+  NEAR_PLACES: `near-places__image-wrapper`,
+  FAVORITES: `favorites__image-wrapper`
 };
 
-export const IMAGE_SIZES = {
-  cities: {
-    width: 260,
-    height: 200
+export const ImageSizes = {
+  CITIES: {
+    WIDTH: 260,
+    HEIGHT: 200
   },
-  nearPlaces: {
-    width: 260,
-    height: 200
+  NEAR_PLACES: {
+    WIDTH: 260,
+    HEIGHT: 200
   },
-  favorites: {
-    width: 150,
-    height: 110
+  FAVORITES: {
+    WIDTH: 150,
+    HEIGHT: 110
   }
 };
+
+export const Filters = {
+  popular: `Popular`,
+  priceLowToHight: `Price: low to high`,
+  priceHightToLow: `Price: high to low`,
+  topRatedFirst: `Top rated first`
+};
+
+export const Months = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`
+];
