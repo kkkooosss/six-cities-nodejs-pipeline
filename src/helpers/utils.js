@@ -21,13 +21,13 @@ export const sortByRating = (offers) => (offers.sort((a, b) => b.rating - a.rati
 export const filterOffersOrder = (offers, filter) => {
   const offersToFilter = offers.slice();
   switch (filter) {
-    case Filters.popular:
+    case Filters.POPULAR:
       return offers;
-    case Filters.priceLowToHight:
+    case Filters.PRICE_LOW_TO_HIGHT:
       return sortByPrice(offersToFilter);
-    case Filters.priceHightToLow:
+    case Filters.PRICE_HIGHT_TO_LOW:
       return sortByPriceReverse(offersToFilter);
-    case Filters.topRatedFirst:
+    case Filters.TOP_RATED_FIRST:
       return sortByRating(offersToFilter);
     default:
       return offers;
