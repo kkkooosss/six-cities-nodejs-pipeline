@@ -44,4 +44,11 @@ describe(`Data action creator work correctly`, () => {
     });
   });
 
+  it(`Action creator for setServerError returns correct action`, () => {
+    expect(ActionCreator.setApiError(`404 Not found`)).toEqual({
+      type: ActionTypes.SET_API_ERROR,
+      payload: `404 Not found`
+    });
+  });
+
 });

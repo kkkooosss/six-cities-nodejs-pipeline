@@ -8,13 +8,18 @@ import DataOperation from './operations/data/data';
 import UserOperation from './operations/user/user';
 
 import UserActionCreator from './actions/user/user';
+import DataActionCreator from './actions/data/data';
 import {AuthStatus} from '../helpers/constants';
 
 const onUnauthorized = () => {
   store.dispatch(UserActionCreator.setAuthStatus(AuthStatus.NO_AUTH));
 };
 
-const api = createAPI(onUnauthorized);
+const onError = (err) => {
+  store.dispatch(DataActionCreator.setApiError(err));
+};
+
+const api = createAPI(onUnauthorized, onError);
 
 const store = createStore(
     reducer,

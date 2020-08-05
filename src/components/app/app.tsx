@@ -6,17 +6,18 @@ import Main from '../main/main';
 import Login from '../login/login';
 import Favorites from '../favorites/favorites';
 import OfferDetails from '../offer-details/offer-details';
+import ErrorMessage from '../error-message/error-message';
+import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
 
+import Offer from '../../interfaces/offer';
+import {Routes} from '../../helpers/constants';
+import {AuthStatus} from '../../helpers/constants';
+import ActiveActionCreator from '../../store/actions/active/active';
+import {getAuthStatus} from '../../store/reducers/user/selectors';
+import {filterOffers} from '../../store/reducers/filter/selectors';
+import {getLoadingFlag, getApiError} from '../../store/reducers/data/selectors';
 import UserOperation from '../../store/operations/user/user';
 import DataOperation from '../../store/operations/data/data';
-import {filterOffers} from '../../store/reducers/filter/selectors';
-import {Routes} from '../../helpers/constants';
-import {getAuthStatus} from '../../store/reducers/user/selectors';
-import {AuthStatus} from '../../helpers/constants';
-import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
-import {getLoadingFlag} from '../../store/reducers/data/selectors';
-import Offer from '../../interfaces/offer';
-import ActiveActionCreator from '../../store/actions/active/active';
 
 interface Props {
   offers: Offer[];
@@ -26,14 +27,16 @@ interface Props {
   onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
   onCardHover: (offer: Offer) => void;
   onCardHoverLeave: () => void;
+  apiError: string;
 }
 
 const App = (props: Props) => {
-  const {offers, authStatus, loading, onLogin, onSetFavoriteStatus, onCardHover, onCardHoverLeave} = props;
+  const {offers, authStatus, loading, onLogin, onSetFavoriteStatus, onCardHover, onCardHoverLeave, apiError} = props;
   const isAuthorized = authStatus === AuthStatus.AUTH;
   const FavoritesWrapped = withPrivateRoute(Favorites, isAuthorized);
   return (
     <BrowserRouter>
+      {apiError ? <ErrorMessage error={apiError} /> : null}
       <Switch>
         <Route exact path={Routes.MAIN}
           render={() => {
@@ -89,7 +92,8 @@ const App = (props: Props) => {
 const mapStateToProps = (state) => ({
   offers: filterOffers(state),
   loading: getLoadingFlag(state),
-  authStatus: getAuthStatus(state)
+  authStatus: getAuthStatus(state),
+  apiError: getApiError(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

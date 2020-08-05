@@ -1,5 +1,6 @@
 import NameSpace from '../../name-space';
 import {createSelector} from "reselect";
+import { ApiErrorMessages } from '../../../helpers/constants';
 
 const NAME_SPACE = NameSpace.DATA;
 
@@ -32,4 +33,9 @@ export const getNearOffers = (state) => {
 
 export const getFavorites = (state) => {
   return state[NAME_SPACE].favorites;
+};
+
+export const getApiError = (state) => {
+  const errorCode = state[NAME_SPACE].apiError;
+  return ApiErrorMessages[errorCode];
 };

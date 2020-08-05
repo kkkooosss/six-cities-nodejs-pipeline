@@ -41,6 +41,22 @@ export const AuthStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+export const ApiErrorStatuses = {
+  BAD_REQUEST: 400,
+  NO_AUTH: 401,
+  FORBIDDEN: 403,
+  NOT_FOUND: 404,
+  INTERNAL_SERVER_ERROR: 500
+};
+
+export const ApiErrorMessages = {
+  400: `Error 400. Request is not correct.`,
+  401: `Error 401. Authorization required.`,
+  403: `Error 403. Access is denied.`,
+  404: `Error 404. Page not found.`,
+  500: `Error 500. Server not responded correct. Please try again`
+};
+
 export const Routes = {
   MAIN: `/`,
   LOGIN: `/signin`,

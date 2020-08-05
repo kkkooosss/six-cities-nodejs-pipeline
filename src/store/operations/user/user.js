@@ -6,11 +6,14 @@ import {formatUser} from '../../../helpers/utils';
 const Operation = {
   checkAuthStatus: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
-        dispatch(ActionCreator.setAuthStatus(AuthStatus.NO_AUTH));
+      .then((response) => {
+        dispatch(ActionCreator.setUser(formatUser(response.data)));
+        dispatch(ActionCreator.setAuthStatus(AuthStatus.AUTH));
       })
       .catch((err) => {
-        throw err;
+        if (err.response.status !== 401) {
+          throw err;
+        }
       });
   },
 

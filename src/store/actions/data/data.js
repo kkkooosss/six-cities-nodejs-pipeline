@@ -4,7 +4,8 @@ export const ActionTypes = {
   GET_NEAR_OFFERS: `GET_NEAR_OFFERS`,
   GET_FAVORITES: `GET_FAVORITES`,
   SET_DETAILS_OFFER_ID: `SET_DETAILS_OFFER_ID`,
-  SET_LOADING_FLAG: `SET_LOADING_FLAG`
+  SET_LOADING_FLAG: `SET_LOADING_FLAG`,
+  SET_API_ERROR: `SET_API_ERROR`
 };
 
 const ActionCreator = {
@@ -38,6 +39,11 @@ const ActionCreator = {
     type: ActionTypes.SET_LOADING_FLAG,
     payload: flag
   }),
+
+  setApiError: (error) => ({
+    type: ActionTypes.SET_API_ERROR,
+    payload: error
+  })
 
 };
 

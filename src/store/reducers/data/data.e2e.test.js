@@ -83,4 +83,18 @@ describe(`Data reducer work correctly`, () => {
       loading: false
     });
   });
+
+  it(`Should change apiError with given value `, () => {
+    const state7 = {
+      apiError: true
+    };
+    const action = {
+      type: ActionTypes.SET_API_ERROR,
+      payload: `404 not found`
+    };
+    expect(reducer(state7, action)).toMatchObject({
+      apiError: `404 not found`
+    });
+  });
+
 });

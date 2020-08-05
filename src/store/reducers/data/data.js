@@ -7,7 +7,8 @@ const initialState = {
   nearOffers: [],
   favorites: [],
   detailsOfferId: null,
-  loading: true
+  loading: true,
+  apiError: ``
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -42,6 +43,12 @@ const reducer = (state = initialState, action = {}) => {
       return extend(state, {
         loading: action.payload
       });
+
+    case ActionTypes.SET_API_ERROR:
+      return extend(state, {
+        apiError: action.payload
+      });
+
   }
   return state;
 };
