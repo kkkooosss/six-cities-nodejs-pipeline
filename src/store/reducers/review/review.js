@@ -1,5 +1,5 @@
 import {extend} from '../../../helpers/utils';
-import {Actions} from '../../actions/review/review';
+import {ActionTypes} from '../../actions/review/review';
 
 const initialState = {
   reviews: [],
@@ -10,17 +10,17 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
-    case Actions.getReviews:
+    case ActionTypes.GET_REVIEWS:
       return extend(state, {
         reviews: action.payload
       });
 
-    case Actions.setSendingFlag:
+    case ActionTypes.SET_SENDING_FLAG:
       return extend(state, {
         sending: action.payload
       });
 
-    case Actions.setErrorFlag:
+    case ActionTypes.SET_ERROR_FLAG:
       return extend(state, {
         error: action.payload
       });

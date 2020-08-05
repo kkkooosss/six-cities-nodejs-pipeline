@@ -9,7 +9,7 @@ import Loader from '../loader/loader';
 import Header from '../header/header';
 import {getRatingInPercents} from '../../helpers/utils';
 
-import DataActionsCreator from '../../store/actions/data/data';
+import DataActionTypesCreator from '../../store/actions/data/data';
 import DataOperation from '../../store/operations/data/data';
 import ReviewOperation from '../../store/operations/review/review';
 import {reduceOffers} from '../../helpers/utils';
@@ -225,7 +225,7 @@ const mapDispatchToProps = (dispatch) => ({
 
   onSetDetailsOfferId: (offerId) => {
     const newOfferId = parseInt(offerId, 10);
-    dispatch(DataActionsCreator.setDetailsOfferId(newOfferId));
+    dispatch(DataActionTypesCreator.setDetailsOfferId(newOfferId));
   },
 
   onRequestNearOffers: (offerId) => {

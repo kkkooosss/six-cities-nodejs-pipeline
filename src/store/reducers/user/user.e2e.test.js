@@ -1,4 +1,4 @@
-import {Actions} from '../../actions/user/user';
+import {ActionTypes} from '../../actions/user/user';
 import {AuthStatus} from '../../../helpers/constants';
 import reducer from './user';
 import USER from '../../../test-data/user';
@@ -10,7 +10,7 @@ describe(`User reducer work correctly`, () => {
       authStatus: AuthStatus.NO_AUTH
     };
     const action = {
-      type: Actions.setAuthStatus,
+      type: ActionTypes.SET_AUTH_STATUS,
       payload: AuthStatus.AUTH
     };
     expect(reducer(state1, action)).toMatchObject({
@@ -23,7 +23,7 @@ describe(`User reducer work correctly`, () => {
       user: {}
     };
     const action = {
-      type: Actions.setUser,
+      type: ActionTypes.SET_USER,
       payload: USER
     };
     expect(reducer(state2, action)).toMatchObject({

@@ -1,5 +1,5 @@
 import {extend} from '../../../helpers/utils';
-import {Actions} from '../../actions/data/data';
+import {ActionTypes} from '../../actions/data/data';
 
 const initialState = {
   offers: [],
@@ -13,32 +13,32 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
-    case Actions.getOffers:
+    case ActionTypes.GET_OFFERS:
       return extend(state, {
         offers: action.payload
       });
 
-    case Actions.getCities:
+    case ActionTypes.GET_CITIES:
       return extend(state, {
         cities: [...new Set(action.payload.map((offer) => offer.city.name))].sort()
       });
 
-    case Actions.getNearOffers:
+    case ActionTypes.GET_NEAR_OFFERS:
       return extend(state, {
         nearOffers: action.payload
       });
 
-    case Actions.getFavorites:
+    case ActionTypes.GET_FAVORITES:
       return extend(state, {
         favorites: action.payload
       });
 
-    case Actions.setDetailsOfferId:
+    case ActionTypes.SET_DETAILS_OFFER_ID:
       return extend(state, {
         detailsOfferId: action.payload
       });
 
-    case Actions.setLoadingFlag:
+    case ActionTypes.SET_LOADING_FLAG:
       return extend(state, {
         loading: action.payload
       });

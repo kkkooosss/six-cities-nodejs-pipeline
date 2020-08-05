@@ -1,5 +1,5 @@
 import {extend} from '../../../helpers/utils';
-import {Actions} from '../../actions/user/user';
+import {ActionTypes} from '../../actions/user/user';
 import {AuthStatus} from '../../../helpers/constants';
 
 const initialState = {
@@ -10,12 +10,12 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
-    case Actions.setAuthStatus:
+    case ActionTypes.SET_AUTH_STATUS:
       return extend(state, {
         authStatus: action.payload
       });
 
-    case Actions.setUser:
+    case ActionTypes.SET_USER:
       return extend(state, {
         user: action.payload
       });

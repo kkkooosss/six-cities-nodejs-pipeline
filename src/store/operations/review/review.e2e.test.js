@@ -1,7 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
 import createAPI from '../../../api/api';
 import Operation from './review';
-import {Actions} from '../../actions/review/review';
+import {ActionTypes} from '../../actions/review/review';
 import {formatReviews} from '../../../helpers/utils';
 import rawReviews from '../../../test-data/raw-reviews';
 
@@ -22,7 +22,7 @@ describe(`Review operation works correctly`, () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.getReviews,
+          type: ActionTypes.GET_REVIEWS,
           payload: formatReviews(rawReviews)
         });
       });
@@ -46,7 +46,7 @@ describe(`Review operation works correctly`, () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.getReviews,
+          type: ActionTypes.GET_REVIEWS,
           payload: formatReviews(rawReviews)
         });
       });

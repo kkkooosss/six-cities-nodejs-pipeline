@@ -1,4 +1,4 @@
-import {Actions} from '../../actions/review/review';
+import {ActionTypes} from '../../actions/review/review';
 import reducer from './review';
 
 describe(`Review reducer works correctly`, () => {
@@ -8,7 +8,7 @@ describe(`Review reducer works correctly`, () => {
       reviews: []
     };
     const action = {
-      type: Actions.getReviews,
+      type: ActionTypes.GET_REVIEWS,
       payload: [{id: 1, text: `text`}, {id: 2, text: `text2`}]
     };
     expect(reducer(state1, action)).toMatchObject({
@@ -21,7 +21,7 @@ describe(`Review reducer works correctly`, () => {
       sending: true
     };
     const action = {
-      type: Actions.setSendingFlag,
+      type: ActionTypes.SET_SENDING_FLAG,
       payload: false
     };
     expect(reducer(state2, action)).toMatchObject({
@@ -34,7 +34,7 @@ describe(`Review reducer works correctly`, () => {
       error: false
     };
     const action = {
-      type: Actions.setErrorFlag,
+      type: ActionTypes.SET_ERROR_FLAG,
       payload: true
     };
     expect(reducer(state3, action)).toMatchObject({

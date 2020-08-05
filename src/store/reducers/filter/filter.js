@@ -1,6 +1,6 @@
 import {extend} from '../../../helpers/utils';
 
-import {Actions} from '../../actions/filter/filter';
+import {ActionTypes} from '../../actions/filter/filter';
 
 const initialState = {
   selectedCity: `Amsterdam`,
@@ -10,12 +10,12 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
-    case Actions.selectCity:
+    case ActionTypes.SELECT_CITY:
       return extend(state, {
         selectedCity: action.payload
       });
 
-    case Actions.selectFilter:
+    case ActionTypes.SELECT_FILTER:
       return extend(state, {
         selectedFilter: action.payload
       });

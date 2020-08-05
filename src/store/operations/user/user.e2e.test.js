@@ -2,8 +2,8 @@ import MockAdapter from 'axios-mock-adapter';
 
 import createAPI from '../../../api/api';
 import Operation from './user';
-import {Actions} from '../../actions/user/user';
-import {Actions as DataActions} from '../../actions/data/data';
+import {ActionTypes} from '../../actions/user/user';
+import {ActionTypes as DataActionTypes} from '../../actions/data/data';
 import {AuthStatus} from '../../../helpers/constants';
 import rawUser from '../../../test-data/raw-user';
 import mockUser from '../../../test-data/user';
@@ -30,7 +30,7 @@ describe(`User operation works correctly`, () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.setAuthStatus,
+          type: ActionTypes.SET_AUTH_STATUS,
           payload: AuthStatus.NO_AUTH
         });
       });
@@ -44,19 +44,19 @@ describe(`User operation works correctly`, () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(4);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: DataActions.setLoadingFlag,
+          type: DataActionTypes.SET_LOADING_FLAG,
           payload: true
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: Actions.setUser,
+          type: ActionTypes.SET_USER,
           payload: mockUser
         });
         expect(dispatch).toHaveBeenNthCalledWith(3, {
-          type: Actions.setAuthStatus,
+          type: ActionTypes.SET_AUTH_STATUS,
           payload: AuthStatus.AUTH
         });
         expect(dispatch).toHaveBeenNthCalledWith(4, {
-          type: DataActions.setLoadingFlag,
+          type: DataActionTypes.SET_LOADING_FLAG,
           payload: false
         });
       });

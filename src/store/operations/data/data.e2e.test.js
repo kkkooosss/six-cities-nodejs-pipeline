@@ -1,7 +1,7 @@
 import MockAdapter from 'axios-mock-adapter';
 import createAPI from '../../../api/api';
 import Operation from './data';
-import {Actions} from '../../actions/data/data';
+import {ActionTypes} from '../../actions/data/data';
 import {formatOffers} from '../../../helpers/utils';
 import rawOffers from '../../../test-data/raw-offers';
 import {RequestCodes} from '../../../helpers/constants';
@@ -23,11 +23,11 @@ describe(`Load Offer operation works correctly`, () => {
         expect(dispatch).toHaveBeenCalledTimes(4);
         expect(dispatch).toHaveBeenNthCalledWith(1,
             {
-              type: Actions.setLoadingFlag,
+              type: ActionTypes.SET_LOADING_FLAG,
               payload: true});
       },
       {
-        type: Actions.getOffers,
+        type: ActionTypes.GET_OFFERS,
         payload: formatOffers(rawOffers)
       }
       );
@@ -47,7 +47,7 @@ describe(`Load Offer operation works correctly`, () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.getNearOffers,
+          type: ActionTypes.GET_NEAR_OFFERS,
           payload: formatOffers(rawOffers)
         });
       });
@@ -66,7 +66,7 @@ describe(`Load Offer operation works correctly`, () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.getFavorites,
+          type: ActionTypes.GET_FAVORITES,
           payload: formatOffers(rawOffers)
         });
       });
@@ -86,7 +86,7 @@ describe(`Load Offer operation works correctly`, () => {
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.getFavorites,
+          type: ActionTypes.GET_FAVORITES,
           payload: formatOffers(rawOffers)
         });
 

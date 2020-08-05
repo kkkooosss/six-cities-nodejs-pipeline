@@ -1,41 +1,41 @@
-export const Actions = {
-  getOffers: `GET_OFFERS`,
-  getCities: `GET_CITIES`,
-  getNearOffers: `GET_NEAR_OFFERS`,
-  getFavorites: `GET_FAVORITES`,
-  setDetailsOfferId: `SET_DETAILS_OFFER_ID`,
-  setLoadingFlag: `SET_LOADING_FLAG`
+export const ActionTypes = {
+  GET_OFFERS: `GET_OFFERS`,
+  GET_CITIES: `GET_CITIES`,
+  GET_NEAR_OFFERS: `GET_NEAR_OFFERS`,
+  GET_FAVORITES: `GET_FAVORITES`,
+  SET_DETAILS_OFFER_ID: `SET_DETAILS_OFFER_ID`,
+  SET_LOADING_FLAG: `SET_LOADING_FLAG`
 };
 
 const ActionCreator = {
 
   getOffers: (offers) => ({
-    type: Actions.getOffers,
+    type: ActionTypes.GET_OFFERS,
     payload: offers
   }),
 
   getCities: (offers) => ({
-    type: Actions.getCities,
+    type: ActionTypes.GET_CITIES,
     payload: offers
   }),
 
   getNearOffers: (offers) => ({
-    type: Actions.getNearOffers,
+    type: ActionTypes.GET_NEAR_OFFERS,
     payload: offers
   }),
 
   getFavorites: (offers) => ({
-    type: Actions.getFavorites,
+    type: ActionTypes.GET_FAVORITES,
     payload: offers
   }),
 
   setDetailsOfferId: (offerId) => ({
-    type: Actions.setDetailsOfferId,
+    type: ActionTypes.SET_DETAILS_OFFER_ID,
     payload: offerId
   }),
 
   setLoadingFlag: (flag) => ({
-    type: Actions.setLoadingFlag,
+    type: ActionTypes.SET_LOADING_FLAG,
     payload: flag
   }),
 
