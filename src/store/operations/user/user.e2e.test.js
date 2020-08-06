@@ -17,7 +17,7 @@ const mockAuthData = {
 };
 
 apiMock
-  .onGet(`/login`).reply(200, AuthStatus.NO_AUTH)
+  .onGet(`/login`).reply(401, AuthStatus.NO_AUTH)
   .onPost(`/login`).reply(200, rawUser);
 
 describe(`User operation works correctly`, () => {

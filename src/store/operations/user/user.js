@@ -1,16 +1,26 @@
 import ActionCreator from '../../actions/user/user';
 import DataActionCreator from '../../actions/data/data';
-import {AuthStatus} from '../../../helpers/constants';
+import {AuthStatus, ResponseCodes} from '../../../helpers/constants';
 import {formatUser} from '../../../helpers/utils';
 
 const Operation = {
   checkAuthStatus: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
-        dispatch(ActionCreator.setAuthStatus(AuthStatus.NO_AUTH));
+      .then((response) => {
+        if (response.status === ResponseCodes.UNAUTHORIZED) {
+          dispatch(ActionCreator.setAuthStatus(AuthStatus.NO_AUTH));
+        }
+        if (response.status === ResponseCodes.SUCCESS) {
+          dispatch(ActionCreator.setUser(formatUser(response.data)));
+          dispatch(ActionCreator.setAuthStatus(AuthStatus.AUTH));
+        }
       })
       .catch((err) => {
-        throw err;
+        if (err.response.status === ResponseCodes.UNAUTHORIZED) {
+          dispatch(ActionCreator.setAuthStatus(AuthStatus.NO_AUTH));
+        } else {
+          throw err;
+        }
       });
   },
 

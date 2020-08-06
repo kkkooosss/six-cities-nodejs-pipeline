@@ -41,6 +41,11 @@ export const AuthStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
+export const ResponseCodes = {
+  UNAUTHORIZED: 401,
+  SUCCESS: 400
+};
+
 export const Routes = {
   MAIN: `/`,
   LOGIN: `/signin`,
