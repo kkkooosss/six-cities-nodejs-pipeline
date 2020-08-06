@@ -1,4 +1,5 @@
-import NameSpace from '../../name-space.js';
+import NameSpace from '../../name-space';
+import {AuthStatus} from '../../../helpers/constants';
 
 const NAME_SPACE = NameSpace.USER;
 
@@ -8,4 +9,8 @@ export const getAuthStatus = (state) => {
 
 export const getUser = (state) => {
   return state[NAME_SPACE].user;
+};
+
+export const getAuthFlag = (state) => {
+  return state[NAME_SPACE].authStatus === AuthStatus.AUTH;
 };

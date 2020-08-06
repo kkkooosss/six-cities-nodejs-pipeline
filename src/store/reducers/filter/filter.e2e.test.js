@@ -1,5 +1,5 @@
-import {Actions} from '../../actions/filter/filter.js';
-import reducer from './filter.js';
+import {ActionTypes} from '../../actions/filter/filter';
+import reducer from './filter';
 
 describe(`Reducer work correctly`, () => {
 
@@ -11,7 +11,7 @@ describe(`Reducer work correctly`, () => {
     };
 
     const action = {
-      type: Actions.selectCity,
+      type: ActionTypes.SELECT_CITY,
       payload: `Brussels`
     };
 
@@ -26,7 +26,7 @@ describe(`Reducer work correctly`, () => {
       selectedFilter: `Popular`
     };
     const action = {
-      type: Actions.selectFilter,
+      type: ActionTypes.SELECT_FILTER,
       payload: `High to low`
     };
     expect(reducer(state4, action)).toMatchObject({

@@ -1,5 +1,5 @@
-import {Actions} from '../../actions/active/active.js';
-import {extend} from '../../../helpers/utils.js';
+import {ActionTypes} from '../../actions/active/active';
+import {extend} from '../../../helpers/utils';
 
 const initialState = {
   activeOffer: null
@@ -8,12 +8,12 @@ const initialState = {
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
-    case Actions.setActiveOffer:
+    case ActionTypes.SET_ACTIVE_OFFER:
       return extend(state, {
         activeOffer: action.payload
       });
 
-    case Actions.removeActiveOffer:
+    case ActionTypes.REMOVE_ACTIVE_OFFER:
       return extend(state, {
         activeOffer: null
       });

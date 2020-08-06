@@ -1,17 +1,17 @@
-export const Actions = {
-  selectCity: `SELECT_CITY`,
-  selectFilter: `SELECT_FILTER`,
+export const ActionTypes = {
+  SELECT_CITY: `SELECT_CITY`,
+  SELECT_FILTER: `SELECT_FILTER`,
 };
 
 const ActionCreator = {
 
   selectCity: (city) => ({
-    type: Actions.selectCity,
+    type: ActionTypes.SELECT_CITY,
     payload: city
   }),
 
   selectFilter: (filter) => ({
-    type: Actions.selectFilter,
+    type: ActionTypes.SELECT_FILTER,
     payload: filter
   }),
 

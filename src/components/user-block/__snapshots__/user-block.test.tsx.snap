@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserBlock renders correctly 1`] = `
+<a
+  className="header__nav-link header__nav-link--profile"
+  href="/favorites"
+  onClick={[Function]}
+>
+  <div
+    className="header__avatar-wrapper user__avatar-wrapper"
+  >
+    <img
+      src="https://4.react.pages.academy/six-cities/img/john_doe.jpg"
+      style={
+        Object {
+          "borderRadius": "50%",
+        }
+      }
+    />
+  </div>
+  <span
+    className="header__user-name user__name"
+  >
+    mail@email.com
+  </span>
+</a>
+`;

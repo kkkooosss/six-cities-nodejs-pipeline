@@ -1,14 +1,14 @@
 import MockAdapter from 'axios-mock-adapter';
 
-import createAPI from '../../../api/api.js';
-import Operation from './user.js';
-import {Actions} from '../../actions/user/user.js';
-import {Actions as DataActions} from '../../actions/data/data.js';
-import {AUTH_STATUS} from '../../../helpers/constants.js';
-import rawUser from '../../../test-data/raw-user.js';
-import mockUser from '../../../test-data/user.js';
+import createAPI from '../../../api/api';
+import Operation from './user';
+import {ActionTypes} from '../../actions/user/user';
+import {ActionTypes as DataActionTypes} from '../../actions/data/data';
+import {AuthStatus} from '../../../helpers/constants';
+import rawUser from '../../../test-data/raw-user';
+import mockUser from '../../../test-data/user';
 
-const api = createAPI(() => {});
+const api = createAPI(jest.fn());
 const apiMock = new MockAdapter(api);
 
 const mockAuthData = {
@@ -17,7 +17,7 @@ const mockAuthData = {
 };
 
 apiMock
-  .onGet(`/login`).reply(200, AUTH_STATUS.noAuth)
+  .onGet(`/login`).reply(401, AuthStatus.NO_AUTH)
   .onPost(`/login`).reply(200, rawUser);
 
 describe(`User operation works correctly`, () => {
@@ -26,12 +26,12 @@ describe(`User operation works correctly`, () => {
     const dispatch = jest.fn();
     const dataLoader = Operation.checkAuthStatus();
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.setAuthStatus,
-          payload: AUTH_STATUS.noAuth
+          type: ActionTypes.SET_AUTH_STATUS,
+          payload: AuthStatus.NO_AUTH
         });
       });
   });
@@ -40,23 +40,23 @@ describe(`User operation works correctly`, () => {
     const dispatch = jest.fn();
     const dataLoader = Operation.login(mockAuthData);
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(4);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: DataActions.setLoadingFlag,
+          type: DataActionTypes.SET_LOADING_FLAG,
           payload: true
         });
         expect(dispatch).toHaveBeenNthCalledWith(2, {
-          type: Actions.setUser,
+          type: ActionTypes.SET_USER,
           payload: mockUser
         });
         expect(dispatch).toHaveBeenNthCalledWith(3, {
-          type: Actions.setAuthStatus,
-          payload: AUTH_STATUS.auth
+          type: ActionTypes.SET_AUTH_STATUS,
+          payload: AuthStatus.AUTH
         });
         expect(dispatch).toHaveBeenNthCalledWith(4, {
-          type: DataActions.setLoadingFlag,
+          type: DataActionTypes.SET_LOADING_FLAG,
           payload: false
         });
       });

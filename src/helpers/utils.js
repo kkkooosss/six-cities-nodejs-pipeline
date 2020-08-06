@@ -1,3 +1,5 @@
+import {Months, Filters} from './constants';
+
 export const excludeCurrentOffer = (offers, currentOfferId) => offers.filter((item) => item.id !== currentOfferId);
 
 export const reduceOffers = (offers) => offers.length <= 3 ? offers : offers.slice(0, 10);
@@ -19,13 +21,13 @@ export const sortByRating = (offers) => (offers.sort((a, b) => b.rating - a.rati
 export const filterOffersOrder = (offers, filter) => {
   const offersToFilter = offers.slice();
   switch (filter) {
-    case FILTERS_MAP.popular:
+    case Filters.POPULAR:
       return offers;
-    case FILTERS_MAP.priceLowToHight:
+    case Filters.PRICE_LOW_TO_HIGHT:
       return sortByPrice(offersToFilter);
-    case FILTERS_MAP.priceHightToLow:
+    case Filters.PRICE_HIGHT_TO_LOW:
       return sortByPriceReverse(offersToFilter);
-    case FILTERS_MAP.topRatedFirst:
+    case Filters.TOP_RATED_FIRST:
       return sortByRating(offersToFilter);
     default:
       return offers;
@@ -36,35 +38,13 @@ export const extend = (a, b) => Object.assign({}, a, b);
 
 export const getRatingInPercents = (rating) => `${(Math.round(rating)) * 20}%`;
 
-const MONTHS = [
-  `January`,
-  `February`,
-  `March`,
-  `April`,
-  `May`,
-  `June`,
-  `July`,
-  `August`,
-  `September`,
-  `October`,
-  `November`,
-  `December`
-];
-
 export const convertDate = (date) => {
   const dateObject = new Date(date);
   const day = dateObject.getDate();
-  const month = MONTHS[dateObject.getMonth()];
+  const month = Months[dateObject.getMonth()];
   const year = dateObject.getFullYear();
 
   return `${month} ${day}, ${year}`;
-};
-
-export const FILTERS_MAP = {
-  popular: `Popular`,
-  priceLowToHight: `Price: low to high`,
-  priceHightToLow: `Price: high to low`,
-  topRatedFirst: `Top rated first`
 };
 
 export const formatOffer = (offer) => (

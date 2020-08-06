@@ -1,21 +1,21 @@
-import {extend} from '../../../helpers/utils.js';
-import {Actions} from '../../actions/user/user.js';
-import {AUTH_STATUS} from '../../../helpers/constants.js';
+import {extend} from '../../../helpers/utils';
+import {ActionTypes} from '../../actions/user/user';
+import {AuthStatus} from '../../../helpers/constants';
 
 const initialState = {
-  authStatus: AUTH_STATUS.noAuth,
+  authStatus: AuthStatus.NO_AUTH,
   user: {}
 };
 
 const reducer = (state = initialState, action = {}) => {
   switch (action.type) {
 
-    case Actions.setAuthStatus:
+    case ActionTypes.SET_AUTH_STATUS:
       return extend(state, {
         authStatus: action.payload
       });
 
-    case Actions.setUser:
+    case ActionTypes.SET_USER:
       return extend(state, {
         user: action.payload
       });

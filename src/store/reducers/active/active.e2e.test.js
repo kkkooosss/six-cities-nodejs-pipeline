@@ -1,5 +1,5 @@
-import {Actions} from '../../actions/active/active.js';
-import reducer from './active.js';
+import {ActionTypes} from '../../actions/active/active';
+import reducer from './active';
 
 describe(`Active reducer work correctly`, () => {
 
@@ -8,7 +8,7 @@ describe(`Active reducer work correctly`, () => {
       activeOffer: null
     };
     const action = {
-      type: Actions.setActiveOffer,
+      type: ActionTypes.SET_ACTIVE_OFFER,
       payload: {id: 1, title: `title1`, city: `Amsterdam`}
     };
     expect(reducer(state1, action)).toMatchObject({
@@ -21,7 +21,7 @@ describe(`Active reducer work correctly`, () => {
       activeOffer: {id: 1, title: `title1`, city: `Amsterdam`}
     };
     const action = {
-      type: Actions.removeActiveOffer
+      type: ActionTypes.REMOVE_ACTIVE_OFFER
     };
     expect(reducer(state2, action)).toMatchObject({
       activeOffer: null

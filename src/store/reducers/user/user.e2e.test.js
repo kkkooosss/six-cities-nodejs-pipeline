@@ -1,20 +1,20 @@
-import {Actions} from '../../actions/user/user.js';
-import {AUTH_STATUS} from '../../../helpers/constants.js';
-import reducer from './user.js';
-import USER from '../../../test-data/user.js';
+import {ActionTypes} from '../../actions/user/user';
+import {AuthStatus} from '../../../helpers/constants';
+import reducer from './user';
+import USER from '../../../test-data/user';
 
 describe(`User reducer work correctly`, () => {
 
   it(`Should change authStatus with given value`, () => {
     const state1 = {
-      authStatus: AUTH_STATUS.NO_AUTH
+      authStatus: AuthStatus.NO_AUTH
     };
     const action = {
-      type: Actions.setAuthStatus,
-      payload: AUTH_STATUS.AUTH
+      type: ActionTypes.SET_AUTH_STATUS,
+      payload: AuthStatus.AUTH
     };
     expect(reducer(state1, action)).toMatchObject({
-      authStatus: AUTH_STATUS.AUTH
+      authStatus: AuthStatus.AUTH
     });
   });
 
@@ -23,7 +23,7 @@ describe(`User reducer work correctly`, () => {
       user: {}
     };
     const action = {
-      type: Actions.setUser,
+      type: ActionTypes.SET_USER,
       payload: USER
     };
     expect(reducer(state2, action)).toMatchObject({

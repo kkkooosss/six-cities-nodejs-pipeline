@@ -1,17 +1,17 @@
-export const Actions = {
-  setAuthStatus: `SET_AUTH_STATUS`,
-  setUser: `SET_USER`
+export const ActionTypes = {
+  SET_AUTH_STATUS: `SET_AUTH_STATUS`,
+  SET_USER: `SET_USER`
 };
 
 const ActionCreator = {
 
   setAuthStatus: (status) => ({
-    type: Actions.setAuthStatus,
+    type: ActionTypes.SET_AUTH_STATUS,
     payload: status
   }),
 
   setUser: (user) => ({
-    type: Actions.setUser,
+    type: ActionTypes.SET_USER,
     payload: user
   })
 

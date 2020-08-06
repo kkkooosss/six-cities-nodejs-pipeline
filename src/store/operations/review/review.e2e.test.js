@@ -1,11 +1,11 @@
 import MockAdapter from 'axios-mock-adapter';
-import createAPI from '../../../api/api.js';
-import Operation from './review.js';
-import {Actions} from '../../actions/review/review.js';
-import {formatReviews} from '../../../helpers/utils.js';
-import rawReviews from '../../../test-data/raw-reviews.js';
+import createAPI from '../../../api/api';
+import Operation from './review';
+import {ActionTypes} from '../../actions/review/review';
+import {formatReviews} from '../../../helpers/utils';
+import rawReviews from '../../../test-data/raw-reviews';
 
-const api = createAPI(() => {});
+const api = createAPI(jest.fn());
 
 describe(`Review operation works correctly`, () => {
   it(`Should make a correct API call to /comments with id = 1 and get reviews`, () => {
@@ -18,11 +18,11 @@ describe(`Review operation works correctly`, () => {
       .onGet(`/comments/${offerId}`)
       .reply(200, rawReviews);
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.getReviews,
+          type: ActionTypes.GET_REVIEWS,
           payload: formatReviews(rawReviews)
         });
       });
@@ -42,11 +42,11 @@ describe(`Review operation works correctly`, () => {
       .onGet(`/comments/${offerId}`).reply(200, rawReviews)
       .onPost(`/comments/${offerId}`).reply(200, rawReviews);
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(3);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.getReviews,
+          type: ActionTypes.GET_REVIEWS,
           payload: formatReviews(rawReviews)
         });
       });

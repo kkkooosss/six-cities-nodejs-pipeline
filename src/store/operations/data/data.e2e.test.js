@@ -1,12 +1,12 @@
 import MockAdapter from 'axios-mock-adapter';
-import createAPI from '../../../api/api.js';
-import Operation from './data.js';
-import {Actions} from '../../actions/data/data.js';
-import {formatOffers} from '../../../helpers/utils.js';
-import rawOffers from '../../../test-data/raw-offers.js';
-import {REQUEST_CODES} from '../../../helpers/constants.js';
+import createAPI from '../../../api/api';
+import Operation from './data';
+import {ActionTypes} from '../../actions/data/data';
+import {formatOffers} from '../../../helpers/utils';
+import rawOffers from '../../../test-data/raw-offers';
+import {RequestCodes} from '../../../helpers/constants';
 
-const api = createAPI(() => {});
+const api = createAPI(jest.fn());
 
 describe(`Load Offer operation works correctly`, () => {
   it(`Should make a correct API call to /hotels and get offers and cities`, () => {
@@ -18,16 +18,16 @@ describe(`Load Offer operation works correctly`, () => {
       .onGet(`/hotels`)
       .reply(200, rawOffers);
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(4);
         expect(dispatch).toHaveBeenNthCalledWith(1,
             {
-              type: Actions.setLoadingFlag,
+              type: ActionTypes.SET_LOADING_FLAG,
               payload: true});
       },
       {
-        type: Actions.getOffers,
+        type: ActionTypes.GET_OFFERS,
         payload: formatOffers(rawOffers)
       }
       );
@@ -43,11 +43,11 @@ describe(`Load Offer operation works correctly`, () => {
       .onGet(`/hotels/${id}/nearby`)
       .reply(200, rawOffers);
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.getNearOffers,
+          type: ActionTypes.GET_NEAR_OFFERS,
           payload: formatOffers(rawOffers)
         });
       });
@@ -62,11 +62,11 @@ describe(`Load Offer operation works correctly`, () => {
       .onGet(`/favorite`)
       .reply(200, rawOffers);
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.getFavorites,
+          type: ActionTypes.GET_FAVORITES,
           payload: formatOffers(rawOffers)
         });
       });
@@ -80,13 +80,13 @@ describe(`Load Offer operation works correctly`, () => {
 
     apiMock
     .onGet(`/favorite`).reply(200, rawOffers)
-    .onPost(`/favorite/${offerId}/${REQUEST_CODES.add}`).reply(200, {});
+    .onPost(`/favorite/${offerId}/${RequestCodes.ADD}`).reply(200, {});
 
-    return dataLoader(dispatch, () => {}, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
         expect(dispatch).toHaveBeenCalledTimes(1);
         expect(dispatch).toHaveBeenNthCalledWith(1, {
-          type: Actions.getFavorites,
+          type: ActionTypes.GET_FAVORITES,
           payload: formatOffers(rawOffers)
         });
 
