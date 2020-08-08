@@ -111,23 +111,23 @@ class ReviewForm extends React.PureComponent<Props, {}> {
           {ratingTitles.map((title, i) => {
             const starsCount = ratingTitles.length - i;
             return (
-            <React.Fragment key={title}>
-              <input
-                className="form__rating-input visually-hidden"
-                name="rating"
-                defaultValue={starsCount}
-                id={`${starsCount}-stars`}
-                type="radio"
-                onChange={onRatingChange}
-              />
-              <label htmlFor={`${starsCount}-stars`} className="reviews__rating-label form__rating-label" title={title}>
-                <svg className="form__star-image" width={37} height={33}>
-                  <use xlinkHref="#icon-star" />
-                </svg>
-              </label>
-            </React.Fragment>
-          );
-        })}
+              <React.Fragment key={title}>
+                <input
+                  className="form__rating-input visually-hidden"
+                  name="rating"
+                  defaultValue={starsCount}
+                  id={`${starsCount}-stars`}
+                  type="radio"
+                  onChange={onRatingChange}
+                />
+                <label htmlFor={`${starsCount}-stars`} className="reviews__rating-label form__rating-label" title={title}>
+                  <svg className="form__star-image" width={37} height={33}>
+                    <use xlinkHref="#icon-star" />
+                  </svg>
+                </label>
+              </React.Fragment>
+            );
+          })}
 
         </div>
         <textarea

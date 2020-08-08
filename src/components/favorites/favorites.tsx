@@ -22,7 +22,7 @@ interface Props {
 }
 
 class Favorites extends React.PureComponent<Props> {
-  constructor(props) { 
+  constructor(props) {
     super(props);
   }
 

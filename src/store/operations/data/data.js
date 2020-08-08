@@ -1,16 +1,19 @@
-import ActionCreator from '../../actions/data/data';
+import DataActionCreator from '../../actions/data/data';
+import FilterActionCreator from '../../actions/filter/filter';
 import {formatOffers} from '../../../helpers/utils';
 import {RequestCodes} from '../../../helpers/constants';
+import {getCities} from '../../reducers/data/selectors';
 
 const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
-    dispatch(ActionCreator.setLoadingFlag(true));
+    dispatch(DataActionCreator.setLoadingFlag(true));
     return api.get(`/hotels`)
       .then(
           (response) => {
-            dispatch(ActionCreator.getOffers(formatOffers(response.data)));
-            dispatch(ActionCreator.getCities(response.data));
-            dispatch(ActionCreator.setLoadingFlag(false));
+            dispatch(DataActionCreator.getOffers(formatOffers(response.data)));
+            dispatch(DataActionCreator.getCities(response.data));
+            dispatch(FilterActionCreator.selectCity(getCities(getState())[0]));
+            dispatch(DataActionCreator.setLoadingFlag(false));
           });
   },
 
@@ -18,7 +21,7 @@ const Operation = {
     return api.get(`/hotels/${offerId}/nearby`)
       .then(
           (response) => {
-            dispatch(ActionCreator.getNearOffers(formatOffers(response.data)));
+            dispatch(DataActionCreator.getNearOffers(formatOffers(response.data)));
           });
   },
 
@@ -26,7 +29,7 @@ const Operation = {
     return api.get(`/favorite`)
       .then(
           (response) => {
-            dispatch(ActionCreator.getFavorites(formatOffers(response.data)));
+            dispatch(DataActionCreator.getFavorites(formatOffers(response.data)));
           });
   },
 

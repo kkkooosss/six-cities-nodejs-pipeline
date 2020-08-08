@@ -3,7 +3,7 @@ import {extend} from '../../../helpers/utils';
 import {ActionTypes} from '../../actions/filter/filter';
 
 const initialState = {
-  selectedCity: `Amsterdam`,
+  selectedCity: null,
   selectedFilter: `Popular`,
 };
 

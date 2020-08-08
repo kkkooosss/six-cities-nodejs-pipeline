@@ -18,9 +18,17 @@ describe(`Load Offer operation works correctly`, () => {
       .onGet(`/hotels`)
       .reply(200, rawOffers);
 
-    return dataLoader(dispatch, jest.fn(), api)
+    const MOCK_CITIES = {
+      DATA: {
+        cities: [`Amsterdam`, `Brusseles`]
+      }
+    };
+
+    const getState = () => MOCK_CITIES;
+
+    return dataLoader(dispatch, getState, api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(4);
+        expect(dispatch).toHaveBeenCalledTimes(5);
         expect(dispatch).toHaveBeenNthCalledWith(1,
             {
               type: ActionTypes.SET_LOADING_FLAG,
