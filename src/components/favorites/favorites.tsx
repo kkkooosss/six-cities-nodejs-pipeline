@@ -20,7 +20,7 @@ interface Props {
   onCardHoverLeave: () => void;
 }
 
-class Favorites extends React.Component<Props> {
+class Favorites extends React.PureComponent<Props> {
   constructor(props) {
     super(props);
   }
