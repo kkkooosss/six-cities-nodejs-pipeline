@@ -13,7 +13,7 @@ interface Props {
   isOpen: boolean;
   selectedFilter: string;
   onToggleOpen: () => void;
-  onfilterselect: (filter: string) => void;
+  onFilterSelect: (filter: string) => void;
 }
 
 class OffersSort extends React.PureComponent<Props> {
@@ -42,7 +42,7 @@ class OffersSort extends React.PureComponent<Props> {
   }
 
   render() {
-    const {selectedFilter, onfilterselect, isOpen, onToggleOpen} = this.props;
+    const {selectedFilter, onFilterSelect, isOpen, onToggleOpen} = this.props;
 
     return (
 
@@ -61,7 +61,7 @@ class OffersSort extends React.PureComponent<Props> {
         </span>
 
         {isOpen ? <ul className="places__options places__options--custom places__options--opened">
-          {this._getFilterOptions(selectedFilter, onfilterselect)}
+          {this._getFilterOptions(selectedFilter, onFilterSelect)}
         </ul> : null}
 
         {/* <select className="places__sorting-type" id="places-sorting">
@@ -80,7 +80,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onfilterselect: (offers, filter) => {
+  onFilterSelect: (offers, filter) => {
     dispatch(FilterActionCreator.selectFilter(offers, filter));
   }
 });
