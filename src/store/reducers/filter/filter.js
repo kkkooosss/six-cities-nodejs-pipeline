@@ -1,10 +1,10 @@
-import {extend} from '../../../helpers/utils';
-
 import {ActionTypes} from '../../actions/filter/filter';
+import {extend} from '../../../helpers/utils';
+import {Filters} from '../../../helpers/constants';
 
 const initialState = {
   selectedCity: null,
-  selectedFilter: `Popular`,
+  selectedFilter: Filters.POPULAR,
 };
 
 const reducer = (state = initialState, action = {}) => {
