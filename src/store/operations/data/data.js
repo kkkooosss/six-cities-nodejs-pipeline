@@ -2,7 +2,7 @@ import DataActionCreator from '../../actions/data/data';
 import FilterActionCreator from '../../actions/filter/filter';
 import {formatOffers} from '../../../helpers/utils';
 import {RequestCodes} from '../../../helpers/constants';
-import {getCities} from '../../reducers/data/selectors';
+import {getCitiesList} from '../../../helpers/utils';
 
 const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
@@ -11,8 +11,7 @@ const Operation = {
       .then(
           (response) => {
             dispatch(DataActionCreator.getOffers(formatOffers(response.data)));
-            dispatch(DataActionCreator.getCities(response.data));
-            dispatch(FilterActionCreator.selectCity(getCities(getState())[0]));
+            dispatch(FilterActionCreator.selectCity(getCitiesList(response.data)[0]));
             dispatch(DataActionCreator.setLoadingFlag(false));
           });
   },

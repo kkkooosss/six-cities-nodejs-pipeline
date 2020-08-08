@@ -9,13 +9,6 @@ describe(`Data action creator work correctly`, () => {
     });
   });
 
-  it(`Action creator for getCities returns correct action`, () => {
-    expect(ActionCreator.getCities(mockOffers)).toEqual({
-      type: ActionTypes.GET_CITIES,
-      payload: mockOffers
-    });
-  });
-
   it(`Action creator for getNearOffer returns correct action`, () => {
     expect(ActionCreator.getNearOffers(mockOffers)).toEqual({
       type: ActionTypes.GET_NEAR_OFFERS,

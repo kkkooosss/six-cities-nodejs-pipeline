@@ -9,7 +9,7 @@ import {RequestCodes} from '../../../helpers/constants';
 const api = createAPI(jest.fn());
 
 describe(`Load Offer operation works correctly`, () => {
-  it(`Should make a correct API call to /hotels and get offers and cities`, () => {
+  it(`Should make a correct API call to /hotels and get offers`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const dataLoader = Operation.loadOffers();
@@ -18,17 +18,9 @@ describe(`Load Offer operation works correctly`, () => {
       .onGet(`/hotels`)
       .reply(200, rawOffers);
 
-    const MOCK_CITIES = {
-      DATA: {
-        cities: [`Amsterdam`, `Brusseles`]
-      }
-    };
-
-    const getState = () => MOCK_CITIES;
-
-    return dataLoader(dispatch, getState, api)
+    return dataLoader(dispatch, jest.fn(), api)
       .then(() => {
-        expect(dispatch).toHaveBeenCalledTimes(5);
+        expect(dispatch).toHaveBeenCalledTimes(4);
         expect(dispatch).toHaveBeenNthCalledWith(1,
             {
               type: ActionTypes.SET_LOADING_FLAG,

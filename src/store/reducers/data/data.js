@@ -1,9 +1,8 @@
-import {extend, getCitiesList} from '../../../helpers/utils';
+import {extend} from '../../../helpers/utils';
 import {ActionTypes} from '../../actions/data/data';
 
 const initialState = {
   offers: [],
-  cities: [],
   nearOffers: [],
   favorites: [],
   detailsOfferId: null,
@@ -16,11 +15,6 @@ const reducer = (state = initialState, action = {}) => {
     case ActionTypes.GET_OFFERS:
       return extend(state, {
         offers: action.payload
-      });
-
-    case ActionTypes.GET_CITIES:
-      return extend(state, {
-        cities: getCitiesList(action.payload)
       });
 
     case ActionTypes.GET_NEAR_OFFERS:
