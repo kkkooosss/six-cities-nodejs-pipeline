@@ -27,7 +27,7 @@ const Login = (props: Props) => {
             <h1 className="login__title">Sign in</h1>
             <form className="login__form form" action="#" method="post" onSubmit={onSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
-                {emailError ? <span className="login__error-message">{emailError}</span> : null}
+                {emailError && <span className="login__error-message">{emailError}</span>}
                 <label className="visually-hidden">E-mail</label>
                 <input
                   className="login__input form__input"
@@ -38,7 +38,7 @@ const Login = (props: Props) => {
                   onChange={onEmailChange} />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
-                {passwordError ? <span className="login__error-message">{passwordError}</span> : null}
+                {passwordError && <span className="login__error-message">{passwordError}</span>}
                 <label className="visually-hidden">Password</label>
                 <input
                   className="login__input form__input"

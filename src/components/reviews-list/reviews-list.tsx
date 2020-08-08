@@ -24,7 +24,7 @@ const ReviewsList = (props: Props) => {
         {reviews.map((review) => <ReviewCard review={review} key={review.id} />)}
       </ul>
 
-      {isAuthorized ? <ReviewForm offerId={offerId} /> : null}
+      {isAuthorized && <ReviewForm offerId={offerId} />}
 
     </section>
   );

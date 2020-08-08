@@ -60,9 +60,9 @@ class OffersSort extends React.PureComponent<Props> {
           </svg>
         </span>
 
-        {isOpen ? <ul className="places__options places__options--custom places__options--opened">
+        {isOpen && <ul className="places__options places__options--custom places__options--opened">
           {this._getFilterOptions(selectedFilter, onFilterSelect)}
-        </ul> : null}
+        </ul>}
 
       </form>
     );

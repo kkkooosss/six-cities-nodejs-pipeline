@@ -19,7 +19,7 @@ const UserBlock = (props: Props) => {
   return (
     <Link to={Routes.FAVORITES} className="header__nav-link header__nav-link--profile" href="#" >
       <div className="header__avatar-wrapper user__avatar-wrapper">
-        {isAuthorized ? <img src={`${API_BASE}${user.avatarUrl}`} style={{borderRadius: `50%`}} /> : null}
+        {isAuthorized && <img src={`${API_BASE}${user.avatarUrl}`} style={{borderRadius: `50%`}} />}
       </div>
       <span className="header__user-name user__name">
         {isAuthorized ? user.email : `Sign In`}
