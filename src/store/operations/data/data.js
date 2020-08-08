@@ -1,8 +1,7 @@
 import DataActionCreator from '../../actions/data/data';
 import FilterActionCreator from '../../actions/filter/filter';
-import {formatOffers} from '../../../helpers/utils';
+import {formatOffers, getCitiesList} from '../../../helpers/utils';
 import {RequestCodes} from '../../../helpers/constants';
-import {getCitiesList} from '../../../helpers/utils';
 
 const Operation = {
   loadOffers: () => (dispatch, getState, api) => {
