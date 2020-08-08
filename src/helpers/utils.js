@@ -1,5 +1,7 @@
 import {Months, Filters} from './constants';
 
+export const getCitiesList = (offers) => [...new Set(offers.map((offer) => offer.city.name))].sort();
+
 export const excludeCurrentOffer = (offers, currentOfferId) => offers.filter((item) => item.id !== currentOfferId);
 
 export const reduceOffers = (offers) => offers.length <= 3 ? offers : offers.slice(0, 10);

@@ -1,4 +1,4 @@
-import {extend} from '../../../helpers/utils';
+import {extend, getCitiesList} from '../../../helpers/utils';
 import {ActionTypes} from '../../actions/data/data';
 
 const initialState = {
@@ -20,7 +20,7 @@ const reducer = (state = initialState, action = {}) => {
 
     case ActionTypes.GET_CITIES:
       return extend(state, {
-        cities: [...new Set(action.payload.map((offer) => offer.city.name))].sort()
+        cities: getCitiesList(action.payload)
       });
 
     case ActionTypes.GET_NEAR_OFFERS:
