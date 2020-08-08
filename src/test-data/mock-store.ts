@@ -9,13 +9,11 @@ import User from '../interfaces/user';
 
 const OFFERS:Offer[] = mockOffers;
 const REVIEWS:Review[] = mockReviews;
-const CITIES:string[] = [`Amsterdam`, `Berlin`];
 const USER:User = mockUser;
 
 const store = createStore(() => ({
   DATA: {
     offers: OFFERS,
-    cities: CITIES,
     nearOffers: OFFERS,
     loading: false
   },
