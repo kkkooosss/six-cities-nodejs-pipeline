@@ -3,7 +3,6 @@ import {ActionTypes} from '../../actions/data/data';
 
 const initialState = {
   offers: [],
-  cities: [],
   nearOffers: [],
   favorites: [],
   detailsOfferId: null,
@@ -16,11 +15,6 @@ const reducer = (state = initialState, action = {}) => {
     case ActionTypes.GET_OFFERS:
       return extend(state, {
         offers: action.payload
-      });
-
-    case ActionTypes.GET_CITIES:
-      return extend(state, {
-        cities: [...new Set(action.payload.map((offer) => offer.city.name))].sort()
       });
 
     case ActionTypes.GET_NEAR_OFFERS:

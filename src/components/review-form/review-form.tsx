@@ -108,23 +108,26 @@ class ReviewForm extends React.PureComponent<Props, {}> {
         {error ? <div style={errorStyle}>Sorry, can not send your review, please try again later</div> : null}
         <div className="reviews__rating-form form__rating">
 
-          {ratingTitles.map((title, i) =>
-            <React.Fragment key={title}>
-              <input
-                className="form__rating-input visually-hidden"
-                name="rating"
-                defaultValue={5 - i}
-                id={`${5 - i}-stars`}
-                type="radio"
-                onChange={onRatingChange}
-              />
-              <label htmlFor={`${5 - i}-stars`} className="reviews__rating-label form__rating-label" title={title}>
-                <svg className="form__star-image" width={37} height={33}>
-                  <use xlinkHref="#icon-star" />
-                </svg>
-              </label>
-            </React.Fragment>
-          )}
+          {ratingTitles.map((title, i) => {
+            const starsCount = ratingTitles.length - i;
+            return (
+              <React.Fragment key={title}>
+                <input
+                  className="form__rating-input visually-hidden"
+                  name="rating"
+                  defaultValue={starsCount}
+                  id={`${starsCount}-stars`}
+                  type="radio"
+                  onChange={onRatingChange}
+                />
+                <label htmlFor={`${starsCount}-stars`} className="reviews__rating-label form__rating-label" title={title}>
+                  <svg className="form__star-image" width={37} height={33}>
+                    <use xlinkHref="#icon-star" />
+                  </svg>
+                </label>
+              </React.Fragment>
+            );
+          })}
 
         </div>
         <textarea

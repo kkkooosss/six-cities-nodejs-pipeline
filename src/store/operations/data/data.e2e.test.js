@@ -9,7 +9,7 @@ import {RequestCodes} from '../../../helpers/constants';
 const api = createAPI(jest.fn());
 
 describe(`Load Offer operation works correctly`, () => {
-  it(`Should make a correct API call to /hotels and get offers and cities`, () => {
+  it(`Should make a correct API call to /hotels and get offers`, () => {
     const apiMock = new MockAdapter(api);
     const dispatch = jest.fn();
     const dataLoader = Operation.loadOffers();

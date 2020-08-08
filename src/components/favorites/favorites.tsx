@@ -10,6 +10,7 @@ import {getAuthStatus} from '../../store/reducers/user/selectors';
 import DataOperation from '../../store/operations/data/data';
 import FavoritesEmpty from '../favorites-empty/favorites-empty';
 import {AuthStatus, CardTypes} from '../../helpers/constants';
+import {getCitiesList} from '../../helpers/utils';
 
 interface Props {
   favorites: Offer[];
@@ -20,7 +21,7 @@ interface Props {
   onCardHoverLeave: () => void;
 }
 
-class Favorites extends React.Component<Props> {
+class Favorites extends React.PureComponent<Props> {
   constructor(props) {
     super(props);
   }
@@ -32,7 +33,7 @@ class Favorites extends React.Component<Props> {
 
   render() {
     const {favorites, authStatus, onSetFavoriteStatus, onCardHover, onCardHoverLeave} = this.props;
-    const cities = [...new Set(favorites.map((offer) => offer.city.name))].sort();
+    const cities = getCitiesList(favorites);
     const hasFavorites = favorites.length > 0;
     const isAuthorized = authStatus === AuthStatus.AUTH;
 

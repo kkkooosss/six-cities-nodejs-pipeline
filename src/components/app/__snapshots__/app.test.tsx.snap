@@ -98,19 +98,6 @@ exports[`App renders correctly 1`] = `
               </span>
             </a>
           </li>
-          <li
-            className="locations__item"
-          >
-            <a
-              className="locations__item-link tabs__item null"
-              href="#"
-              onClick={[Function]}
-            >
-              <span>
-                Berlin
-              </span>
-            </a>
-          </li>
         </ul>
       </section>
     </div>

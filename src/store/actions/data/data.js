@@ -1,6 +1,5 @@
 export const ActionTypes = {
   GET_OFFERS: `GET_OFFERS`,
-  GET_CITIES: `GET_CITIES`,
   GET_NEAR_OFFERS: `GET_NEAR_OFFERS`,
   GET_FAVORITES: `GET_FAVORITES`,
   SET_DETAILS_OFFER_ID: `SET_DETAILS_OFFER_ID`,
@@ -11,11 +10,6 @@ const ActionCreator = {
 
   getOffers: (offers) => ({
     type: ActionTypes.GET_OFFERS,
-    payload: offers
-  }),
-
-  getCities: (offers) => ({
-    type: ActionTypes.GET_CITIES,
     payload: offers
   }),
 

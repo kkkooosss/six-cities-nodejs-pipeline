@@ -1,5 +1,6 @@
 import NameSpace from '../../name-space';
 import {createSelector} from "reselect";
+import {getCitiesList} from '../../../helpers/utils';
 
 const NAME_SPACE = NameSpace.DATA;
 
@@ -23,7 +24,7 @@ export const getLoadingFlag = (state) => {
 };
 
 export const getCities = (state) => {
-  return state[NAME_SPACE].cities;
+  return getCitiesList(state[NAME_SPACE].offers);
 };
 
 export const getNearOffers = (state) => {
