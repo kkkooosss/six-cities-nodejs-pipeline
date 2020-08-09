@@ -3,12 +3,10 @@ import * as leaflet from 'leaflet';
 import {connect} from 'react-redux';
 
 import {Cities, MapSettings} from '../../helpers/constants';
-import {getSelectedCity} from '../../store/reducers/filter/selectors';
 import {getActiveOffer} from '../../store/reducers/active/selectors';
 import Offer from '../../interfaces/offer';
 
 interface Props {
-  selectedCity: string;
   offers: Offer[];
   isPropertyMap: boolean;
   currentOffer: Offer;
@@ -32,8 +30,8 @@ class Map extends React.PureComponent<Props, {}> {
   }
 
   componentDidMount() {
-    const {offers, currentOffer, selectedCity} = this.props;
-    const city = Cities[selectedCity];
+    const {offers, currentOffer} = this.props;
+    const city = Cities[offers[0].city.name];
 
     this._setMap(city);
     this._setView(city);
@@ -46,8 +44,8 @@ class Map extends React.PureComponent<Props, {}> {
   }
 
   componentDidUpdate() {
-    const {offers, currentOffer, activeOffer, selectedCity} = this.props;
-    const city = Cities[selectedCity];
+    const {offers, currentOffer, activeOffer} = this.props;
+    const city = Cities[offers[0].city.name];
 
     this._removeMarkers();
     this._setView(city);
@@ -126,7 +124,6 @@ class Map extends React.PureComponent<Props, {}> {
 }
 
 const mapStateToProps = (state) => ({
-  selectedCity: getSelectedCity(state),
   activeOffer: getActiveOffer(state)
 });
 
