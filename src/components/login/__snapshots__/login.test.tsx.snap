@@ -131,6 +131,9 @@ exports[`Header renders correctly 1`] = `
           >
             Sign in
           </button>
+          <div
+            className="login__error-wrapper"
+          />
         </form>
       </section>
       <section

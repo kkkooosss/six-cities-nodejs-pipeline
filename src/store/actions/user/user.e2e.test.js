@@ -17,4 +17,11 @@ describe(`User action creator work correctly`, () => {
     });
   });
 
+  it(`Action creator for setLoginError returns correct action`, () => {
+    expect(ActionCreator.setLoginError(false)).toEqual({
+      type: ActionTypes.SET_LOGIN_ERROR,
+      payload: false
+    });
+  });
+
 });

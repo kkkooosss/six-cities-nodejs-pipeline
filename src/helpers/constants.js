@@ -43,7 +43,8 @@ export const AuthStatus = {
 
 export const ResponseCodes = {
   UNAUTHORIZED: 401,
-  SUCCESS: 400
+  SUCCESS: 200,
+  BAD_REQUEST: 400
 };
 
 export const Routes = {
@@ -112,3 +113,5 @@ export const Months = [
   `November`,
   `December`
 ];
+
+export const LOGIN_ERROR_MESSAGE = `Login error occured. Please check your email and password.`;

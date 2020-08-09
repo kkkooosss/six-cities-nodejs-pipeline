@@ -3,19 +3,22 @@ import * as React from 'react';
 import Header from '../header/header';
 import withLogin from '../../hocs/with-login/with-login';
 import Loader from '../loader/loader';
+import {LOGIN_ERROR_MESSAGE} from '../../helpers/constants';
 
 interface Props {
   isValid: boolean;
   loading: boolean;
   emailError: string;
   passwordError: string;
+  loginError: boolean;
   onEmailChange: () => void;
   onPasswordChange: () => void;
   onSubmit: () => void;
+  onResetLoginError: () => void;
 }
 
 const Login = (props: Props) => {
-  const {isValid, emailError, passwordError, onEmailChange, onPasswordChange, onSubmit, loading} = props;
+  const {isValid, emailError, passwordError, loginError, onEmailChange, onPasswordChange, onSubmit, loading, onResetLoginError} = props;
 
   return loading ? <Loader /> : (
     <div className="page page--gray page--login">
@@ -35,7 +38,8 @@ const Login = (props: Props) => {
                   name="email"
                   placeholder="Email"
                   required
-                  onChange={onEmailChange} />
+                  onChange={onEmailChange}
+                  onFocus={onResetLoginError} />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 {passwordError && <span className="login__error-message">{passwordError}</span>}
@@ -46,9 +50,13 @@ const Login = (props: Props) => {
                   name="password"
                   placeholder="Password"
                   required
-                  onChange={onPasswordChange} />
+                  onChange={onPasswordChange}
+                  onFocus={onResetLoginError} />
               </div>
               <button className="login__submit form__submit button" type="submit" disabled={!isValid}>Sign in</button>
+              <div className="login__error-wrapper">
+                {loginError && <span className="login__error-message login__error-message--bottom">{LOGIN_ERROR_MESSAGE}</span>}
+              </div>
             </form>
           </section>
           <section className="locations locations--login locations--current">

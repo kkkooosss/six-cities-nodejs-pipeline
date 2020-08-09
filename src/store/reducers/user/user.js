@@ -4,7 +4,8 @@ import {AuthStatus} from '../../../helpers/constants';
 
 const initialState = {
   authStatus: AuthStatus.NO_AUTH,
-  user: {}
+  user: {},
+  loginError: false
 };
 
 const reducer = (state = initialState, action = {}) => {
@@ -18,6 +19,11 @@ const reducer = (state = initialState, action = {}) => {
     case ActionTypes.SET_USER:
       return extend(state, {
         user: action.payload
+      });
+
+    case ActionTypes.SET_LOGIN_ERROR:
+      return extend(state, {
+        loginError: action.payload
       });
   }
 

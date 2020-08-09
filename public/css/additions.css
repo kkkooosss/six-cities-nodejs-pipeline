@@ -21,9 +21,17 @@
   position: relative;
 }
 
+.login__error-wrapper {
+  position: relative;
+}
+
 .login__error-message {
   position: absolute;
   top: -20px;
   color: #BF616A;
   padding-left: 15px;
+}
+
+.login__error-message--bottom {
+  top: 13px;
 }

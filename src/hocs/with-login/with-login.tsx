@@ -73,7 +73,6 @@ const withLogin = (Component) => {
       if (isValidEmail && isValidPassword) {
         onLogin({email, password});
       }
-      history.back();
     }
 
     render() {

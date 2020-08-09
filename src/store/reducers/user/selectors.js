@@ -14,3 +14,7 @@ export const getUser = (state) => {
 export const getAuthFlag = (state) => {
   return state[NAME_SPACE].authStatus === AuthStatus.AUTH;
 };
+
+export const getLoginErrorFlag = (state) => {
+  return state[NAME_SPACE].loginError;
+};

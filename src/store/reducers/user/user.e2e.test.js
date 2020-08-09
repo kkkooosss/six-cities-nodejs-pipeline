@@ -31,4 +31,17 @@ describe(`User reducer work correctly`, () => {
     });
   });
 
+  it(`Should change loginError with given value`, () => {
+    const state3 = {
+      loginError: false
+    };
+    const action = {
+      type: ActionTypes.SET_LOGIN_ERROR,
+      payload: true
+    };
+    expect(reducer(state3, action)).toMatchObject({
+      loginError: true
+    });
+  });
+
 });

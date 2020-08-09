@@ -11,25 +11,28 @@ import UserOperation from '../../store/operations/user/user';
 import DataOperation from '../../store/operations/data/data';
 import {filterOffers} from '../../store/reducers/filter/selectors';
 import {Routes} from '../../helpers/constants';
-import {getAuthStatus} from '../../store/reducers/user/selectors';
+import {getAuthStatus, getLoginErrorFlag} from '../../store/reducers/user/selectors';
 import {AuthStatus} from '../../helpers/constants';
 import withPrivateRoute from '../../hocs/with-private-route/with-private-route';
 import {getLoadingFlag} from '../../store/reducers/data/selectors';
 import Offer from '../../interfaces/offer';
 import ActiveActionCreator from '../../store/actions/active/active';
+import UserActionCreator from '../../store/actions/user/user';
 
 interface Props {
   offers: Offer[];
   authStatus: string;
   loading: boolean;
+  loginError: boolean;
   onLogin: (authData: boolean) => void;
   onSetFavoriteStatus: (offerId: string | number, isFavorite: boolean) => void;
   onCardHover: (offer: Offer) => void;
   onCardHoverLeave: () => void;
+  onResetLoginError: () => void;
 }
 
 const App = (props: Props) => {
-  const {offers, authStatus, loading, onLogin, onSetFavoriteStatus, onCardHover, onCardHoverLeave} = props;
+  const {offers, authStatus, onResetLoginError, loading, loginError, onLogin, onSetFavoriteStatus, onCardHover, onCardHoverLeave} = props;
   const isAuthorized = authStatus === AuthStatus.AUTH;
   const FavoritesWrapped = withPrivateRoute(Favorites, isAuthorized);
   return (
@@ -77,6 +80,8 @@ const App = (props: Props) => {
               <Login
                 onLogin={onLogin}
                 loading={loading}
+                loginError={loginError}
+                onResetLoginError={onResetLoginError}
               />
             );
           }}
@@ -89,13 +94,18 @@ const App = (props: Props) => {
 const mapStateToProps = (state) => ({
   offers: filterOffers(state),
   loading: getLoadingFlag(state),
-  authStatus: getAuthStatus(state)
+  authStatus: getAuthStatus(state),
+  loginError: getLoginErrorFlag(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
 
   onLogin(authData: boolean) {
     dispatch(UserOperation.login(authData));
+  },
+
+  onResetLoginError() {
+    dispatch(UserActionCreator.setLoginError(false));
   },
 
   onSetFavoriteStatus(offerId: number | string, isFavorite: boolean) {
