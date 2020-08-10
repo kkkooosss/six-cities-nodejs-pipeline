@@ -82,6 +82,7 @@ const App = (props: Props) => {
                 loading={loading}
                 loginError={loginError}
                 onResetLoginError={onResetLoginError}
+                isAuthorized={isAuthorized}
               />
             );
           }}

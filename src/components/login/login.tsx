@@ -2,12 +2,15 @@ import * as React from 'react';
 
 import Header from '../header/header';
 import withLogin from '../../hocs/with-login/with-login';
+import {Redirect} from "react-router-dom";
+import {Routes} from '../../helpers/constants.js';
 import Loader from '../loader/loader';
 import {LOGIN_ERROR_MESSAGE} from '../../helpers/constants';
 
 interface Props {
   isValid: boolean;
   loading: boolean;
+  isAuthorized: boolean;
   emailError: string;
   passwordError: string;
   loginError: boolean;
@@ -18,7 +21,11 @@ interface Props {
 }
 
 const Login = (props: Props) => {
-  const {isValid, emailError, passwordError, loginError, onEmailChange, onPasswordChange, onSubmit, loading, onResetLoginError} = props;
+  const {isValid, isAuthorized, emailError, passwordError, loginError, onEmailChange, onPasswordChange, onSubmit, loading, onResetLoginError} = props;
+
+  if (isAuthorized) {
+    return <Redirect to={Routes.MAIN} />;
+  }
 
   return loading ? <Loader /> : (
     <div className="page page--gray page--login">
