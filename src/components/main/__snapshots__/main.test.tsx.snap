@@ -362,7 +362,7 @@ exports[`Main renders correctly 1`] = `
           className="cities__right-section"
         >
           <section
-            className="map property__map"
+            className="map cities__map"
             id="map"
           />
         </div>

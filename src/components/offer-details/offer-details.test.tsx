@@ -11,7 +11,6 @@ import Offer from '../../interfaces/offer';
 import mockReviews from '../../test-data/reviews';
 
 const OFFER_ID = `1`;
-const SELECTED_CITY = `Amsterdam`;
 const AuthStatus = `NO_AUTH`;
 const OFFER: Offer = mockOffers[0];
 const NEAR_OFFERS: Offer[] = mockOffers;
@@ -24,7 +23,6 @@ it(`OfferDetails renders correctly`, () => {
       <BrowserRouter>
         <OfferDetails
           offerId={OFFER_ID}
-          selectedCity={SELECTED_CITY}
           authStatus={AuthStatus}
           offer={OFFER}
           nearOffers={NEAR_OFFERS}

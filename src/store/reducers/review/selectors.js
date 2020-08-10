@@ -1,9 +1,10 @@
 import NameSpace from '../../name-space';
+import {normalizeReviews} from '../../../helpers/utils';
 
 const NAME_SPACE = NameSpace.REVIEWS;
 
 export const getReviews = (state) => {
-  return state[NAME_SPACE].reviews;
+  return normalizeReviews(state[NAME_SPACE].reviews);
 };
 
 export const getSendingFlag = (state) => {

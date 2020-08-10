@@ -2,15 +2,17 @@ import * as React from 'react';
 import * as leaflet from 'leaflet';
 import {connect} from 'react-redux';
 
-import {Cities, MapSettings} from '../../helpers/constants';
+import {MapSettings} from '../../helpers/constants';
 import {getActiveOffer} from '../../store/reducers/active/selectors';
 import Offer from '../../interfaces/offer';
+import City from '../../interfaces/city';
 
 interface Props {
   offers: Offer[];
   isPropertyMap: boolean;
   currentOffer: Offer;
   activeOffer: Offer;
+  offerCity: City;
 }
 
 class Map extends React.PureComponent<Props, {}> {
@@ -30,13 +32,17 @@ class Map extends React.PureComponent<Props, {}> {
   }
 
   componentDidMount() {
-    const {offers, currentOffer} = this.props;
-    const city = Cities[offers[0].city.name];
+    const {offers, offerCity, currentOffer, isPropertyMap} = this.props;
 
-    this._setMap(city);
-    this._setView(city);
-    this._setLayer();
-    this._setMarkers(offers);
+    if (isPropertyMap) {
+      const {latitude, longitude} = offerCity.location;
+      const city = [latitude, longitude];
+      this._mountMap(city, offers);
+    } else {
+      const {latitude, longitude} = offers[0].city.location;
+      const city = [latitude, longitude];
+      this._mountMap(city, offers);
+    }
 
     if (currentOffer) {
       this._setCurrentOfferMarker(currentOffer);
@@ -45,12 +51,10 @@ class Map extends React.PureComponent<Props, {}> {
 
   componentDidUpdate() {
     const {offers, currentOffer, activeOffer} = this.props;
-    const city = Cities[offers[0].city.name];
+    const {latitude, longitude} = offers[0].city.location;
+    const city = [latitude, longitude];
 
-    this._removeMarkers();
-    this._setView(city);
-    this._setLayer();
-    this._setMarkers(offers);
+    this._updateMap(city, offers);
 
     if (currentOffer) {
       this._setCurrentOfferMarker(currentOffer);
@@ -63,6 +67,20 @@ class Map extends React.PureComponent<Props, {}> {
 
   componentWillUnmount() {
     this._map = null;
+  }
+
+  _mountMap(city, offers) {
+    this._setMap(city);
+    this._setView(city);
+    this._setLayer();
+    this._setMarkers(offers);
+  }
+
+  _updateMap(city, offers) {
+    this._removeMarkers();
+    this._setView(city);
+    this._setLayer();
+    this._setMarkers(offers);
   }
 
   _setMap(city) {
@@ -112,7 +130,7 @@ class Map extends React.PureComponent<Props, {}> {
   }
 
   render() {
-    const isPropertyMap = this.props;
+    const {isPropertyMap} = this.props;
     return (
       <section
         className={`map ${isPropertyMap ? `property__map` : `cities__map` }`}

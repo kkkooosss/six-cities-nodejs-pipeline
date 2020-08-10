@@ -1,6 +1,5 @@
 import * as React from 'react';
 
-
 import ReviewCard from '../review/review-card';
 import ReviewForm from '../review-form/review-form';
 import Review from '../../interfaces/review';

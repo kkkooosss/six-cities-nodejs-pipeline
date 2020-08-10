@@ -13,7 +13,6 @@ import DataActionTypesCreator from '../../store/actions/data/data';
 import DataOperation from '../../store/operations/data/data';
 import ReviewOperation from '../../store/operations/review/review';
 import {reduceOffers} from '../../helpers/utils';
-import {getSelectedCity} from '../../store/reducers/filter/selectors';
 import {getOfferById, getNearOffers, getOffers} from '../../store/reducers/data/selectors';
 
 import {getAuthStatus} from '../../store/reducers/user/selectors';
@@ -25,7 +24,6 @@ import Review from '../../interfaces/review';
 
 interface Props {
   offerId: string;
-  selectedCity: string;
   authStatus: string;
   offer: Offer;
   nearOffers: Offer[];
@@ -74,7 +72,8 @@ class OfferDetails extends React.PureComponent<Props> {
         bedrooms,
         capacity,
         amenities,
-        description
+        description,
+        city
       } = offer;
 
       const isAuthorized = authStatus === AuthStatus.AUTH;
@@ -182,6 +181,7 @@ class OfferDetails extends React.PureComponent<Props> {
               offers={reducedOffers}
               isPropertyMap={true}
               currentOffer={offer}
+              offerCity={city}
             />
 
             <div className="container">
@@ -213,7 +213,6 @@ const mapStateToProps = (state) => ({
   offers: getOffers(state),
   offer: getOfferById(state),
   nearOffers: getNearOffers(state),
-  selectedCity: getSelectedCity(state),
   authStatus: getAuthStatus(state),
   reviews: getReviews(state)
 });

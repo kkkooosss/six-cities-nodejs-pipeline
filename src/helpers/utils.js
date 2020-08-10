@@ -10,7 +10,7 @@ const sortReveiwsByDate = (reviews) => (reviews.sort((a, b) => (new Date(b.date)
 
 const reduceReviews = (reviews) => reviews.length <= 10 ? reviews : reviews.slice(0, 10);
 
-export const getReviews = (reviews) => reduceReviews(sortReveiwsByDate(reviews));
+export const normalizeReviews = (reviews) => reduceReviews(sortReveiwsByDate(reviews));
 
 export const reduceCities = (cities) => cities.length >= 6 ? cities : cities.slice(0, 6);
 
