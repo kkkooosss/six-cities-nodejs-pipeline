@@ -12,7 +12,7 @@ import {getRatingInPercents} from '../../helpers/utils';
 import DataActionTypesCreator from '../../store/actions/data/data';
 import DataOperation from '../../store/operations/data/data';
 import ReviewOperation from '../../store/operations/review/review';
-import {reduceOffers} from '../../helpers/utils';
+import {reduceNearOffers} from '../../helpers/utils';
 import {getOfferById, getNearOffers, getOffers} from '../../store/reducers/data/selectors';
 
 import {getAuthStatus} from '../../store/reducers/user/selectors';
@@ -77,7 +77,7 @@ class OfferDetails extends React.PureComponent<Props> {
       } = offer;
 
       const isAuthorized = authStatus === AuthStatus.AUTH;
-      const reducedOffers = reduceOffers(nearOffers);
+      const reducedNearOffers = reduceNearOffers(nearOffers);
       const stars = getRatingInPercents(rating);
 
       return (
@@ -178,7 +178,7 @@ class OfferDetails extends React.PureComponent<Props> {
               </div>
             </section>
             <Map
-              offers={reducedOffers}
+              offers={reducedNearOffers}
               isPropertyMap={true}
               currentOffer={offer}
               offerCity={city}
@@ -190,7 +190,7 @@ class OfferDetails extends React.PureComponent<Props> {
                 <div className="near-places__list places__list">
 
                   <OffersList
-                    offers={reducedOffers}
+                    offers={reducedNearOffers}
                     onSetFavoriteStatus={onSetFavoriteStatus}
                     cardType={CardTypes.NEAR_PLACES}
                     onCardHover={onCardHover}

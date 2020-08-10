@@ -6,6 +6,8 @@ export const excludeCurrentOffer = (offers, currentOfferId) => offers.filter((it
 
 export const reduceOffers = (offers) => offers.length <= 3 ? offers : offers.slice(0, 10);
 
+export const reduceNearOffers = (offers) => offers.length <= 3 ? offers : offers.slice(0, 3);
+
 const sortReveiwsByDate = (reviews) => (reviews.sort((a, b) => (new Date(b.date) - new Date(a.date))));
 
 const reduceReviews = (reviews) => reviews.length <= 10 ? reviews : reviews.slice(0, 10);
