@@ -34,7 +34,6 @@ const Operation = {
         dispatch(ActionCreator.setUser(formatUser(response.data)));
         dispatch(ActionCreator.setAuthStatus(AuthStatus.AUTH));
         dispatch(DataActionCreator.setLoadingFlag(false));
-        history.back();
       })
       .catch(() => {
         dispatch(ActionCreator.setAuthStatus(AuthStatus.NO_AUTH));

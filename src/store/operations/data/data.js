@@ -12,7 +12,10 @@ const Operation = {
             dispatch(DataActionCreator.getOffers(formatOffers(response.data)));
             dispatch(FilterActionCreator.selectCity(getCitiesList(response.data)[0]));
             dispatch(DataActionCreator.setLoadingFlag(false));
-          });
+          })
+      .catch(() => {
+        dispatch(DataActionCreator.setLoadingFlag(false));
+      });
   },
 
   loadNearOffers: (offerId) => (dispatch, getState, api) => {
