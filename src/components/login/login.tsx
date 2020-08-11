@@ -46,7 +46,7 @@ const Login = (props: Props) => {
                   placeholder="Email"
                   required
                   onChange={onEmailChange}
-                  onFocus={onResetLoginError} />
+                  onFocus={loginError ? onResetLoginError : null} />
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 {passwordError && <span className="login__error-message">{passwordError}</span>}
@@ -58,7 +58,7 @@ const Login = (props: Props) => {
                   placeholder="Password"
                   required
                   onChange={onPasswordChange}
-                  onFocus={onResetLoginError} />
+                  onFocus={loginError ? onResetLoginError : null} />
               </div>
               <button className="login__submit form__submit button" type="submit" disabled={!isValid}>Sign in</button>
               <div className="login__error-wrapper">
