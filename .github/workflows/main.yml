@@ -1,0 +1,35 @@
+#======================================================
+#   CI_CD_github_actions_pipline_update_nodejs_website
+#======================================================
+on:
+  push:
+    branches:
+      - master
+
+name: Deploy to Amazon ECS
+
+env:
+  AWS_REGION: "eu-central-1"
+
+jobs:
+  build:
+    name: Build updated image ans push it to dockerhub 
+    runs-on: ubuntu-latest
+    steps:
+      
+    - name: Checkout
+      uses: actions/checkout@v1
+
+    - name: Build updated docker container  
+      run: |
+        cd build
+        docker build -t six-cities:build .
+        # Export new website files from six-cities:build
+        docker run --rm six-cities:build tar -cC ./public . | tar -xC ../nginx/
+        cd ../nginx
+        # Build updated image with website & push it to duckerhub
+        docker build -t kkkooosss/six-cities:nginx .
+        echo ${{ secrets.DOCKER_PASSWORD}} | docker login -u ${{ secrets.DOCKER_ID}} --password-stdin
+        docker push kkkooosss/six-cities:nginx
+        
+   
