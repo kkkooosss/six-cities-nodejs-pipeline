@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    name: Build updated image ans push it to dockerhub 
+    name: Build updated image and push it to dockerhub 
     runs-on: ubuntu-latest
     steps:
       
